@@ -142,7 +142,7 @@ body {
     height: auto;
 }
 
-/*-----PLATOS-----*/
+/*-----PLATOS TITULO-----*/
 #Platos {
     display: flex;
     justify-content: space-between; /* Ubica los elementos en los extremos */
@@ -167,7 +167,68 @@ body {
 }
 
 
+/*---CARUSEL DE PLATOS---*/
+.carusel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c19a6b; /* Color de fondo */
+    padding: 20px;
+    position: relative;
+}
 
+/* Contenedor de las imágenes */
+.carusel-container {
+    display: flex;
+    gap: 20px;
+    overflow: hidden; /* Oculta las imágenes que están fuera del área visible */
+    width: 80%; /* Ajusta el tamaño del carrusel */
+}
+
+/* Imágenes del carrusel */
+.carusel-container img {
+    width: 30%; /* Cada imagen ocupa un tercio del contenedor */
+    height: auto;
+    border-radius: 10px; /* Bordes redondeados */
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Botones de navegación */
+.prev, .next {
+    background-color: #8b5e3b; /* Color de fondo */
+    color: black;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.prev { left: 10px; }  /* Ubicación de la flecha izquierda */
+.next { right: 10px; } /* Ubicación de la flecha derecha */
+
+.prev:hover, .next:hover {
+    background-color: #a47c56;
+}
+.verContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#vermas {
+    background-color: var(--md-sys-color-primary);
+    color: black;
+    font-size: 20px; /* Tamaño del texto */
+    font-weight: bold;
+    border: none; /* Sin bordes */
+    padding: 15px 40px; /* Espaciado interno */
+    border-radius: 50px; /* Hace el botón ovalado */
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+}
 
 
 /* ---- FOOTER ---- */
