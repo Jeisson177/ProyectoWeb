@@ -11,6 +11,9 @@ header {
     min-height: 50vh; /* La altura mínima será el 50% de la pantalla */
     height: auto; /* Permite que crezca dinámicamente */
     padding-top: 20px;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 /* Logo en la esquina superior izquierda */
@@ -120,9 +123,12 @@ body {
     justify-content: center; /* Centra los elementos horizontalmente */
     align-items: center; /* Alinea los elementos verticalmente */
     gap: 300px; /* Espacio entre cada servicio */
-    margin-top: 50px; /* Espacio respecto al header */
+    margin-top: 200px; /* Espacio respecto al header */
     padding: 20px;
     flex-wrap: wrap; /* Permite que se ajusten en pantallas pequeñas */
+    background: linear-gradient(to right, rgb(223, 184, 148), rgb(206, 157, 111));
+    margin-bottom: 200px;
+ 
 }
 /* Ajustes de cada caja */
 .caja {
@@ -134,11 +140,12 @@ body {
     text-align: center;
     width: 15%; /* Tamaño fijo para cada servicio */
     padding: 10px;
+    gap: 10px;
 }
 
 /* Ajuste de las imágenes */
 .caja img {
-    width: 100%; /* Ajusta el tamaño de las imágenes */
+    width: 80%; /* Ajusta el tamaño de las imágenes */
     height: auto;
 }
 
