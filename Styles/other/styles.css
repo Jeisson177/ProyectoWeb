@@ -38,13 +38,13 @@ header #Servicios,
 header #Contacto, 
 header #Ordenar {
     position: absolute;
-    top: 30px;
+    top: 40px;
 }
 
 header #menu { right: 55%; }
-header #Servicios { right: 40%; }
-header #Contacto { right: 25%; }
-header #Ordenar { right: 10%; }
+header #Servicios { right: 45%; }
+header #Contacto { right: 35%; }
+header #Ordenar { right: 25%; }
 
 /* Icono del castillo en la esquina superior derecha */
 header #castillo {
@@ -218,11 +218,13 @@ body {
 .prev:hover, .next:hover {
     background-color: #a47c56;
 }
-.verContainer{
+.verM   {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    margin-top: 30px;
+    margin-bottom: 30px;
+ 
 }
 #vermas {
     background-color: var(--md-sys-color-primary);
@@ -231,7 +233,7 @@ body {
     font-weight: bold;
     border: none; /* Sin bordes */
     padding: 15px 40px; /* Espaciado interno */
-    border-radius: 50px; /* Hace el botón ovalado */
+    border-radius: 80px; /* Hace el botón ovalado */
     cursor: pointer;
     text-align: center;
     display: inline-block;
