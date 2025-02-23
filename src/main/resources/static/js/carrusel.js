@@ -28,11 +28,6 @@ const adjustItemWidth = () => {
     });
 
     caruselContainer.style.overflow = 'visible'; // Aseguramos visibilidad
-    console.log('Overflow ajustado a visible');
-    console.log('Ancho de cada ítem: ', itemWidth);
-    console.log('Espacio entre ítems: ', itemGap);
-    console.log('Total ancho ítem (con gap): ', totalItemWidth);
-    console.log('Ítems visibles en pantalla: ', itemsVisible);
 };
 
 // Función para actualizar la posición del carrusel
@@ -40,31 +35,26 @@ const updateCaruselPosition = () => {
     const newPosition = -(totalItemWidth * currentIndex);
     caruselContainer.style.transform = `translateX(${newPosition}px)`;
     caruselContainer.style.transition = 'transform 0.5s ease-in-out';
-    console.log('Actualizando posición del carrusel. Índice actual: ', currentIndex);
 };
 
 // Función para mover hacia la izquierda
 const moveToPrev = () => {
-    console.log('Clic en botón PREV. Índice antes de mover: ', currentIndex);
-    if (currentIndex > 0) {
+    if (currentIndex > 1) {
         currentIndex--;
     } else {
         currentIndex = totalItems - itemsVisible; // Va al último conjunto visible
     }
     updateCaruselPosition();
-    console.log('Nueva imagen mostrada. Índice actual: ', currentIndex);
 };
 
 // Función para mover hacia la derecha
 const moveToNext = () => {
-    console.log('Clic en botón NEXT. Índice antes de mover: ', currentIndex);
     if (currentIndex < totalItems - itemsVisible) {
         currentIndex++;
     } else {
         currentIndex = 0; // Regresa al primer conjunto
     }
     updateCaruselPosition();
-    console.log('Nueva imagen mostrada. Índice actual: ', currentIndex);
 };
 
 // Ajuste del tamaño al cargar la página y al cambiar el tamaño de la ventana
@@ -75,7 +65,7 @@ window.addEventListener('resize', adjustItemWidth);
 prevButton.addEventListener('click', moveToPrev);
 nextButton.addEventListener('click', moveToNext);
 
-// Auto deslizar cada 5 segundos (opcional, si no lo quieres, elimínalo)
+// Auto deslizar
 let autoSlide = setInterval(moveToNext, 5000);
 
 // Pausar el auto deslizar cuando el mouse esté sobre el carrusel
