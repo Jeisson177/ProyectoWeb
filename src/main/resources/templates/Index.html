@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="Styles/css/dark.css">
+    <link rel="stylesheet" href="Styles/css/light.css">
+    <link rel="stylesheet" href="Styles/other/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IM+FELL+English+SC&display=swap" rel="stylesheet">
+
+</head>
+<body class="light">
+    <header class="header">
+        <div class= "principal">
+            
+
+            <nav class="menu">
+                
+                <img id="logo" src="Imagenes/logoRecortado.jpg" alt="Logo">
+                <h1 id = "titulo"> PASTA E 
+                    <br> PASSIONE </h1>
+                <ul>
+                    <li><a href="#ServiciosContainer">Servicios</a></li>
+                    <li><a href="#contacto">Contactanos </a></li>
+                    <li><a href="#ordenar">Hacer Pedido</a></li>
+                </ul>
+
+                <img id="logo2" src="Imagenes/logoRecortado.jpg" alt="Logo">
+            </nav>    
+        </div>
+    
+
+        <section class="seccionInicial">
+            <!-- Elemento de video -->
+            <video id="videoPlayer" autoplay muted loop class="background-video">
+            <source id="videoSource" src="videos/videoPrincipal1.mp4" type="video/mp4">
+                Tu navegador no soporta el tag de video.
+            </video>
+    
+            <div class="descripcion">
+                <h2 id="bienvenida"> Bienvenido a Nuestra Autentica</h2>
+                <h1> COCINA ITALIANA </h1> <!-- Título principal -->
+                <p>Sabores hechos con amor y autentica pasion en cada bocado !!!.</p> <!-- Texto descriptivo -->
+                
+                <button id="ordenar">Ordenar</button> <!-- Botón de acción -->
+            </div>
+    
+        </section>
+    </header>
+
+    <section class="nosotros">
+        <div id="lineaSeparadora"> </div>
+
+        <div class="left">
+
+            <h2>¿ QUIENES SOMOS ?</h2>
+            <p> En Pasta E Passione, celebramos la auténtica tradición de la cocina italiana, 
+                combinando recetas centenarias con un toque moderno. Desde nuestros inicios, 
+                nos hemos dedicado a ofrecer una experiencia gastronómica única, donde cada 
+                plato cuenta una historia de sabor, pasión y cultura. </p>
+
+            <p> Nuestros chefs seleccionan las mejores recetas,
+                directamente desde Italia para garantizar el verdadero sabor mediterráneo 
+                en cada bocado. Desde nuestras pastas artesanales y pizzas al horno de leña 
+                hasta nuestros exquisitos postres caseros, cada creación está hecha con amor y dedicación.
+                
+            </p>
+
+            <h3> Bienvenido a PASTA E PASSIONE. ¡Buon appetito! </h3>
+        
+        </div>
+    
+        <div class="right">
+            <img src="Imagenes/seccion2/pasta4.jpg" alt="collage1" class = "collage" id="img1">
+            <img src="Imagenes/seccion2/pasta5.jpg" alt="collage2" class = "collage" id ="img2">
+            <img src="Imagenes/seccion2/pasta6.jpg" alt="collage3"  class = "collage" id="img3">
+            <img src="Imagenes/seccion2/pasta7.jpg" alt="collage4" class = "collage" id="img4">
+    
+        </div>
+
+    </section>
+   
+    
+    <div id="Platos">
+
+    </div>
+
+    <div class="carusel">
+        <button class="prev">&#10094;</button>
+        <div class="carusel-container">
+
+            <div class="carusel-item">
+                <img src="Imagenes/carruselPlatos/pasta1.jpg" alt="Plato 4">
+                <div class="info">Descripción del plato 3</div>
+            </div>
+            <div class="carusel-item">
+                <img src="Imagenes/carruselPlatos/pasta2.jpg" alt="Plato 5">
+                <div class="info">Descripción del plato 3</div>
+            </div>
+            <div class="carusel-item">
+                <img src="Imagenes/carruselPlatos/pasta3.jpg" alt="Plato 6">
+                <div class="info">Descripción del plato 3</div>
+            </div>
+            <div class="carusel-item">
+                <img src="Imagenes/carruselPlatos/BolasPasta.png" alt="Plato 1">
+                <div class="info">Descripción del plato 1</div>
+            </div>
+            <div class="carusel-item">
+                <img src="Imagenes/carruselPlatos/carneRadiolis.png" alt="Plato 2">
+                <div class="info">Descripción del plato 2</div>
+            </div>
+            <div class="carusel-item">
+                <img src="Imagenes/carruselPlatos/pizzaEspinaca.png" alt="Plato 3">
+                <div class="info">Descripción del plato 3</div>
+            </div>
+            
+        </div>
+        <button class="next">&#10095;</button>
+    </div>
+    <script src="Js/carrusel.js"></script>
+
+    <br>
+    <div class="verM">
+        <button id="vermas">Ver menú</button>
+    </div>
+
+    <br>
+
+    <section class= "reservas">
+
+        <div id="reservaDescripcion"> 
+            <h2 id="reservaTitulo"> Seleccione la sede en la que quiere reservas </h2>
+            <button id="reserva"> Reservas </button>
+        </div>
+
+        <section class="sedes">
+
+        </section>
+
+        <img id="reserva2" src="Imagenes/reserva/reserva2.jpg" alt="reserva2">
+        
+
+    </section>
+
+
+    <footer id="contacto">
+        <div id="Col1">
+            <img id="logoFooter" src="Imagenes/logo.jpg" alt="Logo">
+            <p> Pasta e Passione</p>
+            <p> Todos los derechos reservados</p>
+        </div>
+        <div id="Col2">
+            <h2>Acerca de nosotros</h2>
+            <ul>
+                <li>Nosotros</li>
+                <li>Domilios</li>
+                <li>Menu</li>
+            </ul>
+        </div>
+        <div id="Col3">
+            <h3>Redes Sociales</h3>
+            <img id="instagram" src="Imagenes/SocialMedia/instagram.png" alt="Instagram">
+            <img id="facebook" src="Imagenes/SocialMedia/Facebook.png" alt="Facebook">
+            <img id="X" src="Imagenes/SocialMedia/X.png" alt="Twitter">
+        </div>
+    </footer>
+</body>
+</html>
