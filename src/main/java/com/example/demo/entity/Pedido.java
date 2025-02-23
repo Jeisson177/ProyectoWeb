@@ -15,5 +15,28 @@ public class Pedido {
         this.Estado = Estado;
         this.fecha = fecha;
     }
-    
+    public int getPedido_id() {
+        return pedido_id;
+    }
+    public void setPedido_id(int pedido_id) {
+        this.pedido_id = pedido_id;
+    }
+    public int getOperador_ID() {
+        return operador_ID;
+    }
+    public void setOperador_ID(int operador_ID) {
+        this.operador_ID = operador_ID;
+    }
+    public int getDomiciliario_ID() {
+        return domiciliario_ID;
+    }
+    public void setDomiciliario_ID(int domiciliario_ID) {
+        this.domiciliario_ID = domiciliario_ID;
+    }
+    public boolean isEstado() {
+        return Estado;
+    }
+    public void setEstado(boolean estado) {
+        this.Estado = estado;
+    }
 }
