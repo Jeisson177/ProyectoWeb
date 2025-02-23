@@ -7,4 +7,55 @@ public class Producto {
     private String Nombre;
     private int Precio;
     private String Descripcion;
+
+    public Producto(int producto_ID, int pedido_ID, String Nombre, int Precio, String Descripcion) {
+        this.producto_ID = producto_ID;
+        this.pedido_ID = pedido_ID;
+        this.Nombre = Nombre;
+        this.Precio = Precio;
+        this.Descripcion = Descripcion;
+
+    }
+
+    public int getProducto_ID() {
+        return producto_ID;
+    }
+
+    public void setProducto_ID(int producto_ID) {
+        this.producto_ID = producto_ID;
+    }
+
+    public int getPedido_ID() {
+        return pedido_ID;
+    }
+
+    public void setPedido_ID(int pedido_ID) {
+        this.pedido_ID = pedido_ID;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public int getPrecio() {
+        return Precio;
+    }
+
+    public void setPrecio(int Precio) {
+        this.Precio = Precio;
+    }
+
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
+    }
+
+    
 }
