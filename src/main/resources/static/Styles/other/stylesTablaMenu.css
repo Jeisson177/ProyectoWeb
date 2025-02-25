@@ -1,0 +1,125 @@
+/* Estilos generales */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f4f1de; /* Color de fondo suave */
+    color: #3d405b; /* Color de texto principal */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco para el contenido */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin-top: 20px;
+}
+
+h1 {
+    color: #e07a5f; /* Color terracota para el título */
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el buscador */
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e07a5f; /* Borde terracota */
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Estilos para la tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table thead {
+    background-color: #e07a5f; /* Fondo terracota para el encabezado */
+    color: white;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f3e6; /* Fondo claro para filas pares */
+}
+
+.table tbody tr:hover {
+    background-color: #f2cc8f; /* Color de hover cálido */
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para los botones de acciones */
+.btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin: 2px;
+}
+
+.btn-primary {
+    background-color: #3d405b; /* Color azul oscuro */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2a2d3a; /* Color azul oscuro más oscuro */
+}
+
+.btn-danger {
+    background-color: #e07a5f; /* Color terracota */
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c86b53; /* Color terracota más oscuro */
+}
+
+/* Estilos para la paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    padding: 8px 12px;
+    border: 1px solid #e07a5f; /* Borde terracota */
+    border-radius: 5px;
+    color: #e07a5f; /* Color terracota */
+    background-color: white;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    background-color: #e07a5f; /* Fondo terracota */
+    color: white;
+}
+
+.page-item.active .page-link {
+    background-color: #e07a5f; /* Fondo terracota */
+    color: white;
+    border-color: #e07a5f;
+}
+
+.page-item.disabled .page-link {
+    color: #ddd;
+    border-color: #ddd;
+    cursor: not-allowed;
+}
