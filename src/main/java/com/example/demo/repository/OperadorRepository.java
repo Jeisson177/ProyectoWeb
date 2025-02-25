@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,8 +27,8 @@ public class OperadorRepository {
         return operadores.get(idOperador);
     }
 
-    public Map<String, Operador> getAllOperadores() {
-        return operadores;
+    public Collection<Operador> getAllOperadores() {
+        return operadores.values();
     }
 
     // Método para agregar un nuevo operador

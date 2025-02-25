@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,8 +52,8 @@ public class ProductoRepository {
         return productos.get(id);
     }
 
-    public Map<Integer, Producto> getAllProductos() {
-        return productos;
+    public Collection<Producto> getAllProductos() {
+        return productos.values();
     }
 
     // Método para agregar un nuevo producto

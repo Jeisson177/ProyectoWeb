@@ -7,6 +7,7 @@ public class Pedido {
     private int domiciliario_ID;
     private boolean Estado;
     private String fecha;
+    
 
     public Pedido(int pedido_id, int operador_ID, int domiciliario_ID, boolean Estado, String fecha) {
         this.pedido_id = pedido_id;
@@ -38,5 +39,13 @@ public class Pedido {
     }
     public void setEstado(boolean estado) {
         this.Estado = estado;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 }

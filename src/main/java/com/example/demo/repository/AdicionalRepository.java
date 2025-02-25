@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,8 +41,8 @@ public class AdicionalRepository {
         return adicionales.get(adicional_id);
     }
 
-    public Map<Integer, Adicional> getAllAdicionales() {
-        return adicionales;
+    public Collection<Adicional> getAllAdicionales() {
+        return adicionales.values();
     }
 
     // Método para agregar un nuevo adicional
