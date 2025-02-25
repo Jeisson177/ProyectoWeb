@@ -22,7 +22,7 @@ async function cargarMenu() {
             if (!producto.tipo) {
                 console.warn(`Producto sin tipo: ${JSON.stringify(producto)}`);
                 return; // Evitamos errores
-            }
+            }6
 
             // Normalizar el tipo para coincidir con las claves de `categorias`
             const tipoNormalizado = producto.tipo.trim().toLowerCase().replace(/\s+/g, '');
