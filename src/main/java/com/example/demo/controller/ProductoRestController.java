@@ -21,6 +21,6 @@ public class ProductoRestController {
     // Retorna el JSON con todos los productos
     @GetMapping("/menu")
     public Map<Integer, Producto> getAllProductos() {
-        return productoRepository.getAllProductos();
+        return  productoRepository.getAllProductos();
     }
 }
