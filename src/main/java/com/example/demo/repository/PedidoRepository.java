@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +26,8 @@ public class PedidoRepository {
         return pedidos.get(pedido_id);
     }
 
-    public Map<Integer, Pedido> getAllPedidos() {
-        return pedidos;
+    public Collection<Pedido> getAllPedidos() {
+        return pedidos.values();
     }
 
     // Método para agregar un nuevo pedido

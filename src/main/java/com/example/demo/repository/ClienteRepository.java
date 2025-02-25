@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -53,8 +54,8 @@ public class ClienteRepository {
     }
 
     // Método para obtener todos los clientes
-    public List<Cliente> findAll() {
-        return clientes.values().stream().collect(Collectors.toList());
+    public Collection<Cliente> findAll() {
+        return clientes.values();
     }
 
     // Método para buscar clientes por nombre

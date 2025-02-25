@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,8 +31,8 @@ public class DomiciliarioRepository {
         return domiciliarios.get(id);
     }
 
-    public Map<Integer, Domiciliario> getAllDomiciliarios() {
-        return domiciliarios;
+    public Collection<Domiciliario> getAllDomiciliarios() {
+        return domiciliarios.values();
     }
 
     // Método para agregar un nuevo domiciliario
