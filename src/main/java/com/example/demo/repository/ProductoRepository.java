@@ -20,8 +20,8 @@ public class ProductoRepository {
         productos.put(3, new Producto(3, 103, "Pizza Margherita", 15000, "Pizza clásica con tomate, mozzarella y albahaca", "Plato Principal"));
         productos.put(4, new Producto(4, 104, "Ravioli de Ricotta y Espinacas", 22000, "Ravioli relleno de ricotta y espinacas con salsa de tomate", "Plato Principal"));
         productos.put(5, new Producto(5, 105, "Penne al Pesto", 17000, "Penne con salsa pesto de albahaca, ajo y piñones", "Plato Principal"));
-        productos.put(6, new Producto(6, 106, "Tiramisú", 12000, "Postre italiano con café, cacao y queso mascarpone", "Postre"));
-        productos.put(7, new Producto(7, 107, "Risotto de Champiñones", 19000, "Risotto cremoso con champiñones y queso parmesano", "Plato Principal"));
+        productos.put(6, new Producto(6, 106, "Tiramisu", 12000, "Postre italiano con café, cacao y queso mascarpone", "Postre"));
+        productos.put(7, new Producto(7, 107, "Risotto de Champinones", 19000, "Risotto cremoso con champiñones y queso parmesano", "Plato Principal"));
         productos.put(8, new Producto(8, 108, "Calzone", 16000, "Pizza doblada rellena de jamón, queso y tomate", "Plato Principal"));
         productos.put(9, new Producto(9, 109, "Fettuccine Alfredo", 21000, "Fettuccine con salsa cremosa de queso parmesano y mantequilla", "Plato Principal"));
         productos.put(10, new Producto(10, 110, "Cannoli Siciliani", 10000, "Postre de masa crujiente rellena de ricotta y chocolate", "Postre"));
