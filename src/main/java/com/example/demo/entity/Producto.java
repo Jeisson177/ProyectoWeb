@@ -7,16 +7,24 @@ public class Producto {
     private String Nombre;
     private int Precio;
     private String Descripcion;
+    private String Tipo;
 
-    public Producto(int producto_ID, int pedido_ID, String Nombre, int Precio, String Descripcion) {
+    public Producto(int producto_ID, int pedido_ID, String Nombre, int Precio, String Descripcion, String Tipo) {
         this.producto_ID = producto_ID;
         this.pedido_ID = pedido_ID;
         this.Nombre = Nombre;
         this.Precio = Precio;
         this.Descripcion = Descripcion;
-
+        this.Tipo = Tipo;
     }
 
+    public String getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
     public int getProducto_ID() {
         return producto_ID;
     }

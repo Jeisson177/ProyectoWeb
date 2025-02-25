@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú del Restaurante</title>
-    <link rel="stylesheet" href="Styles/other/stylesmenu.css">
+    <link rel="stylesheet" href="/Styles/other/stylesmenu.css">
 </head>
 <body>
-   
     <nav>
         <ul>
             <li><a href="#entradas">Entradas</a></li>
@@ -19,65 +18,10 @@
     <div class="portada">
         <img src="Imagenes/carruselPlatos/pasta1.jpg" alt="Plato 4">
     </div>
-    <br>
-    <div class="portada">
-        <section id="entradas">
-            <h2>Entradas</h2>
-            <ul>
-                <li>
-                    <h3>Bruschetta</h3>
-                    <p>Pan tostado con tomate, albahaca y aceite de oliva.</p>
-                    <span>$12.000</span>
-                </li>
-                <!-- Más entradas aquí -->
-            </ul>
-        </section>
-    </div>
-    <br>
-    <div class="portada">
-    <section id="platos-principales">
-        <h2>Platos Principales</h2>
-        <ul>
-            <li>
-                <h3>Lasagna Bolognese</h3>
-                <p>Lasagna tradicional con salsa boloñesa y queso parmesano.</p>
-                <span>$25.000</span>
-            </li>
-            <!-- Más platos principales aquí -->
-        </ul>
-    </section>
-    </div>
-    <br>
-    <div class="portada">
-    <section id="postres">
-        <h2>Postres</h2>
-        <ul>
-            <li>
-                <h3>Tiramisú</h3>
-                <p>Postre italiano clásico con capas de bizcocho y crema de mascarpone.</p>
-                <span>$15.000</span>
-            </li>
-            <!-- Más postres aquí -->
-        </ul>
-    </section>
-    </div>
-    <br>
-    <div class="portada">
-    <section id="bebidas">
-        <h2>Bebidas</h2>
-        <ul>
-            <li>
-                <h3>Vino Tinto</h3>
-                <p>Copa de vino tinto de la casa.</p>
-                <span>$10.000</span>
-            </li>
-            <!-- Más bebidas aquí -->
-        </ul>
-    </section>
-    </div>
-    <br>
-    <footer>
-        <p>&copy; 2025 Restaurante pasta e passione</p>
-    </footer>
+    <!-- Contenedor para el menú dinámico -->
+    <div id="menu-contenedor"></div>
+
+    <!-- Cargar el archivo JS -->
+    <script src="/js/menu.js"></script>
 </body>
 </html>
