@@ -1,25 +1,17 @@
 package com.example.demo.controller;
 
-
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Producto;
-import com.example.demo.repository.ProductoRepository;
-
-@RestController
-@RequestMapping("/")
+@Controller
+@RequestMapping("/menu")
 public class ProductoController {
 
-    @Autowired
-    private ProductoRepository productoRepository;
-
-    @GetMapping("/menu")
-    public Map<Integer, Producto> getAllProductos() {
-        return productoRepository.getAllProductos();
+    // Carga la página HTML de menú
+    @GetMapping
+    public String mostrarMenu(Model model) {
+        return "menu"; // Carga el archivo menu.html desde templates
     }
 }

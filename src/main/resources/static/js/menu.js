@@ -1,32 +1,50 @@
-// Función para cargar el JSON y generar el menú
 async function cargarMenu() {
     try {
-        // Obtener el JSON desde el endpoint de Spring Boot
-        const respuesta = await fetch('/api/productos');
+        const respuesta = await fetch('/api/menu');
         const datos = await respuesta.json();
-        
-        const contenedorMenu = document.getElementById('menu-contenedor');
-        
-        // Objeto para agrupar los productos por categorías
+
+        console.log("Datos recibidos:", datos);
+
+        // Convertir los datos en un array de productos
+        const productosArray = Object.values(datos);
+        console.log("Array de productos:", productosArray);
+
+        // Objeto para agrupar los productos por categorías con claves normalizadas
         const categorias = {
-            "Entrada": [],
-            "Plato Principal": [],
-            "Postre": [],
-            "Bebida": []
+            "entrada": [],
+            "platoprincipal": [],
+            "postre": [],
+            "bebida": []
         };
 
-        // Agrupamos los productos por categoría
-        Object.values(datos).forEach(producto => {
-            if (categorias[producto.categoria]) {
-                categorias[producto.categoria].push(producto);
+        // Agrupar los productos correctamente
+        productosArray.forEach(producto => {
+            if (!producto.tipo) {
+                console.warn(`Producto sin tipo: ${JSON.stringify(producto)}`);
+                return; // Evitamos errores
+            }
+
+            // Normalizar el tipo para coincidir con las claves de `categorias`
+            const tipoNormalizado = producto.tipo.trim().toLowerCase().replace(/\s+/g, '');
+            console.log(`Tipo normalizado: '${tipoNormalizado}'`);
+
+            if (categorias[tipoNormalizado]) {
+                console.log(`Agregando producto: ${producto.nombre} a ${tipoNormalizado}`);
+                categorias[tipoNormalizado].push(producto);
+            } else {
+                console.warn(`No se encontró la categoría para: '${producto.tipo}'`);
             }
         });
 
-        // Generar el menú dinámicamente por categoría
+        // Verificar cuántos productos hay en cada categoría
         Object.keys(categorias).forEach(categoria => {
-            // Verificamos si hay productos en la categoría
+            console.log(`Categoría: ${categoria} - Productos: ${categorias[categoria].length}`);
+        });
+
+        // Generar el menú dinámicamente
+        const contenedorMenu = document.getElementById('menu-contenedor');
+        Object.keys(categorias).forEach(categoria => {
             if (categorias[categoria].length > 0) {
-                // Crear la sección de la categoría con estilo de .portada
                 const seccion = document.createElement('div');
                 seccion.classList.add('portada');
                 seccion.innerHTML = `<section>
@@ -34,32 +52,34 @@ async function cargarMenu() {
                                         <ul></ul>
                                     </section>`;
 
-                // Añadir productos a la categoría
                 categorias[categoria].forEach(producto => {
-                    // Convertimos el nombre del producto en un nombre de archivo amigable
+                    console.log(`Renderizando producto: ${producto.nombre}`);
+
                     const nombreImagen = producto.nombre.toLowerCase().replace(/ /g, '-') + '.jpg';
-                    // Definimos la ruta de la imagen usando la categoría
-                    const categoriaCarpeta = categoria.toLowerCase().replace(/ /g, '');
-                    const rutaImagen = `/Imagenes/menu/${categoriaCarpeta}/${nombreImagen}`;
+                    const rutaImagen = `/Imagenes/menu/${categoria}/${nombreImagen}`;
+
+                    const precioFormateado = new Intl.NumberFormat('es-CO', {
+                        style: 'currency',
+                        currency: 'COP'
+                    }).format(producto.precio);
 
                     const li = document.createElement('li');
                     li.innerHTML = `
                         <img src="${rutaImagen}" alt="${producto.nombre}" class="producto-imagen">
                         <h3>${producto.nombre}</h3>
                         <p>${producto.descripcion}</p>
-                        <span>${producto.precio}</span>
+                        <span>${precioFormateado}</span>
                     `;
                     seccion.querySelector('ul').appendChild(li);
                 });
 
-                // Añadir la sección al contenedor principal
                 contenedorMenu.appendChild(seccion);
             }
         });
+
     } catch (error) {
-        console.error('Error cargando el menú:', error);
+        console.error("Error al obtener el menú:", error);
     }
 }
 
-// Ejecutar al cargar la página
 window.addEventListener('load', cargarMenu);
