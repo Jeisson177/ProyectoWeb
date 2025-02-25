@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+    <link rel="stylesheet" href="/Styles/other/stylesPlato.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Volver al Menú</a>
+    </nav>
+    
+    <div id="detalle-producto" class="detalle-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener parámetros de la URL
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+
+            if (!id) {
+                document.getElementById('detalle-producto').innerHTML = "<p>Producto no encontrado</p>";
+                return;
+            }
+
+            // Llamar a la API para obtener detalles del producto
+            fetch(`/api/productos/${id}`)
+                .then(response => response.json())
+                .then(producto => {
+                    if (!producto) {
+                        document.getElementById('detalle-producto').innerHTML = "<p>Producto no encontrado</p>";
+                        return;
+                    }
+
+                    // Construir la vista del producto
+                    const contenedor = document.getElementById('detalle-producto');
+                    const nombreImagen = producto.nombre.toLowerCase().replace(/ /g, '-') + '.jpg';
+                    const rutaImagen = `/Imagenes/menu/${producto.tipo.toLowerCase()}/${nombreImagen}`;
+
+                    contenedor.innerHTML = `
+                        <h1>${producto.nombre}</h1>
+                        <img src="${rutaImagen}" alt="${producto.nombre}" class="detalle-imagen">
+                        <p>${producto.descripcion}</p>
+                        <span>${new Intl.NumberFormat('es-CO', {
+                            style: 'currency',
+                            currency: 'COP'
+                        }).format(producto.precio)}</span>
+                    `;
+                })
+                .catch(error => console.error("Error al obtener el producto:", error));
+        });
+    </script>
+</body>
+</html>

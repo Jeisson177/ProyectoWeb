@@ -1,0 +1,11 @@
+.detalle-container img{
+    width: 30%;
+    height: auto;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0d28c;
+    text-align: center;
+}

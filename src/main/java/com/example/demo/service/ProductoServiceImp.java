@@ -18,5 +18,9 @@ public class ProductoServiceImp implements ProductoService{
         return productoRepository.getAllProductos().values();
     }
 
-
+    @Override
+    public Producto getProductoById(int id) {
+        return productoRepository.getProducto(id);
+    }
+    
     }
