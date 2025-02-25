@@ -1,7 +1,7 @@
 /* Estilos generales */
 body {
     font-family: 'Georgia', serif;
-    background-color: #f4f1de; /* Color de fondo suave */
+    background-color: rgb(89 32 25); /* Color de fondo suave */
     color: #3d405b; /* Color de texto principal */
     margin: 0;
     padding: 0;
@@ -16,7 +16,7 @@ body {
 }
 
 h1 {
-    color: #e07a5f; /* Color terracota para el título */
+    color: #c19a6b; 
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 20px;
@@ -26,7 +26,7 @@ h1 {
 #searchInput {
     width: 100%;
     padding: 10px;
-    border: 2px solid #e07a5f; /* Borde terracota */
+    border: 2px solid #c19a6b; 
     border-radius: 5px;
     font-size: 1rem;
     margin-bottom: 20px;
@@ -70,21 +70,21 @@ h1 {
 }
 
 .btn-primary {
-    background-color: #3d405b; /* Color azul oscuro */
+    background-color: rgb(189, 69, 54); /* Color azul oscuro */
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #2a2d3a; /* Color azul oscuro más oscuro */
+    background-color: rgb(89 32 25); /* Color azul oscuro más oscuro */
 }
 
 .btn-danger {
-    background-color: #e07a5f; /* Color terracota */
+    background-color: #c19a6b; 
     color: white;
 }
 
 .btn-danger:hover {
-    background-color: #c86b53; /* Color terracota más oscuro */
+    background-color: #866337; 
 }
 
 /* Estilos para la paginación */
@@ -108,14 +108,14 @@ h1 {
 }
 
 .page-link:hover {
-    background-color: #e07a5f; /* Fondo terracota */
+    background-color: rgb(89 32 25); /* Fondo terracota */
     color: white;
 }
 
 .page-item.active .page-link {
-    background-color: #e07a5f; /* Fondo terracota */
+    background-color: rgb(89 32 25); /* Fondo terracota */
     color: white;
-    border-color: #e07a5f;
+    border-color: rgb(89 32 25);
 }
 
 .page-item.disabled .page-link {
