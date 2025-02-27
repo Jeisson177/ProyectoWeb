@@ -71,3 +71,93 @@ nav a {
 nav a:hover {
     text-decoration: underline;
 }
+
+
+/* Botón Agregar al Carrito */
+.btnAgregar {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #35130f;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
+}
+
+.btnAgregar:hover {
+    background-color: #e07a5f;
+    transform: scale(1.05);
+}
+
+.btnAgregar:active {
+    transform: scale(0.95);
+}
+
+.detalle-card {
+    display: flex;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 15px rgba(231, 172, 132, 0.5);
+    color: #f0d28c;
+    max-width: 800px;
+    margin: 50px auto;
+    gap: 20px;
+}
+
+/* Contenedor de la imagen y título */
+.detalle-imagen-container {
+    width: 50%;
+    text-align: center;
+    position: relative;
+}
+
+.detalle-imagen {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Título encima de la imagen */
+.detalle-imagen-container h1 {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #f0d28c;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Contenedor de la información */
+.detalle-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+/* Descripción del producto */
+.detalle-info p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #f0d28c;
+}
+
+/* Precio */
+.precio {
+    color: #ffcc80;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}

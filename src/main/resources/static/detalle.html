@@ -10,7 +10,7 @@
 <body>
     <header>
         <nav>
-            <a href="menu.html" class="volver-menu">← Volver al Menú</a>
+            <a href="menu" class="volver-menu">← Volver al Menú</a>
         </nav>
     </header>
 
@@ -40,14 +40,20 @@
 
                     contenedor.innerHTML = `
                         <div class="detalle-card">
-                            <h1>${producto.nombre}</h1>
-                            <img src="${rutaImagen}" alt="${producto.nombre}" class="detalle-imagen">
-                            <p>${producto.descripcion}</p>
-                            <span class="precio">${new Intl.NumberFormat('es-CO', {
-                                style: 'currency',
-                                currency: 'COP'
-                            }).format(producto.precio)}</span>
-                            <button class="btnAgregar">Agregar al Carrito</button>
+
+                            <div class="detalle-imagen-container">
+                                <h1>${producto.nombre}</h1>
+                                <img src="${rutaImagen}" alt="${producto.nombre}" class="detalle-imagen">
+                            </div>
+                            <div class="detalle-info">
+                                <p>${producto.descripcion}</p>
+                                <span class="precio">${new Intl.NumberFormat('es-CO', {
+                                    style: 'currency',
+                                    currency: 'COP'
+                                }).format(producto.precio)}</span>
+                                <br>
+                                <button class="btnAgregar">Agregar al Carrito</button>
+                            </div>
                         </div>
                     `;
                 })
