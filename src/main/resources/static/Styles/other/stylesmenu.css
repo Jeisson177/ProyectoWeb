@@ -2,13 +2,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(89 32 25);
+    background-color:  rgb(255, 230, 214);
 }
 
 
 
 nav {
-    background-color: #444;
+    background-color:  rgb(89 32 25);
+    font-family: 'Times New Roman', Times, serif;
+    
 }
 
 nav ul {
@@ -16,6 +18,9 @@ nav ul {
     margin: 0;
     padding: 0;
     text-align: center;
+    margin-top: 20px;
+    height: 80px;
+    margin-left: -90px;
 }
 
 nav ul li {
@@ -24,49 +29,70 @@ nav ul li {
 
 nav ul li a {
     display: inline-block;
-    color: black;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
     padding: 15px 20px;
     text-decoration: none;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-left: 70px;
+    
 }
 
 nav ul li a:hover {
-    background-color: #555;
+    height: 15px;
+    background-color: rgba(241, 199, 171, 0.7);
+    color: var(--md-sys-color-primary);
 }
+
+
 /* Estilo para la Portada y las Secciones del Menú */
 .portada,
 .portada section,
 .portada ul,
 .portada li {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
+    border-radius: 15px;
     padding: 20px;
-    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgb(89 32 25);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     font-family: Arial, sans-serif;
+    margin-top: 30px;
 }
 
 /* Imágenes dentro de la Portada */
 .portada img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
+    height: 500px;
+    border-radius: 30px;
+    margin-left: 0px;
 }
 
 /* Títulos */
 .portada h2 {
-    font-size: 28px;
-    color: #333;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    font-family: "Times New Roman", serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: rgb(89, 32, 25);
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgb(255, 230, 214);
+    border-radius: 10px;
+    margin-top: -10px;
 }
 
 /* Estilo para las tarjetas de los platos */
 .portada ul {
-    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 2 columnas */
+    gap: 20px;
     padding: 0;
+    margin: 0;
 }
 
 .portada ul li {
@@ -100,6 +126,14 @@ nav ul li a:hover {
 /* Separadores entre secciones */
 .portada + .portada {
     margin-top: 40px;
+}
+
+#menu-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
 }
 
 /* Estilo para el Footer */

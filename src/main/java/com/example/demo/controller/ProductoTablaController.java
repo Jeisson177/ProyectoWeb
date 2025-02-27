@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.service.ProductoService;
 
 @Controller
-@RequestMapping("/table")
+@RequestMapping("/producto")
 public class ProductoTablaController {
 
     @Autowired
