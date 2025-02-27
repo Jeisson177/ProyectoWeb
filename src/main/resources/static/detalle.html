@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del Producto</title>
     <link rel="stylesheet" href="/Styles/other/stylesPlato.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Volver al Menú</a>
-    </nav>
-    
+    <header>
+        <nav>
+            <a href="menu.html" class="volver-menu">← Volver al Menú</a>
+        </nav>
+    </header>
+
     <div id="detalle-producto" class="detalle-container"></div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Obtener parámetros de la URL
             const params = new URLSearchParams(window.location.search);
             const id = params.get('id');
 
@@ -24,7 +26,6 @@
                 return;
             }
 
-            // Llamar a la API para obtener detalles del producto
             fetch(`/api/productos/${id}`)
                 .then(response => response.json())
                 .then(producto => {
@@ -33,19 +34,21 @@
                         return;
                     }
 
-                    // Construir la vista del producto
                     const contenedor = document.getElementById('detalle-producto');
                     const nombreImagen = producto.nombre.toLowerCase().replace(/ /g, '-') + '.jpg';
                     const rutaImagen = `/Imagenes/menu/${producto.tipo.toLowerCase()}/${nombreImagen}`;
 
                     contenedor.innerHTML = `
-                        <h1>${producto.nombre}</h1>
-                        <img src="${rutaImagen}" alt="${producto.nombre}" class="detalle-imagen">
-                        <p>${producto.descripcion}</p>
-                        <span>${new Intl.NumberFormat('es-CO', {
-                            style: 'currency',
-                            currency: 'COP'
-                        }).format(producto.precio)}</span>
+                        <div class="detalle-card">
+                            <h1>${producto.nombre}</h1>
+                            <img src="${rutaImagen}" alt="${producto.nombre}" class="detalle-imagen">
+                            <p>${producto.descripcion}</p>
+                            <span class="precio">${new Intl.NumberFormat('es-CO', {
+                                style: 'currency',
+                                currency: 'COP'
+                            }).format(producto.precio)}</span>
+                            <button class="btnAgregar">Agregar al Carrito</button>
+                        </div>
                     `;
                 })
                 .catch(error => console.error("Error al obtener el producto:", error));
