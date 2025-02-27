@@ -30,7 +30,7 @@ nav ul li {
 nav ul li a {
     display: inline-block;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     padding: 15px 20px;
     text-decoration: none;
@@ -79,6 +79,7 @@ nav ul li a:hover {
     font-size: 24px;
     text-transform: uppercase;
     color: rgb(89, 32, 25);
+    font-weight: bold;
     margin-bottom: 15px;
     padding: 10px;
     background-color: rgb(255, 230, 214);
@@ -88,6 +89,7 @@ nav ul li a:hover {
 
 /* Estilo para las tarjetas de los platos */
 .portada ul {
+    align-items: center;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 2 columnas */
     gap: 20px;
@@ -96,7 +98,7 @@ nav ul li a:hover {
 }
 
 .portada ul li {
-    background: #f9f9f9;
+    background:  rgb(255, 230, 214);
     margin-bottom: 15px;
     padding: 15px;
     border-radius: 8px;
@@ -119,7 +121,7 @@ nav ul li a:hover {
     display: block;
     margin-top: 10px;
     font-weight: bold;
-    color: #e74c3c;
+    color: #913228;
     font-size: 18px;
 }
 
@@ -136,11 +138,68 @@ nav ul li a:hover {
     padding: 20px;
 }
 
-/* Estilo para el Footer */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    margin-top: 50px;
+#menu-contenedor img {
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+    margin-left: 0px;
+    object-fit: cover;
 }
+
+/* Estilo para el Footer */
+/* ---- FOOTER ---- */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: rgb(89 32 25);
+    color: #f0d28c;
+    text-shadow: 2px 2px 4px rgb(51, 10, 10);
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+footer div {
+    margin: 10px;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+#Col1 img {
+    width: 160px;
+    margin-left: 20px;
+    border-radius: 20px;
+}
+
+#Col4 img {
+    width: 40px;
+    height: 40px;
+    margin-left: 3px;
+    margin-right: 10px;
+}
+
+#Col4 h2{
+    margin-left: 30px;
+}
+
+
