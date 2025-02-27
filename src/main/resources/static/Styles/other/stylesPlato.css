@@ -1,138 +1,73 @@
-/* Estilo General */
+/* Estilos generales */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8;
+    background-color: rgb(89, 32, 25);
+    color: #f0d28c;
+    text-align: center;
+}
+
+/* Contenedor del detalle del producto */
+.detalle-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/* Estilo del Header */
-header {
-    background-color: #A93E1A;
-    width: 100%;
-    padding: 1rem 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-header nav {
-    text-align: center;
-}
-
-header nav a {
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    font-size: 1.2rem;
-    transition: color 0.3s;
-}
-
-header nav a:hover {
-    color: #e0e0e0;
-}
-
-/* Contenedor del Detalle */
-.detalle-container {
-    display: flex;
     justify-content: center;
-    width: 70%;
-    max-width: 400px;
-    margin-top: 2rem;
-}
-
-.detalle-card {
-    background-color: white;
+    width: 90%;
+    max-width: 400px; /* Hace la ventana más compacta */
+    margin: 50px auto;
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro translúcido */
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    padding: 2rem;
+    box-shadow: 0px 10px 15px rgba(231, 172, 132, 0.5);
+}
+
+/* Estilo del título */
+.detalle-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Imagen del producto */
+.detalle-container img {
     width: 100%;
-    text-align: center;
-    transition: transform 0.3s;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.6s ease-in-out;
 }
 
-.detalle-card:hover {
-    transform: scale(1.02);
+.detalle-container img:hover {
+    transform: scale(1.05);
 }
 
-/* Título del Producto */
-.detalle-card h1 {
-    color: #333;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-transform: capitalize;
+/* Descripción del producto */
+.detalle-container p {
+    font-size: 16px;
+    margin: 10px 0;
 }
 
-/* Imagen del Producto */
-.detalle-card img {
-    width: 80%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Precio */
+.detalle-container span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffcc80;
 }
 
-/* Descripción del Producto */
-.detalle-card p {
-    color: #555;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-}
-
-/* Precio del Producto */
-.detalle-card .precio {
+/* Link de navegación */
+nav a {
+    margin-top: 40px;
     display: block;
-    font-size: 1.8rem;
+    margin-top: 10px;
+    color: #f0d28c;
     font-weight: bold;
-    color: #c19a6b;
-    margin-top: 1rem;
-}
-
-/* Botón Agregar al Carrito */
-.btnAgregar {
-    display: inline-block;
-    background-color: #ff6f61;
-    color: white;
-    padding: 0.8rem 2rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.btnAgregar:hover {
-    background-color: #e55a4f;
-    transform: translateY(-2px);
-}
-
-.btnAgregar:active {
-    background-color: #d1453e;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transform: translateY(1px);
-}
-
-/* Botón Volver al Menú */
-.volver-menu {
-    display: inline-block;
-    background-color: #43190a;
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 6px;
     text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    margin-top: 1rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.volver-menu:hover {
-    background-color: #6b1b01;
+nav a:hover {
+    text-decoration: underline;
 }
