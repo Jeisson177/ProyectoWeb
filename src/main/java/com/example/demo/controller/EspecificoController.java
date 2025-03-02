@@ -30,7 +30,7 @@ public class EspecificoController {
 
     // Obtener detalle de un producto por ID
     @GetMapping("/{id}")
-    public Producto obtenerProductoPorId(@PathVariable int id) {
+    public Producto obtenerProductoPorId(@PathVariable Long id) {
         return productoService.getProductoById(id);
     }
 }

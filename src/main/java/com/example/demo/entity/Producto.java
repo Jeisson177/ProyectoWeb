@@ -1,15 +1,24 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Producto {
 
-    private int producto_ID;
+    
     private int pedido_ID;
     private String Nombre;
     private int Precio;
     private String Descripcion;
     private String Tipo;
 
-    public Producto(int producto_ID, int pedido_ID, String Nombre, int Precio, String Descripcion, String Tipo) {
+    @Id
+    @GeneratedValue
+    private Long producto_ID;
+
+    public Producto(Long producto_ID, int pedido_ID, String Nombre, int Precio, String Descripcion, String Tipo) {
         this.producto_ID = producto_ID;
         this.pedido_ID = pedido_ID;
         this.Nombre = Nombre;
@@ -18,6 +27,16 @@ public class Producto {
         this.Tipo = Tipo;
     }
 
+    public Producto( int pedido_ID, String Nombre, int Precio, String Descripcion, String Tipo) {
+        this.pedido_ID = pedido_ID;
+        this.Nombre = Nombre;
+        this.Precio = Precio;
+        this.Descripcion = Descripcion;
+        this.Tipo = Tipo;
+    }
+
+    public Producto() {}
+
     public String getTipo() {
         return Tipo;
     }
@@ -25,11 +44,11 @@ public class Producto {
     public void setTipo(String Tipo) {
         this.Tipo = Tipo;
     }
-    public int getProducto_ID() {
+    public Long getProducto_ID() {
         return producto_ID;
     }
 
-    public void setProducto_ID(int producto_ID) {
+    public void setProducto_ID(Long producto_ID) {
         this.producto_ID = producto_ID;
     }
 
