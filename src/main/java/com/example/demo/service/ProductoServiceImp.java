@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Producto;
 import com.example.demo.repository.ProductoRepository;
+
 @Service
 public class ProductoServiceImp implements ProductoService{
     @Autowired
