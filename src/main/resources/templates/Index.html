@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns: th=" http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,9 +21,9 @@
                 <h1 id = "titulo"> PASTA E 
                     <br> PASSIONE </h1>
                 <ul>
-                    <li><a href="#ServiciosContainer">Menu y reservas</a></li>
+                    <li><a href="#carusel">Menu y reservas</a></li>
                     <li><a href="#contacto">Contactanos </a></li>
-                    <li><a href="#ordenar">Hacer Pedido</a></li>
+                    <li><a href="/menu">Hacer Pedido</a></li>
                 </ul>
 
                 <img id="logo2" src="Imagenes/logoRecortado.jpg" alt="Logo">
@@ -33,7 +33,7 @@
 
         <section class="seccionInicial">
             <!-- Elemento de video -->
-            <video id="videoPlayer" autoplay muted loop class="background-video">
+            <video id="videoPlayer" autoplay muted loop playsinline class="background-video">
             <source id="videoSource" src="videos/videoPrincipal1.mp4" type="video/mp4">
                 Tu navegador no soporta el tag de video.
             </video>
@@ -43,7 +43,7 @@
                 <h1> COCINA ITALIANA </h1> <!-- Título principal -->
                 <p>Sabores hechos con amor y autentica pasion en cada bocado !!!.</p> <!-- Texto descriptivo -->
                 
-                <button id="ordenar">Ordenar</button> <!-- Botón de acción -->
+                <button id="ordenar" onclick="window.location.href='/menu'">Ordenar</button> <!-- Botón de acción -->
             </div>
     
         </section>
@@ -86,7 +86,7 @@
 
     </div>
 
-    <div class="carusel">
+    <div class="carusel" id="carusel">
         <button class="prev">&#10094;</button>
         <div class="carusel-container">
 
@@ -121,8 +121,9 @@
     <script src="Js/carrusel.js"></script>
 
     <br>
+
     <div class="verM">
-        <button id="vermas">Ver menú</button>
+        <button id="vermas" onclick="window.location.href='/menu'">Ver menú</button>
     </div>
 
     <br>

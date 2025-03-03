@@ -417,6 +417,12 @@ body {
     text-align: center;
     display: inline-block;
     z-index: 10;
+    border: rgb(89 32 25) solid 1.5px;
+}
+
+#vermas:hover {
+    background-color: #f3cbb8;
+    color: var(--md-sys-color-primary);
 }
 
 #lineaSeparadora2 {
