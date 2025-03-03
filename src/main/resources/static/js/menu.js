@@ -43,12 +43,19 @@ async function cargarMenu() {
                         <h3>${producto.nombre}</h3>
                         <p>${producto.descripcion}</p>
                         <span>${precioFormateado}</span>
+                        <button class="btn-agregar-carrito" data-id="${producto.producto_ID}">+</button>
                     `;
 
                     // Evento para redirigir al detalle del producto
                     li.querySelector('.producto-imagen').addEventListener('click', function () {
                         const id = this.dataset.id;
                         window.location.href = `detalle.html?id=${id}`;
+                    });
+
+                    // Evento para agregar al carrito
+                    li.querySelector('.btn-agregar-carrito').addEventListener('click', function () {
+                        const idProducto = this.dataset.id;
+                        agregarAlCarrito(idProducto);
                     });
 
                     seccion.querySelector('ul').appendChild(li);

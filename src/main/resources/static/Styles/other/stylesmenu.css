@@ -125,10 +125,16 @@ nav ul li a:hover {
     font-size: 18px;
 }
 
+.portada :hover{
+    transform: scale(1.05);
+    transition: transform 0.5s;
+}
+
 /* Separadores entre secciones */
 .portada + .portada {
     margin-top: 40px;
 }
+
 
 #menu-contenedor {
     display: flex;
@@ -145,6 +151,35 @@ nav ul li a:hover {
     margin-left: 0px;
     object-fit: cover;
 }
+
+#menu-contenedor img:hover {
+    cursor: pointer;
+}
+
+.btn-agregar-carrito {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-agregar-carrito:hover {
+    background-color: #d9431f;
+    transform: scale(1.1);
+}
+
 
 .modal {
     display: none; /* Oculta el modal al inicio */

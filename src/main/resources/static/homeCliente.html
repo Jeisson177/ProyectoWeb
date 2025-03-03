@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns: th=" http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homeCliente</title>
+    <link rel="stylesheet" href=" Styles/other/stylesPerfil.css">
+</head>
+<body>
+
+     <!-- Barra de navegación -->
+     <nav class="navbar">
+        <div class="logo">Mi Perfil</div>
+        <div class="nav-links">
+            <a href="#">Hacer pedido</a>
+            <a href="#">Historial de pedidos</a>
+        </div>
+        <button class="icon-button">➜</button>
+    </nav>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Tarjeta de perfil -->
+        <div class="profile-card">
+            <!-- Imagen de perfil -->
+            <div class="profile-img">
+                <img src="https://e7.pngegg.com/pngimages/348/800/png-clipart-man-wearing-blue-shirt-illustration-computer-icons-avatar-user-login-avatar-blue-child-thumbnail.png" alt="Foto de perfil">
+            </div>
+
+            <!-- Información del usuario -->
+            <div class="profile-info">
+                <p><strong>Nombre:</strong> <span id="nombre">Juan</span></p>
+                <p><strong>Apellido:</strong> <span id="apellido">Pérez</span></p>
+                <p><strong>Teléfono:</strong> <span id="telefono">+123 456 7890</span></p>
+                <p><strong>Dirección:</strong> <span id="direccion">Av. Principal 123</span></p>
+            </div>
+
+            <!-- Botón para editar -->
+            <button id="edit-button">Editar</button>
+        </div>
+    </div>
+    
+</body>
+</html>
