@@ -6,7 +6,11 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
 import com.example.demo.repository.AdicionalRepository;
+import com.example.demo.repository.AdministradorRepository;
 import com.example.demo.repository.ClienteRepository;
+import com.example.demo.repository.DomiciliarioRepository;
+import com.example.demo.repository.OperadorRepository;
+import com.example.demo.repository.PedidoRepository;
 import com.example.demo.repository.ProductoRepository;
 
 import jakarta.transaction.Transactional;
@@ -24,6 +28,18 @@ public class DatabaseInit implements ApplicationRunner{
 
     @Autowired
     AdicionalRepository adicionalRepository;
+
+    @Autowired
+    AdministradorRepository administradorRepository;
+
+    @Autowired
+    DomiciliarioRepository domiciliarioRepository;
+
+    @Autowired
+    OperadorRepository operadorRepository;
+
+    @Autowired
+    PedidoRepository pedidoRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -111,7 +127,37 @@ public class DatabaseInit implements ApplicationRunner{
         adicionalRepository.save( new Adicional( 20, "Trufa Negra", 1500));
 
 
+        //Inicio de los Administradores 
+        administradorRepository.save(new Administrador( "Juan", "Perez", "JPerez1214", "juanperez855"));
+        administradorRepository.save(new Administrador( "Maria", "Jaramillo", "Jaramillo_M", "Bgta5862"));
     
+        //Inicio de los domiciliarios
+
+        domiciliarioRepository.save(new Domiciliario("Mario Rossi", 3112345, true));
+        domiciliarioRepository.save(new Domiciliario("Luigi Verdi", 2345679, true));
+        domiciliarioRepository.save(new Domiciliario("Giovanni Bianchi", 3135680, false));
+        domiciliarioRepository.save(new Domiciliario("Francesco Romano", 3113581, true));
+        domiciliarioRepository.save(new Domiciliario("Antonio Esposito", 31123482, true));
+        domiciliarioRepository.save(new Domiciliario("Paolo Ferrari", 3112345, false));
+        domiciliarioRepository.save(new Domiciliario("Marco Ricci", 3112384, true));
+        domiciliarioRepository.save(new Domiciliario("Stefano Moretti", 37892345, true));
+        domiciliarioRepository.save(new Domiciliario("Luca Conti", 31123496, true));
+        domiciliarioRepository.save(new Domiciliario("Roberto Marini", 39915687, false));
+
+        //Inicio de los operadores
+        operadorRepository.save(new Operador( "Carlos Gómez", "carlosg", "clave123"));
+        operadorRepository.save(new Operador( "María López", "marial", "clave456"));
+        operadorRepository.save(new Operador( "Pedro Ramírez", "pedror", "clave789"));
+        operadorRepository.save(new Operador( "Ana Martínez", "anam", "clave101"));
+        operadorRepository.save(new Operador( "Luisa Fernández", "luisaf", "clave112"));
+        operadorRepository.save(new Operador( "Jorge Díaz", "jorged", "clave131"));
+
+        //Inicio de los pedidos
+        pedidoRepository.save(new Pedido(1, 1, true, "2023-10-01"));
+        pedidoRepository.save(new Pedido(2, 2, false, "2023-10-02"));
+        pedidoRepository.save(new Pedido(3, 4, true, "2023-10-03"));
+        pedidoRepository.save(new Pedido(4, 6, false, "2023-10-04"));
+        pedidoRepository.save(new Pedido(5, 5, true, "2023-10-05"));
     }
     
 }

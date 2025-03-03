@@ -1,12 +1,14 @@
 package com.example.demo.entity;
 
-import org.hibernate.annotations.ManyToAny;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class Adicional {
@@ -19,7 +21,7 @@ public class Adicional {
     private Long adicional_id;
 
     @ManyToMany
-    private Producto producto;
+    private List<Producto> producto = new ArrayList<>();
 
     public Adicional(Long adicional_id,  int cantidad, String Nombre, int precio) {
         this.adicional_id = adicional_id;

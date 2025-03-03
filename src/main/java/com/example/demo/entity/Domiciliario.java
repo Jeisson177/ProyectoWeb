@@ -1,21 +1,38 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Domiciliario {
-    private int id; 
     private String nombre;
     private int celular;
     private boolean Disponibilidad;
 
-    public Domiciliario(int id, String nombre, int celular, boolean Disponibilidad) {
+    @Id
+    @GeneratedValue
+    private Long id; 
+
+    public Domiciliario(Long id, String nombre, int celular, boolean Disponibilidad) {
         this.id = id;
         this.nombre = nombre;
         this.celular = celular;
         this.Disponibilidad = Disponibilidad;
     }
-    public int getId() {
+
+    public Domiciliario(String nombre, int celular, boolean Disponibilidad) {
+        this.nombre = nombre;
+        this.celular = celular;
+        this.Disponibilidad = Disponibilidad;
+    }
+
+    public Domiciliario() {}
+    
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getNombre() {
