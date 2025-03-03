@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
-import java.util.Map;
+import java.util.Collection;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Producto;
-import com.example.demo.repository.ProductoRepository;
+import com.example.demo.service.ProductoServiceImp;
 
 // Controlador para el JSON
 @RestController
@@ -16,11 +17,11 @@ import com.example.demo.repository.ProductoRepository;
 public class ProductoRestController {
 
     @Autowired
-    private ProductoRepository productoRepository;
+    ProductoServiceImp productoService;
 
     // Retorna el JSON con todos los productos
     @GetMapping("/menu")
-    public Map<Integer, Producto> getAllProductos() {
-        return  productoRepository.getAllProductos();
+    public Collection<Producto> getProductos() {
+        return productoService.getAllProductos();
     }
 }

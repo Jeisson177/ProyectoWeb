@@ -1,33 +1,59 @@
 package com.example.demo.entity;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+
+@Entity
 public class Adicional {
-    private int adicional_id;
-    private int pedido_ID;
     private String Nombre;
+    private int cantidad;
     private int precio;
 
-    public Adicional(int adicional_id, int pedido_ID, String Nombre, int precio) {
+    @Id
+    @GeneratedValue
+    private Long adicional_id;
+
+    @ManyToMany
+    private List<Producto> producto = new ArrayList<>();
+
+    public Adicional(Long adicional_id,  int cantidad, String Nombre, int precio) {
         this.adicional_id = adicional_id;
-        this.pedido_ID = pedido_ID;
+        this.cantidad = cantidad;
         this.Nombre = Nombre;
         this.precio = precio;
         
     }
-    public int getAdicional_id() {
+
+    public Adicional( int cantidad, String Nombre, int precio) {
+        this.cantidad = cantidad;
+        this.Nombre = Nombre;
+        this.precio = precio;
+        
+    }
+
+    public Adicional() {}
+
+    public Long getAdicional_id() {
         return adicional_id;
     }
 
-    public void setAdicional_id(int adicional_id) {
+    public void setAdicional_id(Long adicional_id) {
         this.adicional_id = adicional_id;
     }
 
-    public int getPedido_ID() {
-        return pedido_ID;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setPedido_ID(int pedido_ID) {
-        this.pedido_ID = pedido_ID;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public String getNombre() {

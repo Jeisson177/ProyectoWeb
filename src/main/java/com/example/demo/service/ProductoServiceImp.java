@@ -15,12 +15,12 @@ public class ProductoServiceImp implements ProductoService{
 
     @Override
     public Collection<Producto> getAllProductos() {
-        return productoRepository.getAllProductos().values();
+        return productoRepository.findAll();
     }
 
     @Override
-    public Producto getProductoById(int id) {
-        return productoRepository.getProducto(id);
+    public Producto getProductoById(Long id) {
+        return productoRepository.findById(id).get();
     }
     
     }

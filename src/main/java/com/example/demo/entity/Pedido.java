@@ -1,25 +1,43 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
+@Entity
 public class Pedido {
-    private int pedido_id;
     private int operador_ID;
     private int domiciliario_ID;
     private boolean Estado;
     private String fecha;
+
+    @Id
+    @GeneratedValue
+    private Long pedido_id;
     
 
-    public Pedido(int pedido_id, int operador_ID, int domiciliario_ID, boolean Estado, String fecha) {
+    public Pedido(Long pedido_id, int operador_ID, int domiciliario_ID, boolean Estado, String fecha) {
         this.pedido_id = pedido_id;
         this.operador_ID = operador_ID;
         this.domiciliario_ID = domiciliario_ID;
         this.Estado = Estado;
         this.fecha = fecha;
     }
-    public int getPedido_id() {
+
+    public Pedido(int operador_ID, int domiciliario_ID, boolean Estado, String fecha) {
+        this.operador_ID = operador_ID;
+        this.domiciliario_ID = domiciliario_ID;
+        this.Estado = Estado;
+        this.fecha = fecha;
+    }
+
+    public Pedido() {}
+
+
+    public Long getPedido_id() {
         return pedido_id;
     }
-    public void setPedido_id(int pedido_id) {
+    public void setPedido_id(Long pedido_id) {
         this.pedido_id = pedido_id;
     }
     public int getOperador_ID() {
