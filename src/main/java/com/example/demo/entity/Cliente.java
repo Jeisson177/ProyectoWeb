@@ -1,7 +1,12 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Cliente {
-    private String id;
+
     private String Nombre;
     private String Apellido;
     private String Correo;
@@ -9,7 +14,11 @@ public class Cliente {
     private String Direccion;
     private String Telefono;
 
-    public Cliente(String id, String Nombre, String Apellido, String Correo, String Contrasena, String Direccion, String Telefono) {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    public Cliente(Long id, String Nombre, String Apellido, String Correo, String Contrasena, String Direccion, String Telefono) {
         this.id = id;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
@@ -19,11 +28,22 @@ public class Cliente {
         this.Telefono = Telefono;
     }
 
-    public String getId() {
+    public Cliente( String Nombre, String Apellido, String Correo, String Contrasena, String Direccion, String Telefono) {
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+        this.Correo = Correo;
+        this.Contrasena = Contrasena;
+        this.Direccion = Direccion;
+        this.Telefono = Telefono;
+    }
+
+    public Cliente() {}
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

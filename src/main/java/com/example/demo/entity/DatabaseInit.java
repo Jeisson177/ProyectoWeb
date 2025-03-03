@@ -5,6 +5,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
+import com.example.demo.repository.AdicionalRepository;
+import com.example.demo.repository.ClienteRepository;
 import com.example.demo.repository.ProductoRepository;
 
 import jakarta.transaction.Transactional;
@@ -17,8 +19,16 @@ public class DatabaseInit implements ApplicationRunner{
     @Autowired
     ProductoRepository productoRepository;
 
+    @Autowired
+    ClienteRepository clienteRepository;
+
+    @Autowired
+    AdicionalRepository adicionalRepository;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+        // Inicio los productos
         productoRepository.save(new Producto( 101, "Lasagna Boloñesa", 20000, "Lasagna Boloñesa hecha con capas de pasta fresca, carne molida cocinada en una rica salsa de tomate y especias italianas, acompañada de pan artesanal y queso parmesano derretido.", "Plato Principal"));
         productoRepository.save(new Producto( 102, "Spaghetti Carbonara", 18000, "Spaghetti con auténtica salsa carbonara preparada con huevo, queso pecorino y tocino crujiente. Un plato clásico de Roma con un toque cremoso y sabor ahumado.", "Plato Principal"));
         productoRepository.save(new Producto( 103, "Pizza Margherita", 15000, "Pizza clásica napolitana con una base delgada y crujiente, cubierta con salsa de tomate casera, mozzarella fresca y hojas de albahaca para un sabor auténtico.", "Plato Principal"));
@@ -49,6 +59,59 @@ public class DatabaseInit implements ApplicationRunner{
         productoRepository.save(new Producto( 128, "Limoncello", 9000, "Licor italiano de limón elaborado artesanalmente con cáscaras de limón y alcohol puro. Refrescante y dulce, ideal como digestivo después de una comida.", "Bebida"));
         productoRepository.save(new Producto( 129, "Affogato", 8000, "Postre simple pero delicioso, hecho con una bola de helado de vainilla bañada con un shot caliente de espresso italiano. Contraste perfecto de frío y calor.", "Postre"));
         productoRepository.save(new Producto( 130, "Cappuccino", 5000, "Café cappuccino con una base de espresso, leche vaporizada y espuma de leche espesa. Un clásico italiano cremoso y suave, perfecto para las mañanas.", "Bebida"));
+    
+        //Inicio los clientes
+        clienteRepository.save(new Cliente("Juan", "Pérez", "jperez", "1234", "Calle 123", "555-1234"));
+        clienteRepository.save(new Cliente( "María", "Gómez", "mgomez", "5678", "Avenida 456", "555-5678"));
+        clienteRepository.save(new Cliente( "Carlos", "López", "clopez", "91011", "Boulevard 789", "555-9101"));
+        clienteRepository.save(new Cliente( "Ana", "Martínez", "amartinez", "121314", "Calle 321", "555-1213"));
+        clienteRepository.save(new Cliente( "Luis", "Rodríguez", "lrodriguez", "151617", "Avenida 654", "555-1516"));
+        clienteRepository.save(new Cliente( "Pedro", "Sánchez", "psanchez", "181920", "Calle 987", "555-1819"));
+        clienteRepository.save(new Cliente( "Laura", "Fernández", "lfernandez", "212223", "Avenida 654", "555-2122"));
+        clienteRepository.save(new Cliente( "Miguel", "Díaz", "mdiaz", "242526", "Boulevard 321", "555-2425"));
+        clienteRepository.save(new Cliente( "Sofía", "Ruiz", "sruiz", "272829", "Calle 159", "555-2728"));
+        clienteRepository.save(new Cliente( "Javier", "Hernández", "jhernandez", "303132", "Avenida 753", "555-3031"));
+        clienteRepository.save(new Cliente( "Elena", "Torres", "etorres", "333435", "Calle 852", "555-3334"));
+        clienteRepository.save(new Cliente( "Diego", "Vargas", "dvargas", "363738", "Boulevard 456", "555-3637"));
+        clienteRepository.save(new Cliente( "Carmen", "Jiménez", "cjimenez", "394041", "Avenida 963", "555-3940"));
+        clienteRepository.save(new Cliente( "Ricardo", "Molina", "rmolina", "424344", "Calle 741", "555-4243"));
+        clienteRepository.save(new Cliente( "Patricia", "Castro", "pcastro", "454647", "Boulevard 258", "555-4546"));
+        clienteRepository.save(new Cliente( "Fernando", "Ortega", "fortega", "484950", "Avenida 369", "555-4849"));
+        clienteRepository.save(new Cliente( "Lucía", "Navarro", "lnavarro", "515253", "Calle 753", "555-5152"));
+        clienteRepository.save(new Cliente( "Oscar", "Ramírez", "oramirez", "545556", "Boulevard 951", "555-5455"));
+        clienteRepository.save(new Cliente( "Isabel", "Reyes", "ireyes", "575859", "Avenida 357", "555-5758"));
+        clienteRepository.save(new Cliente( "Gabriel", "Morales", "gmorales", "606162", "Calle 456", "555-6061"));
+        clienteRepository.save(new Cliente( "Adriana", "Guerrero", "aguerrero", "636465", "Boulevard 789", "555-6364"));
+        clienteRepository.save(new Cliente( "Raúl", "Rojas", "rrojas", "666768", "Avenida 123", "555-6667"));
+        clienteRepository.save(new Cliente( "Mónica", "Silva", "msilva", "697071", "Calle 654", "555-6970"));
+        clienteRepository.save(new Cliente( "Héctor", "Cruz", "hcruz", "727374", "Boulevard 321", "555-7273"));
+        clienteRepository.save(new Cliente( "Natalia", "Peña", "npena", "757677", "Avenida 987", "555-7576"));
+    
+        
+        //Inicio los adicionales
+        adicionalRepository.save(new Adicional(100, "Queso Parmesano Extra", 500));
+        adicionalRepository.save( new Adicional( 2, "Salsa de Tomate Extra", 300));
+        adicionalRepository.save( new Adicional( 3, "Aceitunas Negras", 400));
+        adicionalRepository.save( new Adicional( 4, "Champiñones Salteados", 600));
+        adicionalRepository.save( new Adicional( 5, "Albahaca Fresca", 200));
+        adicionalRepository.save( new Adicional( 6, "Pepperoni Extra", 700));
+        adicionalRepository.save( new Adicional( 7, "Jalapeños", 450));
+        adicionalRepository.save( new Adicional( 8, "Queso Mozzarella Extra", 550));
+        adicionalRepository.save( new Adicional( 9, "Aceite de Oliva Virgen Extra", 250));
+        adicionalRepository.save( new Adicional( 10, "Pimientos Asados", 350));
+        adicionalRepository.save( new Adicional( 11, "Anchoas", 800));
+        adicionalRepository.save( new Adicional( 12, "Alcaparras", 300));
+        adicionalRepository.save( new Adicional( 13, "Provolone Fundido", 650));
+        adicionalRepository.save( new Adicional( 14, "Rúcula Fresca", 400));
+        adicionalRepository.save( new Adicional( 15, "Tomates Secos", 500));
+        adicionalRepository.save( new Adicional( 16, "Jamón Serrano", 900));
+        adicionalRepository.save( new Adicional( 17, "Queso Gorgonzola", 750));
+        adicionalRepository.save( new Adicional( 18, "Salsa Pesto", 600));
+        adicionalRepository.save( new Adicional( 19, "Ajo Asado", 300));
+        adicionalRepository.save( new Adicional( 20, "Trufa Negra", 1500));
+
+
+    
     }
     
 }
