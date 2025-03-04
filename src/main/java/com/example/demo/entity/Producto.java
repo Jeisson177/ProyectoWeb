@@ -12,8 +12,6 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class Producto {
 
-    
-    private int pedido_ID;
     private String Nombre;
     private int Precio;
     private String Descripcion;
@@ -26,17 +24,15 @@ public class Producto {
     @ManyToMany(mappedBy = "producto")
     private List<Adicional> adicionales = new ArrayList<>();
 
-    public Producto(Long producto_ID, int pedido_ID, String Nombre, int Precio, String Descripcion, String Tipo) {
+    public Producto(Long producto_ID, String Nombre, int Precio, String Descripcion, String Tipo) {
         this.producto_ID = producto_ID;
-        this.pedido_ID = pedido_ID;
         this.Nombre = Nombre;
         this.Precio = Precio;
         this.Descripcion = Descripcion;
         this.Tipo = Tipo;
     }
 
-    public Producto( int pedido_ID, String Nombre, int Precio, String Descripcion, String Tipo) {
-        this.pedido_ID = pedido_ID;
+    public Producto( String Nombre, int Precio, String Descripcion, String Tipo) {
         this.Nombre = Nombre;
         this.Precio = Precio;
         this.Descripcion = Descripcion;
@@ -58,14 +54,6 @@ public class Producto {
 
     public void setProducto_ID(Long producto_ID) {
         this.producto_ID = producto_ID;
-    }
-
-    public int getPedido_ID() {
-        return pedido_ID;
-    }
-
-    public void setPedido_ID(int pedido_ID) {
-        this.pedido_ID = pedido_ID;
     }
 
     public String getNombre() {

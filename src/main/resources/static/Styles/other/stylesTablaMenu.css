@@ -70,12 +70,12 @@ h1 {
 }
 
 .btn-primary {
-    background-color: rgb(189, 69, 54); /* Color azul oscuro */
+    background-color: rgb(189, 69, 54); 
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: rgb(89 32 25); /* Color azul oscuro más oscuro */
+    background-color: rgb(89 32 25); 
 }
 
 .btn-danger {
@@ -122,4 +122,20 @@ h1 {
     color: #ddd;
     border-color: #ddd;
     cursor: not-allowed;
+}
+
+/* Estilos para el botón personalizado */
+.btn-success {
+    background-color:rgb(189, 69, 54); /* Color verde personalizado */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: rgb(89 32 25);/* Color verde más oscuro al hacer hover */
 }

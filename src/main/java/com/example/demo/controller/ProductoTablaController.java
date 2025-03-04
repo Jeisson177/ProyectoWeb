@@ -1,12 +1,11 @@
 package com.example.demo.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.entity.Producto;
 import com.example.demo.service.ProductoServiceImp;
 
 @Controller
@@ -15,11 +14,47 @@ public class ProductoTablaController {
 
     @Autowired
     ProductoServiceImp productoService;
+
+    // Mostrar productos en la tabla
     @GetMapping("/pr")
-    public String mostrarProductos(Model model){
+    public String mostrarProductos(Model model) {
         model.addAttribute("productos", productoService.getAllProductos());
         return "menuTabla";
-    
     }
-    
+
+    // Mostrar formulario para agregar un nuevo producto
+    @GetMapping("/agregar")
+    public String mostrarFormularioAgregar(Model model) {
+        model.addAttribute("producto", new Producto());
+        return "agregarProducto";
+    }
+
+    // Guardar nuevo producto
+    @PostMapping("/guardar")
+    public String guardarProducto(@ModelAttribute Producto producto) {
+        productoService.guardarProducto(producto);
+        return "redirect:/producto/pr";
+    }
+
+    // Mostrar formulario de edición
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
+        Producto producto = productoService.getProductoById(id);
+        model.addAttribute("producto", producto);
+        return "editarProducto";
+    }
+
+    // Actualizar producto
+    @PostMapping("/actualizar")
+    public String actualizarProducto(@ModelAttribute Producto producto) {
+        productoService.actualizarProducto(producto);
+        return "redirect:/producto/pr";
+    }
+
+    // Eliminar producto
+    @GetMapping("/eliminar/{id}")
+    public String eliminarProducto(@PathVariable Long id) {
+        productoService.eliminarProducto(id);
+        return "redirect:/producto/pr";
+    }
 }
