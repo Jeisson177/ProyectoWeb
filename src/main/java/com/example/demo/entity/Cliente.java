@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -9,8 +10,11 @@ public class Cliente {
 
     private String Nombre;
     private String Apellido;
-    private String Correo;
-    private String Contrasena;
+    
+    @Column(name = "correo")
+    private String correo;
+
+    private String contrasena;
     private String Direccion;
     private String Telefono;
 
@@ -18,21 +22,21 @@ public class Cliente {
     @GeneratedValue
     private Long id;
 
-    public Cliente(Long id, String Nombre, String Apellido, String Correo, String Contrasena, String Direccion, String Telefono) {
+    public Cliente(Long id, String Nombre, String Apellido, String correo, String contrasena, String Direccion, String Telefono) {
         this.id = id;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
-        this.Correo = Correo;
-        this.Contrasena = Contrasena;
+        this.correo = correo;
+        this.contrasena = contrasena;
         this.Direccion = Direccion;
         this.Telefono = Telefono;
     }
 
-    public Cliente( String Nombre, String Apellido, String Correo, String Contrasena, String Direccion, String Telefono) {
+    public Cliente( String Nombre, String Apellido, String correo, String contrasena, String Direccion, String Telefono) {
         this.Nombre = Nombre;
         this.Apellido = Apellido;
-        this.Correo = Correo;
-        this.Contrasena = Contrasena;
+        this.correo = correo;
+        this.contrasena = contrasena;
         this.Direccion = Direccion;
         this.Telefono = Telefono;
     }
@@ -64,19 +68,19 @@ public class Cliente {
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getContrasena() {
-        return Contrasena;
+        return contrasena;
     }
 
-    public void setContrasena(String Contrasena) {
-        this.Contrasena = Contrasena;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getDireccion() {

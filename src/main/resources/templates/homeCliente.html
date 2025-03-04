@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns: th=" http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>homeCliente</title>
-    <link rel="stylesheet" href=" Styles/other/stylesPerfil.css">
+    <title>Perfil Cliente</title>
+    <link rel="stylesheet" href="/Styles/other/stylesPerfil.css">
 </head>
 <body>
 
@@ -29,10 +29,11 @@
 
             <!-- Información del usuario -->
             <div class="profile-info">
-                <p><strong>Nombre:</strong> <span id="nombre">Juan</span></p>
-                <p><strong>Apellido:</strong> <span id="apellido">Pérez</span></p>
-                <p><strong>Teléfono:</strong> <span id="telefono">+123 456 7890</span></p>
-                <p><strong>Dirección:</strong> <span id="direccion">Av. Principal 123</span></p>
+                <p><strong>Nombre:</strong> <span th:text="${cliente.nombre}">Nombre</span></p>
+                <p><strong>Apellido:</strong> <span th:text="${cliente.apellido}">Apellido</span></p>
+                <p><strong>Correo:</strong> <span th:text="${cliente.correo}">correo@ejemplo.com</span></p>
+                <p><strong>Teléfono:</strong> <span th:text="${cliente.telefono}">+123 456 7890</span></p>
+                <p><strong>Dirección:</strong> <span th:text="${cliente.direccion}">Dirección</span></p>
             </div>
 
             <!-- Botón para editar -->
