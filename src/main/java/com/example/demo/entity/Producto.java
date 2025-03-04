@@ -79,6 +79,12 @@ public class Producto {
     public void setDescripcion(String Descripcion) {
         this.Descripcion = Descripcion;
     }
+    public List<Adicional> getAdicionales() {
+        return adicionales;
+    }
 
+    public void setAdicionales(List<Adicional> adicionales) {
+        this.adicionales = adicionales;
+    }
     
 }

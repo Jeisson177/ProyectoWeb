@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+    <link rel="stylesheet" href="/Styles/other/stylesPlato.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="menu" class="volver-menu">← Volver al Menú</a>
+        </nav>
+    </header>
+
+    <div id="detalle-producto" class="detalle-container">
+        <div class="detalle-card" th:if="${producto != null}">
+            <div class="detalle-imagen-container">
+                <h1 th:text="${producto.nombre}"></h1>
+                <img th:src="@{'/Imagenes/menu/' + ${#strings.replace(producto.tipo, ' ', '').toLowerCase()} + '/' + ${#strings.replace(producto.nombre.toLowerCase(), ' ', '-')} + '.jpg'}"
+                    th:alt="${producto.nombre}" class="detalle-imagen">
+
+
+            </div>
+            <div class="detalle-info">
+                <p th:text="${producto.descripcion}"></p>
+                <span class="precio" th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT')} + ' COP'"></span>
+                <ul th:if="${not #lists.isEmpty(adicionales)}">
+                    <li th:each="adicional : ${adicionales}">
+                        <span th:text="${adicional.nombre} + ' (' + ${#numbers.formatDecimal(adicional.precio, 0, 'COMMA', 2, 'POINT')} + ' COP)'"></span>
+                    </li>
+                </ul>
+                <button class="btnAgregar" th:data-id="${producto.producto_ID}">Agregar al Carrito</button>
+            </div>
+        </div>
+        <p th:if="${producto == null}">Producto no encontrado</p>
+    </div>
+</body>
+</html>

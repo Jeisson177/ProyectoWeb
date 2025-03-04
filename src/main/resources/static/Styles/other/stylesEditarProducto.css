@@ -52,7 +52,8 @@ body {
 }
 
 .formulario-edicion .btn-secondary:hover {
-    background-color: #866337; }
+    background-color: #866337; 
+}
 
 .formulario-edicion h2 {
     font-size: 18px;
