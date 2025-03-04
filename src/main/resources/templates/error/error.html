@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href=" Styles/other/stylesError.css">
+</head>
+<body>
+    <h1>¡Oops!</h1>
+    <p>Algo salió mal. Código de error: <span th:text="${status}"></span> La pagina no se encontró</p>
+    <p>Mensaje: <span th:text="${error}"></span></p>
+
+    <img id="imagenError" src="Imagenes/errorImagen.png" alt="imagen de error">
+    <br>
+    
+    <a href="/Index" class="btn">Volver al inicio</a>
+
+</body>
+</html>
