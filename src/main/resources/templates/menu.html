@@ -7,19 +7,31 @@
     <link rel="stylesheet" href="/Styles/other/stylesmenu.css">
 </head>
 <body>
-    <nav>
+    <header>
+        <nav>
 
-        <img id="logo" src="Imagenes/logoRecortado.jpg" alt="Logo">
+            <img id="logo" src="Imagenes/logoRecortado.jpg" alt="Logo">
 
-        <ul>
-            <li><a href="#entradas">Entradas</a></li>
-            <li><a href="#platos-principales">Platos Principales</a></li>
-            <li><a href="#postres">Postres</a></li>
-            <li><a href="#bebidas">Bebidas</a></li>
-        </ul>
+            <ul>
+                <li><a href="#entradas">Entradas</a></li>
+                <li><a href="#platos-principales">Platos Principales</a></li>
+                <li><a href="#postres">Postres</a></li>
+                <li><a href="#bebidas">Bebidas</a></li>
+            </ul>
 
-        <img id="carrito" src="Imagenes/menu/carritoCompras.png" alt="Logo">
-    </nav>
+            <div id="carrito-container">
+                <img id="icono-carrito" src="Imagenes/menu/carritoCompras.png" alt="Logo">
+                <span id="contador-carrito">0</span>
+            </div>
+        </nav>
+
+        <div id="carrito" class="carrito-oculto">
+            <h2>Carrito de Compras</h2>
+            <ul id="lista-carrito"></ul>
+            <button id="vaciar-carrito">Vaciar Carrito</button>
+        </div>
+
+    </header>
     <div class="portada">
         <img src="Imagenes/Menu/introMenu.jpg" alt="Plato 4">
     </div>

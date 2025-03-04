@@ -29,7 +29,7 @@ nav {
 }
 
 /* Carrito en la esquina superior derecha */
-#carrito {
+#icono-carrito {
     position: absolute;
     right: 20px;  /* Ajusta la posición */
     top: 50%;
@@ -47,6 +47,90 @@ nav {
     transform: translateY(-50%) scale(1.1); /* Aumenta el tamaño */
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Resplandor */
     border-radius: 30%;
+}
+
+.carrito-container {
+    position: relative;
+    cursor: pointer;
+}
+
+#contador-carrito {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+#contador-carrito{
+    margin-right: 34px;
+    
+}
+
+#carrito {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 300px;
+    background:  rgb(255, 211, 182);
+    border: 3px solid #612e2e;
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.carrito-oculto {
+    display: none;
+}
+
+.carrito-mostrar {
+    display: block;
+}
+
+/* Añadir estilos para los elementos de la lista del carrito */
+#lista-carrito {
+    list-style: none;
+    padding: 0;
+}
+
+#lista-carrito li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #663333;
+    color: #692a2a;
+    font-weight: bold;
+}
+
+#lista-carrito li img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+
+/* Añadir estilos para el botón de vaciar carrito */
+#vaciar-carrito {
+    background-color: #7a332e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 45px;
+}
+
+#vaciar-carrito:hover {
+    background-color: darkred;
 }
 
 /* Lista de navegación centrada */
