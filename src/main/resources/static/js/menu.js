@@ -43,7 +43,7 @@ async function cargarMenu() {
                         <h3>${producto.nombre}</h3>
                         <p>${producto.descripcion}</p>
                         <span>${precioFormateado}</span>
-                        <button class="btn-agregar-carrito" data-id="${producto.producto_ID}">+</button>
+                        <button class="agregar-carrito" data-id="${producto.producto_ID}">+</button>
                     `;
 
                     // Evento para redirigir al detalle del producto
@@ -53,7 +53,7 @@ async function cargarMenu() {
                     });
 
                     // Evento para agregar al carrito
-                    li.querySelector('.btn-agregar-carrito').addEventListener('click', function () {
+                    li.querySelector('.agregar-carrito').addEventListener('click', function () {
                         const idProducto = this.dataset.id;
                         agregarAlCarrito(idProducto);
                     });
