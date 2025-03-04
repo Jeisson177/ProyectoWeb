@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,10 @@ public class ProductoServiceImp implements ProductoService{
     @Override
     public Producto getProductoById(Long id) {
         return productoRepository.findById(id).get();
+    }
+    @Override
+    public List<Producto> getProductosPorTipo(String tipo) {
+        return productoRepository.buscarPorTipo(tipo);
     }
     
     }

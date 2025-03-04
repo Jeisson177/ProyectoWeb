@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -17,7 +18,9 @@ public class Producto {
     private String Nombre;
     private int Precio;
     private String Descripcion;
-    private String Tipo;
+    
+    @Column(name = "tipo")
+    private String tipo;
 
     @Id
     @GeneratedValue
@@ -26,31 +29,31 @@ public class Producto {
     @ManyToMany(mappedBy = "producto")
     private List<Adicional> adicionales = new ArrayList<>();
 
-    public Producto(Long producto_ID, int pedido_ID, String Nombre, int Precio, String Descripcion, String Tipo) {
+    public Producto(Long producto_ID, int pedido_ID, String Nombre, int Precio, String Descripcion, String tipo) {
         this.producto_ID = producto_ID;
         this.pedido_ID = pedido_ID;
         this.Nombre = Nombre;
         this.Precio = Precio;
         this.Descripcion = Descripcion;
-        this.Tipo = Tipo;
+        this.tipo = tipo;
     }
 
-    public Producto( int pedido_ID, String Nombre, int Precio, String Descripcion, String Tipo) {
+    public Producto( int pedido_ID, String Nombre, int Precio, String Descripcion, String tipo) {
         this.pedido_ID = pedido_ID;
         this.Nombre = Nombre;
         this.Precio = Precio;
         this.Descripcion = Descripcion;
-        this.Tipo = Tipo;
+        this.tipo = tipo;
     }
 
     public Producto() {}
 
     public String getTipo() {
-        return Tipo;
+        return tipo;
     }
 
-    public void setTipo(String Tipo) {
-        this.Tipo = Tipo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     public Long getProducto_ID() {
         return producto_ID;

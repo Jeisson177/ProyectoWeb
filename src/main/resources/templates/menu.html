@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns: th=" http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,52 +9,91 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#entradas">Entradas</a></li>
-            <li><a href="#platos-principales">Platos Principales</a></li>
-            <li><a href="#postres">Postres</a></li>
-            <li><a href="#bebidas">Bebidas</a></li>
+            <li><a href="#entrada">Entradas</a></li>
+            <li><a href="#platoprincipal">Platos Principales</a></li>
+            <li><a href="#postre">Postres</a></li>
+            <li><a href="#bebida">Bebidas</a></li>
         </ul>
     </nav>
     <div class="portada">
-        <img src="Imagenes/Menu/introMenu.jpg" alt="Plato 4">
+        <img src="/Imagenes/Menu/introMenu.jpg" alt="Plato 4">
     </div>
-    <!-- Contenedor para el menú dinámico -->
+    
+    <!-- Contenedor donde se cargará el menú dinámicamente -->
     <div id="menu-contenedor"></div>
 
-    <!-- Cargar el archivo JS -->
-    <script src="/js/menu.js"></script>
+    <script>
+        async function cargarMenu() {
+            try {
+                const respuesta = await fetch('/api/productos');
+                const productos = await respuesta.json();
+
+                const categorias = {
+                    "entrada": [],
+                    "platoprincipal": [],
+                    "postre": [],
+                    "bebida": []
+                };
+
+                productos.forEach(producto => {
+                    const tipoNormalizado = producto.tipo.trim().toLowerCase().replace(/\s+/g, '');
+                    if (categorias[tipoNormalizado]) {
+                        categorias[tipoNormalizado].push(producto);
+                    }
+                });
+
+                const contenedorMenu = document.getElementById('menu-contenedor');
+                contenedorMenu.innerHTML = ''; // Limpiar el contenedor antes de cargar
+
+                Object.keys(categorias).forEach(categoria => {
+                    if (categorias[categoria].length > 0) {
+                        const seccion = document.createElement('section');
+                        seccion.id = categoria;
+                        seccion.innerHTML = `<h2>${categoria.charAt(0).toUpperCase() + categoria.slice(1)}</h2><ul></ul>`;
+
+                        categorias[categoria].forEach(producto => {
+                            const nombreImagen = producto.nombre.toLowerCase().replace(/ /g, '-') + '.jpg';
+                            const rutaImagen = `/Imagenes/menu/${categoria}/${nombreImagen}`;
+                            
+                            const precioFormateado = new Intl.NumberFormat('es-CO', {
+                                style: 'currency',
+                                currency: 'COP'
+                            }).format(producto.precio);
+
+                            const li = document.createElement('li');
+                            li.innerHTML = `
+                                <img src="${rutaImagen}" alt="${producto.nombre}" class="producto-imagen" data-id="${producto.producto_ID}">
+                                <h3>${producto.nombre}</h3>
+                                <p>${producto.descripcion}</p>
+                                <span>${precioFormateado}</span>
+                                <button class="agregar-carrito" data-id="${producto.producto_ID}">+</button>
+                            `;
+
+                            // Evento para redirigir al detalle del producto
+                            li.querySelector('.producto-imagen').addEventListener('click', function () {
+                                const id = this.dataset.id;
+                                window.location.href = `/producto/` + id;
+                            });
+
+                            // Evento para agregar al carrito
+                            li.querySelector('.agregar-carrito').addEventListener('click', function () {
+                                const idProducto = this.dataset.id;
+                                agregarAlCarrito(idProducto);
+                            });
+
+                            seccion.querySelector('ul').appendChild(li);
+                        });
+
+                        contenedorMenu.appendChild(seccion);
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error al obtener el menú:", error);
+            }
+        }
+
+        window.addEventListener('load', cargarMenu);
+    </script>
 </body>
-
-<footer id="contacto">
-    <div id="Col1">
-        <img id="logoFooter" src="Imagenes/logo.jpg" alt="Logo">
-        <p>Todos los derechos reservados</p>
-    </div>
-    <div id="Col2">
-        <h2>ACERCA DE NOSOTROS</h2>
-        <ul>
-            <li><a href="#">Nosotros</a></li>
-            <li><a href="#">Domicilios</a></li>
-            <li><a href="#">Menú</a></li>
-            <li><a href="#">Lo Nuevo</a></li>
-        </ul>
-    </div>
-    <div id="Col3">
-        <h2>AYUDA</h2>
-        <ul>
-            <li><a href="#">Habla con Nosotros</a></li>
-            <li><a href="#">Certificados</a></li>
-            <li><a href="#">Trabaja con Nosotros</a></li>
-            <li><a href="#">Términos y Condiciones</a></li>
-            <li><a href="#">Política de Tratamiento de Datos</a></li>
-        </ul>
-    </div>
-    <div id="Col4">
-        <h2>SÍGUENOS</h2>
-        <a href="#"><img src="Imagenes/SocialMedia/instagram.png" alt="Instagram"></a>
-        <a href="#"><img src="Imagenes/SocialMedia/Facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="Imagenes/SocialMedia/X.png" alt="Twitter"></a>
-    </div>
-</footer>
-
 </html>

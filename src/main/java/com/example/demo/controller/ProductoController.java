@@ -9,16 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.service.ProductoService;
 
 @Controller
-@RequestMapping("/menu")
+@RequestMapping("/producto")
 public class ProductoController {
     @Autowired
     ProductoService productoService;
     // Carga la página HTML de menú
-    @GetMapping
-    public String mostrarMenu(Model model) {
-        return "menu"; // Carga el archivo menu.html desde templates
-    }
-    @GetMapping("/producto")
+
+    // @GetMapping
+    // public String mostrarMenu(Model model) {
+    //     return "menu"; // Carga el archivo menu.html desde templates
+    // }
+    @GetMapping("/tabla")
     public String mostrarProductos(Model model){
         model.addAttribute("productos", productoService.getAllProductos());
         return "menuTabla";
