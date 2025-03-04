@@ -3,8 +3,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(89, 32, 25);
-    color: #f0d28c;
+    background-color: rgb(255, 230, 214);
+    color: #91321b;
     text-align: center;
 }
 
@@ -15,10 +15,11 @@ body {
     align-items: center;
     justify-content: center;
     width: 90%;
+    height: 500px;
     margin: 50px auto;
-    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro translúcido */
+    background: rgba(102, 18, 12, 0.8); /* Fondo oscuro translúcido */
     border-radius: 12px;
-    box-shadow: 0px 10px 15px rgba(231, 172, 132, 0.5);
+    box-shadow: 0px 10px 15px rgba(2, 1, 1, 0.5);
 }
 
 /* Estilo del título */
@@ -31,7 +32,7 @@ body {
 
 /* Imagen del producto */
 .detalle-container img {
-    width: 100%;
+    width: 90%;
     max-height: 350px;
     object-fit: cover;
     border-radius: 10px;
@@ -46,13 +47,14 @@ body {
 .detalle-container p {
     font-size: 16px;
     margin: 10px 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /* Precio */
 .detalle-container span {
     font-size: 20px;
     font-weight: bold;
-    color: #ffcc80;
+    color: #490d05;
 }
 
 /* Link de navegación */
@@ -60,7 +62,7 @@ nav a {
     margin-top: 40px;
     display: block;
     margin-top: 10px;
-    color: #f0d28c;
+    color: #612010;
     font-weight: bold;
     text-decoration: none;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -74,19 +76,23 @@ nav a:hover {
 /* Botón Agregar al Carrito */
 .btnAgregar {
     display: inline-block;
-    background-color: #ffffff;
-    color: #35130f;
+    background-color: #5f160e;
+    color: #f0d28c;
     padding: 10px 20px;
-    margin-top: 190px;
-    width: 500px;
+    margin-top: 170px;
+    margin-left: 120px;
+    width: 300px;
     border: none;
-    border-radius: 8px;
+    border-radius: 50px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
-    font-family: 'Poppins', sans-serif;
-}
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    border: 2px solid #410e08;
+
+}   
 
 .btnAgregar:hover {
     background-color: #e07a5f;
@@ -100,13 +106,12 @@ nav a:hover {
 .detalle-card {
     display: flex;
     align-items: flex-start;
-    background: rgba(255, 230, 214, 0.8);
+    background:  rgb(255, 230, 214);
     border-radius: 12px;
     box-shadow: 0px 10px 15px rgba(231, 172, 132, 0.5);
     color: #f0d28c;
-    width: 92%;
+    width: 96%;
     height: 450px;
-    margin: 50px auto;
     gap: 20px;
 }
 
@@ -128,11 +133,11 @@ nav a:hover {
 /* Título encima de la imagen */
 .detalle-imagen-container h1 {
     position: absolute;
-    top: -30px;
-    left: 0;
+    top: -10px;
+    left: 100%;
     width: 100%;
     text-align: center;
-    font-size: 24px;
+    font-size: 30px;
     color: #79301a;
     font-weight: bold;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -140,7 +145,7 @@ nav a:hover {
 
 /* Contenedor de la información */
 .detalle-info {
-    margin-top: 60px;
+    margin-top: 120px;
     width: 50%;
     display: flex;
     flex-direction: column;
