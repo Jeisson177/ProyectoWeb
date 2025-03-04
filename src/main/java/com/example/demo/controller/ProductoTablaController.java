@@ -47,6 +47,12 @@ public class ProductoTablaController {
     // Actualizar producto
     @PostMapping("/actualizar")
     public String actualizarProducto(@ModelAttribute Producto producto) {
+        // Trael el tipo
+        Producto p = productoService.getProductoById(producto.getProducto_ID());
+        
+        //actualizar
+        producto.setTipo(p.getTipo());
+
         productoService.actualizarProducto(producto);
         return "redirect:/producto/pr";
     }

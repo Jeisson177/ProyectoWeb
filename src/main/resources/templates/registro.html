@@ -1,18 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="Styles/other/stylesLogin.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/other/stylesRegistro.css}">
 </head>
 
 <body>
+    <header class="header">
+        <div class= "principal">
+            <nav class="menu">
+                <img id="logo" src="/Imagenes/logoRecortado.jpg" alt="Logo">
+                <h1 id = "titulo"> PASTA E 
+                    <br> PASSIONE </h1>
+                <ul>
+                    <li><a href="#ServiciosContainer">Menu y reservas</a></li>
+                    <li><a href="#contacto">Contactanos </a></li>
+                    <li><a href="#ordenar">Hacer Pedido</a></li>
+                </ul>
+
+                <img id="logo2" src="/Imagenes/logoRecortado.jpg" alt="Logo">
+            </nav>    
+        </div>
+    </header>
+
     <div class="container">
         <div class="login-box">
+            <div class="image-container left">
+                <img src="/Imagenes/menu/platoprincipal/Pizza-Prosciutto.jpg" alt="Pizza">
+            </div>
+
             <div class="form-container">
-                <h2 class="title">Registro</h2>
-                <p class="subtitle">¡Únete a Pasta e Passione!</p>
+                <h2 class="title">Pasta e Passione</h2>
+                <p class="subtitle">¡Únete a nuestra familia!</p>
 
                 <form id="registerForm">
                     <div class="input-group">
@@ -38,7 +59,11 @@
                     <button type="submit" class="btn">Registrarse</button>
                 </form>
 
-                <p class="register-text">¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+                <p class="register-text">¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
+            </div>
+
+            <div class="image-container right">
+                <img src="/Imagenes/menu/platoprincipal/Pizza-Margherita.jpg" alt="Pizza">
             </div>
         </div>
     </div>
@@ -55,7 +80,7 @@
             }
 
             alert("Registro exitoso. Redirigiendo al inicio de sesión.");
-            window.location.href = "login.html";
+            window.location.href = "/login";
         });
     </script>
 </body>
