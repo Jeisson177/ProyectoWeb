@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns: th=" http://www.thymeleaf.org">
+<html lang="en" xmlns: th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,19 +38,20 @@
                 <h2 class="title">Pasta e Passione</h2>
                 <p class="subtitle">¡¿Qué esperas para ser parte de la familia?!</p>
 
-                <form>
+                <form th:action="@{/login}" method="post">
                     <div class="input-group">
                         <label>Correo</label>
-                        <input type="email" placeholder="Ingresa tu correo">
+                        <input type="email" name="correo" placeholder="Ingresa tu correo" required>
                     </div>
-
+                
                     <div class="input-group">
                         <label>Contraseña</label>
-                        <input type="password" placeholder="••••••••">
+                        <input type="password" name="contrasena" placeholder="••••••••" required>
                     </div>
-
+                    <p style="color: red;" th:if="${error}" th:text="${error}"></p>
                     <button type="submit" class="btn">Iniciar Sesión</button>
                 </form>
+                
 
                 <p class="register-text">¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
             </div>

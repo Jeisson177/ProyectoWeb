@@ -77,31 +77,32 @@ public class DatabaseInit implements ApplicationRunner{
         productoRepository.save(new Producto( 130, "Cappuccino", 5000, "Café cappuccino con una base de espresso, leche vaporizada y espuma de leche espesa. Un clásico italiano cremoso y suave, perfecto para las mañanas.", "Bebida"));
     
         //Inicio los clientes
-        clienteRepository.save(new Cliente("Juan", "Pérez", "jperez", "1234", "Calle 123", "555-1234"));
-        clienteRepository.save(new Cliente( "María", "Gómez", "mgomez", "5678", "Avenida 456", "555-5678"));
-        clienteRepository.save(new Cliente( "Carlos", "López", "clopez", "91011", "Boulevard 789", "555-9101"));
-        clienteRepository.save(new Cliente( "Ana", "Martínez", "amartinez", "121314", "Calle 321", "555-1213"));
-        clienteRepository.save(new Cliente( "Luis", "Rodríguez", "lrodriguez", "151617", "Avenida 654", "555-1516"));
-        clienteRepository.save(new Cliente( "Pedro", "Sánchez", "psanchez", "181920", "Calle 987", "555-1819"));
-        clienteRepository.save(new Cliente( "Laura", "Fernández", "lfernandez", "212223", "Avenida 654", "555-2122"));
-        clienteRepository.save(new Cliente( "Miguel", "Díaz", "mdiaz", "242526", "Boulevard 321", "555-2425"));
-        clienteRepository.save(new Cliente( "Sofía", "Ruiz", "sruiz", "272829", "Calle 159", "555-2728"));
-        clienteRepository.save(new Cliente( "Javier", "Hernández", "jhernandez", "303132", "Avenida 753", "555-3031"));
-        clienteRepository.save(new Cliente( "Elena", "Torres", "etorres", "333435", "Calle 852", "555-3334"));
-        clienteRepository.save(new Cliente( "Diego", "Vargas", "dvargas", "363738", "Boulevard 456", "555-3637"));
-        clienteRepository.save(new Cliente( "Carmen", "Jiménez", "cjimenez", "394041", "Avenida 963", "555-3940"));
-        clienteRepository.save(new Cliente( "Ricardo", "Molina", "rmolina", "424344", "Calle 741", "555-4243"));
-        clienteRepository.save(new Cliente( "Patricia", "Castro", "pcastro", "454647", "Boulevard 258", "555-4546"));
-        clienteRepository.save(new Cliente( "Fernando", "Ortega", "fortega", "484950", "Avenida 369", "555-4849"));
-        clienteRepository.save(new Cliente( "Lucía", "Navarro", "lnavarro", "515253", "Calle 753", "555-5152"));
-        clienteRepository.save(new Cliente( "Oscar", "Ramírez", "oramirez", "545556", "Boulevard 951", "555-5455"));
-        clienteRepository.save(new Cliente( "Isabel", "Reyes", "ireyes", "575859", "Avenida 357", "555-5758"));
-        clienteRepository.save(new Cliente( "Gabriel", "Morales", "gmorales", "606162", "Calle 456", "555-6061"));
-        clienteRepository.save(new Cliente( "Adriana", "Guerrero", "aguerrero", "636465", "Boulevard 789", "555-6364"));
-        clienteRepository.save(new Cliente( "Raúl", "Rojas", "rrojas", "666768", "Avenida 123", "555-6667"));
-        clienteRepository.save(new Cliente( "Mónica", "Silva", "msilva", "697071", "Calle 654", "555-6970"));
-        clienteRepository.save(new Cliente( "Héctor", "Cruz", "hcruz", "727374", "Boulevard 321", "555-7273"));
-        clienteRepository.save(new Cliente( "Natalia", "Peña", "npena", "757677", "Avenida 987", "555-7576"));
+        clienteRepository.save(new Cliente("Juan", "Pérez", "jperez@example.com", "1234abc12", "Calle 123", "555-1234"));
+        clienteRepository.save(new Cliente("María", "Gómez", "mgomez@example.com", "5678", "Avenida 456", "555-5678"));
+        clienteRepository.save(new Cliente("Carlos", "López", "clopez@example.com", "91011", "Boulevard 789", "555-9101"));
+        clienteRepository.save(new Cliente("Ana", "Martínez", "amartinez@example.com", "121314", "Calle 321", "555-1213"));
+        clienteRepository.save(new Cliente("Luis", "Rodríguez", "lrodriguez@example.com", "151617", "Avenida 654", "555-1516"));
+        clienteRepository.save(new Cliente("Pedro", "Sánchez", "psanchez@example.com", "181920", "Calle 987", "555-1819"));
+        clienteRepository.save(new Cliente("Laura", "Fernández", "lfernandez@example.com", "212223", "Avenida 654", "555-2122"));
+        clienteRepository.save(new Cliente("Miguel", "Díaz", "mdiaz@example.com", "242526", "Boulevard 321", "555-2425"));
+        clienteRepository.save(new Cliente("Sofía", "Ruiz", "sruiz@example.com", "272829", "Calle 159", "555-2728"));
+        clienteRepository.save(new Cliente("Javier", "Hernández", "jhernandez@example.com", "303132", "Avenida 753", "555-3031"));
+        clienteRepository.save(new Cliente("Elena", "Torres", "etorres@example.com", "333435", "Calle 852", "555-3334"));
+        clienteRepository.save(new Cliente("Diego", "Vargas", "dvargas@example.com", "363738", "Boulevard 456", "555-3637"));
+        clienteRepository.save(new Cliente("Carmen", "Jiménez", "cjimenez@example.com", "394041", "Avenida 963", "555-3940"));
+        clienteRepository.save(new Cliente("Ricardo", "Molina", "rmolina@example.com", "424344", "Calle 741", "555-4243"));
+        clienteRepository.save(new Cliente("Patricia", "Castro", "pcastro@example.com", "454647", "Boulevard 258", "555-4546"));
+        clienteRepository.save(new Cliente("Fernando", "Ortega", "fortega@example.com", "484950", "Avenida 369", "555-4849"));
+        clienteRepository.save(new Cliente("Lucía", "Navarro", "lnavarro@example.com", "515253", "Calle 753", "555-5152"));
+        clienteRepository.save(new Cliente("Oscar", "Ramírez", "oramirez@example.com", "545556", "Boulevard 951", "555-5455"));
+        clienteRepository.save(new Cliente("Isabel", "Reyes", "ireyes@example.com", "575859", "Avenida 357", "555-5758"));
+        clienteRepository.save(new Cliente("Gabriel", "Morales", "gmorales@example.com", "606162", "Calle 456", "555-6061"));
+        clienteRepository.save(new Cliente("Adriana", "Guerrero", "aguerrero@example.com", "636465", "Boulevard 789", "555-6364"));
+        clienteRepository.save(new Cliente("Raúl", "Rojas", "rrojas@example.com", "666768", "Avenida 123", "555-6667"));
+        clienteRepository.save(new Cliente("Mónica", "Silva", "msilva@example.com", "697071", "Calle 654", "555-6970"));
+        clienteRepository.save(new Cliente("Héctor", "Cruz", "hcruz@example.com", "727374", "Boulevard 321", "555-7273"));
+        clienteRepository.save(new Cliente("Natalia", "Peña", "npena@example.com", "757677", "Avenida 987", "555-7576"));
+        
     
         
         //Inicio los adicionales
