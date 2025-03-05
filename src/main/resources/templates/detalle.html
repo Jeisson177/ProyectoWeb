@@ -27,6 +27,7 @@
                 <p th:text="${producto.descripcion}"></p>
                 <span class="precio" th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT')} + ' COP'"></span>
                 <ul th:if="${not #lists.isEmpty(adicionales)}">
+                    <h4>Adicionales</h4>
                     <li th:each="adicional : ${adicionales}">
                         <span th:text="${adicional.nombre} + ' (' + ${#numbers.formatDecimal(adicional.precio, 0, 'COMMA', 2, 'POINT')} + ' COP)'"></span>
                     </li>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
 <body>
     <header>
         <nav>
-            <img id="logo" src="Imagenes/logoRecortado.jpg" alt="Logo">
+            <img id="logo" src="/Imagenes/logoRecortado.jpg" alt="Logo">
             <ul>
                 <li><a href="#entradas">Entradas</a></li>
                 <li><a href="#platos-principales">Platos Principales</a></li>
@@ -17,85 +17,20 @@
                 <li><a href="#bebidas">Bebidas</a></li>
             </ul>
             <div id="carrito-container">
-                <img id="icono-carrito" src="Imagenes/menu/carritoCompras.png" alt="Logo">
+                <img id="icono-carrito" src="/Imagenes/menu/carritoCompras.png" alt="Carrito">
                 <span id="contador-carrito">0</span>
             </div>
         </nav>
-        <div id="carrito" class="carrito-oculto">
-            <h2>Carrito de Compras</h2>
-            <ul id="lista-carrito"></ul>
-            <button id="vaciar-carrito">Vaciar Carrito</button>
-        </div>
     </header>
+
     <div class="portada">
-        <img src="Imagenes/Menu/introMenu.jpg" alt="Plato 4">
+        <img src="/Imagenes/Menu/introMenu.jpg" alt="Plato de bienvenida">
     </div>
-    
-    <!-- Menú dinámico con Thymeleaf -->
-    <div id="menu-contenedor">
-        <section id="entradas">
-            <h2>Entradas</h2>
-            <ul>
-                <li th:each="producto : ${productos}" th:if="${producto.tipo == 'Entrada'}">
-                    <a th:href="@{'/producto/' + ${producto.producto_ID}}">
-                        <img th:src="@{'/Imagenes/menu/entrada/' + ${#strings.replace(producto.nombre.toLowerCase(), ' ', '-')} + '.jpg'}" 
-                             th:alt="${producto.nombre}" class="producto-imagen">
-                    </a>
-                    <h3 th:text="${producto.nombre}"></h3>
-                    <p th:text="${producto.descripcion}"></p>
-                    <span th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT')} + ' COP'"></span>
-                    <button class="agregar-carrito" th:data-id="${producto.producto_ID}">+</button>
-                </li>
-            </ul>
-        </section>
-        
-        <section id="platos-principales">
-            <h2>Platos Principales</h2>
-            <ul>
-                <li th:each="producto : ${productos}" th:if="${producto.tipo == 'Plato Principal'}">
-                    <a th:href="@{'/producto/' + ${producto.producto_ID}}">
-                        <img th:src="@{'/Imagenes/menu/platoprincipal/' + ${#strings.replace(producto.nombre.toLowerCase(), ' ', '-')} + '.jpg'}" 
-                             th:alt="${producto.nombre}" class="producto-imagen">
-                    </a>
-                    <h3 th:text="${producto.nombre}"></h3>
-                    <p th:text="${producto.descripcion}"></p>
-                    <span th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT')} + ' COP'"></span>
-                    <button class="agregar-carrito" th:data-id="${producto.producto_ID}">+</button>
-                </li>
-            </ul>
-        </section>
-        
-        <section id="postres">
-            <h2>Postres</h2>
-            <ul>
-                <li th:each="producto : ${productos}" th:if="${producto.tipo == 'Postre'}">
-                    <a th:href="@{'/producto/' + ${producto.producto_ID}}">
-                        <img th:src="@{'/Imagenes/menu/postre/' + ${#strings.replace(producto.nombre.toLowerCase(), ' ', '-')} + '.jpg'}" 
-                             th:alt="${producto.nombre}" class="producto-imagen">
-                    </a>
-                    <h3 th:text="${producto.nombre}"></h3>
-                    <p th:text="${producto.descripcion}"></p>
-                    <span th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT')} + ' COP'"></span>
-                    <button class="agregar-carrito" th:data-id="${producto.producto_ID}">+</button>
-                </li>
-            </ul>
-        </section>
-        
-        <section id="bebidas">
-            <h2>Bebidas</h2>
-            <ul>
-                <li th:each="producto : ${productos}" th:if="${producto.tipo == 'Bebida'}">
-                    <a th:href="@{'/producto/' + ${producto.producto_ID}}">
-                        <img th:src="@{'/Imagenes/menu/bebida/' + ${#strings.replace(producto.nombre.toLowerCase(), ' ', '-')} + '.jpg'}" 
-                             th:alt="${producto.nombre}" class="producto-imagen">
-                    </a>
-                    <h3 th:text="${producto.nombre}"></h3>
-                    <p th:text="${producto.descripcion}"></p>
-                    <span th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT')} + ' COP'"></span>
-                    <button class="agregar-carrito" th:data-id="${producto.producto_ID}">+</button>
-                </li>
-            </ul>
-        </section>
-    </div>
+
+    <!-- Contenedor donde se generará el menú dinámicamente -->
+    <div id="menu-contenedor"></div>
+
+    <!-- Incluir el archivo de JavaScript -->
+    <script src="/js/menu.js"></script>
 </body>
 </html>
