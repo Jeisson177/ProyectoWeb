@@ -1,4 +1,4 @@
-// Funcionalidad del buscador
+//Funcionalidad del buscador 
 document.getElementById('searchInput').addEventListener('input', function () {
     const searchText = this.value.toLowerCase();
     const rows = document.querySelectorAll('tbody tr');
@@ -13,7 +13,7 @@ document.getElementById('searchInput').addEventListener('input', function () {
     });
 });
 
-// Funcionalidad de la paginación
+//Funcionalidad de la paginación
 let currentPage = 1;
 const rowsPerPage = 10;
 
@@ -39,7 +39,7 @@ function updatePaginationButtons() {
     document.getElementById('nextButton').disabled = currentPage === totalPages;
 }
 
-document.getElementById('prevButton').addEventListener('click', () => { 
+document.getElementById('prevButton').addEventListener('click', () => {
     if (currentPage > 1) {
         currentPage--;
         showPage(currentPage);
