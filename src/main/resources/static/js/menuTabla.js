@@ -39,7 +39,7 @@ function updatePaginationButtons() {
     document.getElementById('nextButton').disabled = currentPage === totalPages;
 }
 
-document.getElementById('prevButton').addEventListener('click', () => {
+document.getElementById('prevButton').addEventListener('click', () => { 
     if (currentPage > 1) {
         currentPage--;
         showPage(currentPage);

@@ -14,7 +14,7 @@ import com.example.demo.service.AdicionalServiceImp;
 
 
 @Controller
-@RequestMapping("/adicionales")
+@RequestMapping("/adicional")
 public class adicionalesTablaController {
 
     @Autowired
@@ -29,7 +29,6 @@ public class adicionalesTablaController {
 
     //Mostrar formulario para agregar un nuevo producto
     @GetMapping("/agregar")
-
     public String mostrarFormularioAgregar(Model model) {
         model.addAttribute("adicional", new Adicional());
         return "agregarAdicional";
