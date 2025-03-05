@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns: th=" http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,28 +9,69 @@
 <body>
     <header>
         <nav>
-            <img id="logo" src="/Imagenes/logoRecortado.jpg" alt="Logo">
+
+            <img id="logo" src="Imagenes/logoRecortado.jpg" alt="Logo">
+
             <ul>
                 <li><a href="#entradas">Entradas</a></li>
                 <li><a href="#platos-principales">Platos Principales</a></li>
                 <li><a href="#postres">Postres</a></li>
                 <li><a href="#bebidas">Bebidas</a></li>
             </ul>
+
             <div id="carrito-container">
-                <img id="icono-carrito" src="/Imagenes/menu/carritoCompras.png" alt="Carrito">
+                <img id="icono-carrito" src="Imagenes/menu/carritoCompras.png" alt="Logo">
                 <span id="contador-carrito">0</span>
             </div>
         </nav>
+
+        <div id="carrito" class="carrito-oculto">
+            <h2>Carrito de Compras</h2>
+            <ul id="lista-carrito"></ul>
+            <button id="vaciar-carrito">Vaciar Carrito</button>
+        </div>
+
     </header>
-
     <div class="portada">
-        <img src="/Imagenes/Menu/introMenu.jpg" alt="Plato de bienvenida">
+        <img src="Imagenes/Menu/introMenu.jpg" alt="Plato 4">
     </div>
-
-    <!-- Contenedor donde se generará el menú dinámicamente -->
+    <!-- Contenedor para el menú dinámico -->
     <div id="menu-contenedor"></div>
 
-    <!-- Incluir el archivo de JavaScript -->
+    <!-- Cargar el archivo JS -->
     <script src="/js/menu.js"></script>
 </body>
+
+<footer id="contacto">
+    <div id="Col1">
+        <img id="logoFooter" src="Imagenes/logo.jpg" alt="Logo">
+        <p>Todos los derechos reservados</p>
+    </div>
+    <div id="Col2">
+        <h2>ACERCA DE NOSOTROS</h2>
+        <ul>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Domicilios</a></li>
+            <li><a href="#">Menú</a></li>
+            <li><a href="#">Lo Nuevo</a></li>
+        </ul>
+    </div>
+    <div id="Col3">
+        <h2>AYUDA</h2>
+        <ul>
+            <li><a href="#">Habla con Nosotros</a></li>
+            <li><a href="#">Certificados</a></li>
+            <li><a href="#">Trabaja con Nosotros</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Política de Tratamiento de Datos</a></li>
+        </ul>
+    </div>
+    <div id="Col4">
+        <h2>SÍGUENOS</h2>
+        <a href="#"><img src="Imagenes/SocialMedia/instagram.png" alt="Instagram"></a>
+        <a href="#"><img src="Imagenes/SocialMedia/Facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="Imagenes/SocialMedia/X.png" alt="Twitter"></a>
+    </div>
+</footer>
+
 </html>
