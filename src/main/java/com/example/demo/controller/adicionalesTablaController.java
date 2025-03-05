@@ -14,7 +14,7 @@ import com.example.demo.service.AdicionalServiceImp;
 
 
 @Controller
-@RequestMapping("/adicional")
+@RequestMapping("/adicionales")
 public class adicionalesTablaController {
 
     @Autowired
