@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -23,6 +25,8 @@ public class DatabaseInit implements ApplicationRunner{
     @Autowired
     ProductoRepository productoRepository;
 
+
+
     @Autowired
     ClienteRepository clienteRepository;
 
@@ -44,37 +48,41 @@ public class DatabaseInit implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        productoRepository.save(new Producto(  "Lasagna Boloñesa", 20000, "Lasagna Boloñesa hecha con capas de pasta fresca, carne molida cocinada en una rica salsa de tomate y especias italianas, acompañada de pan artesanal y queso parmesano derretido.", "Plato Principal"));
-        productoRepository.save(new Producto(  "Spaghetti Carbonara", 18000, "Spaghetti con auténtica salsa carbonara preparada con huevo, queso pecorino y tocino crujiente. Un plato clásico de Roma con un toque cremoso y sabor ahumado.", "Plato Principal"));
-        productoRepository.save(new Producto(  "Pizza Margherita", 15000, "Pizza clásica napolitana con una base delgada y crujiente, cubierta con salsa de tomate casera, mozzarella fresca y hojas de albahaca para un sabor auténtico.", "Plato Principal"));
-        productoRepository.save(new Producto(  "Ravioli de Ricotta y Espinacas", 22000, "Ravioli rellenos de suave ricotta y espinacas frescas, servidos con una delicada salsa de tomate y albahaca. Ideal para quienes buscan un plato ligero y delicioso.", "Plato Principal"));
-        productoRepository.save(new Producto(  "Penne al Pesto", 17000, "Penne con salsa pesto elaborada con albahaca fresca, ajo, piñones tostados, queso parmesano y aceite de oliva extra virgen. Un plato aromático y lleno de sabor.", "Plato Principal"));
-        productoRepository.save(new Producto(  "Tiramisu", 12000, "Clásico postre italiano elaborado con capas de bizcocho empapado en café espresso, crema de mascarpone suave y un toque de cacao en polvo. Perfecto para los amantes del dulce.", "Postre"));
-        productoRepository.save(new Producto(  "Risotto de Champiñones", 19000, "Risotto cremoso cocinado con arroz arborio, champiñones frescos y queso parmesano. Su textura suave y su sabor terroso lo hacen irresistible.", "Plato Principal"));
-        productoRepository.save(new Producto(  "Calzone", 16000, "Pizza doblada y rellena de jamón, queso mozzarella fundido y salsa de tomate, horneada hasta obtener una corteza dorada y crujiente. Un bocado de Italia en cada mordida.", "Plato Principal"));
-        productoRepository.save(new Producto( "Fettuccine Alfredo", 21000, "Fettuccine con una salsa cremosa de queso parmesano y mantequilla. Un plato sencillo pero lleno de sabor, perfecto para los amantes de la pasta cremosa.", "Plato Principal"));
-        productoRepository.save(new Producto( "Cannoli Siciliani", 10000, "Postre típico siciliano de masa crujiente rellena de ricotta dulce, trozos de chocolate y fruta confitada. Una combinación de texturas y sabores irresistibles.", "Postre"));
-        productoRepository.save(new Producto( "Bruschetta", 8000, "Pan tostado cubierto con tomate fresco, ajo picado, albahaca y un toque de aceite de oliva virgen extra. Un aperitivo ligero y lleno de sabor mediterráneo.", "Entrada"));
-        productoRepository.save(new Producto( "Caprese Salad", 13000, "Ensalada fresca de tomate maduro, mozzarella de búfala y hojas de albahaca, aderezada con aceite de oliva virgen extra y balsámico. Una explosión de frescura.", "Entrada"));
-        productoRepository.save(new Producto( "Gnocchi de Papa", 18000, "Gnocchi caseros elaborados con papa suave y harina, servidos con una salsa de tomate casera o pesto. Una opción reconfortante y deliciosa.", "Plato Principal"));
-        productoRepository.save(new Producto( "Pizza Pepperoni", 17000, "Pizza con una base crujiente, salsa de tomate, queso mozzarella fundido y rodajas de pepperoni dorado. Un clásico irresistible con el toque picante del pepperoni.", "Plato Principal"));
-        productoRepository.save(new Producto("Ossobuco", 25000, "Estofado de jarrete de ternera cocinado lentamente con vino blanco, verduras y hierbas aromáticas. Se sirve con gremolata y un acompañamiento de risotto alla milanese.", "Plato Principal"));
-        productoRepository.save(new Producto( "Panna Cotta", 9000, "Postre italiano cremoso y suave, elaborado con nata, vainilla y azúcar, acompañado de una salsa de frutos rojos frescos. Un final dulce y elegante.", "Postre"));
-        productoRepository.save(new Producto( "Minestrone", 12000, "Sopa de verduras de temporada con pasta y frijoles, cocinada con hierbas aromáticas y un toque de tomate. Saludable y reconfortante.", "Entrada"));
-        productoRepository.save(new Producto( "Arancini", 11000, "Bolitas de arroz rellenas de queso y ragú, empanizadas y fritas hasta quedar doradas y crujientes. Un aperitivo tradicional siciliano lleno de sabor.", "Entrada"));
-        productoRepository.save(new Producto( "Zuppa Toscana", 14000, "Sopa toscana con patatas, kale y chorizo en un caldo cremoso con un toque de ajo. Calidez y sabor en cada cucharada.", "Entrada"));
-        productoRepository.save(new Producto( "Pizza Quattro Formaggi", 19000, "Pizza con una mezcla de cuatro quesos: mozzarella, gorgonzola, parmesano y fontina. Un placer cremoso y lleno de sabor.", "Plato Principal"));
-        productoRepository.save(new Producto( "Tortellini en Brodo", 16000, "Tortellini rellenos de carne en un caldo de pollo aromático. Una sopa tradicional italiana ideal para días fríos.", "Plato Principal"));
-        productoRepository.save(new Producto( "Carpaccio", 15000, "Láminas finas de carne cruda marinadas con aceite de oliva, limón y queso parmesano. Un plato ligero y elegante.", "Entrada"));
-        productoRepository.save(new Producto( "Gelato", 7000, "Helado artesanal italiano con opciones de vainilla, chocolate o fresa. Textura cremosa y sabores intensos.", "Postre"));
-        productoRepository.save(new Producto( "Pizza Prosciutto", 18000, "Pizza con jamón crudo (prosciutto) y rúcula fresca sobre una base crujiente con queso mozzarella. Una combinación deliciosa de sabores.", "Plato Principal"));
-        productoRepository.save(new Producto( "Linguini Frutti di Mare", 23000, "Linguini con mariscos frescos en una salsa de tomate picante. Un plato marino lleno de sabor mediterráneo.", "Plato Principal"));
-        productoRepository.save(new Producto( "Panettone", 14000, "Pan dulce italiano con frutas confitadas y pasas. Esponjoso y perfecto para acompañar con un café o té.", "Postre"));
-        productoRepository.save(new Producto( "Espresso", 4000, "Café espresso italiano intenso y aromático, preparado con granos de café recién molidos. Perfecto para los amantes del café fuerte y concentrado.", "Bebida"));
-        productoRepository.save(new Producto( "Limoncello", 9000, "Licor italiano de limón elaborado artesanalmente con cáscaras de limón y alcohol puro. Refrescante y dulce, ideal como digestivo después de una comida.", "Bebida"));
-        productoRepository.save(new Producto( "Affogato", 8000, "Postre simple pero delicioso, hecho con una bola de helado de vainilla bañada con un shot caliente de espresso italiano. Contraste perfecto de frío y calor.", "Postre"));
-        productoRepository.save(new Producto( "Cappuccino", 5000, "Café cappuccino con una base de espresso, leche vaporizada y espuma de leche espesa. Un clásico italiano cremoso y suave, perfecto para las mañanas.", "Bebida"));
+        Producto producto1 = new Producto("Lasagna Boloñesa", 20000, "Lasagna Boloñesa con carne molida y salsa de tomate.", "Plato Principal");
+        Producto producto2 = new Producto("Spaghetti Carbonara", 18000, "Spaghetti con auténtica salsa carbonara.", "Plato Principal");
+        Producto producto3 = new Producto("Pizza Margherita", 15000, "Pizza clásica con mozzarella fresca y albahaca.", "Plato Principal");
+        Producto producto4 = new Producto("Ravioli de Ricotta y Espinacas", 22000, "Ravioli rellenos de ricotta y espinacas.", "Plato Principal");
+        Producto producto5 = new Producto("Penne al Pesto", 17000, "Penne con salsa pesto de albahaca y piñones.", "Plato Principal");
+        Producto producto6 = new Producto("Tiramisu", 12000, "Postre italiano con mascarpone y cacao.", "Postre");
+        Producto producto7 = new Producto("Risotto de Champiñones", 19000, "Risotto cremoso con champiñones frescos.", "Plato Principal");
+        Producto producto8 = new Producto("Calzone", 16000, "Pizza rellena de jamón y mozzarella.", "Plato Principal");
+        Producto producto9 = new Producto("Fettuccine Alfredo", 21000, "Fettuccine con salsa cremosa de parmesano.", "Plato Principal");
+        Producto producto10 = new Producto("Cannoli Siciliani", 10000, "Postre siciliano de masa crujiente rellena de ricotta.", "Postre");
+        Producto producto11 = new Producto("Pizza Pepperoni", 17000, "Pizza con una base crujiente, salsa de tomate, queso mozzarella fundido y rodajas de pepperoni dorado.", "Plato Principal");
+        Producto producto12 = new Producto("Ossobuco", 25000, "Estofado de jarrete de ternera cocinado lentamente con vino blanco, verduras y hierbas aromáticas.", "Plato Principal");
+        Producto producto13 = new Producto("Panna Cotta", 9000, "Postre italiano cremoso y suave, elaborado con nata, vainilla y azúcar.", "Postre");
+        Producto producto14 = new Producto("Minestrone", 12000, "Sopa de verduras de temporada con pasta y frijoles, cocinada con hierbas aromáticas.", "Entrada");
+        Producto producto15 = new Producto("Arancini", 11000, "Bolitas de arroz rellenas de queso y ragú, empanizadas y fritas hasta quedar doradas.", "Entrada");
+        Producto producto16 = new Producto("Zuppa Toscana", 14000, "Sopa toscana con patatas, kale y chorizo en un caldo cremoso con un toque de ajo.", "Entrada");
+        Producto producto17 = new Producto("Pizza Quattro Formaggi", 19000, "Pizza con una mezcla de cuatro quesos: mozzarella, gorgonzola, parmesano y fontina.", "Plato Principal");
+        Producto producto18 = new Producto("Tortellini en Brodo", 16000, "Tortellini rellenos de carne en un caldo de pollo aromático.", "Plato Principal");
+        Producto producto19 = new Producto("Carpaccio", 15000, "Láminas finas de carne cruda marinadas con aceite de oliva, limón y queso parmesano.", "Entrada");
+        Producto producto20 = new Producto("Gelato", 7000, "Helado artesanal italiano con opciones de vainilla, chocolate o fresa.", "Postre");
+        Producto producto21 = new Producto("Pizza Prosciutto", 18000, "Pizza con jamón crudo (prosciutto) y rúcula fresca sobre una base crujiente con queso mozzarella.", "Plato Principal");
+        Producto producto22 = new Producto("Linguini Frutti di Mare", 23000, "Linguini con mariscos frescos en una salsa de tomate picante.", "Plato Principal");
+        Producto producto23 = new Producto("Panettone", 14000, "Pan dulce italiano con frutas confitadas y pasas. Esponjoso y perfecto para acompañar con un café o té.", "Postre");
+        Producto producto24 = new Producto("Espresso", 4000, "Café espresso italiano intenso y aromático, preparado con granos de café recién molidos.", "Bebida");
+        Producto producto25 = new Producto("Limoncello", 9000, "Licor italiano de limón elaborado artesanalmente con cáscaras de limón y alcohol puro.", "Bebida");
+        Producto producto26 = new Producto("Affogato", 8000, "Postre simple pero delicioso, hecho con una bola de helado de vainilla bañada con un shot caliente de espresso italiano.", "Postre");
+        Producto producto27 = new Producto("Cappuccino", 5000, "Café cappuccino con una base de espresso, leche vaporizada y espuma de leche espesa.", "Bebida");
+        Producto producto28 = new Producto("Tortellini con Salsa Alfredo", 19500, "Tortellini rellenos de queso en una cremosa salsa Alfredo con un toque de ajo.", "Plato Principal");
+        Producto producto29 = new Producto("Focaccia con Romero", 9000, "Pan italiano horneado con aceite de oliva y romero fresco, perfecto para acompañar cualquier comida.", "Entrada");
+        Producto producto30 = new Producto("Tartufo", 15000, "Helado italiano con un centro de chocolate derretido, cubierto con cacao en polvo.", "Postre");
 
+// Guardar los nuevos productos en la base de datos
+
+        productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11,producto12,producto13,producto14,producto15,producto16,producto17,producto18,producto19,producto20,producto21,producto22,producto23,producto24,producto25,producto26,producto27,producto28,producto29,producto30));
+        
     
         //Inicio los clientes
         clienteRepository.save(new Cliente("Juan", "Pérez", "jperez@example.com", "1234abc12", "Calle 123", "555-1234"));
@@ -106,26 +114,70 @@ public class DatabaseInit implements ApplicationRunner{
     
         
         //Inicio los adicionales
-        adicionalRepository.save(new Adicional(100, "Queso Parmesano Extra", 500));
-        adicionalRepository.save( new Adicional( 2, "Salsa de Tomate Extra", 300));
-        adicionalRepository.save( new Adicional( 3, "Aceitunas Negras", 400));
-        adicionalRepository.save( new Adicional( 4, "Champiñones Salteados", 600));
-        adicionalRepository.save( new Adicional( 5, "Albahaca Fresca", 200));
-        adicionalRepository.save( new Adicional( 6, "Pepperoni Extra", 700));
-        adicionalRepository.save( new Adicional( 7, "Jalapeños", 450));
-        adicionalRepository.save( new Adicional( 8, "Queso Mozzarella Extra", 550));
-        adicionalRepository.save( new Adicional( 9, "Aceite de Oliva Virgen Extra", 250));
-        adicionalRepository.save( new Adicional( 10, "Pimientos Asados", 350));
-        adicionalRepository.save( new Adicional( 11, "Anchoas", 800));
-        adicionalRepository.save( new Adicional( 12, "Alcaparras", 300));
-        adicionalRepository.save( new Adicional( 13, "Provolone Fundido", 650));
-        adicionalRepository.save( new Adicional( 14, "Rúcula Fresca", 400));
-        adicionalRepository.save( new Adicional( 15, "Tomates Secos", 500));
-        adicionalRepository.save( new Adicional( 16, "Jamón Serrano", 900));
-        adicionalRepository.save( new Adicional( 17, "Queso Gorgonzola", 750));
-        adicionalRepository.save( new Adicional( 18, "Salsa Pesto", 600));
-        adicionalRepository.save( new Adicional( 19, "Ajo Asado", 300));
-        adicionalRepository.save( new Adicional( 20, "Trufa Negra", 1500));
+        Adicional adicional1 = new Adicional(1, "Queso Parmesano Extra", 500, producto1);
+        Adicional adicional2 = new Adicional(2, "Salsa de Tomate Extra", 300, producto1);
+        Adicional adicional3 = new Adicional(1, "Aceitunas Negras", 400, producto2);
+        Adicional adicional4 = new Adicional(2, "Champiñones Salteados", 600, producto2);
+        Adicional adicional5 = new Adicional(1, "Albahaca Fresca", 200, producto3);
+        Adicional adicional6 = new Adicional(3, "Pepperoni Extra", 700, producto3);
+        Adicional adicional7 = new Adicional(2, "Jalapeños", 450, producto4);
+        Adicional adicional8 = new Adicional(1, "Queso Mozzarella Extra", 550, producto4);
+        Adicional adicional9 = new Adicional(2, "Aceite de Oliva Virgen Extra", 250, producto5);
+        Adicional adicional10 = new Adicional(1, "Pimientos Asados", 350, producto5);
+        Adicional adicional11 = new Adicional(2, "Parmesano Rallado", 500, producto11);
+        Adicional adicional12 = new Adicional(1, "Salsa de Trufa", 1000, producto11);
+        Adicional adicional13 = new Adicional(3, "Alcaparras", 400, producto12);
+        Adicional adicional14 = new Adicional(1, "Panceta Crujiente", 700, producto12);
+        Adicional adicional15 = new Adicional(2, "Queso Ricotta", 600, producto13);
+        Adicional adicional16 = new Adicional(1, "Chocolate Fundido", 800, producto13);
+        Adicional adicional17 = new Adicional(1, "Pan Tostado", 300, producto14);
+        Adicional adicional18 = new Adicional(3, "Chorizo Español", 900, producto14);
+        Adicional adicional19 = new Adicional(1, "Pesto Genovés", 650, producto15);
+        Adicional adicional20 = new Adicional(2, "Pimientos Rellenos", 750, producto15);
+        Adicional adicional21 = new Adicional(1, "Jamón Serrano Extra", 1000, producto21);
+        Adicional adicional22 = new Adicional(2, "Mariscos Extra", 1500, producto22);
+        Adicional adicional23 = new Adicional(1, "Frutas Confitadas Extra", 700, producto23);
+        Adicional adicional24 = new Adicional(1, "Azúcar Morena", 300, producto24);
+        Adicional adicional25 = new Adicional(1, "Hojas de Menta", 400, producto25);
+        Adicional adicional26 = new Adicional(1, "Doble Shot de Espresso", 1000, producto26);
+        Adicional adicional27 = new Adicional(2, "Canela en Polvo", 500, producto27);
+        Adicional adicional28 = new Adicional(1, "Salsa de Trufa", 1200, producto28);
+        Adicional adicional29 = new Adicional(1, "Aceite de Oliva Extra Virgen", 500, producto29);
+        Adicional adicional30 = new Adicional(1, "Chocolate Rallado", 600, producto30);
+
+        adicionalRepository.saveAll(List.of(adicional1, adicional2, adicional3, adicional4, adicional5, adicional6, adicional7, adicional8, adicional9, adicional10,adicional11,adicional12,adicional13,adicional14,adicional15,adicional16,adicional17,adicional18,adicional19,adicional20,adicional21,adicional22,adicional23,adicional24,adicional25,adicional26,adicional27,adicional28,adicional29,adicional30));
+
+        // Asignar un adicional a cada producto (1:1 asignación)
+producto1.getAdicionales().add(adicional1);
+producto2.getAdicionales().add(adicional2);
+producto3.getAdicionales().add(adicional3);
+producto4.getAdicionales().add(adicional4);
+producto5.getAdicionales().add(adicional5);
+producto6.getAdicionales().add(adicional6);
+producto7.getAdicionales().add(adicional7);
+producto8.getAdicionales().add(adicional8);
+producto9.getAdicionales().add(adicional9);
+producto10.getAdicionales().add(adicional10);
+producto11.getAdicionales().add(adicional11);
+producto12.getAdicionales().add(adicional12);
+producto13.getAdicionales().add(adicional13);
+producto14.getAdicionales().add(adicional14);
+producto15.getAdicionales().add(adicional15);
+producto16.getAdicionales().add(adicional16);
+producto17.getAdicionales().add(adicional17);
+producto18.getAdicionales().add(adicional18);
+producto19.getAdicionales().add(adicional19);
+producto20.getAdicionales().add(adicional20);
+producto21.getAdicionales().add(adicional21);
+producto22.getAdicionales().add(adicional22);
+producto23.getAdicionales().add(adicional23);
+producto24.getAdicionales().add(adicional24);
+producto25.getAdicionales().add(adicional25);
+producto26.getAdicionales().add(adicional26);
+producto27.getAdicionales().add(adicional27);
+producto28.getAdicionales().add(adicional28);
+producto29.getAdicionales().add(adicional29);
+producto30.getAdicionales().add(adicional30);
 
 
         //Inicio de los Administradores 

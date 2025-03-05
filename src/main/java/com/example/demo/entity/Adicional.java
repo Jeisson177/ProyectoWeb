@@ -1,13 +1,12 @@
 package com.example.demo.entity;
 
-
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity
@@ -20,10 +19,13 @@ public class Adicional {
     @GeneratedValue
     private Long adicional_id;
 
-    @ManyToMany
-    private List<Producto> producto = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "producto_id", nullable = true)
+    @JsonBackReference  // Evita que se serialice nuevamente el producto
+    private Producto producto;
 
-    public Adicional(Long adicional_id,  int cantidad, String Nombre, int precio) {
+    public Adicional(Long adicional_id,  int cantidad, String Nombre, int precio, Producto producto) {
+        this.producto = producto;
         this.adicional_id = adicional_id;
         this.cantidad = cantidad;
         this.Nombre = Nombre;
@@ -31,12 +33,13 @@ public class Adicional {
         
     }
 
-    public Adicional( int cantidad, String Nombre, int precio) {
+    public Adicional(int cantidad, String Nombre, int precio, Producto producto) {
         this.cantidad = cantidad;
         this.Nombre = Nombre;
         this.precio = precio;
-        
+        this.producto = producto;
     }
+    
 
     public Adicional() {}
 
@@ -70,6 +73,14 @@ public class Adicional {
 
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
 

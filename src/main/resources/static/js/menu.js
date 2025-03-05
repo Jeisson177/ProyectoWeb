@@ -2,7 +2,7 @@ async function cargarMenu() {
     try {
         const respuesta = await fetch('/api/menu');
         const productos = await respuesta.json();
-
+        console.log(productos);
         const categorias = {
             "entrada": [],
             "platoprincipal": [],
