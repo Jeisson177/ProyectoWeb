@@ -7,7 +7,7 @@ import com.example.demo.entity.Adicional;
 
 public interface AdicionalService {
     Collection<Adicional> getAllAdicionales();
-    Adicional getAdicional_Id(Long id);
+    Adicional getAdicionalById(Long id);
     void guardarAdicional(Adicional adicional);
     void actualizarAdicional(Adicional adicional);
     void eliminarAdicional(Long id);
