@@ -16,6 +16,7 @@ public class ProductoController {
     // Carga la página HTML de menú
     @GetMapping
     public String mostrarMenu(Model model) {
+        model.addAttribute("productos", productoService.getAllProductos());
         return "menu"; // Carga el archivo menu.html desde templates
     }
     @GetMapping("/producto")
