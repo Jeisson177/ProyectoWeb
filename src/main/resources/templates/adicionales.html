@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla adicionales</title>
+</head>
+<body>
+    <div class="contenedor">
+        <h1> Tabla de adicionales</h1>
+        <div class="busqueda">
+            <input type="text" class="form-control" id="searchInput" placeholder="Buscar...">
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped shadow rounded">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="adicional : ${adicionales}">
+                        <td th:text="${adicional.Nombre}"></td>
+                        <td th:text="${adicional.Precio}"></td>
+                        <td>
+                            <a th:href="@{/adicional/editar/{id}(id=${adicional.adicional_ID})}" class="btn btn-primary btn-sm">Editar</a>
+                            <a th:href="@{/adicional/eliminar/{id}(id=${adicional.adicional_ID})}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <button id="prevButton" class="page-link">Anterior</button>
+                </li>
+                <li class="page-item">
+                    <button id="nextButton" class="page-link">Siguiente</button>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="seccionAgregar">
+            <a href="/adicional/agregar" class="btn btn-success">Agregar Adicional</a>
+        </div>
+    </div>
+
+    <script src="/js/adicionales.js"></script>
+    
+</body>
+</html>
