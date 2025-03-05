@@ -19,19 +19,17 @@ public class EspecificoController {
         this.productoService = productoService;
     }
 
-    // Controlador para la vista de detalles con Thymeleaf
     @GetMapping("/{id}")
     public String obtenerProductoPorId(@PathVariable Long id, Model model) {
         Producto producto = productoService.getProductoById(id);
-    
-        if (producto == null) {
-            model.addAttribute("producto", null);
-        } else {
-            model.addAttribute("producto", producto);
-            model.addAttribute("adicionales", producto.getAdicionales()); // Enviar adicionales a la vista
-        }
-    
-        return "detalle"; // Retorna la plantilla detalle.html
-    }
 
+        if (producto == null) {
+            return "redirect:/error"; // Redirigir a una página de error si no encuentra el producto
+        }
+
+        model.addAttribute("producto", producto);
+        model.addAttribute("adicionales", producto.getAdicionales());
+
+        return "detalle"; // Thymeleaf cargará 'detalle.html'
+    }
 }
