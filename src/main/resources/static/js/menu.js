@@ -55,7 +55,7 @@ async function cargarMenu() {
                     // Evento para redirigir al detalle del producto
                     li.querySelector('.producto-imagen').addEventListener('click', function () {
                         const id = this.dataset.id;
-                        window.location.href = `detalle.html?id=${id}`;
+                        window.location.href = `producto/${id}`;
                     });
 
                     // Evento para agregar al carrito
