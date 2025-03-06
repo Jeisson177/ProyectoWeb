@@ -22,7 +22,7 @@ public class ProductoController {
     @GetMapping("/producto")
     public String mostrarProductos(Model model){
         model.addAttribute("productos", productoService.getAllProductos());
-        return "menuTabla";
+        return "adicionalesTabla";
     
     }
 }

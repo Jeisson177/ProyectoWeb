@@ -2,8 +2,10 @@ package com.example.demo.service;
 
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.example.demo.entity.Adicional;
 import com.example.demo.repository.AdicionalRepository;
 
@@ -12,24 +14,30 @@ public class AdicionalServiceImp implements AdicionalService{
     @Autowired
     private AdicionalRepository adicionalRepository;
 
+    @Override
     public List<Adicional> getAllAdicionales() {
+        System.out.println(adicionalRepository.findAll().size());
         return adicionalRepository.findAll();
     }
 
+    @Override
     public Adicional getAdicionalById(Long id) {
         return adicionalRepository.findById(id).orElse(null);
     }
     
-    public Adicional guardarAdicional(Adicional adicional) {
-        return adicionalRepository.save(adicional);
+    @Override
+    public void guardarAdicional(Adicional adicional) {
+        adicionalRepository.save(adicional);
     }
     
-    public Adicional actualizarAdicional(Adicional adicional) {
+    @Override
+    public void actualizarAdicional(Adicional adicional) {
         if (adicionalRepository.existsById(adicional.getAdicional_id())) {
-            return adicionalRepository.save(adicional);
+            adicionalRepository.save(adicional);
         }
     }
     
+    @Override
     public void eliminarAdicional(Long id) {
         adicionalRepository.deleteById(id);
     }

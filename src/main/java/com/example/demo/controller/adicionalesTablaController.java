@@ -21,7 +21,7 @@ public class adicionalesTablaController {
     AdicionalServiceImp adicionalService;
 
     //Mostrar productos en la tabla 
-    @GetMapping("/pr")
+    @GetMapping
     public String mostrarProductos(Model model) {
         model.addAttribute("adicionales", adicionalService.getAllAdicionales());
         return "adicionalesTabla";
@@ -38,7 +38,7 @@ public class adicionalesTablaController {
     @PostMapping("/guardar")
     public String guardarAdicional(@ModelAttribute Adicional adicional) {
         adicionalService.guardarAdicional(adicional);
-        return "redirect:/adicionales/pr";
+        return "redirect:/adicionalesTabla";
     }
 
     //Mostrar formulario de edición
@@ -54,14 +54,14 @@ public class adicionalesTablaController {
     public String actualizarAdicional(@ModelAttribute Adicional adicional) {
         
         adicionalService.actualizarAdicional(adicional);
-        return "redirect:/adicionales/pr";
+        return "redirect:/adicionalesTabla";
     }
 
     //Eliminar adicional
     @GetMapping("/eliminar/{id}")
     public String eliminarAdicional(@PathVariable Long id) {
         adicionalService.eliminarAdicional(id);
-        return "redirect:/adicionales/pr";
+        return "redirect:/adicionalesTabla";
     }
     
 }
