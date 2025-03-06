@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,30 @@ public class ClienteServiceImp implements ClienteService {
     public Optional<Cliente> obtenerClientePorCorreo(String correo) {
         return clienteRepository.findByCorreo(correo); // ✅ Asegúrate de tener este método en `ClienteRepository`
     }
+
+    @Override
+    public List<Cliente> obtenerTodosLosClientes() {
+        return clienteRepository.findAll();
+    }
+    @Override
+    public Cliente getClienteById(Long id) {
+        return clienteRepository.findById(id).orElse(null); 
+    }
+    @Override
+    public void guardarCliente(Cliente cliente) {
+        clienteRepository.save(cliente);
+    }
+
+    @Override
+    public void eliminarCliente(Long id) {
+        clienteRepository.deleteById(id);
+    }
+
+    @Override
+    public void actualizarCliente(Cliente cliente) {
+        if (clienteRepository.existsById(cliente.getId())) {
+            clienteRepository.save(cliente);
+        }
+    }
+
 }
