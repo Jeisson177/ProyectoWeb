@@ -1,0 +1,75 @@
+/* Estilos generales */
+body {
+    font-family: 'Georgia', serif;
+    background-color: rgb(89 32 25); /* Color de fondo suave */
+    color: #3d405b; /* Color de texto principal */
+    margin: 0;
+    padding: 0;
+}
+.container-agregar-adicional {
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #ffffff; /* Fondo blanco, igual que la tabla */
+    padding: 20px;
+    border: 1px solid #ddd; /* Borde similar al de la tabla */
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto; /* Centrado y con margen */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave, si la tabla la tiene */
+}
+
+/* Estilos para los títulos */
+.container-agregar-adicional h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #555;
+    text-align: center; /* Centrar el título */
+}
+
+/* Estilos para los campos de entrada */
+.container-agregar-adicional .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc; /* Borde de los inputs */
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Estilos para las etiquetas */
+.container-agregar-adicional .form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Estilos para los botones */
+.container-agregar-adicional .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+.container-agregar-adicional  .btn-success {
+    background-color: rgb(189, 69, 54); 
+    color: white;
+}
+
+.container-agregar-adicional .btn-success:hover {
+    background-color: rgb(89 32 25); 
+}
+
+.container-agregar-adicional  .btn-secondary {
+    background-color: #c19a6b; 
+    color: white;
+}
+
+.container-agregar-adicional  .btn-secondary:hover {
+    background-color: #866337; 
+}

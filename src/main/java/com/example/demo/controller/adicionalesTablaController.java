@@ -38,7 +38,7 @@ public class adicionalesTablaController {
     @PostMapping("/guardar")
     public String guardarAdicional(@ModelAttribute Adicional adicional) {
         adicionalService.guardarAdicional(adicional);
-        return "redirect:/adicionalesTabla";
+        return "redirect:/adicionales";
     }
 
     //Mostrar formulario de edición
@@ -54,14 +54,14 @@ public class adicionalesTablaController {
     public String actualizarAdicional(@ModelAttribute Adicional adicional) {
         
         adicionalService.actualizarAdicional(adicional);
-        return "redirect:/adicionalesTabla";
+        return "redirect:/adicionales";
     }
 
     //Eliminar adicional
     @GetMapping("/eliminar/{id}")
     public String eliminarAdicional(@PathVariable Long id) {
         adicionalService.eliminarAdicional(id);
-        return "redirect:/adicionalesTabla";
+        return "redirect:/adicionales";
     }
     
 }

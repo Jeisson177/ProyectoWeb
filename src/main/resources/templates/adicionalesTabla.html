@@ -27,8 +27,8 @@
                         <td th:text="${adicional.Nombre}"></td>
                         <td th:text="${adicional.Precio}"></td>
                         <td>
-                            <a th:href="@{/adicional/editar/{id}(id=${adicional.adicional_id})}" class="btn btn-primary btn-sm">Editar</a>
-                            <a th:href="@{/adicional/eliminar/{id}(id=${adicional.adicional_id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a th:href="@{/adicionales/editar/{id}(id=${adicional.adicional_id})}" class="btn btn-primary btn-sm">Editar</a>
+                            <a th:href="@{/adicionales/eliminar/{id}(id=${adicional.adicional_id})}" class="btn btn-danger btn-sm">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>
@@ -47,7 +47,7 @@
         </nav>
 
         <div class="text-center mt-3">
-            <a href="/adicional/agregar" class="btn btn-success">Agregar Adicional</a>
+            <a href="/adicionales/agregar" class="btn btn-success">Agregar Adicional</a>
         </div>
     </div>
 
