@@ -54,6 +54,7 @@ public class adicionalesTablaController {
     public String actualizarAdicional(@ModelAttribute Adicional adicional) {
         
         adicionalService.actualizarAdicional(adicional);
+        
         return "redirect:/adicionales";
     }
 

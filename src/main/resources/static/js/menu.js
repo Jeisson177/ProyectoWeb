@@ -2,7 +2,7 @@ async function cargarMenu() {
     try {
         const respuesta = await fetch('/api/menu');
         const productos = await respuesta.json();
-        console.log(productos);
+        console.log(productos.length);
         const categorias = {
             "entrada": [],
             "platoprincipal": [],
@@ -37,7 +37,7 @@ async function cargarMenu() {
                 categorias[categoria].forEach(producto => {
                     const nombreImagen = producto.nombre.toLowerCase().replace(/ /g, '-') + '.jpg';
                     const rutaImagen = `/Imagenes/menu/${categoria}/${nombreImagen}`;
-                    
+                    console.log(rutaImagen);
                     const precioFormateado = new Intl.NumberFormat('es-CO', {
                         style: 'currency',
                         currency: 'COP'

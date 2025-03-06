@@ -32,8 +32,16 @@ public class AdicionalServiceImp implements AdicionalService{
     
     @Override
     public void actualizarAdicional(Adicional adicional) {
-        if (adicionalRepository.existsById(adicional.getAdicional_id())) {
-            adicionalRepository.save(adicional);
+        // Obtén el adicional existente de la base de datos
+        Adicional adicionalExistente = adicionalRepository.findById(adicional.getAdicional_id()).orElse(null);
+        if (adicionalExistente != null) {
+            // Conserva el producto_id del adicional existente
+            adicional.setProducto(adicionalExistente.getProducto());
+            // Actualiza los demás campos
+            adicionalExistente.setNombre(adicional.getNombre());
+            adicionalExistente.setPrecio(adicional.getPrecio());
+            // Guarda el adicional actualizado
+            adicionalRepository.save(adicionalExistente);
         }
     }
     
