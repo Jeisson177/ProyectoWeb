@@ -29,4 +29,25 @@ public class ClienteServiceImp implements ClienteService {
     public List<Cliente> obtenerTodosLosClientes() {
         return clienteRepository.findAll();
     }
+    @Override
+    public Cliente getClienteById(Long id) {
+        return clienteRepository.findById(id).orElse(null); 
+    }
+    @Override
+    public void guardarCliente(Cliente cliente) {
+        clienteRepository.save(cliente);
+    }
+
+    @Override
+    public void eliminarCliente(Long id) {
+        clienteRepository.deleteById(id);
+    }
+
+    @Override
+    public void actualizarCliente(Cliente cliente) {
+        if (clienteRepository.existsById(cliente.getId())) {
+            clienteRepository.save(cliente);
+        }
+    }
+
 }

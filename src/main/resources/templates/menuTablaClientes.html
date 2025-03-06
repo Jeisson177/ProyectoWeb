@@ -32,8 +32,8 @@
                         <td th:text="${cliente.Direccion}"></td>
                         <td th:text="${cliente.Telefono}"></td>
                         <td>
-                            <a th:href="@{/cliente/editar/{id}(id=${cliente.id})}" class="btn btn-primary btn-sm">Editar</a>
-                            <a th:href="@{/cliente/eliminar/{id}(id=${cliente.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                            <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}" class="btn btn-primary btn-sm">Editar</a>
+                            <a th:href="@{/clientes/eliminar/{id}(id=${cliente.id})}" class="btn btn-danger btn-sm">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>
@@ -51,7 +51,7 @@
             </ul>
         </nav>
         <div class="text-center mt-3">
-            <a href="/cliente/agregar" class="btn btn-success">Agregar Cliente</a>
+            <a href="/clientes/agregar" class="btn btn-success">Agregar Cliente</a>
         </div>
     </div>
 
