@@ -16,7 +16,7 @@ public class ClienteTablaController {
     @Autowired
     private ClienteServiceImp clienteService;
 
-    @GetMapping("/tb")
+    @GetMapping
     public String listarClientes(Model model) {
         model.addAttribute("clientes", clienteService.obtenerTodosLosClientes());
         return "menuTablaClientes";
