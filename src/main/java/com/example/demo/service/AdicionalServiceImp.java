@@ -49,4 +49,9 @@ public class AdicionalServiceImp implements AdicionalService{
     public void eliminarAdicional(Long id) {
         adicionalRepository.deleteById(id);
     }
+
+    @Override
+    public List<Adicional> getAdicionalesByIds(List<Long> ids) {
+        return adicionalRepository.findAllById(ids);
+    }
 }
