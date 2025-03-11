@@ -78,10 +78,12 @@ public class DatabaseInit implements ApplicationRunner{
         Producto producto28 = new Producto("Tortellini con Salsa Alfredo", 19500, "Tortellini rellenos de queso en una cremosa salsa Alfredo con un toque de ajo.", "Plato Principal");
         Producto producto29 = new Producto("Focaccia con Romero", 9000, "Pan italiano horneado con aceite de oliva y romero fresco, perfecto para acompañar cualquier comida.", "Entrada");
         Producto producto30 = new Producto("Tartufo", 15000, "Helado italiano con un centro de chocolate derretido, cubierto con cacao en polvo.", "Postre");
-
+        Producto producto31 = new Producto("Bruschetta", 12000, "Pan tostado con tomate, ajo, albahaca y aceite de oliva.", "Entrada");
+        Producto producto32 = new Producto("Caprese salad", 14000, "Ensalada fresca con tomate, mozzarella fresca, albahaca y aceite de oliva.", "Entrada");
+        Producto producto33 = new Producto("Gnocchi de papa", 16000, "Gnocchi casero de papa con salsa al gusto.", "Plato Principal");
 // Guardar los nuevos productos en la base de datos
 
-        productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11,producto12,producto13,producto14,producto15,producto16,producto17,producto18,producto19,producto20,producto21,producto22,producto23,producto24,producto25,producto26,producto27,producto28,producto29,producto30));
+        productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11,producto12,producto13,producto14,producto15,producto16,producto17,producto18,producto19,producto20,producto21,producto22,producto23,producto24,producto25,producto26,producto27,producto28,producto29,producto30, producto31, producto32, producto33));
         
     
         //Inicio los clientes
@@ -144,7 +146,7 @@ public class DatabaseInit implements ApplicationRunner{
         Adicional adicional28 = new Adicional(1, "Salsa de Trufa", 1200, producto28);
         Adicional adicional29 = new Adicional(1, "Aceite de Oliva Extra Virgen", 500, producto29);
         Adicional adicional30 = new Adicional(1, "Chocolate Rallado", 600, producto30);
-
+        
         adicionalRepository.saveAll(List.of(adicional1, adicional2, adicional3, adicional4, adicional5, adicional6, adicional7, adicional8, adicional9, adicional10,adicional11,adicional12,adicional13,adicional14,adicional15,adicional16,adicional17,adicional18,adicional19,adicional20,adicional21,adicional22,adicional23,adicional24,adicional25,adicional26,adicional27,adicional28,adicional29,adicional30));
 
         // Asignar un adicional a cada producto (1:1 asignación)
