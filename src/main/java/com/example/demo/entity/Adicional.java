@@ -1,47 +1,34 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Adicional {
-    private String Nombre;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long adicional_id;
+
+    private String nombre;  // Cambié la "N" a minúscula (convención Java)
     private int cantidad;
     private int precio;
 
-    @Id
-    @GeneratedValue
-    private Long adicional_id;
-
-    @ManyToOne
-    @JoinColumn(name = "producto_id", nullable = true)
-    @JsonBackReference  // Evita que se serialice nuevamente el producto
-    private Producto producto;
-
-    public Adicional(Long adicional_id,  int cantidad, String Nombre, int precio, Producto producto) {
-        this.producto = producto;
-        this.adicional_id = adicional_id;
-        this.cantidad = cantidad;
-        this.Nombre = Nombre;
-        this.precio = precio;
-        
-    }
-
-    public Adicional(int cantidad, String Nombre, int precio, Producto producto) {
-        this.cantidad = cantidad;
-        this.Nombre = Nombre;
-        this.precio = precio;
-        this.producto = producto;
-    }
-    
+    @ManyToMany(mappedBy = "adicionales")
+    private List<Producto> productos = new ArrayList<>();
 
     public Adicional() {}
+
+    public Adicional(String nombre, int cantidad, int precio) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
 
     public Long getAdicional_id() {
         return adicional_id;
@@ -49,6 +36,14 @@ public class Adicional {
 
     public void setAdicional_id(Long adicional_id) {
         this.adicional_id = adicional_id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getCantidad() {
@@ -59,14 +54,6 @@ public class Adicional {
         this.cantidad = cantidad;
     }
 
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
     public int getPrecio() {
         return precio;
     }
@@ -75,13 +62,11 @@ public class Adicional {
         this.precio = precio;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public List<Producto> getProductos() {
+        return productos;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
-
-
 }

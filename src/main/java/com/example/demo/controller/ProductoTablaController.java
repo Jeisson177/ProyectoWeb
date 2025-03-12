@@ -16,12 +16,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Adicional;
 import com.example.demo.entity.Producto;
+import com.example.demo.repository.ProductoRepository;
 import com.example.demo.service.AdicionalService;
 import com.example.demo.service.ProductoServiceImp;
 
 @Controller
 @RequestMapping("/producto")
 public class ProductoTablaController {
+    @Autowired
+    ProductoRepository productoRepository;
+
 
     @Autowired
     ProductoServiceImp productoService;
@@ -63,40 +67,15 @@ public class ProductoTablaController {
     // Actualizar producto
     @PostMapping("/actualizar")
     public String actualizarProducto(@ModelAttribute Producto producto, 
-                                    @RequestParam(name = "adicionales", required = false) List<Long> adicionalesIds, 
+                                    @RequestParam(name = "adicionales", required = false) List<Long> adicionalesIn, //http no puede retornar objetos por ende se retornan ids
                                     RedirectAttributes redirectAttributes) {
-        try {
-            // Verificar si el producto existe
-            Producto productoExistente = productoService.getProductoById(producto.getProducto_ID());
-            if (productoExistente == null) {
-                redirectAttributes.addFlashAttribute("error", "El producto no existe.");
-                return "redirect:/producto/pr";
-            }
+        List<Adicional> adicionales = adicionalService.getAdicionalesByIds(adicionalesIn);
 
-            // Obtener los adicionales seleccionados
-            List<Adicional> adicionales = new ArrayList<>();
-            if (adicionalesIds != null && !adicionalesIds.isEmpty()) {
-                adicionales = adicionalService.getAdicionalesByIds(adicionalesIds);
-            }
+        productoService.actualizarProducto(producto,adicionales);
 
-            // Actualizar los campos del producto
-            productoExistente.setNombre(producto.getNombre());
-            productoExistente.setDescripcion(producto.getDescripcion());
-            productoExistente.setPrecio(producto.getPrecio());
-            productoExistente.setAdicionales(adicionales); // Asignar los adicionales
+        
+        return "redirect:/producto/pr";
 
-            // Guardar los cambios
-            productoService.actualizarProducto(productoExistente);
-
-            // Redirigir con un mensaje de éxito
-            redirectAttributes.addFlashAttribute("success", "Producto actualizado correctamente.");
-            return "redirect:/producto/pr";
-
-        } catch (Exception e) {
-            // Manejar excepciones y redirigir con un mensaje de error
-            redirectAttributes.addFlashAttribute("error", "Error al actualizar el producto: " + e.getMessage());
-            return "redirect:/producto/pr";
-        }
     }
 
     // Eliminar producto
