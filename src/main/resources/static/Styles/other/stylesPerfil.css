@@ -1,33 +1,289 @@
 /* Estilos generales */
 body {
     background-color: #f5e3d8;;
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* Barra de navegación */
-.navbar {
-    background-color:  rgb(89 32 25);
-    color: white;
+
+/* ---- HEADER ---- */
+header {
+    background-color: var(--md-sys-color-primary);
     display: flex;
-    justify-content: space-between;
+    display: inline-block;
+    flex-direction: column;
     align-items: center;
-    padding: 15px 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    justify-content: flex-start;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-.navbar a {
-    color: white;
+.principal{
+    display: flex;
+    align-items: center;
+}
+
+/* ---- MENU FIJO ---- */
+.menu {
+    position: fixed; /* Fija el menú en la parte superior */
+    top: 0; /* Se mantiene en la parte superior */
+    right: 0;
+    width: 100%; /* Ocupa todo el ancho */
+    height: 12%;
+    background-color: rgb(89 32 25); /* Color de fondo */
+    border: #c19a6b solid 2px;
+    z-index: 1000; /* Se asegura que esté por encima del contenido */
+    padding: 10px 0; /* Espaciado superior e inferior */
+    margin-left: 60%;
+}
+
+/* Estilos del menú */
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Asegura alineación vertical */
+    gap: 30px; /* Espacio entre los elementos del menú */
+    margin-left: 40%;
+}
+
+/* Estilo de cada ítem del menú */
+.menu ul li {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* o center, dependiendo del diseño */
+    padding: 10px
+}
+
+/* Enlaces del menú */
+nav a {
     text-decoration: none;
-    margin: 0 15px;
+    color: white;
     font-size: 17px;
-    transition: 0.3s;
-    font-family: 'Times New Roman', Times, serif;
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
 }
 
-.navbar .nav-links a:hover {
-    color: #f5e3d8;
+/* Efecto hover en los enlaces */
+nav a:hover {
+    background-color: #c19a6b;
+    color: var(--md-sys-color-primary);
+}
+
+
+/* Logo en la esquina superior izquierda */
+#logo {
+    width: 50px;
+    z-index: 1000;
+    height: 50px;
+    margin-right: 0px;
+    margin-left: 26px;
+    border-radius: 30%;
+}
+
+#logo2{
+    width: 50px;
+    z-index: 1000;
+    height: 50px;
+    margin-left: 0px;
+    margin-right: 26px;
+    border-radius: 30%;
+
+}
+
+#titulo{
+    font-size: 20px;
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-shadow: 2px 2px 4px black;
+    margin-left: -10px;
+    margin-right: 50px;
+    left: 0;
+}
+
+/* Estilo básico para el botón desplegable */
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Contenedor del menú desplegable */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Contenido del menú desplegable (oculto por defecto) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Estilo de los enlaces dentro del menú desplegable */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Cambiar color de fondo de los enlaces al pasar el ratón */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Mostrar el menú desplegable al pasar el ratón */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Cambiar el color de fondo del botón desplegable al pasar el ratón */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/*Seccion que contiene el video y contenido principal*/
+.seccionPrincipal{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*Estilos del Video de fondo*/
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+
+}
+
+.descripcion {
+    top: 0;
+    margin-top: -60px;
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+
+#bienvenida {
+   font-size: 32px;
+    text-align: center;
+    margin-top: 0px;
+    font-family: 'lucida handwriting', cursive;
+    background: rgba(204, 136, 90, 0.7);
+    margin-left: 30%;
+    width: 40%;
+    margin-bottom: 12px;
+    font-weight: bold;
+    border-radius: 30px;
+}
+
+.descripcion h1 {
+    margin-top: 0px;
+    font-size: 28px;
+    text-shadow: 2px 2px 4px black;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.descripcion p {
+    margin-top: 0px;
+    font-size: 18px;
+    text-shadow: 2px 2px 4px black;
+    text-align: center;
+}
+
+#ordenar{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    padding: 16px;
+    background-color: rgb(89 32 25);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 44%;
+    margin-top: 60px;
+    width: 15%;
+    font-weight: bold;
+    border: #c19a6b solid 1.5px;
+    border-radius: 30px;
+
+}
+
+#ordenar:hover{
+    background-color: #600000;
+    border: #c19a6b solid 1.5px;
+}
+
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-size: cover; /* La imagen cubrirá toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Permite el efecto de desplazamiento */
+
+    min-height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
+    margin-top: 300px; /* Espacio superior respecto al header */
+}
+
+
+/* Contenedor de la franja */
+.franja {
+    margin-top: 140px;
+    width: 100%;
+    overflow: hidden;
+    background: rgb(89 32 25);
+    white-space: nowrap;
+    position: relative;
+    padding: 10px 0;
+}
+
+/* Contenedor del contenido deslizante */
+.contenido {
+    
+    margin-bottom: 30px;
+    color: #f0ebe3;
+    height: 50px;
+    display: flex;
+    gap: 30px; /* Espacio entre copias */
+    font-size: 25px;
+    font-weight: bold;
+    min-width: 200%; /* Hace que la franja sea más larga que la pantalla */
+    animation: deslizar 10s linear infinite;
+}
+
+/* Animación continua */
+@keyframes deslizar {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 .icon-button {
@@ -52,6 +308,7 @@ body {
     align-items: center;
     height: 90vh;
 }
+
 
 /* Tarjeta de perfil */
 .profile-card {

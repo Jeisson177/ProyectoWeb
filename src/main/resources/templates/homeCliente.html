@@ -8,15 +8,56 @@
 </head>
 <body>
 
-     <!-- Barra de navegación -->
-     <nav class="navbar">
-        <div class="logo">Mi Perfil</div>
-        <div class="nav-links">
-            <a href="#">Hacer pedido</a>
-            <a href="#">Historial de pedidos</a>
+    <header class="header">
+        <div class= "principal">
+            
+
+            <nav class="menu">
+                
+                <img id="logo" src="/Imagenes/logoRecortado.jpg" alt="Logo">
+                <h1 id = "titulo"> PASTA E 
+                    <br> PASSIONE </h1>
+                <img id="logo2" src="/Imagenes/logoRecortado.jpg" alt="Logo">
+            </nav>    
         </div>
-        <button class="icon-button">➜</button>
-    </nav>
+    </header>
+
+    <section class="seccionInicial">
+        <!-- Elemento de video -->
+        <video id="videoPlayer" autoplay muted loop playsinline class="background-video">
+        <source id="videoSource" src="videos/videoBienvenida2.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+
+        <div class="descripcion">
+            <h2 id="bienvenida">
+                Bienvenid@ <span th:text="${cliente.nombre}">Nombre</span> 
+                <span th:text="${cliente.apellido}">Apellido</span>
+            </h2>
+            <h1>REALIZA TU PEDIDO AQUI</h1> 
+            <p>Sabores hechos con amor y auténtica pasión en cada bocado !!!</p> 
+    
+            <button id="ordenar" onclick="window.location.href='/menu'">Ver menu</button> 
+        </div>
+
+    </section>
+
+     <!-- Franja desplazable -->
+     <div class="franja">
+        <div class="contenido">
+            <p>🍕 ¡Pizzas 2x1 todos los días! 🍕</p>
+            <p>🍝 ¡Pastas 2x1 para compartir! 🍝</p>
+            <p>🔥 10% de descuento en platos nuevos de la carta 🔥</p>
+            <p>🍷 ¡Cena romántica con vino de cortesía! 🍷</p>
+            <p>🍕 ¡Pizzas 2x1 todos los días! 🍕</p> <!-- Se repiten para hacer el loop continuo -->
+            <p>🍝 ¡Pastas 2x1 para compartir! 🍝</p>
+            <p>🔥 10% de descuento en platos nuevos de la carta 🔥</p>
+            <p>🍷 ¡Cena romántica con vino de cortesía! 🍷</p> 
+        </div>
+        
+    </div>
+
+
 
     <!-- Contenedor principal -->
     <div class="container">
