@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Adicional {
     private int cantidad;
     private int precio;
 
-    @ManyToMany(mappedBy = "adicionales")
+    @ManyToMany(mappedBy = "adicionales", cascade = { CascadeType.MERGE})
     private List<Producto> productos = new ArrayList<>();
 
     public Adicional() {}
@@ -30,6 +31,19 @@ public class Adicional {
         this.precio = precio;
     }
 
+    public List<Producto> getProductos() {
+        return productos;
+    }
+    public void agregarProducto(Producto producto) {
+        if (!this.productos.contains(producto)) {
+            this.productos.add(producto);
+            producto.getAdicionales().add(this); // Relación bidireccional
+        }
+    }
+    public void quitarAdicional(Producto producto) {
+        productos.remove(producto);
+        producto.getAdicionales().remove(this);
+    }
     public Long getAdicional_id() {
         return adicional_id;
     }
@@ -62,9 +76,7 @@ public class Adicional {
         this.precio = precio;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
-    }
+
 
     public void setProductos(List<Producto> productos) {
         this.productos = productos;

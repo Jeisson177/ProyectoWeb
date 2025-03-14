@@ -16,7 +16,6 @@ public class AdicionalServiceImp implements AdicionalService{
 
     @Override
     public List<Adicional> getAllAdicionales() {
-        System.out.println(adicionalRepository.findAll().size());
         return adicionalRepository.findAll();
     }
 
@@ -36,7 +35,7 @@ public class AdicionalServiceImp implements AdicionalService{
         Adicional adicionalExistente = adicionalRepository.findById(adicional.getAdicional_id()).orElse(null);
         if (adicionalExistente != null) {
             // Conserva el producto_id del adicional existente
-            adicional.setProducto(adicionalExistente.getProducto());
+            adicional.setProductos(adicionalExistente.getProductos());
             // Actualiza los demás campos
             adicionalExistente.setNombre(adicional.getNombre());
             adicionalExistente.setPrecio(adicional.getPrecio());

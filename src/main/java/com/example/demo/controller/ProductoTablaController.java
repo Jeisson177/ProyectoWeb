@@ -57,26 +57,24 @@ public class ProductoTablaController {
     // Mostrar formulario de edición
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
-        Producto producto = productoService.getProductoById(id);
-        List<Adicional> adicionales =new ArrayList<>( adicionalService.getAllAdicionales());
-        model.addAttribute("adicional", adicionales);
+        Producto producto = productoService.getProductoWithAdicionales(id);
         model.addAttribute("producto", producto);
+        model.addAttribute("adicionales", adicionalService.getAllAdicionales());
         return "editarProducto";
     }
 
     // Actualizar producto
     @PostMapping("/actualizar")
     public String actualizarProducto(@ModelAttribute Producto producto, 
-                                    @RequestParam(name = "adicionales", required = false) List<Long> adicionalesIn, //http no puede retornar objetos por ende se retornan ids
+                                    @RequestParam(name = "adicionales", required = false) List<Long> adicionalesIn,
                                     RedirectAttributes redirectAttributes) {
-        List<Adicional> adicionales = adicionalService.getAdicionalesByIds(adicionalesIn);
-
-        productoService.actualizarProducto(producto,adicionales);
-
+        List<Adicional> adicionales = adicionalesIn != null ? adicionalService.getAdicionalesByIds(adicionalesIn) : new ArrayList<>();
         
-        return "redirect:/producto/pr";
+        productoService.actualizarProducto(producto, adicionales);
 
+        return "redirect:/producto/pr";
     }
+
 
     // Eliminar producto
     @GetMapping("/eliminar/{id}")

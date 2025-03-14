@@ -10,6 +10,7 @@ public interface ProductoService {
     Collection<Producto> getAllProductos();
     Producto getProductoById(Long id);
     void guardarProducto(Producto producto);
-    void actualizarProducto(Producto producto,List<Adicional> adicionales);
+    void actualizarProducto(Producto productoNuevo, List<Adicional> adicionales);
     void eliminarProducto(Long id);
+    Producto getProductoWithAdicionales(Long id);
 }
