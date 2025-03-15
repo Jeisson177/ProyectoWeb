@@ -267,10 +267,10 @@ body {
     
     margin-bottom: 30px;
     color: #f0ebe3;
-    height: 50px;
+    height: 30px;
     display: flex;
     gap: 30px; /* Espacio entre copias */
-    font-size: 25px;
+    font-size: 18px;
     font-weight: bold;
     min-width: 200%; /* Hace que la franja sea más larga que la pantalla */
     animation: deslizar 10s linear infinite;
