@@ -110,6 +110,7 @@ nav a:hover {
     align-items: center;
     justify-content: space-between;
     margin-left: 0px;
+    margin-right: 10px;
     gap: 20px;
 }
 
@@ -119,7 +120,7 @@ nav a:hover {
     margin-top: 0px;
     margin-bottom: 0px;
     text-shadow: 2px 2px 4px black;
-    margin-left: -200px;
+    margin-left: -150px;
     margin-right: 400px;
     left: 0;
 }

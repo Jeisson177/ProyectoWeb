@@ -39,7 +39,7 @@ public class LoginController {
         }
     }
 
-    // Mostrar productos en la tabla
+    // Mostrar pagina de registro
     @GetMapping("/registro")
     public String mostrarRegistro() {
         return "registro";

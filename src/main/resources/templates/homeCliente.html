@@ -20,9 +20,10 @@
                     <br> PASSIONE </h1>
 
                     <div class="menu-perfil">
-                        <a class="seccion" href="/perfil">Editar perfil</a>
-                        <a class="seccion" href="/logout">Mis pedidos</a>
-                        <a class="seccion" href="/logout">Historial de pedidos</a>
+                        <a class="seccion" th:href="@{'/homeCliente?correo=' + ${cliente.correo}}">Home</a>
+                        <a class ="seccion" th:href="@{'/editarPerfil?correo=' + ${cliente.correo}}">Editar Perfil</a>
+                        <a class="seccion" th:href="@{'/pedidos?correo=' + ${cliente.correo}}"> Mis pedidos</a> 
+                        <a class="seccion" th:href="@{'/historialPedidos?correo=' + ${cliente.correo}}">Historial de pedidos</a>
                         
                     </div>
 
