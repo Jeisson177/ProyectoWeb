@@ -14,6 +14,7 @@ import com.example.demo.repository.DomiciliarioRepository;
 import com.example.demo.repository.OperadorRepository;
 import com.example.demo.repository.PedidoRepository;
 import com.example.demo.repository.ProductoRepository;
+import com.example.demo.service.ProductoService;
 
 import jakarta.transaction.Transactional;
 
@@ -24,8 +25,8 @@ public class DatabaseInit implements ApplicationRunner{
 
     @Autowired
     ProductoRepository productoRepository;
-
-
+    @Autowired
+    ProductoService productoService;
 
     @Autowired
     ClienteRepository clienteRepository;
@@ -47,6 +48,68 @@ public class DatabaseInit implements ApplicationRunner{
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+       
+    
+        //Inicio los clientes
+        clienteRepository.save(new Cliente("Juan", "Pérez", "jperez@example.com", "1234abc12", "Calle 123", "555-1234"));
+        clienteRepository.save(new Cliente("María", "Gómez", "mgomez@example.com", "5678", "Avenida 456", "555-5678"));
+        clienteRepository.save(new Cliente("Carlos", "López", "clopez@example.com", "91011", "Boulevard 789", "555-9101"));
+        clienteRepository.save(new Cliente("Ana", "Martínez", "amartinez@example.com", "121314", "Calle 321", "555-1213"));
+        clienteRepository.save(new Cliente("Luis", "Rodríguez", "lrodriguez@example.com", "151617", "Avenida 654", "555-1516"));
+        clienteRepository.save(new Cliente("Pedro", "Sánchez", "psanchez@example.com", "181920", "Calle 987", "555-1819"));
+        clienteRepository.save(new Cliente("Laura", "Fernández", "lfernandez@example.com", "212223", "Avenida 654", "555-2122"));
+        clienteRepository.save(new Cliente("Miguel", "Díaz", "mdiaz@example.com", "242526", "Boulevard 321", "555-2425"));
+        clienteRepository.save(new Cliente("Sofía", "Ruiz", "sruiz@example.com", "272829", "Calle 159", "555-2728"));
+        clienteRepository.save(new Cliente("Javier", "Hernández", "jhernandez@example.com", "303132", "Avenida 753", "555-3031"));
+        clienteRepository.save(new Cliente("Elena", "Torres", "etorres@example.com", "333435", "Calle 852", "555-3334"));
+        clienteRepository.save(new Cliente("Diego", "Vargas", "dvargas@example.com", "363738", "Boulevard 456", "555-3637"));
+        clienteRepository.save(new Cliente("Carmen", "Jiménez", "cjimenez@example.com", "394041", "Avenida 963", "555-3940"));
+        clienteRepository.save(new Cliente("Ricardo", "Molina", "rmolina@example.com", "424344", "Calle 741", "555-4243"));
+        clienteRepository.save(new Cliente("Patricia", "Castro", "pcastro@example.com", "454647", "Boulevard 258", "555-4546"));
+        clienteRepository.save(new Cliente("Fernando", "Ortega", "fortega@example.com", "484950", "Avenida 369", "555-4849"));
+        clienteRepository.save(new Cliente("Lucía", "Navarro", "lnavarro@example.com", "515253", "Calle 753", "555-5152"));
+        clienteRepository.save(new Cliente("Oscar", "Ramírez", "oramirez@example.com", "545556", "Boulevard 951", "555-5455"));
+        clienteRepository.save(new Cliente("Isabel", "Reyes", "ireyes@example.com", "575859", "Avenida 357", "555-5758"));
+        clienteRepository.save(new Cliente("Gabriel", "Morales", "gmorales@example.com", "606162", "Calle 456", "555-6061"));
+        clienteRepository.save(new Cliente("Adriana", "Guerrero", "aguerrero@example.com", "636465", "Boulevard 789", "555-6364"));
+        clienteRepository.save(new Cliente("Raúl", "Rojas", "rrojas@example.com", "666768", "Avenida 123", "555-6667"));
+        clienteRepository.save(new Cliente("Mónica", "Silva", "msilva@example.com", "697071", "Calle 654", "555-6970"));
+        clienteRepository.save(new Cliente("Héctor", "Cruz", "hcruz@example.com", "727374", "Boulevard 321", "555-7273"));
+        clienteRepository.save(new Cliente("Natalia", "Peña", "npena@example.com", "757677", "Avenida 987", "555-7576"));
+
+        //Inicio los adicionales
+        Adicional adicional1 = new Adicional( "Queso Parmesano Extra",1, 500);
+        Adicional adicional2 = new Adicional("Salsa de Tomate Extra", 2, 300);         
+        Adicional adicional3 = new Adicional("Aceitunas Negras", 1, 400);
+        Adicional adicional4 = new Adicional("Champiñones Salteados", 2, 600);
+        Adicional adicional5 = new Adicional("Albahaca Fresca", 1, 200);
+        Adicional adicional6 = new Adicional("Pepperoni Extra", 3, 700);
+        Adicional adicional7 = new Adicional("Jalapeños", 2, 450);
+        Adicional adicional8 = new Adicional("Queso Mozzarella Extra", 1, 550);
+        Adicional adicional9 = new Adicional("Aceite de Oliva Virgen Extra", 2, 250);
+        Adicional adicional10 = new Adicional("Pimientos Asados", 1, 350);
+        Adicional adicional11 = new Adicional("Parmesano Rallado", 2, 500);
+        Adicional adicional12 = new Adicional("Salsa de Trufa", 1, 1000);
+        Adicional adicional13 = new Adicional("Alcaparras", 3, 400);
+        Adicional adicional14 = new Adicional("Panceta Crujiente", 1, 700);
+        Adicional adicional15 = new Adicional("Queso Ricotta", 2, 600);
+        Adicional adicional16 = new Adicional("Chocolate Fundido", 1, 800);
+        Adicional adicional17 = new Adicional("Pan Tostado", 1, 300);
+        Adicional adicional18 = new Adicional("Chorizo Español", 3, 900);
+        Adicional adicional19 = new Adicional("Pesto Genovés", 1, 650);
+        Adicional adicional20 = new Adicional("Pimientos Rellenos", 2, 750);
+        Adicional adicional21 = new Adicional("Jamón Serrano Extra", 1, 1000);
+        Adicional adicional22 = new Adicional("Mariscos Extra", 2, 1500);
+        Adicional adicional23 = new Adicional("Frutas Confitadas Extra", 1, 700);
+        Adicional adicional24 = new Adicional("Azúcar Morena", 1, 300);
+        Adicional adicional25 = new Adicional("Hojas de Menta", 1, 400);
+        Adicional adicional26 = new Adicional("Doble Shot de Espresso", 1, 1000);
+        Adicional adicional27 = new Adicional("Canela en Polvo", 2, 500);
+        Adicional adicional28 = new Adicional("Salsa de Trufa", 1, 1200);
+        Adicional adicional29 = new Adicional("Aceite de Oliva Extra Virgen", 1, 500);
+        Adicional adicional30 = new Adicional("Chocolate Rallado", 1, 600);
+        adicionalRepository.saveAll(List.of(adicional1, adicional2, adicional3, adicional4, adicional5, adicional6, adicional7, adicional8, adicional9, adicional10,adicional11,adicional12,adicional13,adicional14,adicional15,adicional16,adicional17,adicional18,adicional19,adicional20,adicional21,adicional22,adicional23,adicional24,adicional25,adicional26,adicional27,adicional28,adicional29,adicional30));
 
         Producto producto1 = new Producto("Lasagna Boloñesa", 20000, "Lasagna Boloñesa con carne molida y salsa de tomate.", "Plato Principal");
         Producto producto2 = new Producto("Spaghetti Carbonara", 18000, "Spaghetti con auténtica salsa carbonara.", "Plato Principal");
@@ -78,110 +141,42 @@ public class DatabaseInit implements ApplicationRunner{
         Producto producto28 = new Producto("Tortellini con Salsa Alfredo", 19500, "Tortellini rellenos de queso en una cremosa salsa Alfredo con un toque de ajo.", "Plato Principal");
         Producto producto29 = new Producto("Focaccia con Romero", 9000, "Pan italiano horneado con aceite de oliva y romero fresco, perfecto para acompañar cualquier comida.", "Entrada");
         Producto producto30 = new Producto("Tartufo", 15000, "Helado italiano con un centro de chocolate derretido, cubierto con cacao en polvo.", "Postre");
-        Producto producto31 = new Producto("Bruschetta", 12000, "Pan tostado con tomate, ajo, albahaca y aceite de oliva.", "Entrada");
-        Producto producto32 = new Producto("Caprese salad", 14000, "Ensalada fresca con tomate, mozzarella fresca, albahaca y aceite de oliva.", "Entrada");
-        Producto producto33 = new Producto("Gnocchi de papa", 16000, "Gnocchi casero de papa con salsa al gusto.", "Plato Principal");
-// Guardar los nuevos productos en la base de datos
 
-        productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11,producto12,producto13,producto14,producto15,producto16,producto17,producto18,producto19,producto20,producto21,producto22,producto23,producto24,producto25,producto26,producto27,producto28,producto29,producto30, producto31, producto32, producto33));
-        
-    
-        //Inicio los clientes
-        clienteRepository.save(new Cliente("Juan", "Pérez", "jperez@example.com", "1234abc12", "Calle 123", "555-1234"));
-        clienteRepository.save(new Cliente("María", "Gómez", "mgomez@example.com", "5678", "Avenida 456", "555-5678"));
-        clienteRepository.save(new Cliente("Carlos", "López", "clopez@example.com", "91011", "Boulevard 789", "555-9101"));
-        clienteRepository.save(new Cliente("Ana", "Martínez", "amartinez@example.com", "121314", "Calle 321", "555-1213"));
-        clienteRepository.save(new Cliente("Luis", "Rodríguez", "lrodriguez@example.com", "151617", "Avenida 654", "555-1516"));
-        clienteRepository.save(new Cliente("Pedro", "Sánchez", "psanchez@example.com", "181920", "Calle 987", "555-1819"));
-        clienteRepository.save(new Cliente("Laura", "Fernández", "lfernandez@example.com", "212223", "Avenida 654", "555-2122"));
-        clienteRepository.save(new Cliente("Miguel", "Díaz", "mdiaz@example.com", "242526", "Boulevard 321", "555-2425"));
-        clienteRepository.save(new Cliente("Sofía", "Ruiz", "sruiz@example.com", "272829", "Calle 159", "555-2728"));
-        clienteRepository.save(new Cliente("Javier", "Hernández", "jhernandez@example.com", "303132", "Avenida 753", "555-3031"));
-        clienteRepository.save(new Cliente("Elena", "Torres", "etorres@example.com", "333435", "Calle 852", "555-3334"));
-        clienteRepository.save(new Cliente("Diego", "Vargas", "dvargas@example.com", "363738", "Boulevard 456", "555-3637"));
-        clienteRepository.save(new Cliente("Carmen", "Jiménez", "cjimenez@example.com", "394041", "Avenida 963", "555-3940"));
-        clienteRepository.save(new Cliente("Ricardo", "Molina", "rmolina@example.com", "424344", "Calle 741", "555-4243"));
-        clienteRepository.save(new Cliente("Patricia", "Castro", "pcastro@example.com", "454647", "Boulevard 258", "555-4546"));
-        clienteRepository.save(new Cliente("Fernando", "Ortega", "fortega@example.com", "484950", "Avenida 369", "555-4849"));
-        clienteRepository.save(new Cliente("Lucía", "Navarro", "lnavarro@example.com", "515253", "Calle 753", "555-5152"));
-        clienteRepository.save(new Cliente("Oscar", "Ramírez", "oramirez@example.com", "545556", "Boulevard 951", "555-5455"));
-        clienteRepository.save(new Cliente("Isabel", "Reyes", "ireyes@example.com", "575859", "Avenida 357", "555-5758"));
-        clienteRepository.save(new Cliente("Gabriel", "Morales", "gmorales@example.com", "606162", "Calle 456", "555-6061"));
-        clienteRepository.save(new Cliente("Adriana", "Guerrero", "aguerrero@example.com", "636465", "Boulevard 789", "555-6364"));
-        clienteRepository.save(new Cliente("Raúl", "Rojas", "rrojas@example.com", "666768", "Avenida 123", "555-6667"));
-        clienteRepository.save(new Cliente("Mónica", "Silva", "msilva@example.com", "697071", "Calle 654", "555-6970"));
-        clienteRepository.save(new Cliente("Héctor", "Cruz", "hcruz@example.com", "727374", "Boulevard 321", "555-7273"));
-        clienteRepository.save(new Cliente("Natalia", "Peña", "npena@example.com", "757677", "Avenida 987", "555-7576"));
-        
-    
-        
-        //Inicio los adicionales
-        Adicional adicional1 = new Adicional(1, "Queso Parmesano Extra", 500, producto1);
-        Adicional adicional2 = new Adicional(2, "Salsa de Tomate Extra", 300, producto1);
-        Adicional adicional3 = new Adicional(1, "Aceitunas Negras", 400, producto2);
-        Adicional adicional4 = new Adicional(2, "Champiñones Salteados", 600, producto2);
-        Adicional adicional5 = new Adicional(1, "Albahaca Fresca", 200, producto3);
-        Adicional adicional6 = new Adicional(3, "Pepperoni Extra", 700, producto3);
-        Adicional adicional7 = new Adicional(2, "Jalapeños", 450, producto4);
-        Adicional adicional8 = new Adicional(1, "Queso Mozzarella Extra", 550, producto4);
-        Adicional adicional9 = new Adicional(2, "Aceite de Oliva Virgen Extra", 250, producto5);
-        Adicional adicional10 = new Adicional(1, "Pimientos Asados", 350, producto5);
-        Adicional adicional11 = new Adicional(2, "Parmesano Rallado", 500, producto11);
-        Adicional adicional12 = new Adicional(1, "Salsa de Trufa", 1000, producto11);
-        Adicional adicional13 = new Adicional(3, "Alcaparras", 400, producto12);
-        Adicional adicional14 = new Adicional(1, "Panceta Crujiente", 700, producto12);
-        Adicional adicional15 = new Adicional(2, "Queso Ricotta", 600, producto13);
-        Adicional adicional16 = new Adicional(1, "Chocolate Fundido", 800, producto13);
-        Adicional adicional17 = new Adicional(1, "Pan Tostado", 300, producto14);
-        Adicional adicional18 = new Adicional(3, "Chorizo Español", 900, producto14);
-        Adicional adicional19 = new Adicional(1, "Pesto Genovés", 650, producto15);
-        Adicional adicional20 = new Adicional(2, "Pimientos Rellenos", 750, producto15);
-        Adicional adicional21 = new Adicional(1, "Jamón Serrano Extra", 1000, producto21);
-        Adicional adicional22 = new Adicional(2, "Mariscos Extra", 1500, producto22);
-        Adicional adicional23 = new Adicional(1, "Frutas Confitadas Extra", 700, producto23);
-        Adicional adicional24 = new Adicional(1, "Azúcar Morena", 300, producto24);
-        Adicional adicional25 = new Adicional(1, "Hojas de Menta", 400, producto25);
-        Adicional adicional26 = new Adicional(1, "Doble Shot de Espresso", 1000, producto26);
-        Adicional adicional27 = new Adicional(2, "Canela en Polvo", 500, producto27);
-        Adicional adicional28 = new Adicional(1, "Salsa de Trufa", 1200, producto28);
-        Adicional adicional29 = new Adicional(1, "Aceite de Oliva Extra Virgen", 500, producto29);
-        Adicional adicional30 = new Adicional(1, "Chocolate Rallado", 600, producto30);
-        
-        adicionalRepository.saveAll(List.of(adicional1, adicional2, adicional3, adicional4, adicional5, adicional6, adicional7, adicional8, adicional9, adicional10,adicional11,adicional12,adicional13,adicional14,adicional15,adicional16,adicional17,adicional18,adicional19,adicional20,adicional21,adicional22,adicional23,adicional24,adicional25,adicional26,adicional27,adicional28,adicional29,adicional30));
-
-        // Asignar un adicional a cada producto (1:1 asignación)
-producto1.getAdicionales().add(adicional1);
-producto2.getAdicionales().add(adicional2);
-producto3.getAdicionales().add(adicional3);
-producto4.getAdicionales().add(adicional4);
-producto5.getAdicionales().add(adicional5);
-producto6.getAdicionales().add(adicional6);
-producto7.getAdicionales().add(adicional7);
-producto8.getAdicionales().add(adicional8);
-producto9.getAdicionales().add(adicional9);
-producto10.getAdicionales().add(adicional10);
-producto11.getAdicionales().add(adicional11);
-producto12.getAdicionales().add(adicional12);
-producto13.getAdicionales().add(adicional13);
-producto14.getAdicionales().add(adicional14);
-producto15.getAdicionales().add(adicional15);
-producto16.getAdicionales().add(adicional16);
-producto17.getAdicionales().add(adicional17);
-producto18.getAdicionales().add(adicional18);
-producto19.getAdicionales().add(adicional19);
-producto20.getAdicionales().add(adicional20);
-producto21.getAdicionales().add(adicional21);
-producto22.getAdicionales().add(adicional22);
-producto23.getAdicionales().add(adicional23);
-producto24.getAdicionales().add(adicional24);
-producto25.getAdicionales().add(adicional25);
-producto26.getAdicionales().add(adicional26);
-producto27.getAdicionales().add(adicional27);
-producto28.getAdicionales().add(adicional28);
-producto29.getAdicionales().add(adicional29);
-producto30.getAdicionales().add(adicional30);
+        productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11,producto12,producto13,producto14,producto15,producto16,producto17,producto18,producto19,producto20,producto21,producto22,producto23,producto24,producto25,producto26,producto27,producto28,producto29,producto30));
 
 
+        
+        producto1.agregarAdicional(adicional2);
+        producto2.agregarAdicional(adicional3);
+        producto2.agregarAdicional(adicional4);
+        producto3.agregarAdicional(adicional5);
+        producto3.agregarAdicional(adicional6);
+        producto4.agregarAdicional(adicional7);
+        producto4.agregarAdicional(adicional8);
+        producto5.agregarAdicional(adicional9);
+        producto5.agregarAdicional(adicional10);
+        producto11.agregarAdicional(adicional11);
+        producto11.agregarAdicional(adicional12);
+        producto12.agregarAdicional(adicional13);
+        producto12.agregarAdicional(adicional14);
+        producto13.agregarAdicional(adicional15);
+        producto13.agregarAdicional(adicional16);
+        producto14.agregarAdicional(adicional17);
+        producto14.agregarAdicional(adicional18);
+        producto15.agregarAdicional(adicional19);
+        producto15.agregarAdicional(adicional20);
+        producto21.agregarAdicional(adicional21);
+        producto22.agregarAdicional(adicional22);
+        producto23.agregarAdicional(adicional23);
+        producto24.agregarAdicional(adicional24);
+        producto25.agregarAdicional(adicional25);
+        producto26.agregarAdicional(adicional26);
+        producto27.agregarAdicional(adicional27);
+        producto28.agregarAdicional(adicional28);
+        producto29.agregarAdicional(adicional29);
+        producto30.agregarAdicional(adicional30);
+
+productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11,producto12,producto13,producto14,producto15,producto16,producto17,producto18,producto19,producto20,producto21,producto22,producto23,producto24,producto25,producto26,producto27,producto28,producto29,producto30));
         //Inicio de los Administradores 
         administradorRepository.save(new Administrador( "Juan", "Perez", "JPerez1214", "juanperez855"));
         administradorRepository.save(new Administrador( "Maria", "Jaramillo", "Jaramillo_M", "Bgta5862"));
