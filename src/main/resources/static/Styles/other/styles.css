@@ -180,7 +180,13 @@ nav a:hover {
     width: 10%;
     font-weight: bold;
     border: #c19a6b solid 1.5px;
+    border-radius: 30px;
 
+}
+
+#ordenar:hover{
+    background-color: #c19a6b;
+    color: var(--md-sys-color-primary);
 }
 
 

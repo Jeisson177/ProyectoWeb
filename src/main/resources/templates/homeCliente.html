@@ -15,8 +15,17 @@
             <nav class="menu">
                 
                 <img id="logo" src="/Imagenes/logoRecortado.jpg" alt="Logo">
+
                 <h1 id = "titulo"> PASTA E 
                     <br> PASSIONE </h1>
+
+                    <div class="menu-perfil">
+                        <a class="seccion" href="/perfil">Editar perfil</a>
+                        <a class="seccion" href="/logout">Mis pedidos</a>
+                        <a class="seccion" href="/logout">Historial de pedidos</a>
+                        
+                    </div>
+
                 <img id="logo2" src="/Imagenes/logoRecortado.jpg" alt="Logo">
             </nav>    
         </div>
@@ -25,7 +34,7 @@
     <section class="seccionInicial">
         <!-- Elemento de video -->
         <video id="videoPlayer" autoplay muted loop playsinline class="background-video">
-        <source id="videoSource" src="videos/videoBienvenida2.mp4" type="video/mp4">
+        <source id="videoSource" src="videos/videoBienvenida.mp4" type="video/mp4">
             Tu navegador no soporta el tag de video.
         </video>
 
@@ -53,34 +62,103 @@
             <p>🍝 ¡Pastas 2x1 para compartir! 🍝</p>
             <p>🔥 10% de descuento en platos nuevos de la carta 🔥</p>
             <p>🍷 ¡Cena romántica con vino de cortesía! 🍷</p> 
-        </div>
-        
+        </div>   
     </div>
 
+    <h2 id="promTitle">¡Promociones del mes!</h2>
 
+    <div class =promocionesCards>
 
-    <!-- Contenedor principal -->
-    <div class="container">
-        <!-- Tarjeta de perfil -->
-        <div class="profile-card">
-            <!-- Imagen de perfil -->
-            <div class="profile-img">
-                <img src="https://e7.pngegg.com/pngimages/348/800/png-clipart-man-wearing-blue-shirt-illustration-computer-icons-avatar-user-login-avatar-blue-child-thumbnail.png" alt="Foto de perfil">
-            </div>
-
-            <!-- Información del usuario -->
-            <div class="profile-info">
-                <p><strong>Nombre:</strong> <span th:text="${cliente.nombre}">Nombre</span></p>
-                <p><strong>Apellido:</strong> <span th:text="${cliente.apellido}">Apellido</span></p>
-                <p><strong>Correo:</strong> <span th:text="${cliente.correo}">correo@ejemplo.com</span></p>
-                <p><strong>Teléfono:</strong> <span th:text="${cliente.telefono}">+123 456 7890</span></p>
-                <p><strong>Dirección:</strong> <span th:text="${cliente.direccion}">Dirección</span></p>
-            </div>
-
-            <!-- Botón para editar -->
-            <button id="edit-button">Editar</button>
-        </div>
-    </div>
+        <div class ="card">
+            <div class="face front">
+                <img src="/Imagenes/promociones/promocion1.jpg" alt="promocion1">
     
+            </div>
+    
+            <div class="face back">
+                <h3>¡Pasta marinada 2x1 Todos los viernes !!</h3>
+                <p>Spaguetti en salsa marinera, con camarones y palmitos, con toques de queso parmesano</p>
+                <button>Comprar</button>
+                
+            </div>
+        </div>
+
+        <div class ="card">
+            <div class="face front">
+                <img src="/Imagenes/promociones/promocion2.jpg" alt="promocion2">
+    
+            </div>
+    
+            <div class="face back">
+                <h3>¡Pizza 2x1 Todos los dias !!</h3>
+                <p>Pizza con queso cottage, tomates y finas hierbas, preparada en estufa al horno con un excelente sabor </p>
+                <button>Comprar</button>
+                
+            </div>
+        </div>
+
+        <div class ="card">
+            <div class="face front">
+                <img src="/Imagenes/promociones/promocion3.jpg" alt="promocion3">
+    
+            </div>
+    
+            <div class="face back">
+                <h3>¡Pizza Buratta con el 40% de descuento !!</h3>
+                <p>Pizza de jamon serrano, queso fundido y finas hierbas preparada en estufa al horno con un excelente sabor</p>
+                <button>Comprar</button>
+                
+            </div>
+        </div>
+
+        <div class ="card">
+            <div class="face front">
+                <img src="/Imagenes/promociones/promocion4.jpg" alt="promocion4">
+    
+            </div>
+    
+            <div class="face back">
+                <h3>¡60% de descuento a los cumpleañeros del mes !!</h3>
+                <p>Spagetti a la bologñesa, rellena de queso parmesano</p>
+                <button>Comprar</button>
+                
+            </div>
+        </div>
+    
+    </div>  
 </body>
+
+
+<footer id="contacto">
+    <div id="Col1">
+        <img id="logoFooter" src="Imagenes/logo.jpg" alt="Logo">
+        <p>Todos los derechos reservados</p>
+    </div>
+    <div id="Col2">
+        <h2>ACERCA DE NOSOTROS</h2>
+        <ul>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Domicilios</a></li>
+            <li><a href="#">Menú</a></li>
+            <li><a href="#">Lo Nuevo</a></li>
+        </ul>
+    </div>
+    <div id="Col3">
+        <h2>AYUDA</h2>
+        <ul>
+            <li><a href="#">Habla con Nosotros</a></li>
+            <li><a href="#">Certificados</a></li>
+            <li><a href="#">Trabaja con Nosotros</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Política de Tratamiento de Datos</a></li>
+        </ul>
+    </div>
+    <div id="Col4">
+        <h2>SÍGUENOS</h2>
+        <a href="#"><img src="Imagenes/SocialMedia/instagram.png" alt="Instagram"></a>
+        <a href="#"><img src="Imagenes/SocialMedia/Facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="Imagenes/SocialMedia/X.png" alt="Twitter"></a>
+    </div>
+</footer>
+
 </html>
