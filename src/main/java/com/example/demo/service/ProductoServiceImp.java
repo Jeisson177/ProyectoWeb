@@ -40,6 +40,8 @@ public class ProductoServiceImp implements ProductoService {
         productoRepository.save(producto);
     }
 
+   
+
     @Override
     @Transactional
     public void actualizarProducto(Producto productoNuevo, List<Adicional> adicionales) {
@@ -75,7 +77,4 @@ public class ProductoServiceImp implements ProductoService {
     public void eliminarProducto(Long id) {
         productoRepository.deleteById(id);
     }
-    
-
-    
 }

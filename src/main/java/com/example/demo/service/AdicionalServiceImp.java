@@ -52,5 +52,6 @@ public class AdicionalServiceImp implements AdicionalService{
     @Override
     public List<Adicional> getAdicionalesByIds(List<Long> ids) {
         return adicionalRepository.findAllById(ids);
+
     }
 }
