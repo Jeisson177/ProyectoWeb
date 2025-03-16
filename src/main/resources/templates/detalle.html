@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del Producto</title>
-    <link rel="stylesheet" href="/Styles/other/stylesPlato.css">
+    <link rel="stylesheet" th:href="@{/Styles/other/stylesPlato.css}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
-            <a href="/menu" class="volver-menu">← Volver al Menú</a>
+            <a th:href="@{/menu}" class="volver-menu">← Volver al Menú</a>
         </nav>
     </header>
 
@@ -18,23 +18,29 @@
         <div class="detalle-card" th:if="${producto != null}">
             <div class="detalle-imagen-container">
                 <h1 th:text="${producto.nombre}"></h1>
-                <img th:src="@{'/Imagenes/menu/' + ${#strings.replace(producto.tipo, ' ', '').toLowerCase()} + '/' + ${#strings.replace(producto.nombre.toLowerCase(), ' ', '-')} + '.jpg'}"
-                    th:alt="${producto.nombre}" class="detalle-imagen">
-
-
+                <!-- ✅ Generación de la URL de la imagen con Thymeleaf -->
+                <img th:src="@{'/Imagenes/menu/' + ${#strings.replace(producto.categoria, ' ', '').toLowerCase()} + '/' + ${#strings.replace(producto.nombre, ' ', '-').toLowerCase()} + '.jpg'}"
+                     th:alt="${producto.nombre}" class="detalle-imagen">
             </div>
+
             <div class="detalle-info">
                 <p th:text="${producto.descripcion}"></p>
                 <span class="precio" th:text="${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT')} + ' COP'"></span>
+
+                <!-- ✅ Mostrar adicionales solo si existen -->
                 <ul th:if="${not #lists.isEmpty(adicionales)}">
                     <h4>Adicionales</h4>
                     <li th:each="adicional : ${adicionales}">
                         <span th:text="${adicional.nombre} + ' (' + ${#numbers.formatDecimal(adicional.precio, 0, 'COMMA', 2, 'POINT')} + ' COP)'"></span>
                     </li>
                 </ul>
-                <button class="btnAgregar" th:data-id="${producto.producto_ID}">Agregar al Carrito</button>
+
+                <!-- ✅ Botón con `data-id` corregido -->
+                <button class="btnAgregar" th:data-id="${producto.producto_id}">Agregar al Carrito</button>
             </div>
         </div>
+
+        <!-- ✅ Mensaje de error si el producto no existe -->
         <p th:if="${producto == null}">Producto no encontrado</p>
     </div>
 </body>

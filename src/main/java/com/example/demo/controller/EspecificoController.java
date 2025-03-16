@@ -10,7 +10,7 @@ import com.example.demo.entity.Producto;
 import com.example.demo.service.ProductoServiceImp;
 
 @Controller
-@RequestMapping("/producto") // La URL cambia a "/producto/{id}"
+@RequestMapping("/producto") 
 public class EspecificoController {
 
     private final ProductoServiceImp productoService;

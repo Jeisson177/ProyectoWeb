@@ -13,11 +13,10 @@ import com.example.demo.service.ProductoService;
 public class ProductoController {
     @Autowired
     ProductoService productoService;
-    // Carga la página HTML de menú
     @GetMapping
     public String mostrarMenu(Model model) {
         model.addAttribute("productos", productoService.getAllProductos());
-        return "menu"; // Carga el archivo menu.html desde templates
+        return "menu"; 
     }
     @GetMapping("/producto")
     public String mostrarProductos(Model model){

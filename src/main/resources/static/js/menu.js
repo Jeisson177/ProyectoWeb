@@ -1,8 +1,8 @@
 async function cargarMenu() {
     try {
-        const respuesta = await fetch('/api/menu');
+        const respuesta = await fetch('/api/menu'); // Llamada a la API
         const productos = await respuesta.json();
-        console.log(productos.length);
+        console.log("Productos recibidos:", productos.length);
 
         const categorias = {
             "entrada": [],
@@ -17,6 +17,7 @@ async function cargarMenu() {
         }
 
         productos.forEach(producto => {
+            // Normalizar la categoría (convertir a minúsculas y eliminar espacios extra)
             const categoriaNormalizada = producto.categoria.trim().toLowerCase().replace(/\s+/g, '');
             
             if (categorias[categoriaNormalizada]) {
@@ -37,7 +38,8 @@ async function cargarMenu() {
                 categorias[categoria].forEach(producto => {
                     const nombreImagen = producto.nombre.toLowerCase().replace(/ /g, '-') + '.jpg';
                     const rutaImagen = `/Imagenes/menu/${categoria}/${nombreImagen}`;
-                    console.log(rutaImagen);
+                    console.log("Imagen del producto:", rutaImagen);
+
                     const precioFormateado = new Intl.NumberFormat('es-CO', {
                         style: 'currency',
                         currency: 'COP'
@@ -45,25 +47,34 @@ async function cargarMenu() {
 
                     const li = document.createElement('li');
                     li.innerHTML = `
-                        <img src="${rutaImagen}" alt="${producto.nombre}" class="producto-imagen" data-id="${producto.producto_ID}">
+                        <img src="${rutaImagen}" alt="${producto.nombre}" class="producto-imagen" data-id="${producto.producto_id}">
                         <h3>${producto.nombre}</h3>
                         <p>${producto.descripcion}</p>
                         <span>${precioFormateado}</span>
-                        <button class="agregar-carrito" data-id="${producto.producto_ID}">+</button>
+                        <button class="agregar-carrito" 
+                                data-id="${producto.producto_id}" 
+                                data-nombre="${producto.nombre}" 
+                                data-precio="${producto.precio}" 
+                                data-imagen="${rutaImagen}">+</button>
                     `;
 
-                    // Evento para redirigir al detalle del producto
+                    // ✅ Evento corregido para redirigir al detalle del producto
                     li.querySelector('.producto-imagen').addEventListener('click', function () {
                         const id = this.dataset.id;
-                        window.location.href = `producto/${id}`;
+                        console.log("Redirigiendo al producto con ID:", id);
+                        if (id) {
+                            window.location.href = `/producto/${id}`;
+                        } else {
+                            console.error("Error: ID de producto no definido");
+                        }
                     });
 
-                    // Evento para agregar al carrito
+                    // ✅ Evento para agregar al carrito
                     li.querySelector('.agregar-carrito').addEventListener('click', function () {
                         const idProducto = this.dataset.id;
-                        const nombre = producto.nombre;
-                        const precio = producto.precio;
-                        const imagen = rutaImagen;
+                        const nombre = this.dataset.nombre;
+                        const precio = parseFloat(this.dataset.precio);
+                        const imagen = this.dataset.imagen;
                         agregarAlCarrito(idProducto, nombre, precio, imagen);
                     });
 
@@ -83,6 +94,8 @@ async function cargarMenu() {
 
 // Función para agregar productos al carrito
 function agregarAlCarrito(id, nombre, precio, imagen) {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    
     const productoExistente = carrito.find(item => item.id === id);
 
     if (productoExistente) {
@@ -103,6 +116,7 @@ function actualizarCarritoUI() {
     listaCarrito.innerHTML = ""; // Limpiar antes de renderizar
 
     let totalCantidad = 0;
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     carrito.forEach(producto => {
         totalCantidad += producto.cantidad;
@@ -126,6 +140,7 @@ function actualizarCarritoUI() {
 
 // Función para eliminar un producto del carrito
 function eliminarDelCarrito(id) {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     carrito = carrito.filter(item => item.id !== id);
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarCarritoUI();
@@ -133,8 +148,7 @@ function eliminarDelCarrito(id) {
 
 // Función para vaciar el carrito
 function vaciarCarrito() {
-    carrito = [];
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.setItem("carrito", JSON.stringify([]));
     actualizarCarritoUI();
 }
 
@@ -150,4 +164,5 @@ document.getElementById("carrito").addEventListener("mouseleave", function () {
     document.getElementById("carrito").classList.add("carrito-oculto");
 });
 
+// Cargar el menú cuando la página se carga
 window.addEventListener('load', cargarMenu);
