@@ -13,6 +13,7 @@
         <form th:action="@{/producto/actualizar}" method="post">
             <!-- Campo oculto para el ID del producto -->
             <input type="hidden" name="producto_id" th:value="${producto.producto_id}" />
+            <input type="hidden" name="categoria" th:value="${producto.categoria}" />
 
             <!-- Campo para el nombre del producto -->
             <div class="mb-3">
