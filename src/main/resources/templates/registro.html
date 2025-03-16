@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,79 +9,87 @@
 
 <body>
     <header class="header">
-        <div class= "principal">
+        <div class="principal">
             <nav class="menu">
-                <img id="logo" src="/Imagenes/logoRecortado.jpg" alt="Logo">
-                <h1 id = "titulo"> PASTA E 
-                    <br> PASSIONE </h1>
+                <img id="logo" th:src="@{/Imagenes/logoRecortado.jpg}" alt="Logo">
+                <h1 id="titulo"> PASTA E <br> PASSIONE </h1>
                 <ul>
-                    <li><a href="#ServiciosContainer">Menu y reservas</a></li>
-                    <li><a href="#contacto">Contactanos </a></li>
+                    <li><a href="#ServiciosContainer">Menú y Reservas</a></li>
+                    <li><a href="#contacto">Contáctanos</a></li>
                     <li><a href="#ordenar">Hacer Pedido</a></li>
                 </ul>
-
-                <img id="logo2" src="/Imagenes/logoRecortado.jpg" alt="Logo">
-            </nav>    
+                <img id="logo2" th:src="@{/Imagenes/logoRecortado.jpg}" alt="Logo">
+            </nav>
         </div>
     </header>
 
     <div class="container">
         <div class="login-box">
             <div class="image-container left">
-                <img src="/Imagenes/menu/platoprincipal/Pizza-Prosciutto.jpg" alt="Pizza">
+                <img th:src="@{/Imagenes/menu/platoprincipal/Pizza-Prosciutto.jpg}" alt="Pizza">
             </div>
 
             <div class="form-container">
                 <h2 class="title">Pasta e Passione</h2>
                 <p class="subtitle">¡Únete a nuestra familia!</p>
 
-                <form id="registerForm">
+                <!-- Formulario con Thymeleaf -->
+                <form th:action="@{/registro}" method="post" th:object="${cliente}">
+                    <!-- Campo oculto para ID -->
+                    <input type="hidden" th:field="*{id}" />
+
+                    <!-- Nombre -->
                     <div class="input-group">
                         <label>Nombre</label>
-                        <input type="text" id="name" placeholder="Ingresa tu nombre" required>
+                        <input type="text" class="form-control" th:field="*{nombre}" placeholder="Ingresa tu nombre" required>
                     </div>
 
+                    <!-- Apellido -->
+                    <div class="input-group">
+                        <label>Apellido</label>
+                        <input type="text" class="form-control" th:field="*{apellido}" placeholder="Ingresa tu apellido" required>
+                    </div>
+
+                    <!-- Correo -->
                     <div class="input-group">
                         <label>Correo</label>
-                        <input type="email" id="email" placeholder="Ingresa tu correo" required>
+                        <input type="email" class="form-control" th:field="*{correo}" placeholder="Ingresa tu correo" required>
                     </div>
 
+                    <!-- Contraseña -->
                     <div class="input-group">
                         <label>Contraseña</label>
-                        <input type="password" id="password" placeholder="••••••••" required>
+                        <input type="password" class="form-control" th:field="*{contrasena}" placeholder="••••••••" required>
                     </div>
 
+                    <!-- Confirmar Contraseña -->
                     <div class="input-group">
                         <label>Confirmar Contraseña</label>
-                        <input type="password" id="confirmPassword" placeholder="••••••••" required>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="••••••••" required>
+                    </div>
+
+                    <!-- Dirección -->
+                    <div class="input-group">
+                        <label>Dirección</label>
+                        <input type="text" class="form-control" th:field="*{direccion}" placeholder="Ingresa tu dirección" required>
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="input-group">
+                        <label>Teléfono</label>
+                        <input type="text" class="form-control" th:field="*{telefono}" placeholder="Ingresa tu teléfono" required>
                     </div>
 
                     <button type="submit" class="btn">Registrarse</button>
                 </form>
 
-                <p class="register-text">¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
+                <p class="register-text">¿Ya tienes cuenta? <a th:href="@{/login}">Inicia sesión aquí</a></p>
             </div>
 
             <div class="image-container right">
-                <img src="/Imagenes/menu/platoprincipal/Pizza-Margherita.jpg" alt="Pizza">
+                <img th:src="@{/Imagenes/menu/platoprincipal/Pizza-Margherita.jpg}" alt="Pizza">
             </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById("registerForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let password = document.getElementById("password").value;
-            let confirmPassword = document.getElementById("confirmPassword").value;
-
-            if (password !== confirmPassword) {
-                alert("Las contraseñas no coinciden.");
-                return;
-            }
-
-            alert("Registro exitoso. Redirigiendo al inicio de sesión.");
-            window.location.href = "/login";
-        });
-    </script>
 </body>
 </html>

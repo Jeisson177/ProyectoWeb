@@ -12,6 +12,7 @@ public interface ClienteService {
     Collection<Cliente>obtenerTodosLosClientes();
     Cliente getClienteById(Long id);
     void guardarCliente(Cliente cliente);
+    
     void eliminarCliente(Long id);
     void actualizarCliente(Cliente cliente);
 }

@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,19 @@ public class ClienteController {
         Optional<Cliente> cliente = clienteService.obtenerClientePorCorreo(correo);
 
         if (cliente.isPresent()) {
-            model.addAttribute("cliente", cliente.get()); // ✅ Envía el objeto cliente a la vista
+            List<Map<String, String>> promociones = List.of(
+            Map.of("titulo", "¡Pasta marinada 2x1!", "descripcion", "Spaguetti en salsa marinera con camarones."),
+            Map.of("titulo", "¡Pizza 2x1 todos los días!", "descripcion", "Pizza con queso cottage, tomates y finas hierbas."),
+            Map.of("titulo", "¡Pizza Buratta con 40% de descuento!", "descripcion", "Pizza de jamón serrano con queso fundido."),
+            Map.of("titulo", "¡60% de descuento para cumpleañeros!", "descripcion", "Spaguetti a la bolognesa relleno de queso parmesano.")
+        );
+
+        model.addAttribute("promociones", promociones);
+            model.addAttribute("cliente", cliente.get()); 
             return "homeCliente";
         } else {
             model.addAttribute("error", "Cliente no encontrado");
-            return "error"; // ✅ Puedes redirigir a una página de error si no se encuentra el cliente
+            return "error"; // Redirigir a una página de error si no se encuentra el cliente
         }
     }
 }

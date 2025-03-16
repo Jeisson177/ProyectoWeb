@@ -22,15 +22,13 @@ public class LoginController {
     @Autowired
     private ClienteService ClienteService;
 
-    @RequestMapping("/Cliente")
+    @GetMapping
     public String loginCliente() {
         return "login";
     }
     
     @PostMapping
     public String loginClientePost(@RequestParam("correo") String correo, @RequestParam("contrasena") String contrasena, Model model) {
-        System.out.println("Correo recibido: " + correo);
-        System.out.println("Contraseña recibida: " + contrasena);
         if (ClienteService.autenticarCliente(correo, contrasena)) {
             return "redirect:/homeCliente?correo=" + correo; 
         } else {
@@ -38,13 +36,6 @@ public class LoginController {
             return "login"; 
         }
     }
-
-    // Mostrar productos en la tabla
-    @GetMapping("/registro")
-    public String mostrarRegistro() {
-        return "registro";
-    }
-
     
 
 }
