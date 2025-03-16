@@ -3,79 +3,86 @@ package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Producto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long producto_ID;
+    private Long producto_id;
 
-    private String Nombre;
-    private int Precio;
-    private String Descripcion;
-    private String Tipo;
+    private String nombre;
+    private String descripcion;
+    private int precio;
+    private String categoria;
     
-    @JsonManagedReference
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(
+        name = "producto_adicional", 
+        joinColumns = @JoinColumn(name = "producto_id"), 
+        inverseJoinColumns = @JoinColumn(name = "adicional_id")
+    )
     private List<Adicional> adicionales = new ArrayList<>();
 
     public Producto() {}
 
-    public Producto(String Nombre, int Precio, String Descripcion, String Tipo) {
-        this.Nombre = Nombre;
-        this.Precio = Precio;
-        this.Descripcion = Descripcion;
-        this.Tipo = Tipo;
+    public Producto(String nombre, int precio, String descripcion, String categoria) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+    }
+    public void agregarAdicional(Adicional adicional) {
+        if (!this.adicionales.contains(adicional)) {
+            this.adicionales.add(adicional);
+            adicional.getProductos().add(this); // Relación bidireccional
+        }
     }
 
-    public Long getProducto_ID() {
-        return producto_ID;
+    public void quitarAdicional(Adicional adicional) {
+        this.adicionales.remove(adicional);
+        adicional.getProductos().remove(this);
     }
 
-    public void setProducto_ID(Long producto_ID) {
-        this.producto_ID = producto_ID;
+    public Long getProducto_id() {
+        return producto_id;
+    }
+
+    public void setProducto_id(Long producto_id) {
+        this.producto_id = producto_id;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
-    public int getPrecio() {
-        return Precio;
-    }
-
-    public void setPrecio(int Precio) {
-        this.Precio = Precio;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getTipo() {
-        return Tipo;
+    public int getPrecio() {
+        return precio;
     }
 
-    public void setTipo(String Tipo) {
-        this.Tipo = Tipo;
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
+
 
     public List<Adicional> getAdicionales() {
         return adicionales;
@@ -85,13 +92,11 @@ public class Producto {
         this.adicionales = adicionales;
     }
 
-    public void addAdicional(Adicional adicional) {
-        adicionales.add(adicional);
-        adicional.setProducto(this);
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void removeAdicional(Adicional adicional) {
-        adicionales.remove(adicional);
-        adicional.setProducto(null);
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }
