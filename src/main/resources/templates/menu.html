@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="es" xmlns: th=" http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú del Restaurante</title>
-    <link rel="stylesheet" href="/Styles/other/stylesmenu.css">
+    <link rel="stylesheet" th:href="@{/Styles/other/stylesmenu.css}">
 </head>
 <body>
     <header>
         <nav>
-
-            <img id="logo" src="Imagenes/logoRecortado.jpg" alt="Logo">
+            <img id="logo" th:src="@{/Imagenes/logoRecortado.jpg}" alt="Logo">
 
             <ul>
                 <li><a href="#entradas">Entradas</a></li>
@@ -20,7 +19,7 @@
             </ul>
 
             <div id="carrito-container">
-                <img id="icono-carrito" src="Imagenes/menu/carritoCompras.png" alt="Logo">
+                <img id="icono-carrito" th:src="@{/Imagenes/menu/carritoCompras.png}" alt="Carrito de Compras">
                 <span id="contador-carrito">0</span>
             </div>
         </nav>
@@ -30,45 +29,44 @@
             <ul id="lista-carrito"></ul>
             <button id="vaciar-carrito">Vaciar Carrito</button>
         </div>
-
     </header>
     
     <!-- Contenedor para el menú dinámico -->
     <div id="menu-contenedor"></div>
 
     <!-- Cargar el archivo JS -->
-    <script src="/js/menu.js"></script>
+    <script th:src="@{/js/menu.js}"></script>
 </body>
 
 <footer id="contacto">
     <div id="Col1">
-        <img id="logoFooter" src="Imagenes/logo.jpg" alt="Logo">
+        <img id="logoFooter" th:src="@{/Imagenes/logo.jpg}" alt="Logo">
         <p>Todos los derechos reservados</p>
     </div>
     <div id="Col2">
         <h2>ACERCA DE NOSOTROS</h2>
         <ul>
-            <li><a href="#">Nosotros</a></li>
-            <li><a href="#">Domicilios</a></li>
-            <li><a href="#">Menú</a></li>
-            <li><a href="#">Lo Nuevo</a></li>
+            <li><a th:href="@{/nosotros}">Nosotros</a></li>
+            <li><a th:href="@{/domicilios}">Domicilios</a></li>
+            <li><a th:href="@{/menu}">Menú</a></li>
+            <li><a th:href="@{/lo-nuevo}">Lo Nuevo</a></li>
         </ul>
     </div>
     <div id="Col3">
         <h2>AYUDA</h2>
         <ul>
-            <li><a href="#">Habla con Nosotros</a></li>
-            <li><a href="#">Certificados</a></li>
-            <li><a href="#">Trabaja con Nosotros</a></li>
-            <li><a href="#">Términos y Condiciones</a></li>
-            <li><a href="#">Política de Tratamiento de Datos</a></li>
+            <li><a th:href="@{/contacto}">Habla con Nosotros</a></li>
+            <li><a th:href="@{/certificados}">Certificados</a></li>
+            <li><a th:href="@{/trabaja-con-nosotros}">Trabaja con Nosotros</a></li>
+            <li><a th:href="@{/terminos}">Términos y Condiciones</a></li>
+            <li><a th:href="@{/politica-datos}">Política de Tratamiento de Datos</a></li>
         </ul>
     </div>
     <div id="Col4">
         <h2>SÍGUENOS</h2>
-        <a href="#"><img src="Imagenes/SocialMedia/instagram.png" alt="Instagram"></a>
-        <a href="#"><img src="Imagenes/SocialMedia/Facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="Imagenes/SocialMedia/X.png" alt="Twitter"></a>
+        <a th:href="@{https://www.instagram.com}"><img th:src="@{/Imagenes/SocialMedia/instagram.png}" alt="Instagram"></a>
+        <a th:href="@{https://www.facebook.com}"><img th:src="@{/Imagenes/SocialMedia/Facebook.png}" alt="Facebook"></a>
+        <a th:href="@{https://www.twitter.com}"><img th:src="@{/Imagenes/SocialMedia/X.png}" alt="Twitter"></a>
     </div>
 </footer>
 

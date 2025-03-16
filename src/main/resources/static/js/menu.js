@@ -3,6 +3,7 @@ async function cargarMenu() {
         const respuesta = await fetch('/api/menu');
         const productos = await respuesta.json();
         console.log(productos.length);
+
         const categorias = {
             "entrada": [],
             "platoprincipal": [],
@@ -15,12 +16,11 @@ async function cargarMenu() {
             carrito = []; // Si no es un array, lo inicializamos correctamente
         }
 
-
         productos.forEach(producto => {
-            const tipoNormalizado = producto.tipo.trim().toLowerCase().replace(/\s+/g, '');
-
-            if (categorias[tipoNormalizado]) {
-                categorias[tipoNormalizado].push(producto);
+            const categoriaNormalizada = producto.categoria.trim().toLowerCase().replace(/\s+/g, '');
+            
+            if (categorias[categoriaNormalizada]) {
+                categorias[categoriaNormalizada].push(producto);
             }
         });
 
@@ -61,9 +61,9 @@ async function cargarMenu() {
                     // Evento para agregar al carrito
                     li.querySelector('.agregar-carrito').addEventListener('click', function () {
                         const idProducto = this.dataset.id;
-                        const nombre = this.dataset.nombre;
-                        const precio = parseFloat(this.dataset.precio);
-                        const imagen = this.dataset.imagen;
+                        const nombre = producto.nombre;
+                        const precio = producto.precio;
+                        const imagen = rutaImagen;
                         agregarAlCarrito(idProducto, nombre, precio, imagen);
                     });
 
@@ -75,7 +75,6 @@ async function cargarMenu() {
         });
 
         actualizarCarritoUI(); // Actualiza la UI del carrito al cargar
-
 
     } catch (error) {
         console.error("Error al obtener el menú:", error);

@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class Producto {
         joinColumns = @JoinColumn(name = "producto_id"), 
         inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
+    @JsonIgnore
     private List<Adicional> adicionales = new ArrayList<>();
 
     public Producto() {}

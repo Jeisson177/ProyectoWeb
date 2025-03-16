@@ -36,16 +36,6 @@ public class LoginController {
             return "login"; 
         }
     }
-<<<<<<< HEAD
-=======
-
-    // Mostrar pagina de registro
-    @GetMapping("/registro")
-    public String mostrarRegistro() {
-        return "registro";
-    }
-
->>>>>>> 053ea00e74bd0d1b5f1f5e34baf7afd45f3598ff
     
 
 }
