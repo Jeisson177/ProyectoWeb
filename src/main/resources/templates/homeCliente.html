@@ -20,8 +20,21 @@
                     <a class="seccion" th:href="@{/historial-pedidos}">Historial de pedidos</a>
                 </div>
 
+<<<<<<< HEAD
                 <img id="logo2" th:src="@{/Imagenes/logoRecortado.jpg}" alt="Logo">
             </nav>
+=======
+                    <div class="menu-perfil">
+                        <a class="seccion" th:href="@{'/homeCliente?correo=' + ${cliente.correo}}">Home</a>
+                        <a class ="seccion" th:href="@{'/editarPerfil?correo=' + ${cliente.correo}}">Editar Perfil</a>
+                        <a class="seccion" th:href="@{'/pedidos?correo=' + ${cliente.correo}}"> Mis pedidos</a> 
+                        <a class="seccion" th:href="@{'/historialPedidos?correo=' + ${cliente.correo}}">Historial de pedidos</a>
+                        
+                    </div>
+
+                <img id="logo2" src="/Imagenes/logoRecortado.jpg" alt="Logo">
+            </nav>    
+>>>>>>> 053ea00e74bd0d1b5f1f5e34baf7afd45f3598ff
         </div>
     </header>
 

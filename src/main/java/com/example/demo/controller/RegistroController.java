@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +12,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Cliente;
 import com.example.demo.service.ClienteService;
+=======
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+>>>>>>> 053ea00e74bd0d1b5f1f5e34baf7afd45f3598ff
 
 @Controller
 @RequestMapping("/registro")
 public class RegistroController {
 
+<<<<<<< HEAD
     @Autowired
     private ClienteService clienteService;
 
@@ -33,3 +39,11 @@ public class RegistroController {
     }
 }
 
+=======
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
+    
+}
+>>>>>>> 053ea00e74bd0d1b5f1f5e34baf7afd45f3598ff

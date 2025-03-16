@@ -41,4 +41,43 @@ public class ClienteController {
             return "error"; // Redirigir a una página de error si no se encuentra el cliente
         }
     }
+
+    @GetMapping("/editarPerfil")
+    public String editarPerfil(@RequestParam("correo") String correo, Model model) {
+        Optional<Cliente> clienteOpt = clienteService.obtenerClientePorCorreo(correo);
+
+        if (clienteOpt.isEmpty()) {
+            return "redirect:/error";
+        }
+
+        model.addAttribute("cliente", clienteOpt.get());
+        return "editarPerfil"; 
+    }
+
+    @GetMapping("/pedidos")
+    public String mostrarPedidos(@RequestParam("correo") String correo, Model model) {
+        Optional<Cliente> clienteOpt = clienteService.obtenerClientePorCorreo(correo);
+
+        if (clienteOpt.isEmpty()) {
+            return "redirect:/error";
+        }
+
+        model.addAttribute("cliente", clienteOpt.get());
+        return "pedidos"; 
+    }
+
+    @GetMapping("/historialPedidos")
+    public String mostrarHistorial(@RequestParam("correo") String correo, Model model) {
+        Optional<Cliente> clienteOpt = clienteService.obtenerClientePorCorreo(correo);
+
+        if (clienteOpt.isEmpty()) {
+            return "redirect:/error";
+        }
+
+        model.addAttribute("cliente", clienteOpt.get());
+        return "historialPedidos"; 
+    }
+
+
+
 }
