@@ -23,12 +23,12 @@ public class ClienteTablaController {
     @GetMapping
     public String listarClientes(Model model) {
         model.addAttribute("clientes", clienteService.obtenerTodosLosClientes());
-        return "menuTablaClientes";
+        return "menu_Tabla_Clientes";
     }
     @GetMapping("/agregar")
     public String mostrarFormularioAgregar(Model model) {
         model.addAttribute("cliente", new Cliente());
-        return "agregarCliente";
+        return "agregar_Cliente";
     }
     @PostMapping("/guardar")
     public String guardarCliente(@ModelAttribute Cliente cliente) {
@@ -39,7 +39,7 @@ public class ClienteTablaController {
     public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
         Cliente Cliente = clienteService.getClienteById(id);
         model.addAttribute("cliente", Cliente);
-        return "editarCliente";
+        return "editar_Cliente";
     }
 
     @PostMapping("/actualizar")
