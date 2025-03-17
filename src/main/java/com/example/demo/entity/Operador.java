@@ -6,25 +6,25 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Operador {
-    private String Nombre;
-    private String Usuario;
-    private String Contrasena;
+    private String nombre;
+    private String usuario;
+    private String contrasena;
 
     @Id
     @GeneratedValue
     private Long idOperador;
 
-    public Operador(Long idOperador, String Nombre, String Usuario, String Contrasena) {
+    public Operador(Long idOperador, String nombre, String usuario, String contrasena) {
         this.idOperador = idOperador;
-        this.Nombre = Nombre;
-        this.Usuario = Usuario;
-        this.Contrasena = Contrasena;
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
     }
 
-    public Operador(String Nombre, String Usuario, String Contrasena) {
-        this.Nombre = Nombre;
-        this.Usuario = Usuario;
-        this.Contrasena = Contrasena;
+    public Operador(String nombre, String usuario, String contrasena) {
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
     }
 
     public Operador() {}
@@ -37,28 +37,28 @@ public class Operador {
         this.idOperador = idOperador;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getnombre() {
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setnombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getUsuario() {
-        return Usuario;
+    public String getusuario() {
+        return usuario;
     }
 
-    public void setUsuario(String Usuario) {
-        this.Usuario = Usuario;
+    public void setusuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public String getContrasena() {
-        return Contrasena;
+    public String getcontrasena() {
+        return contrasena;
     }
 
-    public void setContrasena(String Contrasena) {
-        this.Contrasena = Contrasena;
+    public void setcontrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
 }

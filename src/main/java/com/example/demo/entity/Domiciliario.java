@@ -8,23 +8,23 @@ import jakarta.persistence.Id;
 public class Domiciliario {
     private String nombre;
     private int celular;
-    private boolean Disponibilidad;
+    private boolean disponibilidad;
 
     @Id
     @GeneratedValue
     private Long id; 
 
-    public Domiciliario(Long id, String nombre, int celular, boolean Disponibilidad) {
+    public Domiciliario(Long id, String nombre, int celular, boolean disponibilidad) {
         this.id = id;
         this.nombre = nombre;
         this.celular = celular;
-        this.Disponibilidad = Disponibilidad;
+        this.disponibilidad = disponibilidad;
     }
 
-    public Domiciliario(String nombre, int celular, boolean Disponibilidad) {
+    public Domiciliario(String nombre, int celular, boolean disponibilidad) {
         this.nombre = nombre;
         this.celular = celular;
-        this.Disponibilidad = Disponibilidad;
+        this.disponibilidad = disponibilidad;
     }
 
     public Domiciliario() {}
@@ -47,11 +47,11 @@ public class Domiciliario {
     public void setCelular(int celular) {
         this.celular = celular;
     }
-    public boolean isDisponibilidad() {
-        return Disponibilidad;
+    public boolean isdisponibilidad() {
+        return disponibilidad;
     }
-    public void setDisponibilidad(boolean disponibilidad) {
-        this.Disponibilidad = disponibilidad;
+    public void setdisponibilidad(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
 
 }

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 public class Pedido {
     private int operador_ID;
     private int domiciliario_ID;
-    private boolean Estado;
+    private boolean estado;
     private String fecha;
 
     @Id
@@ -16,18 +16,18 @@ public class Pedido {
     private Long pedido_id;
     
 
-    public Pedido(Long pedido_id, int operador_ID, int domiciliario_ID, boolean Estado, String fecha) {
+    public Pedido(Long pedido_id, int operador_ID, int domiciliario_ID, boolean estado, String fecha) {
         this.pedido_id = pedido_id;
         this.operador_ID = operador_ID;
         this.domiciliario_ID = domiciliario_ID;
-        this.Estado = Estado;
+        this.estado = estado;
         this.fecha = fecha;
     }
 
-    public Pedido(int operador_ID, int domiciliario_ID, boolean Estado, String fecha) {
+    public Pedido(int operador_ID, int domiciliario_ID, boolean estado, String fecha) {
         this.operador_ID = operador_ID;
         this.domiciliario_ID = domiciliario_ID;
-        this.Estado = Estado;
+        this.estado = estado;
         this.fecha = fecha;
     }
 
@@ -52,11 +52,11 @@ public class Pedido {
     public void setDomiciliario_ID(int domiciliario_ID) {
         this.domiciliario_ID = domiciliario_ID;
     }
-    public boolean isEstado() {
-        return Estado;
+    public boolean isestado() {
+        return estado;
     }
-    public void setEstado(boolean estado) {
-        this.Estado = estado;
+    public void setestado(boolean estado) {
+        this.estado = estado;
     }
 
     public String getFecha() {
