@@ -13,23 +13,13 @@
             <nav class="menu">
                 <img id="logo" th:src="@{/Imagenes/logoRecortado.jpg}" alt="Logo">
                 <h1 id="titulo"> PASTA E <br> PASSIONE </h1>
-
-                <div class="menu-perfil">
-                    <a class="seccion" th:href="@{/perfil}">Editar perfil</a>
-                    <a class="seccion" th:href="@{/mis-pedidos}">Mis pedidos</a>
-                    <a class="seccion" th:href="@{/historial-pedidos}">Historial de pedidos</a>
-                </div>
-
-                <img id="logo2" th:src="@{/Imagenes/logoRecortado.jpg}" alt="Logo">
-            </nav>
                     <div class="menu-perfil">
                         <a class="seccion" th:href="@{'/homeCliente?correo=' + ${cliente.correo}}">Home</a>
-                        <a class ="seccion" th:href="@{'/editarPerfil?correo=' + ${cliente.correo}}">Editar Perfil</a>
+                        <a class ="seccion" th:href="@{/perfil/editar/{id}(id=${cliente.id})}">Editar Perfil</a>
                         <a class="seccion" th:href="@{'/pedidos?correo=' + ${cliente.correo}}"> Mis pedidos</a> 
                         <a class="seccion" th:href="@{'/historialPedidos?correo=' + ${cliente.correo}}">Historial de pedidos</a>
                         
                     </div>
-
                 <img id="logo2" src="/Imagenes/logoRecortado.jpg" alt="Logo">
             </nav>    
         </div>

@@ -333,6 +333,7 @@ body {
 
 /* Estilo del título de la tarjeta */
 .card .back h3{
+    margin-top: 60px;
     font-size: 30px;
     color: rgb(239, 215, 171);
     margin-bottom: 10px;

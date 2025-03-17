@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="Styles/other/stylesEditarPerf.css">
 </head>
 
@@ -32,9 +33,53 @@
 </header>
 
 <body>
+    <div class="container mt-4 formulario-edicion">
+        <h2>Editar Perfil</h2>
+        <form th:action="@{/perfil/actualizar}" th:object="${cliente}" method="post">
+            <!-- Campo oculto para el ID del cliente -->
+            <input type="hidden" name="cliente_id" th:value="${cliente.cliente_id}" />
 
+            <!-- Campo para el nombre -->
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre" th:value="${cliente.nombre}" required>
+            </div>
 
-    
+            <!-- Campo para el apellido -->
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <input type="text" class="form-control" name="apellido" th:value="${cliente.apellido}" required>
+            </div>
+
+            <!-- Campo para el correo (readonly porque no suele cambiar) -->
+            <div class="mb-3">
+                <label class="form-label">Correo</label>
+                <input type="email" class="form-control" name="correo" th:value="${cliente.correo}" readonly>
+            </div>
+
+            <!-- Campo para la contraseña -->
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="contrasena" th:value="${cliente.contrasena}" required>
+            </div>
+
+            <!-- Campo para la dirección -->
+            <div class="mb-3">
+                <label class="form-label">Dirección</label>
+                <input type="text" class="form-control" name="direccion" th:value="${cliente.direccion}" required>
+            </div>
+
+            <!-- Campo para el teléfono -->
+            <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" name="telefono" th:value="${cliente.telefono}" required>
+            </div>
+
+            <!-- Botones -->
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a href="/homeCliente" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
 </body>
 
 <footer id="contacto">
