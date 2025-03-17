@@ -257,7 +257,7 @@ body {
 }
 
 #promTitle{
-    font-size: 26px;
+    font-size: 36px;
     text-align: center;
     margin-top: 40px;
     font-family: 'Times New Roman', Times, serif;
@@ -267,7 +267,17 @@ body {
     margin-bottom: 5px;
     font-weight: bold;
     border-radius: 30px;
+    animation: mover-izquierda 2s 1;
    
+}
+
+@keyframes mover-izquierda {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(10%);
+    }
 }
 
 /* Estilo seccion tarjetas de promocion */
