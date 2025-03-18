@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,17 @@ public class AdicionalServiceImp implements AdicionalService{
     
     @Override
     public void eliminarAdicional(Long id) {
-        adicionalRepository.deleteById(id);
+        Optional<Adicional> optionalAdicional = adicionalRepository.findById(id);
+    
+        if (optionalAdicional.isPresent()) {
+            Adicional adicional = optionalAdicional.get(); // Extrae el objeto Adicional
+            adicional.getProductos().clear(); // Desasocia los productos
+            adicionalRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("No se encontró el adicional con ID: " + id);
+        }
+
+        
     }
 
     @Override

@@ -12,15 +12,14 @@
         <h2>Editar Adicional</h2>
         <form th:action="@{/adicionales/actualizar}" method="post">
         <input type="hidden" name="adicional_id" th:value="${adicional.adicional_id}">
-        <input type="hidden" name="producto_id" th:value="${adicional.producto.producto_ID}">
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
-                <input type="text" class="form-control" name="Nombre" th:value="${adicional.Nombre}" required>
+                <input type="text" class="form-control" name="Nombre" th:value="${adicional.nombre}" required>
             </div>
     
             <div class="mb-3">
                 <label class="form-label">Precio</label>
-                <input type="number" class="form-control" name="Precio" th:value="${adicional.Precio}" required>
+                <input type="number" class="form-control" name="Precio" th:value="${adicional.precio}" required>
             </div>
     
             <button type="submit" class="btn btn-primary">Guardar</button>
