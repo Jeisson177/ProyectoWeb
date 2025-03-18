@@ -6,28 +6,28 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Administrador {
-    private String Nombre;
-    private String Apellido;
-    private String Usuario;
-    private String Contrasena;
+    private String nombre;
+    private String apellido;
+    private String usuario;
+    private String contrasena;
 
     @Id
     @GeneratedValue
     private Long administrador_ID;
 
-    public Administrador(Long administrador_ID, String Nombre, String Apellido, String Usuario, String Contrasena) {
+    public Administrador(Long administrador_ID, String nombre, String apellido, String usuario, String contrasena) {
         this.administrador_ID = administrador_ID;
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
-        this.Usuario = Usuario;
-        this.Contrasena = Contrasena;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
     }
 
-    public Administrador( String Nombre, String Apellido, String Usuario, String Contrasena) {
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
-        this.Usuario = Usuario;
-        this.Contrasena = Contrasena;
+    public Administrador( String nombre, String apellido, String usuario, String contrasena) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
     }
 
     public Administrador() {}
@@ -38,29 +38,29 @@ public class Administrador {
     public void setAdministrador_ID(Long administrador_ID) {
         this.administrador_ID = administrador_ID;
     }
-    public String getNombre() {
-        return Nombre;
+    public String getnombre() {
+        return nombre;
     }
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setnombre(String nombre) {
+        this.nombre = nombre;
     }
-    public String getApellido() {
-        return Apellido;
+    public String getapellido() {
+        return apellido;
     }
-    public void setApellido(String Apellido) {
-        this.Apellido = Apellido;
+    public void setapellido(String apellido) {
+        this.apellido = apellido;
     }
-    public String getUsuario() {
-        return Usuario;
+    public String getusuario() {
+        return usuario;
     }
-    public void setUsuario(String Usuario) {
-        this.Usuario = Usuario;
+    public void setusuario(String usuario) {
+        this.usuario = usuario;
     }
-    public String getContrasena() {
-        return Contrasena;
+    public String getcontrasena() {
+        return contrasena;
     }
-    public void setContrasena(String Contrasena) {
-        this.Contrasena = Contrasena;
+    public void setcontrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
 }

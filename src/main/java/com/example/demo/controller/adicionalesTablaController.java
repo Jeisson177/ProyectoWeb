@@ -24,14 +24,14 @@ public class AdicionalesTablaController {
     @GetMapping
     public String mostrarProductos(Model model) {
         model.addAttribute("adicionales", adicionalService.getAllAdicionales());
-        return "adicionalesTabla";
+        return "adicionales_Tabla";
     }
 
     //Mostrar formulario para agregar un nuevo producto
     @GetMapping("/agregar")
     public String mostrarFormularioAgregar(Model model) {
         model.addAttribute("adicional", new Adicional());
-        return "agregarAdicional";
+        return "agregar_Adicional";
     }
 
     //Guardar nuevo producto
@@ -46,7 +46,7 @@ public class AdicionalesTablaController {
     public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
         Adicional adicional = adicionalService.getAdicionalById(id);
         model.addAttribute("adicional", adicional);
-        return "editarAdicional";
+        return "editar_Adicional";
     }
 
     //Actualizar adicional

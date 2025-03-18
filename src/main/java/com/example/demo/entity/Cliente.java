@@ -8,37 +8,37 @@ import jakarta.persistence.Id;
 @Entity
 public class Cliente {
 
-    private String Nombre;
-    private String Apellido;
+    private String nombre;
+    private String apellido;
     
     @Column(name = "correo")
     private String correo;
 
     private String contrasena;
-    private String Direccion;
-    private String Telefono;
+    private String direccion;
+    private String telefono;
 
     @Id
     @GeneratedValue
     private Long id;
 
-    public Cliente(Long id, String Nombre, String Apellido, String correo, String contrasena, String Direccion, String Telefono) {
+    public Cliente(Long id, String nombre, String apellido, String correo, String contrasena, String direccion, String telefono) {
         this.id = id;
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.correo = correo;
         this.contrasena = contrasena;
-        this.Direccion = Direccion;
-        this.Telefono = Telefono;
+        this.direccion = direccion;
+        this.telefono = telefono;
     }
 
-    public Cliente( String Nombre, String Apellido, String correo, String contrasena, String Direccion, String Telefono) {
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
+    public Cliente( String nombre, String apellido, String correo, String contrasena, String direccion, String telefono) {
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.correo = correo;
         this.contrasena = contrasena;
-        this.Direccion = Direccion;
-        this.Telefono = Telefono;
+        this.direccion = direccion;
+        this.telefono = telefono;
     }
 
     public Cliente() {}
@@ -51,20 +51,20 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getnombre() {
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setnombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return Apellido;
+    public String getapellido() {
+        return apellido;
     }
 
-    public void setApellido(String Apellido) {
-        this.Apellido = Apellido;
+    public void setapellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCorreo() {
@@ -83,20 +83,20 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
-    public String getDireccion() {
-        return Direccion;
+    public String getdireccion() {
+        return direccion;
     }
 
-    public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+    public void setdireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getTelefono() {
-        return Telefono;
+    public String gettelefono() {
+        return telefono;
     }
 
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
+    public void settelefono(String telefono) {
+        this.telefono = telefono;
     }
 
 
