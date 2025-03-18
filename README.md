@@ -9,7 +9,7 @@ Pasta-e-Passione
 │── src/
 │   ├── main/
 │   │   ├── java/com/example/demo/
-│   │   │   ├── controller/        # Controladores de la API
+│   │   │   ├── controller/        # Controladores
 │   │   │   ├── entity/            # Modelos de datos (Entidades)
 │   │   │   ├── repository/        # Acceso a la base de datos con JPA
 │   │   │   ├── service/           # Lógica de negocio
