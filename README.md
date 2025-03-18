@@ -18,7 +18,6 @@ Pasta-e-Passione
 │   │   │   ├── static/            # CSS, JS, imágenes, videos
 │   │   │   ├── templates/         # Vistas HTML con Thymeleaf
 │   │   │   ├── application.properties  # Configuración de la aplicación
-│   ├── README.md  # Documentación del proyecto
 │── .mvn/          # Archivos de configuración de Maven
 │── .vscode/       # Configuración del entorno en VS Code
 │── pom.xml        # Dependencias de Maven
