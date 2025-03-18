@@ -22,7 +22,7 @@ Pasta-e-Passione
 │── .mvn/          # Archivos de configuración de Maven
 │── .vscode/       # Configuración del entorno en VS Code
 │── pom.xml        # Dependencias de Maven
-
+```
 
 ## 🚀 Tecnologías Utilizadas
 
