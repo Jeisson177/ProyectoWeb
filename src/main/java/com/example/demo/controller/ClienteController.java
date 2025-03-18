@@ -38,7 +38,7 @@ public class ClienteController {
 
         model.addAttribute("promociones", promociones);
             model.addAttribute("cliente", cliente.get()); 
-            return "homeCliente";
+            return "home_Cliente";
         } else {
             model.addAttribute("error", "Cliente no encontrado");
             return "error"; // Redirigir a una página de error si no se encuentra el cliente
@@ -54,7 +54,7 @@ public class ClienteController {
         }
 
         model.addAttribute("cliente", clienteOpt.get());
-        return "editarPerfil"; 
+        return "editar_Perfil"; 
     }
 
     @PostMapping("/actualizar")
@@ -85,7 +85,7 @@ public class ClienteController {
         }
 
         model.addAttribute("cliente", clienteOpt.get());
-        return "historialPedidos"; 
+        return "historial_Pedidos"; 
     }
 
 

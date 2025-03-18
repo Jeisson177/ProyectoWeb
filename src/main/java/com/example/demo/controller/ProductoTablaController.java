@@ -37,14 +37,14 @@ public class ProductoTablaController {
     @GetMapping("/pr")
     public String mostrarProductos(Model model) {
         model.addAttribute("productos", productoService.getAllProductos());
-        return "menuTabla";
+        return "menu_Tabla";
     }
 
     // Mostrar formulario para agregar un nuevo producto
     @GetMapping("/agregar")
     public String mostrarFormularioAgregar(Model model) {
         model.addAttribute("producto", new Producto());
-        return "agregarProducto";
+        return "agregar_Producto";
     }
 
     // Guardar nuevo producto
@@ -60,7 +60,7 @@ public class ProductoTablaController {
         Producto producto = productoService.getProductoWithAdicionales(id);
         model.addAttribute("producto", producto);
         model.addAttribute("adicionales", adicionalService.getAllAdicionales());
-        return "editarProducto";
+        return "editar_Producto";
     }
 
     // Actualizar producto
