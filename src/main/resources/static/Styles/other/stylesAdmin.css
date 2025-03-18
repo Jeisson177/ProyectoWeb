@@ -1,0 +1,279 @@
+
+/* ---- HEADER ---- */
+header {
+    background-color: var(--md-sys-color-primary);
+    display: flex;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 60px;
+}
+
+.principal{
+    display: flex;
+    align-items: center;
+}
+
+/* ---- MENU FIJO ---- */
+.menu {
+    position: fixed; /* Fija el menú en la parte superior */
+    top: 0; /* Se mantiene en la parte superior */
+    right: 0;
+    width: 100%; /* Ocupa todo el ancho */
+    height: 12%;
+    background-color: rgb(89 32 25); /* Color de fondo */
+    border: #c19a6b solid 2px;
+    z-index: 1000; /* Se asegura que esté por encima del contenido */
+    padding: 10px 0; /* Espaciado superior e inferior */
+    margin-left: 60%;
+}
+
+/* Estilos del menú */
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Asegura alineación vertical */
+    gap: 30px; /* Espacio entre los elementos del menú */
+    margin-left: 40%;
+}
+
+/* Estilo de cada ítem del menú */
+.menu ul li {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* o center, dependiendo del diseño */
+    padding: 10px
+}
+
+/* Enlaces del menú */
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+/* Efecto hover en los enlaces */
+nav a:hover {
+    background-color: #c19a6b;
+    color: var(--md-sys-color-primary);
+}
+
+
+/* Logo en la esquina superior izquierda */
+#logo {
+    width: 50px;
+    z-index: 1000;
+    height: 50px;
+    margin-right: 0px;
+    margin-left: 26px;
+    border-radius: 30%;
+}
+
+#logo2{
+    width: 50px;
+    z-index: 1000;
+    height: 50px;
+    margin-left: 0px;
+    margin-right: 26px;
+    border-radius: 30%;
+
+}
+
+#titulo{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-shadow: 2px 2px 4px black;
+    margin-left: -10px;
+    margin-right: 50px;
+    left: 0;
+}
+
+body{
+    background-color: #f0d28c;
+    width: 99%;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+/* ---- CONTENIDO ---- */
+.dashboard {
+    display: flex;
+    margin-top: 40px;
+    height: 500px;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f0d28c;
+    color: #f0d28c;
+    padding: 20px;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    margin-top: 0px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+    margin-left: -25px;
+    margin-top: 30px;
+}
+
+.sidebar nav ul li a {
+    display: block;
+    width: 250px;
+    text-align: center;
+    padding: 15px;
+    background-color: rgb(89 32 25);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #c04d20;
+    transform: scale(1.05);
+}
+
+.contenido{
+    flex: 1;
+    padding: 20px;
+    z-index: 1;
+}
+
+
+.titulo{
+    font-size: 17px;
+    color: rgb(89 32 25);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-bottom: -50px;
+    margin-top: -30px;
+}
+
+.stats {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.card {
+    background: rgb(89 32 25);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    transition: transform 0.3s ease-in-out;
+    color: #fff;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.reports {
+    display: flex;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.report-card {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.report-card:hover {
+    transform: scale(1.03);
+}
+
+ol {
+    padding-left: 20px;
+}
+
+/* ---- FOOTER ---- */
+footer {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: rgb(89 32 25);
+    color: #f0d28c;
+    text-shadow: 2px 2px 4px rgb(51, 10, 10);
+    padding: 20px;
+    flex-wrap: wrap;
+    width: 98%;
+}
+
+footer div {
+    margin: 10px;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+#Col1 img {
+    width: 160px;
+    margin-left: 20px;
+    border-radius: 20px;
+}
+
+#Col4 img {
+    width: 40px;
+    height: 40px;
+    margin-left: 3px;
+    margin-right: 10px;
+}
+
+#Col4 h2{
+    margin-left: 30px;
+}
+

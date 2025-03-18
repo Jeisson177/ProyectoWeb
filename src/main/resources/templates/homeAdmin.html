@@ -4,11 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil Admin</title>
+    <link rel="stylesheet" href="Styles/other/stylesAdmin.css">
 </head>
-<body>
-    <h1>Perfil Admin</h1>
-    <p>¡Bienvenido, administrador!</p>
 
+<header class="header">
+    <div class= "principal">
+        
+
+        <nav class="menu">
+            
+            <img id="logo" src="/Imagenes/logoRecortado.jpg" alt="Logo">
+            <h1 id = "titulo"> PASTA E 
+                <br> PASSIONE </h1>
+            <img id="logo2" src="/Imagenes/logoRecortado.jpg" alt="Logo">
+        </nav>    
+    </div>
+</header>
+
+
+<body>
+    <div class="dashboard">
     
+    <aside class="sidebar">  
+        <div class="titulo">
+            <h1>¡Bienvenido, administrador!</h1>
+        </div>
+                                  
+        <nav>
+            <ul>
+                <li><a href="/homeAdmin">Inicio</a></li>
+                <li><a href="/homeAdmin/usuarios">Usuarios</a></li>
+                <li><a href="/homeAdmin/productos">Productos</a></li>
+                <li><a href="/homeAdmin/adicionales">Adicionales</a></li>
+                <li><a href="/admin/pedidos">Pedidos</a></li>
+                <li><a href="/admin/promociones">Promociones</a></li>
+            </ul>
+        </nav>
+
+    </aside>
+     
+    <div class="contenido" style="background: url('/Imagenes/fondoAdmin.jpg') no-repeat center center fixed; background-size: cover;">
+    <div class="stats">
+        <div class="card">
+            <h3>Available Dish</h3>
+            <p>150.00</p>
+        </div>
+        <div class="card">
+            <h3>Total Order</h3>
+            <p>11,000</p>
+        </div>
+        <div class="card">
+            <h3>Total Sale</h3>
+            <p>2,77000</p>
+        </div>
+        <div class="card">
+            <h3>Total Profit</h3>
+            <p>35,000</p>
+        </div>
+    </div>
+    <div class="reports">
+        <div class="report-card">
+            <h3>TOP 3 DOMICILIARIOS</h3>
+            <p>Juan Pérez</p>
+            <p>María González</p>
+            <p>Carlos Ramírez</p>
+        </div>
+        <div class="report-card">
+            <h3>TOP 10 PLATOS MÁS PEDIDOS</h3>
+            <ol>
+                <li>Pollo Asado</li>
+                <li>Hamburguesa</li>
+                <li>Pasta Alfredo</li>
+                <li>Tacos</li>
+                <li>Pizza</li>
+                <li>Sushi</li>
+                <li>Ensalada César</li>
+                <li>Sandwich Club</li>
+                <li>Churrasco</li>
+                <li>Lasagna</li>
+            </ol>
+        </div>
+    </div>
+    
+    </div>
+
+</div>
+
 </body>
+
+<footer id="contacto">
+    <div id="Col1">
+        <img id="logoFooter" src="Imagenes/logo.jpg" alt="Logo">
+        <p>Todos los derechos reservados</p>
+    </div>
+    <div id="Col2">
+        <h2>ACERCA DE NOSOTROS</h2>
+        <ul>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Domicilios</a></li>
+            <li><a href="#">Menú</a></li>
+            <li><a href="#">Lo Nuevo</a></li>
+        </ul>
+    </div>
+    <div id="Col3">
+        <h2>AYUDA</h2>
+        <ul>
+            <li><a href="#">Habla con Nosotros</a></li>
+            <li><a href="#">Certificados</a></li>
+            <li><a href="#">Trabaja con Nosotros</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Política de Tratamiento de Datos</a></li>
+        </ul>
+    </div>
+    <div id="Col4">
+        <h2>SÍGUENOS</h2>
+        <a href="#"><img src="Imagenes/SocialMedia/instagram.png" alt="Instagram"></a>
+        <a href="#"><img src="Imagenes/SocialMedia/Facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="Imagenes/SocialMedia/X.png" alt="Twitter"></a>
+    </div>
+</footer>
 </html>
