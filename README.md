@@ -4,23 +4,24 @@ Este es un sistema de gestión de restaurante desarrollado en **Java con Spring 
 
 ## 📁 Estructura del Proyecto
 
-PROYECTOWEB
+```plaintext
+Pasta-e-Passione
 │── src/
 │   ├── main/
 │   │   ├── java/com/example/demo/
-│   │   │   ├── controller/        # Controladores de la la pagina
-│   │   │   ├── entity/            # Entidades (modelos de datos)
-│   │   │   ├── repository/        # Repositorios para acceso a la base de datos
-│   │   │   ├── service/           # Lógica de negocio (interfaces e implementaciones) 
+│   │   │   ├── controller/        # Controladores de la API
+│   │   │   ├── entity/            # Modelos de datos (Entidades)
+│   │   │   ├── repository/        # Acceso a la base de datos con JPA
+│   │   │   ├── service/           # Lógica de negocio
+│   │   │   ├── DemoApplication.java  # Punto de entrada de la aplicación
 │   │   ├── resources/
-│   │   │   ├── static/            # Archivos estáticos (CSS, JS, imágenes, videos)
-│   │   │   ├── templates/         # Plantillas HTML para la interfaz
+│   │   │   ├── static/            # CSS, JS, imágenes, videos
+│   │   │   ├── templates/         # Vistas HTML con Thymeleaf
 │   │   │   ├── application.properties  # Configuración de la aplicación
 │   ├── README.md  # Documentación del proyecto
-|   │── DemoApplication.java  # Punto de entrada de la aplicación
 │── .mvn/          # Archivos de configuración de Maven
-│── .vscode/       # Configuración del entorno en Visual Studio Code
-│── pom.xml        # Archivo de configuración de dependencias Maven
+│── .vscode/       # Configuración del entorno en VS Code
+│── pom.xml        # Dependencias de Maven
 
 
 ## 🚀 Tecnologías Utilizadas
