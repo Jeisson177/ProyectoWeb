@@ -165,6 +165,7 @@ body{
     flex: 1;
     padding: 20px;
     z-index: 1;
+    margin-bottom: -60px;
 }
 
 
@@ -205,8 +206,9 @@ body{
 }
 
 .report-card {
+    color: rgb(89 32 25);
     flex: 1;
-    background: white;
+    background: rgb(226, 189, 140);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -219,6 +221,7 @@ body{
 
 ol {
     padding-left: 20px;
+    color: rgb(89 32 25);
 }
 
 /* ---- FOOTER ---- */
