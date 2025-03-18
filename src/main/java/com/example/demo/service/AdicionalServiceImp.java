@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Adicional;
+import com.example.demo.entity.Producto;
 import com.example.demo.repository.AdicionalRepository;
 
 @Service
@@ -51,7 +52,13 @@ public class AdicionalServiceImp implements AdicionalService{
     
         if (optionalAdicional.isPresent()) {
             Adicional adicional = optionalAdicional.get(); // Extrae el objeto Adicional
-            adicional.getProductos().clear(); // Desasocia los productos
+
+            // Elimina la relación ManyToMany con productos
+            for (Producto producto : adicional.getProductos()) {
+                producto.getAdicionales().remove(adicional);
+            }
+            adicional.getProductos().clear(); // Asegura que no quede referencia
+            adicionalRepository.save(adicional); // Guarda el estado antes de eliminar
             adicionalRepository.deleteById(id);
         } else {
             throw new RuntimeException("No se encontró el adicional con ID: " + id);
