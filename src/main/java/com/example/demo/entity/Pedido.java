@@ -3,12 +3,22 @@ package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Pedido {
+
+    @Positive(message = "El ID del operador debe ser un número positivo")
     private int operador_ID;
+
+    @Positive(message = "El ID del domiciliario debe ser un número positivo")
     private int domiciliario_ID;
+
+    
     private boolean estado;
+
+    @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe tener el formato YYYY-MM-DD")
     private String fecha;
 
     @Id

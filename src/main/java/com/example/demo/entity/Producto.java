@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Producto {
@@ -20,9 +22,16 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long producto_id;
 
+    @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
     private String nombre;
+
+    @Size(min = 3, max = 150, message = "la descripcion debe tener entre 3 y 150 caracteres")
     private String descripcion;
+
+    @Min(value = 0, message = "El precio no puede ser negativo")
     private int precio;
+
+    @Size(min = 3, max = 20, message = "La categoria debe tener entre 3 y 20 caracteres")
     private String categoria;
     
     @ManyToMany(cascade = {CascadeType.MERGE})

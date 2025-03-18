@@ -4,18 +4,40 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Cliente {
 
+    @NotNull
+    @Size(min = 2, max = 50)
+    @Column(nullable = false)
     private String Nombre;
+
+    @NotNull
+    @Size(min = 2, max = 50)
+    @Column(nullable = false)   
     private String Apellido;
-    
-    @Column(name = "correo")
+    @NotNull
+    @Email
+    @Column(nullable = false, unique = true,name = "correo")
     private String correo;
 
+    @NotNull
+    @Size(min = 8)
+    @Column(nullable = false)
     private String contrasena;
+
+    @NotNull
+    @Size(max = 100)
+    @Column(nullable = false)
     private String Direccion;
+
+    @Pattern(regexp = "\\d{10}", message = "El teléfono debe tener 10 dígitos")
+    @Column(nullable = false)
     private String Telefono;
 
     @Id

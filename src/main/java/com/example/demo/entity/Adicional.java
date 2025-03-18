@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Adicional {
@@ -18,8 +20,15 @@ public class Adicional {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long adicional_id;
 
+    
+    @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
     private String nombre;  // Cambié la "N" a minúscula (convención Java)
+
+    
+    @Min(value = 0, message = "La cantidad no puede ser negativa")
     private int cantidad;
+
+    @Min(value = 0, message = "El precio no puede ser negativo")
     private int precio;
 
     @ManyToMany(mappedBy = "adicionales", cascade = { CascadeType.MERGE})
