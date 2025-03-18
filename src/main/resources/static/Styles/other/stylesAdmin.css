@@ -206,7 +206,7 @@ body{
 }
 
 .report-card {
-    color: rgb(89 32 25);
+    color: rgb(89 32 25);   
     flex: 1;
     background: rgb(226, 189, 140);
     padding: 20px;
