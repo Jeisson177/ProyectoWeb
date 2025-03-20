@@ -104,10 +104,16 @@ nav a:hover {
     margin-top: 0px;
     margin-bottom: 0px;
     text-shadow: 2px 2px 4px black;
-    margin-left: -10px;
-    margin-right: 50px;
+    margin-left: 500px;
+    margin-right: 250px;
     left: 0;
 }
+
+#loginAdmin{
+    font-weight: bold;
+    margin-left: 80px;
+}
+
 /* CONTENEDOR PRINCIPAL */
 .container {
     margin-left: -40px;
