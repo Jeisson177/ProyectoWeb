@@ -13,11 +13,6 @@ public class AdminController {
         return "homeAdmin";
     }
 
-    @RequestMapping("/homeAdmin")
-    public String homeAdmin() {
-        return "homeAdmin";
-    }
-
     @RequestMapping("/usuarios")
     public String usuarios() {
         return "redirect:/clientes";

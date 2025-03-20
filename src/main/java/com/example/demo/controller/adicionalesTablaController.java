@@ -64,5 +64,5 @@ public class AdicionalesTablaController {
         adicionalService.eliminarAdicional(id);
         return "redirect:/adicionales";
     }
-    
+
 }

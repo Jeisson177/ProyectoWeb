@@ -3,9 +3,129 @@ body {
     font-family: 'Georgia', serif;
     background-color: rgb(89 32 25); /* Color de fondo suave */
     color: #3d405b; /* Color de texto principal */
-    margin: 0;
     padding: 0;
+    margin-top: 80px;
 }
+
+/* ---- HEADER ---- */
+header {
+    background-color: var(--md-sys-color-primary);
+    display: flex;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.principal{
+    display: flex;
+    align-items: center;
+}
+
+/* ---- MENU FIJO ---- */
+.menu {
+    position: fixed; /* Fija el menú en la parte superior */
+    top: 0; /* Se mantiene en la parte superior */
+    right: 0;
+    width: 100%; /* Ocupa todo el ancho */
+    height: 12%;
+    background-color: rgb(89 32 25); /* Color de fondo */
+    border: #c19a6b solid 2px;
+    z-index: 1000; /* Se asegura que esté por encima del contenido */
+    padding: 10px 0; /* Espaciado superior e inferior */
+    margin-left: 60%;
+}
+
+/* Estilos del menú */
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Asegura alineación vertical */
+    gap: 30px; /* Espacio entre los elementos del menú */
+    margin-left: 40%;
+}
+
+/* Estilo de cada ítem del menú */
+.menu ul li {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* o center, dependiendo del diseño */
+    padding: 10px
+}
+
+/* Enlaces del menú */
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+/* Efecto hover en los enlaces */
+nav a:hover {
+    background-color: #c19a6b;
+    color: var(--md-sys-color-primary);
+}
+
+
+/* Logo en la esquina superior izquierda */
+#logo {
+    width: 50px;
+    z-index: 1000;
+    height: 50px;
+    margin-right: 15px;
+    margin-left: 26px;
+    border-radius: 30%;
+}
+
+#logo2{
+    width: 50px;
+    z-index: 1000;
+    height: 50px;
+    margin-left: -150px;
+    margin-right: 26px;
+    border-radius: 30%;
+
+}
+
+.seccion{
+    
+    margin-right: 0px;
+    color: rgb(239, 215, 171);
+    font-weight: bold;
+}
+
+.menu-perfil{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 0px;
+    margin-right: 10px;
+    gap: 20px;
+}
+
+#titulo{
+    font-size: 20px;
+    color: rgb(239, 215, 171);
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-shadow: 2px 2px 4px black;
+    margin-left: -150px;
+    margin-right: 400px;
+    left: 0;
+}
+
 
 .container {
     padding: 20px;
