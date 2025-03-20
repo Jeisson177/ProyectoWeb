@@ -105,7 +105,7 @@ nav a:hover {
 }
 
 body{
-    background-color: #f0d28c;
+    background-color:  rgb(226, 189, 140);
     width: 99%;
     margin: 0;
     padding: 0;
@@ -122,33 +122,34 @@ body{
 
 .sidebar {
     width: 250px;
-    background-color: #f0d28c;
+    background-color:  rgb(226, 189, 140);
     color: #f0d28c;
     padding: 20px;
-    height: 100vh;
+    height: 80%;
     font-family: 'Arial', sans-serif;
     margin-top: 0px;
 }
 
 .sidebar nav ul {
+    margin-top: 50px;
     list-style: none;
     padding: 0;
 }
 
 .sidebar nav ul li {
-    margin: 20px 0;
+    margin: 10px 0;
     margin-left: -25px;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .sidebar nav ul li a {
     display: block;
     width: 250px;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
     background-color: rgb(89 32 25);
     color: #fff;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-decoration: none;
@@ -174,11 +175,12 @@ body{
     color: rgb(89 32 25);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-bottom: -50px;
-    margin-top: -30px;
+    margin-top: -10px;
 }
 
 .stats {
-    margin-top: 70px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     gap: 15px;
@@ -188,7 +190,7 @@ body{
     background: rgb(89 32 25);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     flex: 1;
     transition: transform 0.3s ease-in-out;
