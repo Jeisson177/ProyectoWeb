@@ -57,11 +57,11 @@ public class ClienteController {
         return "editar_Perfil"; 
     }
 
-    @PostMapping("/actualizar")
+    @PostMapping("/actualizarPerfil")
     public String actualizarCliente(@ModelAttribute Cliente cliente, RedirectAttributes redirectAttributes) {
         clienteService.actualizarCliente(cliente);
         redirectAttributes.addFlashAttribute("mensaje", "Perfil actualizado correctamente");
-        return "redirect:/editar?correo=" + cliente.getCorreo();
+        return "redirect:/editarPerfil?correo=" + cliente.getCorreo();
     }
 
     @GetMapping("/pedidos")
