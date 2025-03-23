@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -13,29 +11,36 @@ import com.example.demo.repository.ClienteRepository;
 
 @Service
 public class ClienteServiceImp implements ClienteService {
-   @Autowired
+
+    @Autowired
     private ClienteRepository clienteRepository;
+
     @Override
     public boolean autenticarCliente(String correo, String contrasena) {
         Optional<Cliente> cliente = clienteRepository.findByCorreoAndContrasena(correo, contrasena);
         return cliente.isPresent();
     }
+
     @Override
     public Optional<Cliente> obtenerClientePorCorreo(String correo) {
-        return clienteRepository.findByCorreo(correo); // ✅ Asegúrate de tener este método en `ClienteRepository`
+        return clienteRepository.findByCorreo(correo);
     }
 
     @Override
     public List<Cliente> obtenerTodosLosClientes() {
         return clienteRepository.findAll();
     }
+
     @Override
     public Cliente getClienteById(Long id) {
         return clienteRepository.findById(id).orElse(null); 
     }
+
     @Override
     public void guardarCliente(Cliente cliente) {
-        clienteRepository.save(cliente);
+        if (!clienteRepository.findByCorreo(cliente.getCorreo()).isPresent()) {
+            clienteRepository.save(cliente);
+        }
     }
 
     @Override
@@ -50,5 +55,4 @@ public class ClienteServiceImp implements ClienteService {
             clienteRepository.save(cliente);
         }
     }
-
 }

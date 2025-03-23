@@ -57,6 +57,7 @@ public class ClienteController {
         return "editar_Perfil"; 
     }
 
+<<<<<<< HEAD
     @PostMapping("/actualizarCliente")
     public String guardarCliente(@ModelAttribute Cliente cliente, Model model) {
     clienteService.actualizarCliente(cliente); // Llama al servicio para actualizar el cliente
@@ -92,7 +93,5 @@ public class ClienteController {
         model.addAttribute("cliente", clienteOpt.get());
         return "historial_Pedidos"; 
     }
-
-
 
 }

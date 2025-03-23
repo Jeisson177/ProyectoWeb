@@ -32,10 +32,14 @@
     <div class="container mt-4 formulario-edicion">
         <h2>Editar Perfil</h2>
 
+<<<<<<< HEAD
         <form th:action="@{/actualizar}" method="post" th:object="${cliente}" class="shadow p-4 rounded">
             <!-- Campo oculto para simular el método PUT -->
             <input type="hidden" name="_method" value="put" />
             
+=======
+        <form th:action="@{/actualizarPerfil}" method="post" th:object="${cliente}" class="shadow p-4 rounded">
+>>>>>>> 06a4ec95c7a3ba20a4451397ce464f4c9af3daf1
             <!-- Campo oculto para el ID del cliente -->
             <input type="hidden" th:field="*{id}">
 
@@ -56,7 +60,11 @@
                 <label for="correo" class="form-label">Correo:</label>
                 <input type="email" id="correo" class="form-control" th:field="*{correo}" required readonly>
             </div>
-
+            <!-- Campo para la contraseña visible -->
+            <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña:</label>
+                <input type="text" id="contrasena" class="form-control" th:field="*{contrasena}" required>
+            </div>
             <!-- Campo para la dirección -->
             <div class="mb-3">
                 <label for="direccion" class="form-label">Dirección:</label>
@@ -73,7 +81,11 @@
             <div class="text-center">
                 
                 <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
+<<<<<<< HEAD
                 <a th:href="@{'/homeCliente?correo=' + ${cliente.correo}}" class="btn btn-secondary">Cancelar</a>
+=======
+                
+>>>>>>> 06a4ec95c7a3ba20a4451397ce464f4c9af3daf1
             </div>
         </form>
 

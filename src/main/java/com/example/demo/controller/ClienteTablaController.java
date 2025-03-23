@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,22 +24,26 @@ public class ClienteTablaController {
         model.addAttribute("clientes", clienteService.obtenerTodosLosClientes());
         return "menu_Tabla_Clientes";
     }
+
     @GetMapping("/agregar")
     public String mostrarFormularioAgregar(Model model) {
         model.addAttribute("cliente", new Cliente());
         return "agregar_Cliente";
     }
+
     @PostMapping("/guardar")
     public String guardarCliente(@ModelAttribute Cliente cliente) {
-        clienteService.guardarCliente(cliente);;
+        clienteService.guardarCliente(cliente);
         return "redirect:/clientes";
     }
+
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
-        Cliente Cliente = clienteService.getClienteById(id);
-        model.addAttribute("cliente", Cliente);
+        Cliente cliente = clienteService.getClienteById(id);
+        model.addAttribute("cliente", cliente);
         return "editar_Cliente";
     }
+
 
     @PostMapping("/actualizar")
     public String actualizarCliente(@ModelAttribute Cliente cliente) {
