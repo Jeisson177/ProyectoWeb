@@ -32,7 +32,10 @@
     <div class="container mt-4 formulario-edicion">
         <h2>Editar Perfil</h2>
 
-        <form th:action="@{/homeCliente/actualizar}" method="post" th:object="${cliente}" class="shadow p-4 rounded">
+        <form th:action="@{/actualizar}" method="post" th:object="${cliente}" class="shadow p-4 rounded">
+            <!-- Campo oculto para simular el método PUT -->
+            <input type="hidden" name="_method" value="put" />
+            
             <!-- Campo oculto para el ID del cliente -->
             <input type="hidden" th:field="*{id}">
 
@@ -70,7 +73,7 @@
             <div class="text-center">
                 
                 <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
-                <a href="/homeCliente" class="btn btn-secondary">Cancelar</a>
+                <a th:href="@{'/homeCliente?correo=' + ${cliente.correo}}" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
 

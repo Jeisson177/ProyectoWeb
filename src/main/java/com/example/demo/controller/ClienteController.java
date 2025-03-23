@@ -57,17 +57,17 @@ public class ClienteController {
         return "editar_Perfil"; 
     }
 
-    @PostMapping("/actualizar")
-    public String guardarCliente(@ModelAttribute Cliente cliente) {
-        clienteService.guardarCliente(cliente);;
-        return "home_Cliente";
-    }
+    @PostMapping("/actualizarCliente")
+    public String guardarCliente(@ModelAttribute Cliente cliente, Model model) {
+    clienteService.actualizarCliente(cliente); // Llama al servicio para actualizar el cliente
+    return "redirect:/homeCliente?correo=" + cliente.getCorreo(); // Redirige al home del cliente
+}
 
-    @GetMapping("/eliminarCuenta/{id}")
+    @PostMapping("/eliminarCuenta/{id}")
     public String eliminarCliente(@PathVariable Long id) {
-        clienteService.eliminarCliente(id);
-        return "redirect:/login";
-    }
+    clienteService.eliminarCliente(id);
+    return "redirect:/login";
+}
 
     @GetMapping("/pedidos")
     public String mostrarPedidos(@RequestParam("correo") String correo, Model model) {
