@@ -32,14 +32,10 @@
     <div class="container mt-4 formulario-edicion">
         <h2>Editar Perfil</h2>
 
-<<<<<<< HEAD
         <form th:action="@{/actualizar}" method="post" th:object="${cliente}" class="shadow p-4 rounded">
             <!-- Campo oculto para simular el método PUT -->
             <input type="hidden" name="_method" value="put" />
             
-=======
-        <form th:action="@{/actualizarPerfil}" method="post" th:object="${cliente}" class="shadow p-4 rounded">
->>>>>>> 06a4ec95c7a3ba20a4451397ce464f4c9af3daf1
             <!-- Campo oculto para el ID del cliente -->
             <input type="hidden" th:field="*{id}">
 
@@ -81,16 +77,12 @@
             <div class="text-center">
                 
                 <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
-<<<<<<< HEAD
                 <a th:href="@{'/homeCliente?correo=' + ${cliente.correo}}" class="btn btn-secondary">Cancelar</a>
-=======
-                
->>>>>>> 06a4ec95c7a3ba20a4451397ce464f4c9af3daf1
             </div>
         </form>
 
-        <form th:action="@{/homeCliente/eliminarCuenta/{id}(id=${cliente.id})}" method="post" class="d-inline">
-            <button type="submit" class="btn btn-tertiary" onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');">Eliminar Cuenta</button>
+        <form th:action="@{/eliminarCuenta/{id}(id=${cliente.id})}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-tertiary" >Eliminar Cuenta</button>
         </form>
 
     </div>
