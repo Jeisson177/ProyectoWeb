@@ -1,68 +1,57 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Adicional;
 import com.example.demo.service.AdicionalServiceImp;
 
-
-@Controller
+@RestController
 @RequestMapping("/adicionales")
+@CrossOrigin(origins = "http://localhost:4200") // Cambia si usas otro puerto o deployas el frontend
 public class AdicionalesTablaController {
 
     @Autowired
     AdicionalServiceImp adicionalService;
 
-    //Mostrar productos en la tabla 
+    // Obtener todos los adicionales
     @GetMapping
-    public String mostrarProductos(Model model) {
-        model.addAttribute("adicionales", adicionalService.getAllAdicionales());
-        return "adicionales_Tabla";
+    public List<Adicional> getAllAdicionales() {
+        return adicionalService.getAllAdicionales();
     }
 
-    //Mostrar formulario para agregar un nuevo producto
-    @GetMapping("/agregar")
-    public String mostrarFormularioAgregar(Model model) {
-        model.addAttribute("adicional", new Adicional());
-        return "agregar_Adicional";
+    // Obtener un adicional por ID
+    @GetMapping("/{id}")
+    public Adicional getAdicionalById(@PathVariable Long id) {
+        return adicionalService.getAdicionalById(id);
     }
 
-    //Guardar nuevo producto
-    @PostMapping("/guardar")
-    public String guardarAdicional(@ModelAttribute Adicional adicional) {
-        adicionalService.guardarAdicional(adicional);
-        return "redirect:/adicionales";
+    // Crear un nuevo adicional
+    @PostMapping
+    public void createAdicional(@RequestBody Adicional adicional) {
+        adicionalService.guardarAdicional(adicional);;
     }
 
-    //Mostrar formulario de edición
-    @GetMapping("/editar/{id}")
-    public String mostrarFormularioEditar(@PathVariable Long id, Model model) {
-        Adicional adicional = adicionalService.getAdicionalById(id);
-        model.addAttribute("adicional", adicional);
-        return "editar_Adicional";
-    }
-
-    //Actualizar adicional
-    @PostMapping("/actualizar")
-    public String actualizarAdicional(@ModelAttribute Adicional adicional) {
-        
+    // Actualizar un adicional existente
+    @PutMapping("/{id}")
+    public void updateAdicional(@PathVariable Long id, @RequestBody Adicional adicional) {
+        adicional.setAdicional_id(id); 
         adicionalService.actualizarAdicional(adicional);
-        
-        return "redirect:/adicionales";
     }
 
-    //Eliminar adicional
-    @GetMapping("/eliminar/{id}")
-    public String eliminarAdicional(@PathVariable Long id) {
+    // Eliminar un adicional
+    @DeleteMapping("/{id}")
+    public void deleteAdicional(@PathVariable Long id) {
         adicionalService.eliminarAdicional(id);
-        return "redirect:/adicionales";
     }
-
 }

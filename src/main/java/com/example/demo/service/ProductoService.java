@@ -7,7 +7,7 @@ import com.example.demo.entity.Adicional;
 import com.example.demo.entity.Producto;
 
 public interface ProductoService {
-    Collection<Producto> getAllProductos();
+    List<Producto> getAllProductos();
     Producto getProductoById(Long id);
     void guardarProducto(Producto producto);
     void actualizarProducto(Producto productoNuevo, List<Adicional> adicionales);
