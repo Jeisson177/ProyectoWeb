@@ -27,8 +27,8 @@ public class AdicionalServiceImp implements AdicionalService{
     }
     
     @Override
-    public void guardarAdicional(Adicional adicional) {
-        adicionalRepository.save(adicional);
+    public Adicional guardarAdicional(Adicional adicional) {
+        return adicionalRepository.save(adicional);
     }
     
     @Override
