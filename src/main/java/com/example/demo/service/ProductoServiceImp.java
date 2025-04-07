@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,15 +37,15 @@ public class ProductoServiceImp implements ProductoService {
     }
 
     @Override
-    public void guardarProducto(Producto producto) {
-        productoRepository.save(producto);
+    public Producto guardarProducto(Producto producto) {
+        return productoRepository.save(producto);
     }
 
    
 
     @Override
     @Transactional
-    public void actualizarProducto(Producto productoNuevo, List<Adicional> adicionales) {
+    public Optional<Producto> actualizarProducto(Producto productoNuevo, List<Adicional> adicionales) {
         Producto producto = productoRepository.findById(productoNuevo.getProducto_id()).orElse(null);
 
         if (producto != null) {
@@ -68,8 +69,10 @@ public class ProductoServiceImp implements ProductoService {
             }
 
             // Guardar el producto actualizado con los nuevos adicionales
-            productoRepository.save(producto);
+            Producto actualizado = productoRepository.save(producto);
+            return Optional.of(actualizado);        
         }
+        return Optional.empty();
     }
 
 
