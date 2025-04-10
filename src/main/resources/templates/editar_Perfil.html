@@ -30,9 +30,12 @@
 <body>
     <!-- FORMULARIO -->
     <div class="container mt-4 formulario-edicion">
-        <h2>Editar Perfil</h2>>
+        <h2>Editar Perfil</h2>
 
-        <form th:action="@{/clientes/guardar}" method="post" th:object="${cliente}" class="shadow p-4 rounded">
+        <form th:action="@{/actualizar}" method="post" th:object="${cliente}" class="shadow p-4 rounded">
+            <!-- Campo oculto para simular el método PUT -->
+            <input type="hidden" name="_method" value="put" />
+            
             <!-- Campo oculto para el ID del cliente -->
             <input type="hidden" th:field="*{id}">
 
@@ -53,7 +56,11 @@
                 <label for="correo" class="form-label">Correo:</label>
                 <input type="email" id="correo" class="form-control" th:field="*{correo}" required readonly>
             </div>
-
+            <!-- Campo para la contraseña visible -->
+            <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña:</label>
+                <input type="text" id="contrasena" class="form-control" th:field="*{contrasena}" required>
+            </div>
             <!-- Campo para la dirección -->
             <div class="mb-3">
                 <label for="direccion" class="form-label">Dirección:</label>
@@ -68,10 +75,16 @@
 
             <!-- Botones de acción -->
             <div class="text-center">
+                
                 <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
-                <a href="/homeCliente" class="btn btn-secondary">Cancelar</a>
+                <a th:href="@{'/homeCliente?correo=' + ${cliente.correo}}" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
+
+        <form th:action="@{/eliminarCuenta/{id}(id=${cliente.id})}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-tertiary" >Eliminar Cuenta</button>
+        </form>
+
     </div>
 </body>
     <!-- FOOTER -->

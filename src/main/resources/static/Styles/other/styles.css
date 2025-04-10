@@ -240,7 +240,7 @@ body {
 .left h2{
     color: rgb(89 32 25);
     margin-top: 140px;
-    text-shadow: 2px 2px 4px rgb(51, 10, 10);
+    text-shadow: 2px 2px 4px rgb(104, 26, 26);
     font-size: 34px;
     font-weight: bold;
 
@@ -257,7 +257,6 @@ body {
     margin-top: 30px;
     margin-bottom: 70px;
     color: rgb(89 32 25);
-    text-shadow: 2px 2px 4px rgb(51, 10, 10);
     font-weight: bold;
     font-size: 22px;
 }
@@ -456,7 +455,7 @@ body {
 
 #reservaTitulo {
     color: rgb(89 32 25);
-    text-shadow: 2px 2px 4px rgb(51, 10, 10);
+    text-shadow: 2px 2px 4px rgb(104, 17, 17);
     font-size: 34px;
     font-weight: bold;
     margin-bottom: 30px;

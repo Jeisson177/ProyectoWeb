@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -40,7 +40,7 @@ public class Producto {
         joinColumns = @JoinColumn(name = "producto_id"), 
         inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
-    @JsonIgnore
+    @JsonManagedReference
     private List<Adicional> adicionales = new ArrayList<>();
 
     public Producto() {}
