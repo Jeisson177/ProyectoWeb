@@ -1,6 +1,6 @@
 async function cargarMenu() {
     try {
-        const respuesta = await fetch('/api/menu'); // Llamada a la API
+        const respuesta = await fetch('/producto'); // Llamada a la API
         const productos = await respuesta.json();
         console.log("Productos recibidos:", productos.length);
 

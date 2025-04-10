@@ -41,7 +41,10 @@ public class ProductoTablaController {
     // Obtener un producto por ID con sus adicionales
     @GetMapping("/{id}")
     public Producto getProductoConAdicionales(@PathVariable Long id) {
-        return productoService.getProductoWithAdicionales(id);
+        Producto p=productoService.getProductoWithAdicionales(id);
+        System.out.println("Producto con adicionales: " + p.getAdicionales());
+        return p;
+
     }
 
     // Crear nuevo producto
