@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -32,7 +32,7 @@ public class Adicional {
     private int precio;
 
     @ManyToMany(mappedBy = "adicionales", cascade = { CascadeType.MERGE})
-    @JsonBackReference 
+    @JsonIgnoreProperties("adicionales") // <- opcional
     private List<Producto> productos;
 
     public Adicional() {this.productos = new ArrayList<>();

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,8 +57,9 @@ public class ProductoTablaController {
     }
 
     // Actualizar producto
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = MediaType.ALL_VALUE)
     public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id,@RequestBody Producto productoConAdicionales) {
+        System.err.println(productoConAdicionales);
         List<Long> idsAdicionales = new ArrayList<>();
         if (productoConAdicionales.getAdicionales() != null) {
             for (Adicional adicional : productoConAdicionales.getAdicionales()) {

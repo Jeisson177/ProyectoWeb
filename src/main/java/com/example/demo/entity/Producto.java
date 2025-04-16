@@ -3,10 +3,11 @@ package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,13 +35,14 @@ public class Producto {
     @Size(min = 3, max = 20, message = "La categoria debe tener entre 3 y 20 caracteres")
     private String categoria;
     
-    @ManyToMany(cascade = {CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
         name = "producto_adicional", 
         joinColumns = @JoinColumn(name = "producto_id"), 
         inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
-    @JsonManagedReference
+    @JsonIgnoreProperties("productos") // <- esto evita la recursión infinita
+
     private List<Adicional> adicionales = new ArrayList<>();
 
     public Producto() {}
