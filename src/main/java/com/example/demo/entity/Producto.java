@@ -42,7 +42,6 @@ public class Producto {
         inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
     @JsonIgnoreProperties("productos") // <- esto evita la recursión infinita
-
     private List<Adicional> adicionales = new ArrayList<>();
 
     public Producto() {}
