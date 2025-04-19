@@ -21,6 +21,8 @@ public class Operador {
     @GeneratedValue
     private Long idOperador;
 
+    private boolean disponible=true;
+
     public Operador(Long idOperador, String nombre, String usuario, String contrasena) {
         this.idOperador = idOperador;
         this.nombre = nombre;
@@ -36,11 +38,11 @@ public class Operador {
 
     public Operador() {}
 
-    public Long getIdOperador() {
+    public Long getId() {
         return idOperador;
     }
 
-    public void setIdOperador(Long idOperador) {
+    public void setId(Long idOperador) {
         this.idOperador = idOperador;
     }
 
@@ -66,6 +68,14 @@ public class Operador {
 
     public void setcontrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
 }

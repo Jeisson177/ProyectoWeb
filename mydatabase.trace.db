@@ -9075,3 +9075,364 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/D
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 64 more
+2025-04-18 17:51:38.721372-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "ITEMPEDIDO" no encontrada
+Table "ITEMPEDIDO" not found; SQL statement:
+SELECT p.*, ip.cantidad, ip.precio_unitario
+FROM Producto p
+JOIN ItemPedido ip ON p.producto_id = ip.producto_id
+WHERE ip.pedido_id = [ID_DEL_PEDIDO] [42102-232]
+2025-04-18 17:52:30.456609-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT p.*, ip.cantidad, ip.precio_unitario\000d\000aFROM PRODUCTO p\000d\000aJOIN ITEMS_PEDIDO ip ON p.producto_id = ip.producto_id\000d\000aWHERE ip.pedido_id = [*][ID_DEL_PEDIDO]"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "SELECT p.*, ip.cantidad, ip.precio_unitario\000d\000aFROM PRODUCTO p\000d\000aJOIN ITEMS_PEDIDO ip ON p.producto_id = ip.producto_id\000d\000aWHERE ip.pedido_id = [*][ID_DEL_PEDIDO]"; expected "ALL (, ANY (, SOME ("; SQL statement:
+SELECT p.*, ip.cantidad, ip.precio_unitario
+FROM PRODUCTO p
+JOIN ITEMS_PEDIDO ip ON p.producto_id = ip.producto_id
+WHERE ip.pedido_id = [ID_DEL_PEDIDO] [42001-232]
+2025-04-18 17:54:57.416660-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT \000d\000a    p.pedido_id,\000d\000a    json_object(\000d\000a        'pedido_id'[*], p.pedido_id,\000d\000a        'cliente', json_object(\000d\000a            'correo', c.correo,\000d\000a            'contrasena', c.contrasena,\000d\000a            'id', c.id,\000d\000a            'nombre', c.nombre,\000d\000a            'apellido', c.apellido,\000d\000a            'telefono', c.telefono,\000d\000a            'direccion', c.direccion\000d\000a        ),\000d\000a        'domiciliario', json_object(\000d\000a            'nombre', d.nombre,\000d\000a            'celular', d.celular,\000d\000a            'disponibilidad', d.disponibilidad,\000d\000a            'id', d.id\000d\000a        ),\000d\000a        'estado', p.estado,\000d\000a        'direccionEnvio', p.direccion_envio,\000d\000a        'fecha', p.fecha,\000d\000a        'items', (\000d\000a            SELECT json_arrayagg(\000d\000a                json_object(\000d\000a                    'producto_id', ip.producto_id,\000d\000a                    'nombre', pr.nombre,\000d\000a                    'descripcion', pr.descripcion,\000d\000a                    'precio', pr.precio,\000d\000a                    'cantidad', ip.cantidad,\000d\000a                    'precio_unitario', ip.precio_unitario,\000d\000a                    'adicionales', (\000d\000a                        SELECT json_arrayagg(\000d\000a                            json_object(\000d\000a                                'id', a.adicional_id,\000d\000a                                'nombre', a.nombre,\000d\000a                                'precio', a.precio\000d\000a                            )\000d\000a                        )\000d\000a                        FROM ITEM_CARRITO_ADICIONAL ica\000d\000a                        JOIN ADICIONAL a ON ica.adicional_id = a.adicional_id\000d\000a                        WHERE ica.item_carrito_id = ip.item_pedido_id\000d\000a                    )\000d\000a                )\000d\000a            )\000d\000a            FROM ITEMS_PEDIDO ip\000d\000a            JOIN PRODUCTO pr ON ip.producto_id = pr.producto_id\000d\000a            WHERE ip.pedido_id = p.pedido_id\000d\000a        ),\000d\000a        'operadorId', json_object(\000d\000a            'nombre', o.nombre,\000d\000a            'usuario', o.usuario,\000d\000a            'contrasena', o.contrasena,\000d\000a            'disponible', o.disponible,\000d\000a            'id', o.id\000d\000a        )\000d\000a    ) AS pedido_json\000d\000aFROM \000d\000a    PEDIDO p\000d\000aJOIN \000d\000a    CLIENTE c ON p.cliente_id = c.id\000d\000aLEFT JOIN \000d\000a    DOMICILIARIO d ON p.domiciliario_id = d.id\000d\000aJOIN \000d\000a    OPERADOR o ON p.operador_id = o.id\000d\000aWHERE \000d\000a    p.pedido_id = 1"; se esperaba "[, ., ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, VALUE, :"
+Syntax error in SQL statement "SELECT \000d\000a    p.pedido_id,\000d\000a    json_object(\000d\000a        'pedido_id'[*], p.pedido_id,\000d\000a        'cliente', json_object(\000d\000a            'correo', c.correo,\000d\000a            'contrasena', c.contrasena,\000d\000a            'id', c.id,\000d\000a            'nombre', c.nombre,\000d\000a            'apellido', c.apellido,\000d\000a            'telefono', c.telefono,\000d\000a            'direccion', c.direccion\000d\000a        ),\000d\000a        'domiciliario', json_object(\000d\000a            'nombre', d.nombre,\000d\000a            'celular', d.celular,\000d\000a            'disponibilidad', d.disponibilidad,\000d\000a            'id', d.id\000d\000a        ),\000d\000a        'estado', p.estado,\000d\000a        'direccionEnvio', p.direccion_envio,\000d\000a        'fecha', p.fecha,\000d\000a        'items', (\000d\000a            SELECT json_arrayagg(\000d\000a                json_object(\000d\000a                    'producto_id', ip.producto_id,\000d\000a                    'nombre', pr.nombre,\000d\000a                    'descripcion', pr.descripcion,\000d\000a                    'precio', pr.precio,\000d\000a                    'cantidad', ip.cantidad,\000d\000a                    'precio_unitario', ip.precio_unitario,\000d\000a                    'adicionales', (\000d\000a                        SELECT json_arrayagg(\000d\000a                            json_object(\000d\000a                                'id', a.adicional_id,\000d\000a                                'nombre', a.nombre,\000d\000a                                'precio', a.precio\000d\000a                            )\000d\000a                        )\000d\000a                        FROM ITEM_CARRITO_ADICIONAL ica\000d\000a                        JOIN ADICIONAL a ON ica.adicional_id = a.adicional_id\000d\000a                        WHERE ica.item_carrito_id = ip.item_pedido_id\000d\000a                    )\000d\000a                )\000d\000a            )\000d\000a            FROM ITEMS_PEDIDO ip\000d\000a            JOIN PRODUCTO pr ON ip.producto_id = pr.producto_id\000d\000a            WHERE ip.pedido_id = p.pedido_id\000d\000a        ),\000d\000a        'operadorId', json_object(\000d\000a            'nombre', o.nombre,\000d\000a            'usuario', o.usuario,\000d\000a            'contrasena', o.contrasena,\000d\000a            'disponible', o.disponible,\000d\000a            'id', o.id\000d\000a        )\000d\000a    ) AS pedido_json\000d\000aFROM \000d\000a    PEDIDO p\000d\000aJOIN \000d\000a    CLIENTE c ON p.cliente_id = c.id\000d\000aLEFT JOIN \000d\000a    DOMICILIARIO d ON p.domiciliario_id = d.id\000d\000aJOIN \000d\000a    OPERADOR o ON p.operador_id = o.id\000d\000aWHERE \000d\000a    p.pedido_id = 1"; expected "[, ., ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, VALUE, :"; SQL statement:
+SELECT 
+    p.pedido_id,
+    json_object(
+        'pedido_id', p.pedido_id,
+        'cliente', json_object(
+            'correo', c.correo,
+            'contrasena', c.contrasena,
+            'id', c.id,
+            'nombre', c.nombre,
+            'apellido', c.apellido,
+            'telefono', c.telefono,
+            'direccion', c.direccion
+        ),
+        'domiciliario', json_object(
+            'nombre', d.nombre,
+            'celular', d.celular,
+            'disponibilidad', d.disponibilidad,
+            'id', d.id
+        ),
+        'estado', p.estado,
+        'direccionEnvio', p.direccion_envio,
+        'fecha', p.fecha,
+        'items', (
+            SELECT json_arrayagg(
+                json_object(
+                    'producto_id', ip.producto_id,
+                    'nombre', pr.nombre,
+                    'descripcion', pr.descripcion,
+                    'precio', pr.precio,
+                    'cantidad', ip.cantidad,
+                    'precio_unitario', ip.precio_unitario,
+                    'adicionales', (
+                        SELECT json_arrayagg(
+                            json_object(
+                                'id', a.adicional_id,
+                                'nombre', a.nombre,
+                                'precio', a.precio
+                            )
+                        )
+                        FROM ITEM_CARRITO_ADICIONAL ica
+                        JOIN ADICIONAL a ON ica.adicional_id = a.adicional_id
+                        WHERE ica.item_carrito_id = ip.item_pedido_id
+                    )
+                )
+            )
+            FROM ITEMS_PEDIDO ip
+            JOIN PRODUCTO pr ON ip.producto_id = pr.producto_id
+            WHERE ip.pedido_id = p.pedido_id
+        ),
+        'operadorId', json_object(
+            'nombre', o.nombre,
+            'usuario', o.usuario,
+            'contrasena', o.contrasena,
+            'disponible', o.disponible,
+            'id', o.id
+        )
+    ) AS pedido_json
+FROM 
+    PEDIDO p
+JOIN 
+    CLIENTE c ON p.cliente_id = c.id
+LEFT JOIN 
+    DOMICILIARIO d ON p.domiciliario_id = d.id
+JOIN 
+    OPERADOR o ON p.operador_id = o.id
+WHERE 
+    p.pedido_id = 1 [42001-232]
+2025-04-18 17:55:41.697990-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "P.CLIENTE_ID" no encontrada
+Column "P.CLIENTE_ID" not found; SQL statement:
+SELECT p.*, c.*, d.*, o.*
+FROM PEDIDO p
+JOIN CLIENTE c ON p.cliente_id = c.id
+LEFT JOIN DOMICILIARIO d ON p.domiciliario_id = d.id
+JOIN OPERADOR o ON p.operador_id = o.id
+WHERE p.pedido_id = 1 [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:147)
+	at org.h2.expression.condition.ConditionAndOr.optimize(ConditionAndOr.java:137)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1235)
+	at org.h2.command.query.Query.prepare(Query.java:232)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp.query(WebApp.java:1118)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-18 17:56:02.080148-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "P.CLIENTE_ID" no encontrada
+Column "P.CLIENTE_ID" not found; SQL statement:
+SELECT p.*, c.*, d.*, o.*
+FROM PEDIDO p
+JOIN CLIENTE c ON p.cliente_id = c.id
+LEFT JOIN DOMICILIARIO d ON p.domiciliario_id = d.id
+JOIN OPERADOR o ON p.operador_id = o.id
+WHERE p.pedido_id = 1 [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:147)
+	at org.h2.expression.condition.ConditionAndOr.optimize(ConditionAndOr.java:137)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1235)
+	at org.h2.command.query.Query.prepare(Query.java:232)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp.query(WebApp.java:1118)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-18 17:56:02.085628-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "ITEM_CARRITO_ADICIONAL" no encontrada
+Table "ITEM_CARRITO_ADICIONAL" not found; SQL statement:
+-- 3. Obtener adicionales para cada item (si es necesario)
+SELECT a.*
+FROM ITEM_CARRITO_ADICIONAL ica
+JOIN ADICIONAL a ON ica.adicional_id = a.adicional_id
+JOIN ITEMS_PEDIDO ip ON ica.item_carrito_id = ip.item_pedido_id
+WHERE ip.pedido_id = 1 [42102-232]
+2025-04-18 17:57:27.915126-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "P.DIRECCION_ENVIO" no encontrada
+Column "P.DIRECCION_ENVIO" not found; SQL statement:
+SELECT 
+    p.PEDIDO_ID,
+    p.ESTADO,
+    p.DIRECCION_ENVIO,
+    p.FECHA,
+    c.ID AS CLIENTE_ID,
+    c.NOMBRE AS CLIENTE_NOMBRE,
+    c.APELLIDO AS CLIENTE_APELLIDO,
+    c.CORREO AS CLIENTE_CORREO,
+    c.TELEFONO AS CLIENTE_TELEFONO,
+    c.DIRECCION AS CLIENTE_DIRECCION,
+    d.ID AS DOMICILIARIO_ID,
+    d.NOMBRE AS DOMICILIARIO_NOMBRE,
+    d.CELULAR AS DOMICILIARIO_CELULAR,
+    d.DISPONIBILIDAD AS DOMICILIARIO_DISPONIBILIDAD,
+    o.ID AS OPERADOR_ID,
+    o.NOMBRE AS OPERADOR_NOMBRE
+FROM 
+    PEDIDO p
+JOIN 
+    CLIENTE c ON p.CLIENTE_ID = c.ID
+LEFT JOIN 
+    DOMICILIARIO d ON p.DOMICILIARIO_ID = d.ID
+JOIN 
+    OPERADOR o ON p.OPERADOR_ID = o.ID
+WHERE 
+    p.PEDIDO_ID = 1 [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1228)
+	at org.h2.command.query.Query.prepare(Query.java:232)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp.query(WebApp.java:1118)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-04-18 17:58:21.197247-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PEDIDOS \000d\000a\000d\000a[*]SELECT * FROM CLIENTE"
+Syntax error in SQL statement "SELECT * FROM PEDIDOS \000d\000a\000d\000a[*]SELECT * FROM CLIENTE"; SQL statement:
+SELECT * FROM PEDIDOS 
+
+SELECT * FROM CLIENTE [42000-232]
+2025-04-18 17:58:22.450802-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PEDIDOS \000d\000a\000d\000a[*]SELECT * FROM CLIENTE"
+Syntax error in SQL statement "SELECT * FROM PEDIDOS \000d\000a\000d\000a[*]SELECT * FROM CLIENTE"; SQL statement:
+SELECT * FROM PEDIDOS 
+
+SELECT * FROM CLIENTE [42000-232]
+2025-04-18 18:01:38.493197-05:00 jdbc[44]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM PEDIDOS,CLIENTE \000d\000aWHERE PEDIDOS.CLIENTE_ID=CLIENTE.ID\000d\000a-- ----------\000d\000a[*]SELECT * FROM CARRITOS"
+Syntax error in SQL statement "SELECT * FROM PEDIDOS,CLIENTE \000d\000aWHERE PEDIDOS.CLIENTE_ID=CLIENTE.ID\000d\000a-- ----------\000d\000a[*]SELECT * FROM CARRITOS"; SQL statement:
+SELECT * FROM PEDIDOS,CLIENTE 
+WHERE PEDIDOS.CLIENTE_ID=CLIENTE.ID
+-- ----------
+SELECT * FROM CARRITOS [42000-232]
+2025-04-18 18:13:23.542103-05:00 jdbc[45]: null
+org.h2.message.DbException: La conexión no fue cerrada por la aplicación y esta siendo limpiada (garbage collected)
+The connection was not closed by the application and is garbage collected [90018-232]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:217)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:134)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:724)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: La conexión no fue cerrada por la aplicación y esta siendo limpiada (garbage collected)
+The connection was not closed by the application and is garbage collected [90018-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 16 more

@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,10 @@ import org.springframework.stereotype.Controller;
 
 import com.example.demo.repository.AdicionalRepository;
 import com.example.demo.repository.AdministradorRepository;
+import com.example.demo.repository.CarritoRepository;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.repository.DomiciliarioRepository;
+import com.example.demo.repository.ItemCarritoRepository;
 import com.example.demo.repository.OperadorRepository;
 import com.example.demo.repository.PedidoRepository;
 import com.example.demo.repository.ProductoRepository;
@@ -45,6 +49,12 @@ public class DatabaseInit implements ApplicationRunner{
 
     @Autowired
     PedidoRepository pedidoRepository;
+
+    @Autowired
+    CarritoRepository carritoRepository;
+
+    @Autowired
+    ItemCarritoRepository itemCarritoRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -203,11 +213,29 @@ productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, p
         operadorRepository.save(new Operador( "Jorge Díaz", "jorged", "clave131"));
 
         //Inicio de los pedidos
-        pedidoRepository.save(new Pedido(1, 1, true, "2023-10-01"));
-        pedidoRepository.save(new Pedido(2, 2, false, "2023-10-02"));
-        pedidoRepository.save(new Pedido(3, 4, true, "2023-10-03"));
-        pedidoRepository.save(new Pedido(4, 6, false, "2023-10-04"));
-        pedidoRepository.save(new Pedido(5, 5, true, "2023-10-05"));
+        Cliente cliente1 = clienteRepository.findById(1L).orElseThrow();
+        Operador operador1 = operadorRepository.findById(1L).orElseThrow();
+        Domiciliario domiciliario1 = domiciliarioRepository.findById(1L).orElseThrow();
+        // Crear carrito y items
+        Carrito carrito1 = new Carrito();
+        carrito1.setClienteId(cliente1.getId());
+        carritoRepository.save(carrito1);
+        ItemCarrito item1 = new ItemCarrito(carrito1, producto1, 2, List.of(adicional1));
+        ItemCarrito item2 = new ItemCarrito(carrito1, producto2, 1, List.of(adicional1, adicional2));
+        carrito1.getItems().addAll(List.of(item1, item2));
+        carritoRepository.save(carrito1);
+        itemCarritoRepository.saveAll(carrito1.getItems());
+
+        // Crear y guardar un pedido a partir de carrito1
+        Pedido pedido1 = new Pedido();
+        pedido1.setCliente(cliente1);
+        pedido1.setOperador(operador1);
+        pedido1.setDomiciliario(domiciliario1);
+        pedido1.setEstado("RECIBIDO");
+        pedido1.setDireccionEnvio("Calle 123");
+        pedido1.setFecha(LocalDateTime.now());
+        pedido1.setItems(new ArrayList<>(carrito1.getItems()));
+        pedidoRepository.save(pedido1);
     }
     
 }

@@ -1,63 +1,96 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.*;
-import com.example.demo.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.example.demo.entity.Carrito;
+import com.example.demo.entity.Cliente;
+import com.example.demo.entity.Domiciliario;
+import com.example.demo.entity.ItemCarrito;
+import com.example.demo.entity.Operador;
+import com.example.demo.entity.Pedido;
+import com.example.demo.repository.CarritoRepository;
+import com.example.demo.repository.ClienteRepository;
+import com.example.demo.repository.DomiciliarioRepository;
+import com.example.demo.repository.ItemPedidoRepository;
+import com.example.demo.repository.OperadorRepository;
+import com.example.demo.repository.PedidoRepository;
+import com.example.demo.repository.ProductoRepository;
 
 @Service
-public class PedidoServiceImpl implements PedidoService {
-
-    private final CarritoRepository carritoRepository;
-    private final PedidoRepository pedidoRepository;
-    private final ProductoRepository productoRepository;
+public class PedidoServiceImp implements PedidoService {
+   
+    @Autowired
+    CarritoRepository carritoRepository;
 
     @Autowired
-    public PedidoServiceImpl(CarritoRepository carritoRepository,
-                           PedidoRepository pedidoRepository,
-                           ProductoRepository productoRepository) {
-        this.carritoRepository = carritoRepository;
-        this.pedidoRepository = pedidoRepository;
-        this.productoRepository = productoRepository;
-    }
+    PedidoRepository pedidoRepository;
+
+    @Autowired
+    OperadorRepository operadorRepository;
+
+    @Autowired
+    DomiciliarioRepository domiciliarioRepository;
+
+    @Autowired
+    ClienteRepository clienteRepository;
+
+    @Autowired
+    ProductoRepository productoRepository;
+
+    @Autowired
+    ItemPedidoRepository itemPedidoRepository;
 
     @Override
     @Transactional
     public Pedido crearPedidoDesdeCarrito(Long carritoId, String direccionEnvio) {
         Carrito carrito = carritoRepository.findById(carritoId)
-                .orElseThrow(() -> new RuntimeException("Carrito no encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        Cliente cliente = clienteRepository.findById(carrito.getClienteId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         Pedido pedido = new Pedido();
-        pedido.setClienteId(carrito.getClienteId());
-        pedido.setDireccionEnvio(direccionEnvio);
+        pedido.setCliente(cliente);
+        pedido.setOperador(null); // Se asignará posteriormente
+        pedido.setDomiciliario(null); // Se asignará cuando se despache
+        pedido.setEstado("RECIBIDO"); // Estado inicial
         pedido.setFecha(LocalDateTime.now());
-        pedido.setEstado("PENDIENTE");
+        pedido.setDireccionEnvio(direccionEnvio);
 
-        // Convertir items del carrito a items de pedido
-        List<ItemPedido> itemsPedido = carrito.getItems().stream()
-                .map(itemCarrito -> {
-                    ItemPedido itemPedido = new ItemPedido();
-                    itemPedido.setProducto(itemCarrito.getProducto());
-                    itemPedido.setCantidad(itemCarrito.getCantidad());
-                    itemPedido.setAdicionales(new ArrayList<>(itemCarrito.getAdicionales()));
-                    return itemPedido;
-                })
-                .collect(Collectors.toList());
+        // Convertir ítems del carrito a pedido (sin implementar)
+        convertirItemsCarritoAPedido(carrito, pedido);
 
-        pedido.setItems(itemsPedido);
+        Pedido pedidoGuardado = pedidoRepository.save(pedido);
 
-        // Guardar pedido y limpiar carrito
-        Pedido pedidoCreado = pedidoRepository.save(pedido);
+        // Limpiar el carrito después de crear el pedido
         carrito.limpiarCarrito();
         carritoRepository.save(carrito);
 
-        return pedidoCreado;
+        return pedidoGuardado;
+    }
+
+    private void convertirItemsCarritoAPedido(Carrito carrito, Pedido pedido) {
+        List<ItemCarrito> itemsCarrito = carrito.getItems();
+        List<ItemCarrito> itemsParaPedido = new ArrayList<>();
+        for (ItemCarrito item : itemsCarrito) {
+            ItemCarrito nuevoItem = new ItemCarrito(
+                /* carrito */ null,
+                item.getProducto(),
+                item.getCantidad(),
+                new ArrayList<>(item.getAdicionales())
+            );
+            itemsParaPedido.add(nuevoItem);
+        }
+        pedido.setItems(itemsParaPedido);
     }
 
     @Override
@@ -67,7 +100,8 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public List<Pedido> obtenerPedidosPorCliente(Long clienteId) {
-        return pedidoRepository.findByClienteId(clienteId);
+        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return pedidoRepository.findByCliente(cliente);
     }
 
     @Override
@@ -79,8 +113,51 @@ public class PedidoServiceImpl implements PedidoService {
     @Transactional
     public void actualizarEstadoPedido(Long pedidoId, String nuevoEstado) {
         Pedido pedido = pedidoRepository.findById(pedidoId)
-                .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        
+        // Validar transición de estados
+        if ("ENTREGADO".equals(nuevoEstado)) {
+            pedido.setFecha(LocalDateTime.now());
+            if (pedido.getDomiciliario() != null) {
+                pedido.getDomiciliario().setdisponibilidad(true);
+                domiciliarioRepository.save(pedido.getDomiciliario());
+            }
+        }
+        
         pedido.setEstado(nuevoEstado);
+        pedidoRepository.save(pedido);
+    }
+
+    @Override
+    public List<Pedido> obtenerPedidosByOperador(Long operadorId) {
+        Operador operador = operadorRepository.findById(operadorId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return pedidoRepository.findByOperador(operador);
+    }
+
+    @Override
+    public List<Pedido> obtenerPedidosByDomiciliario(Long domiciliarioId) {
+        Domiciliario domiciliario = domiciliarioRepository.findById(domiciliarioId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return pedidoRepository.findByDomiciliario(domiciliario);
+    }
+
+    @Override
+    public List<Pedido> obtenerPedidosPendientes() {
+        return pedidoRepository.findByEstado(false);
+    }
+
+    @Override
+    public Optional<Pedido> getPedidoById(Long id) {
+        return pedidoRepository.findById(id);
+    }
+
+    @Override
+    @Transactional
+    public void asignarDomiciliario(Long pedidoId, Long domiciliarioId) {
+        Pedido pedido = pedidoRepository.findById(pedidoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        
+        Domiciliario domiciliario = domiciliarioRepository.findById(domiciliarioId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        
+        pedido.setDomiciliario(domiciliario);
         pedidoRepository.save(pedido);
     }
 }

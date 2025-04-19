@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -22,17 +23,20 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pedido_id;
     
-    @Column(name = "cliente_id", nullable = false)
-    private Long clienteId;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
     
-    @Column(name = "operador_id", nullable = false)
-    private Long operadorId; // Cambiado a Long
+    @ManyToOne
+    @JoinColumn(name = "operador_id", nullable = false)
+    private Operador operador;
     
-    @Column(name = "domiciliario_id")
-    private Long domiciliarioId; // Cambiado a Long y nullable
-    
-    private boolean estado; // false: pendiente, true: completado
-    
+    @ManyToOne
+    @JoinColumn(name = "domiciliario_id")
+    private Domiciliario domiciliario;
+
+
+    private String estado; // "RECIBIDO", "COCINANDO", "ENVIADO", "ENTREGADO"    
     private String direccionEnvio;
     
     @Column(columnDefinition = "TIMESTAMP")
@@ -48,10 +52,10 @@ public class Pedido {
     }
     
     // Constructor completo
-    public Pedido(Long clienteId, Long operadorId, Long domiciliarioId, boolean estado, String direccionEnvio) {
-        this.clienteId = clienteId;
-        this.operadorId = operadorId;
-        this.domiciliarioId = domiciliarioId;
+    public Pedido(Cliente clienteId, Operador operadorId, Domiciliario domiciliarioId, String estado, String direccionEnvio) {
+        this.cliente = clienteId;
+        this.operador = operadorId;
+        this.domiciliario = domiciliarioId;
         this.estado = estado;
         this.direccionEnvio = direccionEnvio;
         this.fecha = LocalDateTime.now();
@@ -59,18 +63,19 @@ public class Pedido {
     
     // Getters y Setters (actualizados)
     public Long getPedido_id() { return pedido_id; }
-    public Long getClienteId() { return clienteId; }
-    public Long getOperadorId() { return operadorId; }
-    public Long getDomiciliarioId() { return domiciliarioId; }
-    public boolean isEstado() { return estado; }
+    public Cliente getCliente() { return cliente; }
+    public Operador getOperadorId() { return operador; }
+    public Domiciliario getDomiciliario() { return domiciliario; }
+    public String isEstado() { return estado; }
     public LocalDateTime getFecha() { return fecha; }
     public List<ItemCarrito> getItems() { return items; }
     public String getDireccionEnvio() { return direccionEnvio; }
     
-    public void setClienteId(Long clienteId) { this.clienteId = clienteId; }
-    public void setOperadorId(Long operadorId) { this.operadorId = operadorId; }
-    public void setDomiciliarioId(Long domiciliarioId) { this.domiciliarioId = domiciliarioId; }
-    public void setEstado(boolean estado) { this.estado = estado; }
+    public void setCliente(Cliente clienteId) { this.cliente = clienteId; }
+    public void setOperador(Operador operadorId) { this.operador=operadorId; }
+    public void setDomiciliario(Domiciliario domiciliarioId) { this.domiciliario=domiciliarioId; }
+    public void setEstado(String estado) { this.estado = estado; }
     public void setDireccionEnvio(String direccionEnvio) { this.direccionEnvio = direccionEnvio; }
     public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
+    public void setItems(List<ItemCarrito> items) { this.items = items; }
 }

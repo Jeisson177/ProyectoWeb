@@ -11,4 +11,9 @@ public interface PedidoService {
     List<Pedido> obtenerPedidosPorCliente(Long clienteId);
     List<Pedido> obtenerTodosLosPedidos();
     void actualizarEstadoPedido(Long pedidoId, String nuevoEstado);
+    List<Pedido> obtenerPedidosByOperador(Long operadorId);
+    List<Pedido> obtenerPedidosByDomiciliario(Long domiciliarioId);
+    List<Pedido> obtenerPedidosPendientes();
+    Optional<Pedido> getPedidoById(Long id);
+    void asignarDomiciliario(Long pedidoId, Long domiciliarioId);
 }
