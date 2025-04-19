@@ -142,7 +142,7 @@ public class PedidoServiceImp implements PedidoService {
 
     @Override
     public List<Pedido> obtenerPedidosPendientes() {
-        return pedidoRepository.findByEstado(false);
+        return pedidoRepository.findByEstado("RECIBIDO");
     }
 
     @Override

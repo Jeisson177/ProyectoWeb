@@ -193,16 +193,16 @@ productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, p
     
         //Inicio de los domiciliarios
 
-        domiciliarioRepository.save(new Domiciliario("Mario Rossi", 3112345, true));
-        domiciliarioRepository.save(new Domiciliario("Luigi Verdi", 2345679, true));
-        domiciliarioRepository.save(new Domiciliario("Giovanni Bianchi", 3135680, false));
-        domiciliarioRepository.save(new Domiciliario("Francesco Romano", 3113581, true));
-        domiciliarioRepository.save(new Domiciliario("Antonio Esposito", 31123482, true));
-        domiciliarioRepository.save(new Domiciliario("Paolo Ferrari", 3112345, false));
-        domiciliarioRepository.save(new Domiciliario("Marco Ricci", 3112384, true));
-        domiciliarioRepository.save(new Domiciliario("Stefano Moretti", 37892345, true));
-        domiciliarioRepository.save(new Domiciliario("Luca Conti", 31123496, true));
-        domiciliarioRepository.save(new Domiciliario("Roberto Marini", 39915687, false));
+        domiciliarioRepository.save(new Domiciliario("Mario Rossi", "3112345", true));
+        domiciliarioRepository.save(new Domiciliario("Luigi Verdi", "2345679", true));
+        domiciliarioRepository.save(new Domiciliario("Giovanni Bianchi", "3135680", false));
+        domiciliarioRepository.save(new Domiciliario("Francesco Romano", "3113581", true));
+        domiciliarioRepository.save(new Domiciliario("Antonio Esposito", "31123482", true));
+        domiciliarioRepository.save(new Domiciliario("Paolo Ferrari", "3112345", false));
+        domiciliarioRepository.save(new Domiciliario("Marco Ricci", "3112384", true));
+        domiciliarioRepository.save(new Domiciliario("Stefano Moretti", "37892345", true));
+        domiciliarioRepository.save(new Domiciliario("Luca Conti", "31123496", true));
+        domiciliarioRepository.save(new Domiciliario("Roberto Marini", "39915687", false));
 
         //Inicio de los operadores
         operadorRepository.save(new Operador( "Carlos Gómez", "carlosg", "clave123"));

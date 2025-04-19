@@ -15,7 +15,7 @@ public class Domiciliario {
 
     @Pattern(regexp = "\\d{10}", message = "El teléfono debe tener 10 dígitos")
     @Column(nullable = false)
-    private int celular;
+    private String celular;
 
     @Column(nullable = false)
     private boolean disponibilidad;
@@ -24,14 +24,14 @@ public class Domiciliario {
     @GeneratedValue
     private Long id; 
 
-    public Domiciliario(Long id, String nombre, int celular, boolean disponibilidad) {
+    public Domiciliario(Long id, String nombre, String celular, boolean disponibilidad) {
         this.id = id;
         this.nombre = nombre;
         this.celular = celular;
         this.disponibilidad = disponibilidad;
     }
 
-    public Domiciliario(String nombre, int celular, boolean disponibilidad) {
+    public Domiciliario(String nombre, String celular, boolean disponibilidad) {
         this.nombre = nombre;
         this.celular = celular;
         this.disponibilidad = disponibilidad;
@@ -51,10 +51,10 @@ public class Domiciliario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public int getCelular() {
+    public String getCelular() {
         return celular;
     }
-    public void setCelular(int celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
     public boolean isdisponibilidad() {

@@ -15,7 +15,7 @@ import com.example.demo.entity.Pedido;
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
     
-    List<Pedido> findByEstado(boolean estado);
+    List<Pedido> findByEstado(String estado);
     List<Pedido> findByFecha(LocalDateTime fecha);
 
     List<Pedido> findByDomiciliarioIsNull();
