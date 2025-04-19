@@ -10,5 +10,4 @@ import com.example.demo.entity.Operador;
 
 @Repository
 public interface OperadorRepository extends JpaRepository<Operador, Long> {
-    Optional<Operador> findFirstByDisponibleTrueOrderByIdOperador();
-}
+    Optional<Operador> findFirstByDisponibleTrueOrderById();}

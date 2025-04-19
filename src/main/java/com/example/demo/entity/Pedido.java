@@ -4,9 +4,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,20 +24,22 @@ public class Pedido {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pedido_id;
+    private Long pedidoId;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonIgnore
     private Cliente cliente;
     
-    @ManyToOne
-    @JoinColumn(name = "operador_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "operador_id")
+    @JsonIgnore
     private Operador operador;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "domiciliario_id")
+    @JsonIgnore
     private Domiciliario domiciliario;
-
 
     private String estado; // "RECIBIDO", "COCINANDO", "ENVIADO", "ENTREGADO"    
     private String direccionEnvio;
@@ -42,40 +47,76 @@ public class Pedido {
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime fecha;
     
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "pedido_id")
-    private List<ItemCarrito> items = new ArrayList<>();
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<ItemPedido> items = new ArrayList<>();
     
     // Constructor por defecto
     public Pedido() {
-        this.fecha = LocalDateTime.now();
     }
     
-    // Constructor completo
-    public Pedido(Cliente clienteId, Operador operadorId, Domiciliario domiciliarioId, String estado, String direccionEnvio) {
-        this.cliente = clienteId;
-        this.operador = operadorId;
-        this.domiciliario = domiciliarioId;
+    // Getters y Setters
+    public Long getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setPedidoId(Long pedidoId) {
+        this.pedidoId = pedidoId;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Operador getOperador() {
+        return operador;
+    }
+
+    public void setOperador(Operador operador) {
+        this.operador = operador;
+    }
+
+    public Domiciliario getDomiciliario() {
+        return domiciliario;
+    }
+
+    public void setDomiciliario(Domiciliario domiciliario) {
+        this.domiciliario = domiciliario;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
         this.estado = estado;
-        this.direccionEnvio = direccionEnvio;
-        this.fecha = LocalDateTime.now();
     }
-    
-    // Getters y Setters (actualizados)
-    public Long getPedido_id() { return pedido_id; }
-    public Cliente getCliente() { return cliente; }
-    public Operador getOperadorId() { return operador; }
-    public Domiciliario getDomiciliario() { return domiciliario; }
-    public String isEstado() { return estado; }
-    public LocalDateTime getFecha() { return fecha; }
-    public List<ItemCarrito> getItems() { return items; }
-    public String getDireccionEnvio() { return direccionEnvio; }
-    
-    public void setCliente(Cliente clienteId) { this.cliente = clienteId; }
-    public void setOperador(Operador operadorId) { this.operador=operadorId; }
-    public void setDomiciliario(Domiciliario domiciliarioId) { this.domiciliario=domiciliarioId; }
-    public void setEstado(String estado) { this.estado = estado; }
-    public void setDireccionEnvio(String direccionEnvio) { this.direccionEnvio = direccionEnvio; }
-    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
-    public void setItems(List<ItemCarrito> items) { this.items = items; }
+
+    public String getDireccionEnvio() {
+        return direccionEnvio;
+    }
+
+    public void setDireccionEnvio(String direccionEnvio) {
+        this.direccionEnvio = direccionEnvio;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
+    public List<ItemPedido> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemPedido> items) {
+        this.items = items;
+    }
 }

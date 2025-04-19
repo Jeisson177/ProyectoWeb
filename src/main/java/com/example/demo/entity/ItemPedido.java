@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ public class ItemPedido {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pedido_id", nullable = false)
+    @JsonIgnore
     private Pedido pedido;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -53,5 +56,13 @@ public class ItemPedido {
     // Método para calcular subtotal
     public int calcularSubtotal() {
         return cantidad * precioUnitario;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 }

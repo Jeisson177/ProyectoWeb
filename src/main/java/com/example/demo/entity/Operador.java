@@ -1,73 +1,76 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "operadores")
 public class Operador {
 
-    @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
-    private String nombre;
-
-    @Size(min = 5, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
-    private String usuario;
-
-    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
-    private String contrasena;
-
     @Id
-    @GeneratedValue
-    private Long idOperador;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private boolean disponible=true;
+    private String nombre;
+    private String usuario;
+    private String contraseña;
+    private boolean disponible;
 
-    public Operador(Long idOperador, String nombre, String usuario, String contrasena) {
-        this.idOperador = idOperador;
-        this.nombre = nombre;
-        this.usuario = usuario;
-        this.contrasena = contrasena;
+    @OneToMany(mappedBy = "operador")
+    @JsonIgnore
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    // Constructores
+    public Operador() {
     }
 
-    public Operador(String nombre, String usuario, String contrasena) {
+    public Operador(String nombre, String usuario, String contraseña, boolean disponible) {
         this.nombre = nombre;
         this.usuario = usuario;
-        this.contrasena = contrasena;
+        this.contraseña = contraseña;
+        this.disponible = disponible;
     }
 
-    public Operador() {}
-
+    // Getters y setters
     public Long getId() {
-        return idOperador;
+        return id;
     }
 
-    public void setId(Long idOperador) {
-        this.idOperador = idOperador;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getnombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setnombre(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getusuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setusuario(String usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public String getcontrasena() {
-        return contrasena;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setcontrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public boolean isDisponible() {
@@ -78,4 +81,11 @@ public class Operador {
         this.disponible = disponible;
     }
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 }

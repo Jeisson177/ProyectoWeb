@@ -1,9 +1,9 @@
 package com.example.demo.service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.entity.Carrito;
 import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Domiciliario;
-import com.example.demo.entity.ItemCarrito;
+import com.example.demo.entity.ItemPedido;
 import com.example.demo.entity.Operador;
 import com.example.demo.entity.Pedido;
 import com.example.demo.repository.CarritoRepository;
@@ -49,6 +49,9 @@ public class PedidoServiceImp implements PedidoService {
     @Autowired
     ItemPedidoRepository itemPedidoRepository;
 
+    @Autowired
+    CarritoService carritoService;
+
     @Override
     @Transactional
     public Pedido crearPedidoDesdeCarrito(Long carritoId, String direccionEnvio) {
@@ -66,32 +69,27 @@ public class PedidoServiceImp implements PedidoService {
         pedido.setFecha(LocalDateTime.now());
         pedido.setDireccionEnvio(direccionEnvio);
 
-        // Convertir ítems del carrito a pedido (sin implementar)
-        convertirItemsCarritoAPedido(carrito, pedido);
+        List<ItemPedido> items = carrito.getItems().stream()
+            .map(itemCarrito -> new ItemPedido(
+                pedido,
+                itemCarrito.getProducto(),
+                itemCarrito.getCantidad(),
+                itemCarrito.getProducto().getPrecio()
+            ))
+            .collect(Collectors.toList());
 
-        Pedido pedidoGuardado = pedidoRepository.save(pedido);
+        pedido.setItems(items);
 
-        // Limpiar el carrito después de crear el pedido
-        carrito.limpiarCarrito();
-        carritoRepository.save(carrito);
+        // Guardar el pedido
+        Pedido savedPedido = pedidoRepository.save(pedido);
 
-        return pedidoGuardado;
+        // Limpiar el carrito
+        carritoService.limpiarCarrito(carrito.getClienteId());
+
+        return savedPedido;
     }
 
-    private void convertirItemsCarritoAPedido(Carrito carrito, Pedido pedido) {
-        List<ItemCarrito> itemsCarrito = carrito.getItems();
-        List<ItemCarrito> itemsParaPedido = new ArrayList<>();
-        for (ItemCarrito item : itemsCarrito) {
-            ItemCarrito nuevoItem = new ItemCarrito(
-                /* carrito */ null,
-                item.getProducto(),
-                item.getCantidad(),
-                new ArrayList<>(item.getAdicionales())
-            );
-            itemsParaPedido.add(nuevoItem);
-        }
-        pedido.setItems(itemsParaPedido);
-    }
+    
 
     @Override
     public Optional<Pedido> obtenerPedidoPorId(Long id) {

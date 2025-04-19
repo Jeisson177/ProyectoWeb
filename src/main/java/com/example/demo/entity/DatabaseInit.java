@@ -1,8 +1,8 @@
 package com.example.demo.entity;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -205,17 +205,18 @@ productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, p
         domiciliarioRepository.save(new Domiciliario("Roberto Marini", "39915687", false));
 
         //Inicio de los operadores
-        operadorRepository.save(new Operador( "Carlos Gómez", "carlosg", "clave123"));
-        operadorRepository.save(new Operador( "María López", "marial", "clave456"));
-        operadorRepository.save(new Operador( "Pedro Ramírez", "pedror", "clave789"));
-        operadorRepository.save(new Operador( "Ana Martínez", "anam", "clave101"));
-        operadorRepository.save(new Operador( "Luisa Fernández", "luisaf", "clave112"));
-        operadorRepository.save(new Operador( "Jorge Díaz", "jorged", "clave131"));
+        operadorRepository.save(new Operador( "Carlos Gómez", "carlosg", "clave123",true));
+        operadorRepository.save(new Operador( "María López", "marial", "clave456",true));
+        operadorRepository.save(new Operador( "Pedro Ramírez", "pedror", "clave789",true));
+        operadorRepository.save(new Operador( "Ana Martínez", "anam", "clave101",true));
+        operadorRepository.save(new Operador( "Luisa Fernández", "luisaf", "clave112",true));
+        operadorRepository.save(new Operador( "Jorge Díaz", "jorged", "clave131",true));
 
-        //Inicio de los pedidos
+        // Inicio de los pedidos
         Cliente cliente1 = clienteRepository.findById(1L).orElseThrow();
         Operador operador1 = operadorRepository.findById(1L).orElseThrow();
         Domiciliario domiciliario1 = domiciliarioRepository.findById(1L).orElseThrow();
+
         // Crear carrito y items
         Carrito carrito1 = new Carrito();
         carrito1.setClienteId(cliente1.getId());
@@ -234,7 +235,20 @@ productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, p
         pedido1.setEstado("RECIBIDO");
         pedido1.setDireccionEnvio("Calle 123");
         pedido1.setFecha(LocalDateTime.now());
-        pedido1.setItems(new ArrayList<>(carrito1.getItems()));
+
+        // Convertir ItemCarrito a ItemPedido
+        List<ItemPedido> itemsPedido = carrito1.getItems().stream()
+            .map(itemCarrito -> {
+                ItemPedido itemPedido = new ItemPedido();
+                itemPedido.setPedido(pedido1);
+                itemPedido.setProducto(itemCarrito.getProducto());
+                itemPedido.setCantidad(itemCarrito.getCantidad());
+                itemPedido.setPrecioUnitario(itemCarrito.getProducto().getPrecio());
+                return itemPedido;
+            })
+            .collect(Collectors.toList());
+
+        pedido1.setItems(itemsPedido);
         pedidoRepository.save(pedido1);
     }
     
