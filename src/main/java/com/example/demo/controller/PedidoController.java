@@ -75,17 +75,13 @@ public class PedidoController {
      }
  
      // --- FLUJO COMPRA ---
-     @PostMapping("/crear-desde-carrito")
-     public ResponseEntity<Pedido> crearPedidoDesdeCarrito(
-             @RequestBody Long carritoId,
-             @RequestParam String direccionEnvio) {
-         
-         Pedido pedidoCreado = pedidoService.crearPedidoDesdeCarrito(carritoId,direccionEnvio);
-         
-        
-         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoCreado);
-     }
- 
+    @PostMapping("/crear-desde-carrito")
+    public ResponseEntity<Pedido> crearPedidoDesdeCarrito(
+            @RequestBody Long carritoId,
+            @RequestParam String direccionEnvio) {
+        Pedido pedidoCreado = pedidoService.crearPedidoDesdeCarrito(carritoId,direccionEnvio);
+        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoCreado);
+    }
      // --- GESTIÓN DE ESTADOS ---
      @PatchMapping("/{id}/estado")
      public ResponseEntity<Void> actualizarEstado(
