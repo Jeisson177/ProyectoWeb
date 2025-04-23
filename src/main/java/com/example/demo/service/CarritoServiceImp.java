@@ -91,7 +91,10 @@ public class CarritoServiceImp implements CarritoService {
             itemCarritoRepository.save(nuevoItem);
         }
         
-        return carritoRepository.save(carrito);
+        carritoRepository.save(carrito);
+        itemCarritoRepository.saveAll(carrito.getItems());
+
+        return carrito;
     }
 
     private List<Adicional> obtenerYValidarAdicionales(Producto producto, List<Long> adicionalesIds) {

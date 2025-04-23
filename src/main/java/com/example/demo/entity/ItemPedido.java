@@ -31,8 +31,7 @@ public class ItemPedido {
     private int cantidad;
     private int precioUnitario;
 
-    // Constructor protegido para JPA
-    protected ItemPedido() {}
+    public ItemPedido() {}
 
     // Constructor principal
     public ItemPedido(Pedido pedido, Producto producto, int cantidad, int precioUnitario) {
