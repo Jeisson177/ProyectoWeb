@@ -22,7 +22,7 @@ public class Operador {
 
     private String nombre;
     private String usuario;
-    private String contraseña;
+    private String contrasena;
     private boolean disponible;
 
     @OneToMany(mappedBy = "operador")
@@ -33,10 +33,10 @@ public class Operador {
     public Operador() {
     }
 
-    public Operador(String nombre, String usuario, String contraseña, boolean disponible) {
+    public Operador(String nombre, String usuario, String contrasena, boolean disponible) {
         this.nombre = nombre;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.disponible = disponible;
     }
 
@@ -65,12 +65,12 @@ public class Operador {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getcontrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setcontrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public boolean isDisponible() {
