@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,17 +29,17 @@ public class Pedido {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
-    @JsonIgnore
+    @JsonIgnoreProperties({"pedidos", "hibernateLazyInitializer", "handler"})
     private Cliente cliente;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "operador_id")
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Operador operador;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "domiciliario_id")
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Domiciliario domiciliario;
 
     private String estado; // "RECIBIDO", "COCINANDO", "ENVIADO", "ENTREGADO"    

@@ -104,8 +104,16 @@ public class PedidoServiceImp implements PedidoService {
 
     @Override
     public List<Pedido> obtenerTodosLosPedidos() {
-        return pedidoRepository.findAll();
+        List<Pedido> pedidos = pedidoRepository.findAll();
+        // Forzar carga del cliente si es LAZY
+        pedidos.forEach(p -> {
+            if (p.getCliente() != null) {
+                p.getCliente().getNombre(); // solo con esto ya se carga
+            }
+        });
+        return pedidos;
     }
+
 
     @Override
     @Transactional

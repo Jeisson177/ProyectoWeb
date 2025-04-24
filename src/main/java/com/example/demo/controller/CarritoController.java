@@ -69,7 +69,7 @@ public class CarritoController {
                 pedidoRepository.save(pedido1);
 
                 response.put("pedidoId", pedido1.getPedidoId());
-                response.put("carritoId", carrito.getId());  // Devuelves solo el carritoId
+                response.put("carritoId", carrito.getId()); 
             
                 return ResponseEntity.ok(response);
     }
