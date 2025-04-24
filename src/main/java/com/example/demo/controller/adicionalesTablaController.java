@@ -21,7 +21,7 @@ import com.example.demo.service.AdicionalServiceImp;
 @RestController
 @RequestMapping("/adicionales")
 @CrossOrigin(origins = "http://localhost:4200") // Cambia si usas otro puerto o deployas el frontend
-public class AdicionalesTablaController {
+public class adicionalesTablaController {
 
     @Autowired
     AdicionalServiceImp adicionalService;
