@@ -8,6 +8,7 @@ import com.example.demo.entity.ItemCarrito;
 
 
 public interface CarritoService {
+    
     Carrito obtenerCarrito(Long clienteId);
     Carrito agregarProducto(Long clienteId, Long productoId, int cantidad, List<Long> adicionalesIds);
     Carrito actualizarCantidad(Long clienteId, Long itemCarritoId, int cantidad);
