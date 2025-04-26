@@ -47,15 +47,23 @@ public class PedidoController {
         return pedido.map(ResponseEntity::ok)
                      .orElseGet(() -> ResponseEntity.notFound().build());
     }
+    @PatchMapping("/{pedidoId}/asignar-domiciliario/{domiciliarioId}")
+    public ResponseEntity<Void> asignarDomiciliario(
+            @PathVariable Long pedidoId,
+            @PathVariable Long domiciliarioId) {
+        pedidoService.asignarDomiciliario(pedidoId, domiciliarioId);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping("/cliente/{id}")
     public ResponseEntity<List<Pedido>> getPedidoByClienteId(@PathVariable Long id) {
         List<Pedido> pedidos = pedidoService.obtenerPedidosPorCliente(id);
         return ResponseEntity.ok(pedidos);    }
 
-    @PostMapping
+    /*@PostMapping
     public Pedido createPedido(@RequestBody Long carritoId, @RequestParam String direccionEnvio) {
         return pedidoService.crearPedidoDesdeCarrito(carritoId, direccionEnvio);
-    }
+    }*/
     @GetMapping("/operador/{operadorId}")
     public List<Pedido> getPedidosByOperador(@PathVariable Long operadorId) {
         return pedidoService.obtenerPedidosByOperador(operadorId);

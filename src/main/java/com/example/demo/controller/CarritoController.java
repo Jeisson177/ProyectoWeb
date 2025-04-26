@@ -37,42 +37,57 @@ public class CarritoController {
    @Autowired
    PedidoRepository pedidoRepository;
 
-    @PostMapping
-    public ResponseEntity<Map<String, Long>>  agregarProductoAlCarrito(
-            @RequestParam Long clienteId,
-            @RequestParam Long productoId,
-            @RequestParam int cantidad,
-            @RequestBody(required = false) List<Long> adicionalesIds) {
-                if (adicionalesIds == null) {
-                    adicionalesIds = new ArrayList<>();  // Esto asegura que no haya un valor nulo al procesar
-                }
-                Carrito carrito = carritoService.agregarProducto(clienteId, productoId, cantidad, adicionalesIds);
-                Pedido pedido1 = new Pedido();
-                pedido1.setCliente(clienteService.getClienteById(clienteId));
-                pedido1.setOperador(null);
-                pedido1.setDomiciliario(null);
-                pedido1.setEstado("RECIBIDO");
-                pedido1.setDireccionEnvio("Calle 123");
-                pedido1.setFecha(LocalDateTime.now());
-                List<ItemPedido> itemsPedido = carrito.getItems().stream()
-                    .map(itemCarrito -> {
-                        ItemPedido itemPedido = new ItemPedido();
-                        itemPedido.setPedido(pedido1);
-                        itemPedido.setProducto(itemCarrito.getProducto());
-                        itemPedido.setCantidad(itemCarrito.getCantidad());
-                        itemPedido.setPrecioUnitario(itemCarrito.getProducto().getPrecio());
-                        return itemPedido;
-                    })
-                    .collect(Collectors.toList());
-                Map<String, Long> response = new HashMap<>();
-                pedido1.setItems(itemsPedido);
-                pedidoRepository.save(pedido1);
 
-                response.put("pedidoId", pedido1.getPedidoId());
-                response.put("carritoId", carrito.getId()); 
-            
-                return ResponseEntity.ok(response);
-    }
+   @PostMapping
+   public ResponseEntity<Map<String, Long>> agregarProductoAlCarrito(
+           @RequestParam Long clienteId,
+           @RequestParam Long productoId,
+           @RequestParam int cantidad,
+           @RequestParam String direccionEnvio,  // Recibir la dirección desde el frontend
+           @RequestBody(required = false) List<Long> adicionalesIds) {
+   
+       if (adicionalesIds == null) {
+           adicionalesIds = new ArrayList<>();  // Esto asegura que no haya un valor nulo al procesar
+       }
+       
+       // Primero, agregamos el producto al carrito
+       Carrito carrito = carritoService.agregarProducto(clienteId, productoId, cantidad, adicionalesIds);
+   
+       // Ahora, creamos el pedido usando la dirección proporcionada desde el frontend
+       Pedido pedido = new Pedido();
+       pedido.setCliente(clienteService.getClienteById(clienteId));  // Cliente asociado al carrito
+       pedido.setOperador(null); // Operador no asignado aún
+       pedido.setDomiciliario(null); // Domiciliario no asignado aún
+       pedido.setEstado("RECIBIDO"); // Estado inicial
+       pedido.setFecha(LocalDateTime.now()); // Fecha actual
+       pedido.setDireccionEnvio(direccionEnvio);  // Asignamos la dirección recibida desde el frontend
+   
+       // Creando los items del pedido desde el carrito
+       List<ItemPedido> itemsPedido = carrito.getItems().stream()
+           .map(itemCarrito -> {
+               ItemPedido itemPedido = new ItemPedido();
+               itemPedido.setPedido(pedido);
+               itemPedido.setProducto(itemCarrito.getProducto());
+               itemPedido.setCantidad(itemCarrito.getCantidad());
+               itemPedido.setPrecioUnitario(itemCarrito.getProducto().getPrecio());
+               return itemPedido;
+           })
+           .collect(Collectors.toList());
+       
+       pedido.setItems(itemsPedido);
+   
+       // Guardar el pedido
+       pedidoRepository.save(pedido);
+   
+       // Devolver la respuesta con el ID del carrito y el ID del pedido creado
+       Map<String, Long> response = new HashMap<>();
+       response.put("pedidoId", pedido.getPedidoId());
+       response.put("carritoId", carrito.getId()); 
+       
+       return ResponseEntity.ok(response);
+   }
+   
+   
     
 
 }

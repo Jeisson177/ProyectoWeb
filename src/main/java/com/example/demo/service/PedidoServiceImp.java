@@ -68,7 +68,11 @@ public class PedidoServiceImp implements PedidoService {
         pedido.setEstado("RECIBIDO"); // Estado inicial
         pedido.setFecha(LocalDateTime.now());
         pedido.setDireccionEnvio(direccionEnvio);
-
+        if (direccionEnvio != null && !direccionEnvio.isEmpty()) {
+            pedido.setDireccionEnvio(direccionEnvio);
+        } else {
+            pedido.setDireccionEnvio("Calle no especificada");  // Usar solo si no se pasa una dirección válida
+        }
         List<ItemPedido> items = carrito.getItems().stream()
             .map(itemCarrito -> new ItemPedido(
                 pedido,
@@ -157,13 +161,21 @@ public class PedidoServiceImp implements PedidoService {
     }
 
     @Override
-    @Transactional
-    public void asignarDomiciliario(Long pedidoId, Long domiciliarioId) {
-        Pedido pedido = pedidoRepository.findById(pedidoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        
-        Domiciliario domiciliario = domiciliarioRepository.findById(domiciliarioId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        
-        pedido.setDomiciliario(domiciliario);
-        pedidoRepository.save(pedido);
-    }
+@Transactional
+public void asignarDomiciliario(Long pedidoId, Long domiciliarioId) {
+    Pedido pedido = pedidoRepository.findById(pedidoId)
+            .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
+
+    Domiciliario domiciliario = domiciliarioRepository.findById(domiciliarioId)
+            .orElseThrow(() -> new RuntimeException("Domiciliario no encontrado"));
+
+    pedido.setDomiciliario(domiciliario);
+    pedido.setEstado("EN CAMINO"); // 🚚 Cambia el estado automáticamente
+
+    domiciliario.setdisponibilidad(false); // Domiciliario ahora no disponible
+    domiciliarioRepository.save(domiciliario);
+    
+    pedidoRepository.save(pedido);
+}
+
 }
