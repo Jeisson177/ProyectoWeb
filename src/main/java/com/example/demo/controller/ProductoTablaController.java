@@ -42,7 +42,7 @@ public class ProductoTablaController {
     // Obtener un producto por ID con sus adicionales
     @GetMapping("/{id}")
     public Producto getProductoConAdicionales(@PathVariable Long id) {
-        Producto p=productoService.getProductoWithAdicionales(id);
+        Producto p = productoService.getProductoWithAdicionales(id);
         System.out.println("Producto con adicionales: " + p.getAdicionales());
         return p;
 
@@ -58,7 +58,8 @@ public class ProductoTablaController {
 
     // Actualizar producto
     @PutMapping(value = "/{id}", consumes = MediaType.ALL_VALUE)
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id,@RequestBody Producto productoConAdicionales) {
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id,
+            @RequestBody Producto productoConAdicionales) {
         System.err.println(productoConAdicionales);
         List<Long> idsAdicionales = new ArrayList<>();
         if (productoConAdicionales.getAdicionales() != null) {
@@ -71,14 +72,26 @@ public class ProductoTablaController {
         List<Adicional> adicionales = adicionalService.getAdicionalesByIds(idsAdicionales);
 
         return productoService.actualizarProducto(productoConAdicionales, adicionales)
-        .map(productoActualizado -> ResponseEntity.ok(productoActualizado))
-        .orElseGet(() -> ResponseEntity.notFound().build());
+                .map(productoActualizado -> ResponseEntity.ok(productoActualizado))
+                .orElseGet(() -> ResponseEntity.notFound().build());
 
     }
 
     // Eliminar producto
-    @DeleteMapping("/{id}")
-    public void eliminarProducto(@PathVariable Long id) {
-        productoService.eliminarProducto(id);
+    // @DeleteMapping("/{id}")
+    // public void eliminarProducto(@PathVariable Long id) {
+    // productoService.eliminarProducto(id);
+    // }
+
+    @PutMapping("/eliminar/{id}")
+    public ResponseEntity<Producto> eliminarProducto(@PathVariable Long id) {
+        Producto producto = productoService.getProductoById(id);
+        if (producto != null) {
+            producto.setTemporada(false); // Marcamos como no disponible
+            productoService.guardarProducto(producto); // Guardamos el cambio
+            return ResponseEntity.ok(producto);
+        }
+        return ResponseEntity.notFound().build();
     }
+
 }

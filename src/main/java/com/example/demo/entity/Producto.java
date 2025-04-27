@@ -36,6 +36,16 @@ public class Producto {
     @Size(min = 3, max = 20, message = "La categoria debe tener entre 3 y 20 caracteres")
     private String categoria;
     
+    private boolean temporada;
+
+    public boolean isTemporada() {
+        return temporada;
+    }
+
+    public void setTemporada(boolean temporada) {
+        this.temporada = temporada;
+    }
+
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
         name = "producto_adicional", 
@@ -52,6 +62,7 @@ public class Producto {
         this.precio = precio;
         this.descripcion = descripcion;
         this.categoria = categoria;
+        this.temporada = true;
     }
     public void agregarAdicional(Adicional adicional) {
         if (!this.adicionales.contains(adicional)) {

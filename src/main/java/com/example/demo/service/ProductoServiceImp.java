@@ -27,12 +27,13 @@ public class ProductoServiceImp implements ProductoService {
 
     // Inyectar el EntityManager
     @PersistenceContext
-    private EntityManager entityManager;  // Esto resuelve el problema del "entityManager"
+    private EntityManager entityManager; 
 
     @Override
     public List<Producto> getAllProductos() {
-        return productoRepository.findAll();
+    return productoRepository.findByTemporadaTrue(); 
     }
+
 
     @Override
     public Producto getProductoById(Long id) {
