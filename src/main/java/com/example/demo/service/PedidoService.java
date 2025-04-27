@@ -16,4 +16,5 @@ public interface PedidoService {
     List<Pedido> obtenerPedidosPendientes();
     Optional<Pedido> getPedidoById(Long id);
     void asignarDomiciliario(Long pedidoId, Long domiciliarioId);
+    void finalizarPedido(Long pedidoId);
 }

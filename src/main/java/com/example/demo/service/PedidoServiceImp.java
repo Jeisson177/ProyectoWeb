@@ -161,21 +161,38 @@ public class PedidoServiceImp implements PedidoService {
     }
 
     @Override
-@Transactional
-public void asignarDomiciliario(Long pedidoId, Long domiciliarioId) {
-    Pedido pedido = pedidoRepository.findById(pedidoId)
-            .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
+    @Transactional
+    public void asignarDomiciliario(Long pedidoId, Long domiciliarioId) {
+        Pedido pedido = pedidoRepository.findById(pedidoId)
+                .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
 
-    Domiciliario domiciliario = domiciliarioRepository.findById(domiciliarioId)
-            .orElseThrow(() -> new RuntimeException("Domiciliario no encontrado"));
+        Domiciliario domiciliario = domiciliarioRepository.findById(domiciliarioId)
+                .orElseThrow(() -> new RuntimeException("Domiciliario no encontrado"));
 
-    pedido.setDomiciliario(domiciliario);
-    pedido.setEstado("EN CAMINO"); // 🚚 Cambia el estado automáticamente
+        pedido.setDomiciliario(domiciliario);
+        pedido.setEstado("EN CAMINO"); // 🚚 Cambia el estado automáticamente
 
-    domiciliario.setdisponibilidad(false); // Domiciliario ahora no disponible
-    domiciliarioRepository.save(domiciliario);
-    
-    pedidoRepository.save(pedido);
-}
+        domiciliario.setdisponibilidad(false); // Domiciliario ahora no disponible
+        domiciliarioRepository.save(domiciliario);
+        
+        pedidoRepository.save(pedido);
+    }
+        @Override
+        @Transactional
+    public void finalizarPedido(Long pedidoId) {
+        Pedido pedido = pedidoRepository.findById(pedidoId)
+                .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
 
+        // Cambiar el estado del pedido a "ENTREGADO"
+        pedido.setEstado("ENTREGADO");
+
+        // Si el domiciliario está asignado, lo marcamos como disponible
+        if (pedido.getDomiciliario() != null) {
+            Domiciliario domiciliario = pedido.getDomiciliario();
+            domiciliario.setdisponibilidad(true);  // El domiciliario vuelve a estar disponible
+            domiciliarioRepository.save(domiciliario);
+        }
+
+        pedidoRepository.save(pedido);  // Guardamos el cambio
+    }
 }

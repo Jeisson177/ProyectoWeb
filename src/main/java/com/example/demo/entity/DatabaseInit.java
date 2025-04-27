@@ -230,8 +230,8 @@ productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, p
         // Crear y guardar un pedido a partir de carrito1
         Pedido pedido1 = new Pedido();
         pedido1.setCliente(cliente1);
-        pedido1.setOperador(operador1);
-        pedido1.setDomiciliario(domiciliario1);
+        pedido1.setOperador(null);
+        pedido1.setDomiciliario(null);
         pedido1.setEstado("RECIBIDO");
         pedido1.setDireccionEnvio("Calle 123");
         pedido1.setFecha(LocalDateTime.now());

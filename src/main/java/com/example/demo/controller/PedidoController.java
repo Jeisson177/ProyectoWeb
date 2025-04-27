@@ -93,15 +93,21 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoCreado);
     }
      // --- GESTIÓN DE ESTADOS ---
-     @PatchMapping("/{id}/estado")
-     public ResponseEntity<Void> actualizarEstado(
-             @PathVariable Long id,
-             @RequestParam String  nuevoEstado) {
-         pedidoService.actualizarEstadoPedido(id, nuevoEstado);
-         return ResponseEntity.noContent().build();
-     }
+    @PatchMapping("/{id}/estado")
+    public ResponseEntity<Void> actualizarEstado(
+            @PathVariable Long id,
+            @RequestParam String  nuevoEstado) {
+        pedidoService.actualizarEstadoPedido(id, nuevoEstado);
+        return ResponseEntity.noContent().build();
+    }
  
-     
+    @PatchMapping("/{pedidoId}/finalizar")
+    public ResponseEntity<Void> finalizarPedido(
+            @PathVariable Long pedidoId) {
+        pedidoService.finalizarPedido(pedidoId);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }
