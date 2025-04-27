@@ -20,7 +20,7 @@ import com.example.demo.service.AdicionalServiceImp;
 
 @RestController
 @RequestMapping("/adicionales")
-@CrossOrigin(origins = "http://localhost:4200") 
+@CrossOrigin(origins = "http://localhost:4200") // Cambia si usas otro puerto o deployas el frontend
 public class adicionalesTablaController {
 
     @Autowired
@@ -48,15 +48,47 @@ public class adicionalesTablaController {
 
 
     // Actualizar un adicional existente
-    @PutMapping("/{id}")
-    public void updateAdicional(@PathVariable Long id, @RequestBody Adicional adicional) {
-        adicional.setAdicional_id(id); 
-        adicionalService.actualizarAdicional(adicional);
+@PutMapping("/{id}")
+public ResponseEntity<Adicional> updateAdicional(@PathVariable Long id, @RequestBody Adicional adicional) {
+    // Buscar el adicional por ID
+    Adicional adicionalExistente = adicionalService.getAdicionalById(id);
+    
+    if (adicionalExistente != null) {
+        // Actualizamos las propiedades (nombre, cantidad, precio, etc.)
+        adicionalExistente.setNombre(adicional.getNombre());
+        adicionalExistente.setCantidad(adicional.getCantidad());
+        adicionalExistente.setPrecio(adicional.getPrecio());
+        
+        // Guardamos la entidad actualizada
+        adicionalService.actualizarAdicional(adicionalExistente);
+        
+        // Retornamos la respuesta con el adicional actualizado
+        return ResponseEntity.status(HttpStatus.OK).body(adicionalExistente);
     }
+    
+    // En caso de que no se haya encontrado el adicional
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+}
 
-    // Eliminar un adicional
-    @DeleteMapping("/{id}")
-    public void deleteAdicional(@PathVariable Long id) {
-        adicionalService.eliminarAdicional(id);
+// "Eliminar" un adicional (marcar como no disponible)
+@PutMapping("/eliminar/{id}")
+public ResponseEntity<Adicional> eliminarAdicional(@PathVariable Long id) {
+    // Buscar el adicional por ID
+    Adicional adicionalExistente = adicionalService.getAdicionalById(id);
+    
+    if (adicionalExistente != null) {
+        // Marcamos el adicional como no disponible
+        adicionalExistente.setTemporada(false); 
+        
+        // Guardamos la entidad con el cambio de disponibilidad
+        adicionalService.actualizarAdicional(adicionalExistente); 
+        
+        // Retornamos la respuesta con el adicional actualizado
+        return ResponseEntity.status(HttpStatus.OK).body(adicionalExistente);
     }
+    
+    // En caso de que no se haya encontrado el adicional
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+}
+
 }

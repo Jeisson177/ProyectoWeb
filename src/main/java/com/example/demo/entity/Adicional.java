@@ -35,6 +35,18 @@ public class Adicional {
     @JsonIgnoreProperties("adicionales") // <- opcional
     private List<Producto> productos;
 
+    private boolean temporada = true;
+
+    
+
+    public boolean isTemporada() {
+        return temporada;
+    }
+
+    public void setTemporada(boolean temporada) {
+        this.temporada = temporada;
+    }
+
     public Adicional() {this.productos = new ArrayList<>();
 }
 
@@ -43,6 +55,7 @@ public class Adicional {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.temporada = true;
     }
 
     public List<Producto> getProductos() {
