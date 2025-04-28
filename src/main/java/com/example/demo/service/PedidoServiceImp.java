@@ -17,6 +17,7 @@ import com.example.demo.entity.Domiciliario;
 import com.example.demo.entity.ItemPedido;
 import com.example.demo.entity.Operador;
 import com.example.demo.entity.Pedido;
+import com.example.demo.entity.Producto;
 import com.example.demo.repository.CarritoRepository;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.repository.DomiciliarioRepository;
@@ -97,7 +98,40 @@ public class PedidoServiceImp implements PedidoService {
 
     @Override
     public Optional<Pedido> obtenerPedidoPorId(Long id) {
-        return pedidoRepository.findById(id);
+        Optional<Pedido> pedido = pedidoRepository.findById(id);
+        
+        pedido.ifPresent(p -> {
+            // Forzar la carga de los items y sus productos
+            p.getItems().forEach(item -> {
+                // Forzar la carga del producto
+                Producto producto = item.getProducto();
+                producto.getNombre();  // Carga básica del producto
+                
+                // Forzar la carga de las relaciones anidadas dentro de Producto (por ejemplo, adicionales)
+                if (producto.getAdicionales() != null) {
+                    producto.getAdicionales().forEach(adicional -> {
+                        adicional.getNombre();  // Forzar la carga del adicional
+                    });
+                }
+            });
+            
+            // Forzar la carga del cliente
+            if (p.getCliente() != null) {
+                p.getCliente().getNombre();
+            }
+            
+            // Forzar la carga del operador (si no es null)
+            if (p.getOperador() != null) {
+                p.getOperador().getNombre();
+            }
+            
+            // Forzar la carga del domiciliario (si no es null)
+            if (p.getDomiciliario() != null) {
+                p.getDomiciliario().getNombre();
+            }
+        });
+        
+        return pedido;    
     }
 
     @Override
