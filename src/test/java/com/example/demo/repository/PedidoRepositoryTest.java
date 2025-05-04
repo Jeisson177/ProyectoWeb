@@ -146,10 +146,27 @@ void testGuardarPedido() {
         assertNotNull(pedidos);
     }
 
-    
+    @Test
+void testBuscarPedidosSinDomiciliario() {
+    // Crear y guardar cliente
+    clienteRepository.save(new Cliente("Carlos", "López", "clopez@example.com", "91011", "Boulevard 789", "555-9101"));
 
-    
+    Cliente clienteGuardado = clienteRepository.findByCorreo("clopez@example.com").get();
 
+    // Crear pedido SIN domiciliario
+    Pedido pedido = new Pedido();
+    pedido.setCliente(clienteGuardado);
+    pedido.setEstado("Pendiente");
+
+    pedido.setDomiciliario(null); 
+    pedidoRepository.save(pedido);
+
+    // Ejecutar consulta
+    List<Pedido> pedidosSinDomiciliario = pedidoRepository.findByDomiciliarioIsNull();
+
+    // Verificar que el pedido está en los resultados
+    assertFalse(pedidosSinDomiciliario.isEmpty());
+}
 
 
 
