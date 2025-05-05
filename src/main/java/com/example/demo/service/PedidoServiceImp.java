@@ -28,7 +28,7 @@ import com.example.demo.repository.ProductoRepository;
 
 @Service
 public class PedidoServiceImp implements PedidoService {
-   
+
     @Autowired
     CarritoRepository carritoRepository;
 
@@ -72,16 +72,15 @@ public class PedidoServiceImp implements PedidoService {
         if (direccionEnvio != null && !direccionEnvio.isEmpty()) {
             pedido.setDireccionEnvio(direccionEnvio);
         } else {
-            pedido.setDireccionEnvio("Calle no especificada");  // Usar solo si no se pasa una dirección válida
+            pedido.setDireccionEnvio("Calle no especificada"); // Usar solo si no se pasa una dirección válida
         }
         List<ItemPedido> items = carrito.getItems().stream()
-            .map(itemCarrito -> new ItemPedido(
-                pedido,
-                itemCarrito.getProducto(),
-                itemCarrito.getCantidad(),
-                itemCarrito.getProducto().getPrecio()
-            ))
-            .collect(Collectors.toList());
+                .map(itemCarrito -> new ItemPedido(
+                        pedido,
+                        itemCarrito.getProducto(),
+                        itemCarrito.getCantidad(),
+                        itemCarrito.getProducto().getPrecio()))
+                .collect(Collectors.toList());
 
         pedido.setItems(items);
 
@@ -94,49 +93,49 @@ public class PedidoServiceImp implements PedidoService {
         return savedPedido;
     }
 
-    
-
     @Override
     public Optional<Pedido> obtenerPedidoPorId(Long id) {
         Optional<Pedido> pedido = pedidoRepository.findById(id);
-        
+
         pedido.ifPresent(p -> {
             // Forzar la carga de los items y sus productos
             p.getItems().forEach(item -> {
                 // Forzar la carga del producto
                 Producto producto = item.getProducto();
-                producto.getNombre();  // Carga básica del producto
-                
-                // Forzar la carga de las relaciones anidadas dentro de Producto (por ejemplo, adicionales)
+                producto.getNombre(); // Carga básica del producto
+
+                // Forzar la carga de las relaciones anidadas dentro de Producto (por ejemplo,
+                // adicionales)
                 if (producto.getAdicionales() != null) {
                     producto.getAdicionales().forEach(adicional -> {
-                        adicional.getNombre();  // Forzar la carga del adicional
+                        adicional.getNombre(); // Forzar la carga del adicional
                     });
                 }
             });
-            
+
             // Forzar la carga del cliente
             if (p.getCliente() != null) {
                 p.getCliente().getNombre();
             }
-            
+
             // Forzar la carga del operador (si no es null)
             if (p.getOperador() != null) {
                 p.getOperador().getNombre();
             }
-            
+
             // Forzar la carga del domiciliario (si no es null)
             if (p.getDomiciliario() != null) {
                 p.getDomiciliario().getNombre();
             }
         });
-        
-        return pedido;    
+
+        return pedido;
     }
 
     @Override
     public List<Pedido> obtenerPedidosPorCliente(Long clienteId) {
-        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Cliente cliente = clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return pedidoRepository.findByCliente(cliente);
     }
 
@@ -152,13 +151,12 @@ public class PedidoServiceImp implements PedidoService {
         return pedidos;
     }
 
-
     @Override
     @Transactional
     public void actualizarEstadoPedido(Long pedidoId, String nuevoEstado) {
         Pedido pedido = pedidoRepository.findById(pedidoId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        
+
         // Validar transición de estados
         if ("ENTREGADO".equals(nuevoEstado)) {
             pedido.setFecha(LocalDateTime.now());
@@ -167,20 +165,22 @@ public class PedidoServiceImp implements PedidoService {
                 domiciliarioRepository.save(pedido.getDomiciliario());
             }
         }
-        
+
         pedido.setEstado(nuevoEstado);
         pedidoRepository.save(pedido);
     }
 
     @Override
     public List<Pedido> obtenerPedidosByOperador(Long operadorId) {
-        Operador operador = operadorRepository.findById(operadorId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Operador operador = operadorRepository.findById(operadorId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return pedidoRepository.findByOperador(operador);
     }
 
     @Override
     public List<Pedido> obtenerPedidosByDomiciliario(Long domiciliarioId) {
-        Domiciliario domiciliario = domiciliarioRepository.findById(domiciliarioId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Domiciliario domiciliario = domiciliarioRepository.findById(domiciliarioId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return pedidoRepository.findByDomiciliario(domiciliario);
     }
 
@@ -203,16 +203,21 @@ public class PedidoServiceImp implements PedidoService {
         Domiciliario domiciliario = domiciliarioRepository.findById(domiciliarioId)
                 .orElseThrow(() -> new RuntimeException("Domiciliario no encontrado"));
 
-        pedido.setDomiciliario(domiciliario);
-        pedido.setEstado("EN CAMINO"); // 🚚 Cambia el estado automáticamente
+        if (!domiciliario.isdisponibilidad()) {
+            // No se asigna si no está disponible
+            return;
+        }
 
-        domiciliario.setdisponibilidad(false); // Domiciliario ahora no disponible
+        pedido.setDomiciliario(domiciliario);
+        pedido.setEstado("EN CAMINO");
+
+        domiciliario.setdisponibilidad(false);
         domiciliarioRepository.save(domiciliario);
-        
         pedidoRepository.save(pedido);
     }
-        @Override
-        @Transactional
+
+    @Override
+    @Transactional
     public void finalizarPedido(Long pedidoId) {
         Pedido pedido = pedidoRepository.findById(pedidoId)
                 .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
@@ -223,10 +228,10 @@ public class PedidoServiceImp implements PedidoService {
         // Si el domiciliario está asignado, lo marcamos como disponible
         if (pedido.getDomiciliario() != null) {
             Domiciliario domiciliario = pedido.getDomiciliario();
-            domiciliario.setdisponibilidad(true);  // El domiciliario vuelve a estar disponible
+            domiciliario.setdisponibilidad(true); // El domiciliario vuelve a estar disponible
             domiciliarioRepository.save(domiciliario);
         }
 
-        pedidoRepository.save(pedido);  // Guardamos el cambio
+        pedidoRepository.save(pedido); // Guardamos el cambio
     }
 }
