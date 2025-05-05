@@ -21,6 +21,8 @@ import com.example.demo.repository.ProductoRepository;
 import com.example.demo.service.CarritoService;
 import com.example.demo.service.PedidoService;
 
+import jakarta.transaction.Transactional;
+
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 public class PedidoServiceTest {
@@ -49,94 +51,122 @@ public class PedidoServiceTest {
 
     
     @Test
-     void testCrearPedidoDesdeCarrito() {
-        // Preparar datos
-        Cliente cliente = new Cliente();
-        cliente.setNombre("Juan");
-        clienteRepository.save(cliente);
+void testCrearPedidoDesdeCarrito() {
+    // Crear cliente y guardar
+    Cliente cliente = new Cliente();
+    cliente.setNombre("Juan");
+    cliente.setApellido("Pérez");
+    cliente.setCorreo("juan@mail.com");
+    cliente.setContrasena("1234abc12");
+    cliente.setTelefono("123456789");
+    cliente.setDireccion("Calle 123");
+    Cliente clienteGuardado = clienteRepository.save(cliente);
 
-        Producto producto = new Producto();
-        producto.setNombre("Producto 1");
-        producto.setPrecio( 1000);
-        productoRepository.save(producto);
+    // Crear producto y guardar
+    Producto producto = new Producto();
+    producto.setNombre("Producto 1");
+    producto.setPrecio(1000);
+    producto.setDescripcion("Producto de prueba");
+    producto.setCategoria("Alimentos");
+    Producto productoGuardado = productoRepository.save(producto);
 
-        Carrito carrito = new Carrito();
-        carrito.setClienteId(cliente.getId());
-        carritoRepository.save(carrito);
+    // Crear carrito y guardar
+    Carrito carrito = new Carrito();
+    carrito.setClienteId(clienteGuardado.getId());
+    Carrito carritoGuardado = carritoRepository.save(carrito);
 
-        // Agregar producto al carrito
-        carritoService.agregarProducto(cliente.getId(), producto.getProducto_id(), 2, null);
+    // Agregar producto al carrito
+    carritoService.agregarProducto(clienteGuardado.getId(), productoGuardado.getProducto_id(), 2, null);
 
-        // Actuar
-        Pedido pedido = pedidoService.crearPedidoDesdeCarrito(carrito.getId(), "Calle Falsa 123");
+    // Crear pedido desde carrito
+    Pedido pedido = pedidoService.crearPedidoDesdeCarrito(carritoGuardado.getId(), "Calle Falsa 123");
 
-        // Verificar
-        Assertions.assertNotNull(pedido.getPedidoId());
-        Assertions.assertEquals(1, pedido.getItems().size());
-        Assertions.assertEquals("RECIBIDO", pedido.getEstado());
-        Assertions.assertEquals("Calle Falsa 123", pedido.getDireccionEnvio());
-    }
+    // Verificaciones
+    Assertions.assertNotNull(pedido.getPedidoId());
+    Assertions.assertEquals(1, pedido.getItems().size());
+    Assertions.assertEquals("RECIBIDO", pedido.getEstado());
+    Assertions.assertEquals("Calle Falsa 123", pedido.getDireccionEnvio());
+}
+
 
     @Test
+    @Transactional
     public void testObtenerPedidoPorId() {
         // Preparar datos
         Cliente cliente = new Cliente();
-        cliente.setNombre("Ana");
-        clienteRepository.save(cliente);
+        cliente.setNombre("Juan");
+        cliente.setApellido("Pérez");
+        cliente.setCorreo("juan@mail.com");
+        cliente.setContrasena("1234abc12");
+        cliente.setTelefono("123456789");
+        cliente.setDireccion("Calle 123");
+        Cliente clienteGuardado = clienteRepository.save(cliente);
 
         Pedido pedido = new Pedido();
-        pedido.setCliente(cliente);
+        pedido.setCliente(clienteGuardado); // asegúrate de usar el cliente guardado
         pedido.setEstado("RECIBIDO");
         pedido.setDireccionEnvio("Calle 123");
-        pedidoRepository.save(pedido);
+        Pedido pedidoGuardado = pedidoRepository.save(pedido);
 
         // Actuar
-        Optional<Pedido> pedidoObtenido = pedidoService.obtenerPedidoPorId(pedido.getPedidoId());
+        Optional<Pedido> pedidoObtenido = pedidoService.obtenerPedidoPorId(pedidoGuardado.getPedidoId());
 
         // Verificar
         Assertions.assertTrue(pedidoObtenido.isPresent());
-        Assertions.assertEquals("Ana", pedidoObtenido.get().getCliente().getNombre());
+        Assertions.assertEquals("Juan", pedidoObtenido.get().getCliente().getNombre()); // corregido
     }
+
 
     @Test
     public void testActualizarEstadoPedido() {
         // Preparar datos
         Cliente cliente = new Cliente();
-        cliente.setNombre("Carlos");
-        clienteRepository.save(cliente);
+        cliente.setNombre("Juan");
+        cliente.setApellido("Pérez");
+        cliente.setCorreo("juan@mail.com");
+        cliente.setContrasena("1234abc12");
+        cliente.setTelefono("123456789");
+        cliente.setDireccion("Calle 123");
+        Cliente clienteGuardado = clienteRepository.save(cliente);
 
         Pedido pedido = new Pedido();
-        pedido.setCliente(cliente);
+        pedido.setCliente(clienteGuardado); // asegúrate de usar el cliente guardado
         pedido.setEstado("RECIBIDO");
-
-        pedido.setDireccionEnvio("Calle 456");
-        pedidoRepository.save(pedido);
+        pedido.setDireccionEnvio("Calle 123");
+        Pedido pedidoGuardado = pedidoRepository.save(pedido);
 
         // Actuar
-        pedidoService.actualizarEstadoPedido(pedido.getPedidoId(), "EN CAMINO");
+        pedidoService.actualizarEstadoPedido(pedidoGuardado.getPedidoId(), "EN CAMINO");
 
         // Verificar
-        Pedido pedidoActualizado = pedidoRepository.findById(pedido.getPedidoId()).orElse(null);
+        Pedido pedidoActualizado = pedidoRepository.findById(pedidoGuardado.getPedidoId()).orElse(null);
         Assertions.assertNotNull(pedidoActualizado);
         Assertions.assertEquals("EN CAMINO", pedidoActualizado.getEstado());
     }
 
     @Test
+    @Transactional
     public void testAsignarDomiciliario() {
         // Preparar datos
         Cliente cliente = new Cliente();
-        cliente.setNombre("Laura");
-        clienteRepository.save(cliente);
+        cliente.setNombre("Juan");
+        cliente.setApellido("Pérez");
+        cliente.setCorreo("juan@mail.com");
+        cliente.setContrasena("1234abc12");
+        cliente.setTelefono("123456789");
+        cliente.setDireccion("Calle 123");
+        Cliente clienteGuardado = clienteRepository.save(cliente);
 
         Pedido pedido = new Pedido();
-        pedido.setCliente(cliente);
+        pedido.setCliente(clienteGuardado);
         pedido.setEstado("RECIBIDO");
         pedido.setDireccionEnvio("Calle 789");
         pedidoRepository.save(pedido);
 
         Domiciliario domiciliario = new Domiciliario();
         domiciliario.setNombre("Pedro");
-        domiciliario.setdisponibilidad(true);;
+        domiciliario.setdisponibilidad(true);
+        domiciliario.setCelular("123456789");
         domiciliarioRepository.save(domiciliario);
 
         // Actuar
@@ -150,23 +180,30 @@ public class PedidoServiceTest {
     }
 
     @Test
+    @Transactional
     public void testFinalizarPedido() {
         // Preparar datos
         Cliente cliente = new Cliente();
-        cliente.setNombre("Luis");
-        clienteRepository.save(cliente);
+        cliente.setNombre("Juan");
+        cliente.setApellido("Pérez");
+        cliente.setCorreo("juan@mail.com");
+        cliente.setContrasena("1234abc12");
+        cliente.setTelefono("123456789");
+        cliente.setDireccion("Calle 123");
+        Cliente clienteGuardado = clienteRepository.save(cliente);
 
         Domiciliario domiciliario = new Domiciliario();
-        domiciliario.setNombre("Maria");
-        domiciliario.setdisponibilidad(false);
+        domiciliario.setNombre("Pedro");
+        domiciliario.setdisponibilidad(true);
+        domiciliario.setCelular("123456789");
         domiciliarioRepository.save(domiciliario);
 
         Pedido pedido = new Pedido();
-        pedido.setCliente(cliente);
-        pedido.setDomiciliario(domiciliario);
-        pedido.setEstado("EN CAMINO");
-        pedido.setDireccionEnvio("Calle 101");
+        pedido.setCliente(clienteGuardado);
+        pedido.setEstado("RECIBIDO");
+        pedido.setDireccionEnvio("Calle 789");
         pedidoRepository.save(pedido);
+
 
         // Actuar
         pedidoService.finalizarPedido(pedido.getPedidoId());
