@@ -1,11 +1,25 @@
-package com.example.demo.service;
+package com.example.demo.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.example.demo.entity.Carrito;
+import com.example.demo.entity.Cliente;
+import com.example.demo.entity.Domiciliario;
+import com.example.demo.entity.Pedido;
+import com.example.demo.entity.Producto;
+import com.example.demo.repository.CarritoRepository;
+import com.example.demo.repository.ClienteRepository;
+import com.example.demo.repository.DomiciliarioRepository;
+import com.example.demo.repository.PedidoRepository;
+import com.example.demo.repository.ProductoRepository;
+import com.example.demo.service.CarritoService;
+import com.example.demo.service.PedidoService;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
@@ -43,7 +57,7 @@ public class PedidoServiceTest {
 
         Producto producto = new Producto();
         producto.setNombre("Producto 1");
-        producto.setPrecio(1000.0);
+        producto.setPrecio( 1000);
         productoRepository.save(producto);
 
         Carrito carrito = new Carrito();
@@ -51,13 +65,13 @@ public class PedidoServiceTest {
         carritoRepository.save(carrito);
 
         // Agregar producto al carrito
-        carritoService.agregarProductoAlCarrito(cliente.getId(), producto.getId(), 2);
+        carritoService.agregarProducto(cliente.getId(), producto.getProducto_id(), 2, null);
 
         // Actuar
         Pedido pedido = pedidoService.crearPedidoDesdeCarrito(carrito.getId(), "Calle Falsa 123");
 
         // Verificar
-        Assertions.assertNotNull(pedido.getId());
+        Assertions.assertNotNull(pedido.getPedidoId());
         Assertions.assertEquals(1, pedido.getItems().size());
         Assertions.assertEquals("RECIBIDO", pedido.getEstado());
         Assertions.assertEquals("Calle Falsa 123", pedido.getDireccionEnvio());
@@ -73,12 +87,11 @@ public class PedidoServiceTest {
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setEstado("RECIBIDO");
-        pedido.setFecha(LocalDateTime.now());
         pedido.setDireccionEnvio("Calle 123");
         pedidoRepository.save(pedido);
 
         // Actuar
-        Optional<Pedido> pedidoObtenido = pedidoService.obtenerPedidoPorId(pedido.getId());
+        Optional<Pedido> pedidoObtenido = pedidoService.obtenerPedidoPorId(pedido.getPedidoId());
 
         // Verificar
         Assertions.assertTrue(pedidoObtenido.isPresent());
@@ -95,15 +108,15 @@ public class PedidoServiceTest {
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setEstado("RECIBIDO");
-        pedido.setFecha(LocalDateTime.now());
+
         pedido.setDireccionEnvio("Calle 456");
         pedidoRepository.save(pedido);
 
         // Actuar
-        pedidoService.actualizarEstadoPedido(pedido.getId(), "EN CAMINO");
+        pedidoService.actualizarEstadoPedido(pedido.getPedidoId(), "EN CAMINO");
 
         // Verificar
-        Pedido pedidoActualizado = pedidoRepository.findById(pedido.getId()).orElse(null);
+        Pedido pedidoActualizado = pedidoRepository.findById(pedido.getPedidoId()).orElse(null);
         Assertions.assertNotNull(pedidoActualizado);
         Assertions.assertEquals("EN CAMINO", pedidoActualizado.getEstado());
     }
@@ -118,20 +131,19 @@ public class PedidoServiceTest {
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setEstado("RECIBIDO");
-        pedido.setFecha(LocalDateTime.now());
         pedido.setDireccionEnvio("Calle 789");
         pedidoRepository.save(pedido);
 
         Domiciliario domiciliario = new Domiciliario();
         domiciliario.setNombre("Pedro");
-        domiciliario.setDisponibilidad(true);
+        domiciliario.setdisponibilidad(true);;
         domiciliarioRepository.save(domiciliario);
 
         // Actuar
-        pedidoService.asignarDomiciliario(pedido.getId(), domiciliario.getId());
+        pedidoService.asignarDomiciliario(pedido.getPedidoId(), domiciliario.getId());
 
         // Verificar
-        Pedido pedidoAsignado = pedidoRepository.findById(pedido.getId()).orElse(null);
+        Pedido pedidoAsignado = pedidoRepository.findById(pedido.getPedidoId()).orElse(null);
         Assertions.assertNotNull(pedidoAsignado);
         Assertions.assertEquals("EN CAMINO", pedidoAsignado.getEstado());
         Assertions.assertEquals("Pedro", pedidoAsignado.getDomiciliario().getNombre());
@@ -146,28 +158,27 @@ public class PedidoServiceTest {
 
         Domiciliario domiciliario = new Domiciliario();
         domiciliario.setNombre("Maria");
-        domiciliario.setDisponibilidad(false);
+        domiciliario.setdisponibilidad(false);
         domiciliarioRepository.save(domiciliario);
 
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setDomiciliario(domiciliario);
         pedido.setEstado("EN CAMINO");
-        pedido.setFecha(LocalDateTime.now());
         pedido.setDireccionEnvio("Calle 101");
         pedidoRepository.save(pedido);
 
         // Actuar
-        pedidoService.finalizarPedido(pedido.getId());
+        pedidoService.finalizarPedido(pedido.getPedidoId());
 
         // Verificar
-        Pedido pedidoFinalizado = pedidoRepository.findById(pedido.getId()).orElse(null);
+        Pedido pedidoFinalizado = pedidoRepository.findById(pedido.getPedidoId()).orElse(null);
         Assertions.assertNotNull(pedidoFinalizado);
         Assertions.assertEquals("ENTREGADO", pedidoFinalizado.getEstado());
 
         Domiciliario domiciliarioActualizado = domiciliarioRepository.findById(domiciliario.getId()).orElse(null);
         Assertions.assertNotNull(domiciliarioActualizado);
-        Assertions.assertTrue(domiciliarioActualizado.getDisponibilidad());
+        Assertions.assertTrue(domiciliarioActualizado.isdisponibilidad());
     }
     
 }
