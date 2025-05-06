@@ -37,7 +37,7 @@ public class PedidoController {
     }
 
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<List<Pedido>> getAllPedidos() {
 
         List<Pedido> pedidos = pedidoService.obtenerTodosLosPedidos();
@@ -45,7 +45,7 @@ public class PedidoController {
         ResponseEntity<List<Pedido>> response = new ResponseEntity<>(pedidos, HttpStatus.OK);
         return response;
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<Pedido> getPedidoById(@PathVariable Long id) {
         var pedido = pedidoService.getPedidoById(id);
