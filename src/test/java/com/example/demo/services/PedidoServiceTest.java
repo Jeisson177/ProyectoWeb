@@ -25,7 +25,6 @@ import jakarta.transaction.Transactional;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
-
 public class PedidoServiceTest {
 
 
