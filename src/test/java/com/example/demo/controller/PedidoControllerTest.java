@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Pedido;
 import com.example.demo.service.PedidoService;
 import com.example.demo.service.ProductoService;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -20,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -48,13 +51,17 @@ public class PedidoControllerTest {
 
     @Test
     void testGetPedidoByIdFound() throws Exception {
+        // 1. Configuración del test
         Pedido pedido = new Pedido();
-        pedido.setPedidoId(1L);
+        pedido.setPedidoId(1L); 
+        
+        // Mock del servicio
         given(pedidoService.getPedidoById(1L)).willReturn(Optional.of(pedido));
 
+        // 2. Ejecución y verificación
         mockMvc.perform(get("/pedidos/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1));
+                .andExpect(jsonPath("$.pedidoId").value(1)); 
     }
 
     @Test
@@ -67,13 +74,23 @@ public class PedidoControllerTest {
 
     @Test
     void testGetPedidoByClienteId() throws Exception {
+        // 1. Configuración del test
+        Cliente cliente = new Cliente();
+        cliente.setId(5L); 
+        
         Pedido pedido = new Pedido();
         pedido.setPedidoId(1L);
+        pedido.setCliente(cliente); 
+        
+        // Mock del servicio
         given(pedidoService.obtenerPedidosPorCliente(5L)).willReturn(List.of(pedido));
 
+        // 2. Ejecución y verificación
         mockMvc.perform(get("/pedidos/cliente/5"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(1));
+                .andExpect(jsonPath("$", hasSize(1))) 
+                .andExpect(jsonPath("$[0].pedidoId").value(1))
+                .andExpect(jsonPath("$[0].cliente.id").value(5)); 
     }
 
     @Test
