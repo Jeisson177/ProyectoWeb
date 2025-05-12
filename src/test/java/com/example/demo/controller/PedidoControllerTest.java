@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.ArgumentMatchers.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -74,7 +73,7 @@ public class PedidoControllerTest {
 
     @Test
     void testGetPedidoByClienteId() throws Exception {
-        // 1. Configuración del test
+       
         Cliente cliente = new Cliente();
         cliente.setId(5L); 
         
@@ -82,10 +81,10 @@ public class PedidoControllerTest {
         pedido.setPedidoId(1L);
         pedido.setCliente(cliente); 
         
-        // Mock del servicio
+       
         given(pedidoService.obtenerPedidosPorCliente(5L)).willReturn(List.of(pedido));
 
-        // 2. Ejecución y verificación
+        
         mockMvc.perform(get("/pedidos/cliente/5"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1))) 
