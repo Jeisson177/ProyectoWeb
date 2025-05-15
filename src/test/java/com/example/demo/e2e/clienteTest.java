@@ -2,6 +2,7 @@ package com.example.demo.e2e;
 
 import java.time.Duration;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -132,6 +133,11 @@ public class clienteTest {
         wait.until(ExpectedConditions.elementToBeClickable(historial));
         historial.click();
 
+    }
+
+     @AfterEach
+    void tearDown() {
+        driver.quit();
     }
 
 }
