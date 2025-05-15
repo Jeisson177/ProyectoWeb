@@ -11,6 +11,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -39,35 +41,64 @@ public class operadorTest {
 
     @Test
     void testManejoDePedidos() {
-        // Paso 1: Ir a login
+    driver.get(BASE_URL + "/operador/loginOperador");
+
+    // Intento de login fallido
+    driver.findElement(By.name("usuario")).sendKeys("operador");
+    driver.findElement(By.name("contrasena")).sendKeys("wrongpass");
+    driver.findElement(By.xpath("//button[text()='Iniciar Sesión']")).click();
+
+    Assertions.assertFalse(driver.getPageSource().contains("Credenciales incorrectas"));
+
+    // Login correcto
+    driver.findElement(By.name("usuario")).clear();
+    driver.findElement(By.name("contrasena")).clear();
+    driver.findElement(By.name("usuario")).sendKeys("carlosg");
+    driver.findElement(By.name("contrasena")).sendKeys("clave123");
+    driver.findElement(By.xpath("/html/body/app-root/app-login-operador/div/div/div[2]/form/button")).click();
+
+    // Ir a la lista de pedidos
+    driver.get(BASE_URL + "/operador/ver-pedidos");
+
+    // Espera breve para asegurar carga del contenido
+    try {
+        Thread.sleep(1000); // puedes usar WebDriverWait también para mejorar esto
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+
+    // Esperar que el <select> esté presente en el último tr
+    WebElement selectElement = wait.until(ExpectedConditions.presenceOfElementLocated(
+        By.xpath("//table/tbody/tr[last()]/td[3]//select")
+    ));
+
+    // Usar el elemento
+    Select select = new Select(selectElement);
+    select.selectByVisibleText("Mario Rossi");
+}
+
+    @Test
+    void testFinalizarPedido() {
         driver.get(BASE_URL + "/operador/loginOperador");
 
-    
-        // Paso 2: Login fallido
-        driver.findElement(By.name("usuario")).sendKeys("operador");
-        driver.findElement(By.name("contrasena")).sendKeys("wrongpass");
-        driver.findElement(By.xpath("//button[text()='Iniciar Sesión']")).click();
-
-        // Paso 3: Verificar mensaje de error
-        Assertions.assertFalse(driver.getPageSource().contains("Credenciales incorrectas"));
-
-        // Paso 4: Login correcto
-        driver.findElement(By.name("usuario")).clear();
-        driver.findElement(By.name("contrasena")).clear();
         driver.findElement(By.name("usuario")).sendKeys("carlosg");
         driver.findElement(By.name("contrasena")).sendKeys("clave123");
-        driver.findElement(By.xpath("/html/body/app-root/app-login-operador/div/div/div[2]/form/button")).click();
+        driver.findElement(By.xpath("//button[text()='Iniciar Sesión']")).click();
 
-        // Paso 5: Abrir home de operador
         driver.get(BASE_URL + "/operador/ver-pedidos");
 
-        // Paso 6: Cambiar de estado un pedido
-        WebElement btnAsignarDom = driver.findElement(By.xpath("/html/body/app-root/app-ver-pedidos/table/tbody/tr[6]/td[3]/div/select"));
-        btnAsignarDom.click();
+        // Esperar carga
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        //Asignar un domiciliario
+        // Buscar el botón "Finalizar Pedido" en el último pedido
+        WebElement btnFinalizar = driver.findElement(By.xpath("//table/tbody/tr[last()]/td/button[contains(text(), 'Finalizar Pedido')]"));
+        btnFinalizar.click();
 
-}
+    }
 
  @AfterEach
     void tearDown() {
