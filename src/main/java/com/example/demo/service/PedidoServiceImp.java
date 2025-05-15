@@ -54,44 +54,45 @@ public class PedidoServiceImp implements PedidoService {
     CarritoService carritoService;
 
     @Override
-    @Transactional
-    public Pedido crearPedidoDesdeCarrito(Long carritoId, String direccionEnvio) {
-        Carrito carrito = carritoRepository.findById(carritoId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+@Transactional
+public Pedido crearPedidoDesdeCarrito(Long carritoId, String direccionEnvio) {
+    Carrito carrito = carritoRepository.findById(carritoId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        Cliente cliente = clienteRepository.findById(carrito.getClienteId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    Cliente cliente = clienteRepository.findById(carrito.getClienteId())
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        Pedido pedido = new Pedido();
-        pedido.setCliente(cliente);
-        pedido.setOperador(null); // Se asignará posteriormente
-        pedido.setDomiciliario(null); // Se asignará cuando se despache
-        pedido.setEstado("RECIBIDO"); // Estado inicial
-        pedido.setFecha(LocalDateTime.now());
-        pedido.setDireccionEnvio(direccionEnvio);
-        if (direccionEnvio != null && !direccionEnvio.isEmpty()) {
-            pedido.setDireccionEnvio(direccionEnvio);
-        } else {
-            pedido.setDireccionEnvio("Calle no especificada"); // Usar solo si no se pasa una dirección válida
-        }
-        List<ItemPedido> items = carrito.getItems().stream()
-                .map(itemCarrito -> new ItemPedido(
-                        pedido,
-                        itemCarrito.getProducto(),
-                        itemCarrito.getCantidad(),
-                        itemCarrito.getProducto().getPrecio()))
-                .collect(Collectors.toList());
+    Pedido pedido = new Pedido();
+    pedido.setCliente(cliente);
+    pedido.setOperador(null);
+    pedido.setDomiciliario(null);
+    pedido.setEstado("RECIBIDO");
+    pedido.setFecha(LocalDateTime.now());
+    pedido.setDireccionEnvio(
+            direccionEnvio != null && !direccionEnvio.isEmpty() ? direccionEnvio : "Calle no especificada");
 
-        pedido.setItems(items);
+    // Guardar el pedido para obtener su ID
+    Pedido savedPedido = pedidoRepository.save(pedido);
 
-        // Guardar el pedido
-        Pedido savedPedido = pedidoRepository.save(pedido);
+    List<ItemPedido> itemsPedido = carrito.getItems().stream()
+        .map(itemCarrito -> new ItemPedido(
+                savedPedido,
+                itemCarrito.getProducto(),
+                itemCarrito.getCantidad(),
+                itemCarrito.getProducto().getPrecio()))
+        .map(itemPedidoRepository::save)
+        .collect(Collectors.toList());
 
-        // Limpiar el carrito
-        carritoService.limpiarCarrito(carrito.getClienteId());
+    savedPedido.setItems(itemsPedido);
+    pedidoRepository.save(savedPedido);
 
-        return savedPedido;
-    }
+    // Limpiar carrito (asegurando que items se eliminen de la DB)
+    carrito.getItems().clear();
+    carritoRepository.save(carrito);
+
+    return savedPedido;
+}
+
 
     @Override
     public Optional<Pedido> obtenerPedidoPorId(Long id) {
