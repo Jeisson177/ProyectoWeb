@@ -1,9 +1,11 @@
 package com.example.demo.e2e;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -87,18 +89,20 @@ public class operadorTest {
 
         driver.get(BASE_URL + "/operador/ver-pedidos");
 
-        // Esperar carga
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        // Espera hasta que haya al menos un botón de "Finalizar Pedido"
+        List<WebElement> botonesFinalizar = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+            By.xpath("//table/tbody/tr/td/button[contains(text(), 'Finalizar Pedido')]")
+        ));
+
+        if (botonesFinalizar.isEmpty()) {
+            fail("No hay pedidos disponibles para finalizar.");
         }
 
-        // Buscar el botón "Finalizar Pedido" en el último pedido
-        WebElement btnFinalizar = driver.findElement(By.xpath("//table/tbody/tr[last()]/td/button[contains(text(), 'Finalizar Pedido')]"));
+        // Click en el último botón "Finalizar Pedido"
+        WebElement btnFinalizar = botonesFinalizar.get(botonesFinalizar.size() - 1);
         btnFinalizar.click();
-
     }
+
 
  @AfterEach
     void tearDown() {
