@@ -155,7 +155,7 @@ public class CarritoServiceImp implements CarritoService {
     @Transactional
     public void limpiarCarrito(Long clienteId) {
         Carrito carrito = obtenerCarrito(clienteId);
-        itemCarritoRepository.deleteByCarritoId(carrito.getId());
+    itemCarritoRepository.deleteByCarritoId(carrito.getId());
     }
 
     @Override
