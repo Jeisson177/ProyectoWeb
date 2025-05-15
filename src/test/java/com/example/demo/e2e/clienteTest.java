@@ -111,7 +111,27 @@ public class clienteTest {
         wait.until(ExpectedConditions.elementToBeClickable(btnConfirmar));
         btnConfirmar.click();
 
+        driver.get(BASE_URL + "/homeCliente");
+
+        // Paso 13: Ver pedidos activos
+        WebElement pedidosActivos= driver.findElement(By.id("pedidosActivos"));
+        pedidosActivos.click();
+
+        //Paso 14: Ver detalle del pedido
+        WebElement btnDetallePedido = driver.findElement(By.id("btnDetallePedido"));
+        wait.until(ExpectedConditions.elementToBeClickable(btnDetallePedido));
+        btnDetallePedido.click();
+
+        // Paso 15: Volver a pedidos
+        WebElement btnVolver= driver.findElement(By.id("btnVolver"));
+        wait.until(ExpectedConditions.elementToBeClickable(btnVolver));
+        btnVolver.click();
+
+        // Paso 16: Ver historial de pedidos
+        WebElement historial= driver.findElement(By.xpath("/html/body/app-root/app-pedidos-activos/app-header-cliente/header/div/nav/div/a[4]"));
+        wait.until(ExpectedConditions.elementToBeClickable(historial));
+        historial.click();
+
     }
 
-    
 }
