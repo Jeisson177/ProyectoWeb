@@ -49,6 +49,7 @@ public class operadorTest {
     driver.findElement(By.name("usuario")).sendKeys("operador");
     driver.findElement(By.name("contrasena")).sendKeys("wrongpass");
     driver.findElement(By.xpath("//button[text()='Iniciar Sesión']")).click();
+    esperar(2000);
 
     Assertions.assertFalse(driver.getPageSource().contains("Credenciales incorrectas"));
 
@@ -58,9 +59,11 @@ public class operadorTest {
     driver.findElement(By.name("usuario")).sendKeys("carlosg");
     driver.findElement(By.name("contrasena")).sendKeys("clave123");
     driver.findElement(By.xpath("/html/body/app-root/app-login-operador/div/div/div[2]/form/button")).click();
+    esperar(2000);
 
     // Ir a la lista de pedidos
     driver.get(BASE_URL + "/operador/ver-pedidos");
+    esperar(2000);
 
     // Espera breve para asegurar carga del contenido
     try {
@@ -73,10 +76,12 @@ public class operadorTest {
     WebElement selectElement = wait.until(ExpectedConditions.presenceOfElementLocated(
         By.xpath("//table/tbody/tr[last()]/td[3]//select")
     ));
+    esperar(2000);
 
     // Usar el elemento
     Select select = new Select(selectElement);
     select.selectByVisibleText("Mario Rossi");
+    esperar(2000);
 }
 
     @Test
@@ -88,11 +93,13 @@ public class operadorTest {
         driver.findElement(By.xpath("//button[text()='Iniciar Sesión']")).click();
 
         driver.get(BASE_URL + "/operador/ver-pedidos");
+        esperar(2000);
 
         // Espera hasta que haya al menos un botón de "Finalizar Pedido"
         List<WebElement> botonesFinalizar = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
             By.xpath("//table/tbody/tr/td/button[contains(text(), 'Finalizar Pedido')]")
         ));
+        esperar(2000);
 
         if (botonesFinalizar.isEmpty()) {
             fail("No hay pedidos disponibles para finalizar.");
@@ -101,12 +108,21 @@ public class operadorTest {
         // Click en el último botón "Finalizar Pedido"
         WebElement btnFinalizar = botonesFinalizar.get(botonesFinalizar.size() - 1);
         btnFinalizar.click();
+        esperar(3000);
     }
 
 
  @AfterEach
     void tearDown() {
         driver.quit();
+    }
+
+    private void esperar(long milisegundos) {
+        try {
+            Thread.sleep(milisegundos);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
 }
