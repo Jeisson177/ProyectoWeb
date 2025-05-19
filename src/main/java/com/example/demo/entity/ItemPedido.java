@@ -11,10 +11,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "items_pedido")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
 public class ItemPedido {
 
     @Id
@@ -43,27 +45,11 @@ public class ItemPedido {
         this.precioUnitario = precioUnitario;
     }
 
-    // Getters
-    public Long getId() { return id; }
-    public Pedido getPedido() { return pedido; }
-    public Producto getProducto() { return producto; }
-    public int getCantidad() { return cantidad; }
-    public int getPrecioUnitario() { return precioUnitario; }
-
-    // Setters
-    public void setCantidad(int cantidad) { this.cantidad = cantidad; }
-    public void setPrecioUnitario(int precioUnitario) { this.precioUnitario = precioUnitario; }
-
+    
     // Método para calcular subtotal
     public int calcularSubtotal() {
         return cantidad * precioUnitario;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
+    
 }

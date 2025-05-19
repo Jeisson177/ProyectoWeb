@@ -190,6 +190,7 @@ public class DatabaseInit implements ApplicationRunner{
 
 productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11,producto12,producto13,producto14,producto15,producto16,producto17,producto18,producto19,producto20,producto21,producto22,producto23,producto24,producto25,producto26,producto27,producto28,producto29,producto30));
         //Inicio de los Administradores 
+        administradorRepository.save(new Administrador.Builder().nombre("admin").apellido("admin").usuario("admin").contrasena("admin").build());
         administradorRepository.save(new Administrador( "Juan", "Perez", "JPerez1214", "juanperez855"));
         administradorRepository.save(new Administrador( "Maria", "Jaramillo", "Jaramillo_M", "Bgta5862"));
     

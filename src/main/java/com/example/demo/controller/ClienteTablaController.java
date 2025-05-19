@@ -37,7 +37,7 @@ public class ClienteTablaController {
     // Agregar nuevo cliente
     @PostMapping
     public void guardarCliente(@RequestBody Cliente cliente) {
-        clienteService.guardarCliente(cliente);
+        Cliente cliente=clienteService.guardarCliente(cliente);
     }
 
     // Actualizar cliente

@@ -12,10 +12,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
+@Data
 public class Domiciliario {
 
     @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
@@ -51,24 +53,7 @@ public class Domiciliario {
 
     public Domiciliario() {}
     
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getCelular() {
-        return celular;
-    }
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
+   
     public boolean isdisponibilidad() {
         return disponibilidad;
     }

@@ -17,10 +17,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "pedidos")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
 public class Pedido {
     
     @Id
@@ -55,68 +57,5 @@ public class Pedido {
     public Pedido() {
     }
     
-    // Getters y Setters
-    public Long getPedidoId() {
-        return pedidoId;
-    }
-
-    public void setPedidoId(Long pedidoId) {
-        this.pedidoId = pedidoId;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Operador getOperador() {
-        return operador;
-    }
-
-    public void setOperador(Operador operador) {
-        this.operador = operador;
-    }
-
-    public Domiciliario getDomiciliario() {
-        return domiciliario;
-    }
-
-    public void setDomiciliario(Domiciliario domiciliario) {
-        this.domiciliario = domiciliario;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getDireccionEnvio() {
-        return direccionEnvio;
-    }
-
-    public void setDireccionEnvio(String direccionEnvio) {
-        this.direccionEnvio = direccionEnvio;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
-    public List<ItemPedido> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemPedido> items) {
-        this.items = items;
-    }
+    
 }

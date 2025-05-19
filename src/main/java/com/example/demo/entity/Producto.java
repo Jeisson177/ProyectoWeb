@@ -17,11 +17,17 @@ import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
+@Getter
+@Setter
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

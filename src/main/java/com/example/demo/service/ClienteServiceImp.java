@@ -37,10 +37,11 @@ public class ClienteServiceImp implements ClienteService {
     }
 
     @Override
-    public void guardarCliente(Cliente cliente) {
+    public Optional<Cliente> guardarCliente(Cliente cliente) {
         if (!clienteRepository.findByCorreo(cliente.getCorreo()).isPresent()) {
-            clienteRepository.save(cliente);
+            return clienteRepository.save(cliente);
         }
+        return Optional.empty();
     }
 
     @Override

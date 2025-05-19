@@ -13,10 +13,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "carritos")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
 public class Carrito {
     
     @Id
@@ -39,18 +41,6 @@ public class Carrito {
         items.clear();
     }
     
-    // Getters y Setters
-    public Long getId() { return id; }
-    public Long getClienteId() { return clienteId; }
-    public List<ItemCarrito> getItems() { return items; }
-    public void setClienteId(Long clienteId) { this.clienteId = clienteId; }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setItems(List<ItemCarrito> items) {
-        this.items = items;
-    }
+   
 }
 
