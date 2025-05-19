@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 @Entity
+@Data
 public class Administrador {
 
     @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
@@ -41,35 +43,6 @@ public class Administrador {
 
     public Administrador() {}
     
-    public Long getAdministrador_ID() {
-        return administrador_ID;
-    }
-    public void setAdministrador_ID(Long administrador_ID) {
-        this.administrador_ID = administrador_ID;
-    }
-    public String getnombre() {
-        return nombre;
-    }
-    public void setnombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getapellido() {
-        return apellido;
-    }
-    public void setapellido(String apellido) {
-        this.apellido = apellido;
-    }
-    public String getusuario() {
-        return usuario;
-    }
-    public void setusuario(String usuario) {
-        this.usuario = usuario;
-    }
-    public String getcontrasena() {
-        return contrasena;
-    }
-    public void setcontrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
+    
 
 }
