@@ -16,10 +16,12 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,52 +79,5 @@ public class Producto {
         adicional.getProductos().remove(this);
     }
 
-    public Long getProducto_id() {
-        return producto_id;
-    }
-
-    public void setProducto_id(Long producto_id) {
-        this.producto_id = producto_id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-
-    public List<Adicional> getAdicionales() {
-        return adicionales;
-    }
-
-    public void setAdicionales(List<Adicional> adicionales) {
-        this.adicionales = adicionales;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+    
 }

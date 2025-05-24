@@ -9436,9 +9436,18 @@ The connection was not closed by the application and is garbage collected [90018
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 16 more
+
 2025-05-15 13:18:02.702797-05:00 database: flush
 org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
 General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+
+2025-05-19 14:45:05.274647-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+
+2025-05-19 14:45:05.274647-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.get(DbException.java:212)
 	at org.h2.message.DbException.convert(DbException.java:407)
 	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
@@ -9502,21 +9511,22 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/us
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 63 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
 	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
 	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 57 more
-2025-05-15 13:18:05.293426-05:00 database: flush
-org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+2025-05-19 14:45:07.516989-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.get(DbException.java:212)
 	at org.h2.message.DbException.convert(DbException.java:407)
 	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
@@ -9577,21 +9587,21 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/us
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 60 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
 	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
 	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 54 more
-2025-05-15 13:18:06.320916-05:00 database: flush
-org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+2025-05-19 14:45:08.546616-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.get(DbException.java:212)
 	at org.h2.message.DbException.convert(DbException.java:407)
 	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
@@ -9652,21 +9662,21 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/us
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 60 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
 	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
 	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 54 more
-2025-05-15 13:18:07.357995-05:00 database: flush
-org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+2025-05-19 14:45:09.566960-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.get(DbException.java:212)
 	at org.h2.message.DbException.convert(DbException.java:407)
 	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
@@ -9727,21 +9737,21 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/us
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 60 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
 	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
 	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 54 more
-2025-05-15 13:18:08.584896-05:00 database: flush
-org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+2025-05-19 14:45:10.820733-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.get(DbException.java:212)
 	at org.h2.message.DbException.convert(DbException.java:407)
 	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
@@ -9780,7 +9790,7 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/us
 	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:116)
 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:238)
 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144)
-	at java.base/java.util.HashMap.forEach(HashMap.java:1429)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
 	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141)
 	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
 	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
@@ -9812,12 +9822,12 @@ General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/us
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
-General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 70 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/user/Documents/Ingenieria de sistemas/5 semestre/Desarrollo web/Proyecto/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/jeiss/Documents/universidad/11 onceavo semestre/web/proyectoWeb/ProyectoWeb/mydatabase.mv.db [2.3.232/7]
 	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
 	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
