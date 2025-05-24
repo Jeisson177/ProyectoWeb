@@ -1,0 +1,181 @@
+[33m6c08819[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mpedidosycompras[m[33m, [m[1;31morigin/pedidosycompras[m[33m)[m zxc
+[33m8d23104[m[33m ([m[1;32mtrabajarenesta[m[33m)[m c
+[33m5ac8401[m xc
+[33mbf1a0cc[m zxc
+[33m4dd41de[m[33m ([m[1;32mdescartar[m[33m)[m zc
+[33m9aa388c[m zc
+[33m02d1715[m zc
+[33m0e1a454[m c
+[33m4e97da7[m pruebas
+[33m27fc0d5[m .
+[33m08742a2[m Merge branch 'pedidosycompras' of https://github.com/Jeisson177/ProyectoWeb into pedidosycompras
+[33md41ee68[m PRUEBA cambiar de estado
+[33m34fcaa7[m bien
+[33mbfa85f1[m Prueba operador
+[33m913d549[m prueba seguimiento e historial de pedidos
+[33mf2862d0[m pruebas login y flujo pedido cliente
+[33mdadc71b[m fin
+[33m103f3d3[m casi completo
+[33m57d0669[m push
+[33m8dde37e[m crud
+[33m781393d[m test
+[33m2eeb5ac[m Merge branch 'pedidosycompras' of https://github.com/Jeisson177/ProyectoWeb into pedidosycompras
+[33m2f12c22[m cambio pom
+[33mf979eef[m funciona cabron
+[33m5e1068b[m agregamos los ultimos
+[33m2678300[m Todas las pruebas de controlador funcionando
+[33mf388ce1[m Pruebas casi completas funcionando
+[33m34a55af[m testpedido
+[33mace3701[m Cambios properties y test controlador inicial
+[33meb26851[m Merge branch 'pedidosycompras' of https://github.com/Jeisson177/ProyectoWeb into pedidosycompras
+[33m222659b[m mocks
+[33m8dbccfa[m servicios
+[33m51023fd[m push
+[33mdfc540c[m cambio
+[33md600d07[m la mala pal test
+[33m9bf2ded[m habia faltado una
+[33m854df76[m pruebas
+[33m384d7a1[m detalle pedido
+[33m58b57c9[m CRUDS terinados
+[33md2dd13a[m pedido finalizado
+[33m9cfcae6[m funcionamiento adicionales
+[33m16417b2[m funcionamiento Tabla Productos
+[33m27f2e95[m crear pedido bien
+[33ma96468a[m cambio entidades
+[33mbb64d0f[m funcionamiento ya completo
+[33ma9244e5[m Merge branch 'pedidosycompras' of https://github.com/Jeisson177/ProyectoWeb into pedidosycompras
+[33m3eadab1[m Logins
+[33m99ba3b9[m pedidos bien
+[33m83176d5[m cosas
+[33m5083ba8[m back bien
+[33maec8935[m corrección
+[33mf970aaa[m pequeño problema
+[33mba7396e[m com 1
+[33med6ffd5[m[33m ([m[1;31morigin/Develop[m[33m, [m[1;32mDevelop[m[33m)[m cambio para evitar recursion
+[33mc383135[m bien back
+[33me9cfa8e[m servicio cambio
+[33m937b44a[m eliminar bien
+[33mf92e6db[m back bien
+[33m8cfb967[m corrección eliminar
+[33m033784f[m conflictos
+[33m1fd7907[m intento actualizar
+[33m06a4ec9[m correccion editarperfil
+[33m6581a7a[m estilos editar cliente
+[33m75d0c95[m crud clientes otro
+[33m913e93e[m navegabilidad de todas las tablas
+[33m18676ff[m Update README.md
+[33m6b76492[m Update README.md
+[33mbf38595[m p
+[33mffe69f1[m m
+[33mf2fe08f[m mover readme
+[33ma61380f[m ya funciona eliminar
+[33ma9ce234[m Ya funciona editar
+[33mf77fe4c[m Restricciones
+[33m55eae0a[m .
+[33m97037fd[m estilo borrador pagina  admin
+[33m79d18df[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m00e4689[m navegacion del administrador
+[33m7b63bb9[m dependencia jakarta para bases de datos
+[33mf5b5822[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m6a78042[m adicional
+[33m0bb87f9[m Todos los atributos en minuscula
+[33mb55e619[m arreglado nombres html
+[33med1bfa0[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33ma3597de[m cremos homeAdmin
+[33m1758ec8[m con redireccion bien
+[33m8805042[m listo
+[33m0bd2747[m c1
+[33me730919[m Intento de arreglo para redireccion
+[33ma56f3a9[m .
+[33m7011f24[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33me8ef30b[m actualizar cliente
+[33me56fc2a[m redireccion
+[33m95b8d2c[m nose que paso pero ya funciona el especifico otra vez
+[33m14d584e[m correccion menu
+[33mf2b7a3a[m commit
+[33m108920a[m mejora en home
+[33m053ea00[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m48d47d8[m navegacion y pantallas de usuario
+[33m830f408[m categoria
+[33meaa3162[m correccion
+[33mafb3382[m Merge branch 'intento_agregarAdicionales' into Develop
+[33m29c7380[m Portal usuario terminado y video con lfs
+[33m11d2e93[m .
+[33me23cb93[m[33m ([m[1;31morigin/intento_agregarAdicionales[m[33m, [m[1;32mintento_agregarAdicionales[m[33m)[m adicionales funcionando
+[33m6e48749[m estilo portal usuario mejorado
+[33m785c1e0[m Agregando video con Git LFS
+[33m03807f2[m coistas
+[33m41752e9[m menu lindo
+[33m31edd99[m intentoanoche
+[33mcd3a010[m Readme
+[33me7fc7d3[m adicional bien
+[33m1bdc67d[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m6067cd7[m CRUD adicionales terminado
+[33m46d77e2[m lindo
+[33m490fca5[m CRUD arreglado
+[33ma9f6044[m cliente funciona
+[33m07d8908[m correccion clientes
+[33m77f0939[m clientes aun sin funcionar
+[33mb86c07b[m CRUD casi terminado de adicionales
+[33m8d12988[m Arreglo de errores de crud
+[33mf48584f[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m3b3a1c4[m .
+[33m73e651d[m controller
+[33m16ccac8[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m29f5b56[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33mf78f812[m crud adicionales
+[33m50eaf37[m adicionales
+[33m9062080[m estilos de la tabla adicionales
+[33md2113bd[m js de la pagina de tabla de adicionales
+[33m8d331c8[m Controlador para la tabla de adicionales
+[33mfd561a3[m Servicio de adicionales implementado para CRUD
+[33m8741ee5[m Se creo el controlador y la clase servicio de adicionales
+[33m9838da6[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m639c512[m se creo html adicionales
+[33m3409938[m arreglado redireccion
+[33md023895[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m1cff575[m .
+[33mdad543b[m listo menu ya con js
+[33mc83bf7e[m revert
+[33m09b316d[m cambio1
+[33maa303cb[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33mc88a572[m modificacion db
+[33m3f91ce8[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m7ebd74c[m estilos del plato
+[33ma6039e9[m registro mostrado y con estilos
+[33m43e1e44[m quite las lineas de jeisson jajaj
+[33mb2ff8a5[m cambios de estilos
+[33mc5a3039[m Update DatabaseInit.java
+[33m0ed1768[m producto especificostasjh
+[33m475d28a[m producto especifico
+[33mb049ccf[m Estilos formulario
+[33m42914e3[m Funcionamiento Botones de editar,agregar y eliminar
+[33m37ff1ce[m Pagina de error personalizada
+[33ma513708[m intento de carrito funcional
+[33m001ac89[m header actualizado con carrito
+[33mcd9f3a4[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33mdea310e[m carta diseño cambiado
+[33m80f69f8[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m2d84216[m login bien
+[33mbdabf43[m Se agrego a las tarjetas el boton de añadir
+[33m850ef54[m c
+[33md87b146[m pagina Home Cliente
+[33m9c1ebfd[m agregamos login en landing page
+[33me608e73[m Redireccion de botones funcionando
+[33mb322378[m Arreglo estilos de descripcion carrusel y zonas
+[33meb3f5ab[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m28112f8[m esquema de base de datos completo
+[33ma14f240[m Base de datos para los de la entrega
+[33mdb5d8f8[m agregado producto h2
+[33m6179331[m configuracion db
+[33med82ba1[m Borrador registro mockup
+[33mafa5450[m loginDiseñoPrincipal
+[33m9614f80[m cambiosleves
+[33m98fb922[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33m721752c[m Merge branch 'Develop' of https://github.com/Jeisson177/ProyectoWeb into Develop
+[33mb4ef6ba[m modficacion
+[33m7fa24fa[m Estilos del detalle del plato
+[33m9c7f6e1[m Menu de platos terminado
+[33m1125fee[m Arreglo de inicio del menu
+[33md7d32d8[m ocultar id y pedidoid
+[33m820cffd[m Merge branch 'Dev
