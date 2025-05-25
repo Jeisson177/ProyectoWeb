@@ -74,9 +74,7 @@ public class Adicional {
     }
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
+        
     }
 
-    public int getPrecio() {
-        return precio;
-    }
 }
