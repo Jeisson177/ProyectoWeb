@@ -1,8 +1,6 @@
 package com.example.demo.entity;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -190,9 +188,24 @@ public class DatabaseInit implements ApplicationRunner{
 
 productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11,producto12,producto13,producto14,producto15,producto16,producto17,producto18,producto19,producto20,producto21,producto22,producto23,producto24,producto25,producto26,producto27,producto28,producto29,producto30));
         //Inicio de los Administradores 
-        administradorRepository.save(new Administrador( "Juan", "Perez", "JPerez1214", "juanperez855"));
-        administradorRepository.save(new Administrador( "Maria", "Jaramillo", "Jaramillo_M", "Bgta5862"));
-    
+        Administrador adminEntity = Administrador.builder().
+                nombre("Juan").
+                apellido("Pérez").
+                usuario("jperez").
+                contrasena("admin123").
+                build();
+
+        administradorRepository.save(adminEntity);
+
+        adminEntity = Administrador.builder().
+                nombre("Maria").
+                apellido("Jaramillo").
+                usuario("Jaramillo_M").
+                contrasena("Bgta5862").
+                build();
+
+        administradorRepository.save(adminEntity);
+
         //Inicio de los domiciliarios
 
         domiciliarioRepository.save(new Domiciliario("Mario Rossi", "3112345", true));

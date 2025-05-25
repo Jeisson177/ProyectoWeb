@@ -17,11 +17,13 @@ import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
+@NoArgsConstructor
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,8 +60,6 @@ public class Producto {
     @JsonIgnoreProperties("productos") // <- esto evita la recursión infinita
     private List<Adicional> adicionales = new ArrayList<>();
 
-    public Producto() {}
-
     public Producto(String nombre, int precio, String descripcion, String categoria) {
         this.nombre = nombre;
         this.precio = precio;
@@ -79,5 +79,16 @@ public class Producto {
         adicional.getProductos().remove(this);
     }
 
+     public List<Adicional> getAdicionales() {
+        return adicionales;
+    }
+
+    public void setAdicionales(List<Adicional> adicionales) {
+        this.adicionales = adicionales;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
     
 }

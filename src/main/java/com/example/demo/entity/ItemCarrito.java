@@ -16,11 +16,15 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "items_carrito")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
+@NoArgsConstructor
 public class ItemCarrito {
     
     @Id
@@ -44,9 +48,6 @@ public class ItemCarrito {
         inverseJoinColumns = @JoinColumn(name = "adicional_id")
     )
     private List<Adicional> adicionales = new ArrayList<>();
-    
-    // Constructor protegido para JPA
-    protected ItemCarrito() {}
     
     // Constructor principal
     public ItemCarrito(Carrito carrito, Producto producto, int cantidad, List<Adicional> adicionales) {
