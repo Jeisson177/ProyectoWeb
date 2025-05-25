@@ -87,7 +87,13 @@ public class CarritoController {
        return ResponseEntity.ok(response);
    }
    
-   
+   @PostMapping("/guardar")
+public ResponseEntity<Map<String, Long>> guardarCarrito(@RequestBody Carrito carrito) {
+    System.out.println("carro" + carrito);
+    Carrito saved = carritoService.guardarCarrito(carrito);
+    return ResponseEntity.ok(Map.of("carritoId", saved.getId()));
+}
+
     
 
 }
