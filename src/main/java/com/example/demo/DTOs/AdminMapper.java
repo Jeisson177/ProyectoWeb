@@ -6,9 +6,9 @@ import org.mapstruct.factory.Mappers;
 import com.example.demo.entity.Administrador;
 
 @Mapper
-public class AdminMapper {
+public interface AdminMapper {
     AdminMapper INSTANCE = Mappers.getMapper(AdminMapper.class);
 
-    AdminDTO convert(Administrador admin);
+    AdminDTO convert(Administrador administrador);
     
 }

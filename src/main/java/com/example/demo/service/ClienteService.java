@@ -12,7 +12,7 @@ public interface ClienteService {
     public Optional<Cliente> obtenerClientePorCorreo(String correo);
     List<Cliente>obtenerTodosLosClientes();
     Cliente getClienteById(Long id);
-    void guardarCliente(Cliente cliente);
+    Cliente guardarCliente(Cliente cliente);
     
     void eliminarCliente(Long id);
     void actualizarCliente(Cliente cliente);
