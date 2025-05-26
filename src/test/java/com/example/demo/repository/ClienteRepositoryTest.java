@@ -56,7 +56,7 @@ public class ClienteRepositoryTest {
 
     @Test
     public void testBuscarPorCorreo() {
-        Optional<Cliente> encontrado = clienteRepository.findByCorreo("juan@gmail.com");
+        Cliente encontrado = clienteRepository.findByCorreo("juan@gmail.com");
         assertTrue(encontrado.isPresent());
         assertEquals("Juan", encontrado.get().getNombre());
     }

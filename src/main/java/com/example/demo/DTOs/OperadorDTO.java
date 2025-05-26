@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class OperadorDTO {
-    private Long id;
+    private String nombre;
     private String usuario;
     
 }

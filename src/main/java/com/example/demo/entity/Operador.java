@@ -52,6 +52,11 @@ public class Operador {
         this.contrasena = contrasena;
     }
 
+     public String getUsuario() {
+        return usuario;
+    }
+
+
     public List<Pedido> getPedidos() {
         return pedidos;
     }
