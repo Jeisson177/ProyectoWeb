@@ -54,44 +54,44 @@ public class PedidoServiceImp implements PedidoService {
     CarritoService carritoService;
 
     @Override
-@Transactional
-public Pedido crearPedidoDesdeCarrito(Long carritoId, String direccionEnvio) {
-    Carrito carrito = carritoRepository.findById(carritoId)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    @Transactional
+    public Pedido crearPedidoDesdeCarrito(Long carritoId, String direccionEnvio) {
+        Carrito carrito = carritoRepository.findById(carritoId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-    Cliente cliente = clienteRepository.findById(carrito.getClienteId())
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Cliente cliente = clienteRepository.findById(carrito.getClienteId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-    Pedido pedido = new Pedido();
-    pedido.setCliente(cliente);
-    pedido.setOperador(null);
-    pedido.setDomiciliario(null);
-    pedido.setEstado("RECIBIDO");
-    pedido.setFecha(LocalDateTime.now());
-    pedido.setDireccionEnvio(
+        Pedido pedido = new Pedido();
+        pedido.setCliente(cliente);
+        pedido.setOperador(null);
+        pedido.setDomiciliario(null);
+        pedido.setEstado("RECIBIDO");
+        pedido.setFecha(LocalDateTime.now());
+        pedido.setDireccionEnvio(
             direccionEnvio != null && !direccionEnvio.isEmpty() ? direccionEnvio : "Calle no especificada");
 
-    // Guardar el pedido para obtener su ID
-    Pedido savedPedido = pedidoRepository.save(pedido);
+        List<ItemPedido> itemsPedido = carrito.getItems().stream().map(itemCarrito -> {
+            ItemPedido item = new ItemPedido();
+            item.setPedido(pedido); // Asociar explícitamente
+            item.setProducto(itemCarrito.getProducto());
+            item.setCantidad(itemCarrito.getCantidad());
+            item.setPrecioUnitario(itemCarrito.getProducto().getPrecio());
+            return item;
+        }).collect(Collectors.toList());
 
-    List<ItemPedido> itemsPedido = carrito.getItems().stream()
-        .map(itemCarrito -> new ItemPedido(
-                savedPedido,
-                itemCarrito.getProducto(),
-                itemCarrito.getCantidad(),
-                itemCarrito.getProducto().getPrecio()))
-        .map(itemPedidoRepository::save)
-        .collect(Collectors.toList());
+        pedido.setItems(itemsPedido);
 
-    savedPedido.setItems(itemsPedido);
-    pedidoRepository.save(savedPedido);
+        // Este único save es suficiente gracias a CascadeType.ALL
+        Pedido savedPedido = pedidoRepository.save(pedido);
 
-    // Limpiar carrito (asegurando que items se eliminen de la DB)
-    carrito.getItems().clear();
-    carritoRepository.save(carrito);
+        // Limpiar carrito
+        carrito.getItems().clear();
+        carritoRepository.save(carrito);
 
-    return savedPedido;
-}
+        return savedPedido;
+    }
+
 
 
     @Override

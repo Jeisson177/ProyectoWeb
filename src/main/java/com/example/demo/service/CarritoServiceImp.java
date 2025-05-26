@@ -57,6 +57,27 @@ public class CarritoServiceImp implements CarritoService {
                     return carritoRepository.save(nuevoCarrito);
                 });
     }
+@Override
+public Carrito guardarCarrito(Carrito carrito) {
+    // Guardamos el carrito sin items primero
+    List<ItemCarrito> items = carrito.getItems();
+
+    // 🚫 NO reemplaces carrito.setItems(new ArrayList<>());
+    // Mejor guarda primero sin los items
+    carrito.setItems(null);
+    Carrito savedCarrito = carritoRepository.save(carrito);
+
+    // Asigna el carrito a cada item y guarda de nuevo
+    for (ItemCarrito item : items) {
+        item.setCarrito(savedCarrito); // <- línea clave
+    }
+
+    savedCarrito.setItems(items); // Vuelve a colocar los items
+
+    return carritoRepository.save(savedCarrito); // Hibernate ahora los reconocerá
+}
+
+
 
     @Override
     @Transactional
