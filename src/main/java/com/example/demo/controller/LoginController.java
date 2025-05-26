@@ -31,7 +31,7 @@ public class LoginController {
         cliente = clienteService.obtenerClientePorCorreo(cliente.getCorreo());
 
         if (cliente == null) {
-            return ResponseEntity<String>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Cliente no encontrado", HttpStatus.NOT_FOUND);
         }
 
         ClienteDTO clienteDTO = ClienteMapper.INSTANCE.convert(cliente);

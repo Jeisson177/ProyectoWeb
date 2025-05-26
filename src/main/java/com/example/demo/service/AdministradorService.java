@@ -7,5 +7,5 @@ import com.example.demo.entity.Administrador;
 public interface AdministradorService {
 
     Optional<Administrador> obtenerPorCredenciales(String usuario, String contrasena);
-    
+    public Administrador obtenerAdminPorUsuario(String usuario);
 } 

@@ -24,6 +24,10 @@ import com.example.demo.service.ProductoService;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.example.demo.DTOs.AdminDTO;
+import com.example.demo.DTOs.AdminMapper;
+import com.example.demo.DTOs.ClienteDTO;
+
 
 @RestController
 @RequestMapping("/Admin")
@@ -41,20 +45,20 @@ public class AdminController {
     private AdministradorService administradorService;
 
     @PostMapping("/loginAdmin")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
-        String usuario = credentials.get("usuario");
-        String contrasena = credentials.get("contrasena");
+    public ResponseEntity login(@RequestBody Administrador administrador) {
+        
+        administrador = administradorService.obtenerAdminPorUsuario(administrador.getUsuario());
 
-        Optional<Administrador> admin = administradorService.obtenerPorCredenciales(usuario, contrasena);
+        if (administrador == null) {
+            return new ResponseEntity<String>("No estas registrado como admin", HttpStatus.NOT_FOUND);
+        }
 
-        if (admin.isPresent()) {
-            return ResponseEntity.ok().body(Map.of(
-                "mensaje", "Login exitoso",
-                "admin", admin.get()
-            ));
+        AdminDTO adminDTO = AdminMapper.INSTANCE.convert(administrador);
+
+        if (administrador.getContrasena().equals(administrador.getContrasena())) {
+            return new ResponseEntity<AdminDTO>(adminDTO, HttpStatus.OK);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("error", "Credenciales inválidas"));
+            return new ResponseEntity<AdminDTO>(adminDTO, HttpStatus.BAD_REQUEST);
         }
     }
     

@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,9 +29,9 @@ public class ClienteController {
 
     @GetMapping("/perfil")
     public Object obtenerPerfil(@RequestParam("correo") String correo) {
-        Optional<Cliente> cliente = clienteService.obtenerClientePorCorreo(correo);
+        Cliente cliente = clienteService.obtenerClientePorCorreo(correo);
 
-        if (cliente.isPresent()) {
+        if (cliente != null) {
             List<Map<String, String>> promociones = List.of(
                 Map.of("titulo", "¡Pasta marinada 2x1!", "descripcion", "Spaguetti en salsa marinera con camarones."),
                 Map.of("titulo", "¡Pizza 2x1 todos los días!", "descripcion", "Pizza con queso cottage, tomates y finas hierbas."),
@@ -41,7 +40,7 @@ public class ClienteController {
             );
 
             return Map.of(
-                "cliente", cliente.get(),
+                "cliente", cliente,
                 "promociones", promociones
             );
         } else {

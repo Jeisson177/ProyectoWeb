@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.example.demo.DTOs.ClienteDTO;
+import com.example.demo.DTOs.OperadorDTO;
+import com.example.demo.DTOs.OperadorMapper;
 import com.example.demo.entity.Operador;
 import com.example.demo.service.OperadorServiceImp;
 
@@ -32,20 +34,20 @@ public class OperadorController {
     private OperadorServiceImp operadorService;
 
     @PostMapping("/loginOperador")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
-        String usuario = credentials.get("usuario");
-        String contrasena = credentials.get("contrasena");
+    public ResponseEntity login(@RequestBody Operador operador) {
 
-        Optional<Operador> operador = operadorService.obtenerPorCredenciales(usuario, contrasena);
+        operador = operadorService.obtenerOperadorPorUsuario(operador.getUsuario());
 
-        if (operador.isPresent()) {
-            return ResponseEntity.ok().body(Map.of(
-                "mensaje", "Login exitoso",
-                "operador", operador.get()
-            ));
+        if (operador == null) {
+            return new ResponseEntity<String>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+        }
+
+        OperadorDTO operadorDTO = OperadorMapper.INSTANCE.convert(operador);
+
+        if (operador.getcontrasena().equals(operador.getcontrasena())) {
+            return new ResponseEntity<OperadorDTO>(operadorDTO, HttpStatus.OK);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("error", "Credenciales inválidas"));
+            return new ResponseEntity<OperadorDTO>(operadorDTO, HttpStatus.BAD_REQUEST);
         }
     }
 
