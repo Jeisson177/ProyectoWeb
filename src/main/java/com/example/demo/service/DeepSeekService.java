@@ -18,7 +18,7 @@ public class DeepSeekService {
     public DeepSeekService() {
         this.webClient = WebClient.builder()
                 .baseUrl("https://api.deepseek.com/v1/chat/completions")
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer sk-236fdc4df4c54bfb8f819fecd3a5f4fc")//la api key es ese nuero raro, no borrar
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer sk-3c0e3907a2c04171a5928450a5e3ecbc")//la api key es ese nuero raro, no borrar , jeisson :sk-236fdc4df4c54bfb8f819fecd3a5f4fc  , mari :sk-3c0e3907a2c04171a5928450a5e3ecbc
                 .build();
     }
 
