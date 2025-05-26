@@ -22,7 +22,7 @@ public class ClienteServiceImp implements ClienteService {
     }
 
     @Override
-    public Optional<Cliente> obtenerClientePorCorreo(String correo) {
+    public Cliente obtenerClientePorCorreo(String correo) {
         return clienteRepository.findByCorreo(correo);
     }
 

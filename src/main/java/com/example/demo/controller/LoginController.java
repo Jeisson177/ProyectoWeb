@@ -4,12 +4,16 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.DTOs.ClienteDTO;
+import com.example.demo.DTOs.ClienteMapper;
 import com.example.demo.entity.Cliente;
 import com.example.demo.service.ClienteService;
 @RestController
@@ -22,23 +26,19 @@ public class LoginController {
     private ClienteService clienteService;
 
     @PostMapping
-    public Map<String, Object> loginCliente(@RequestBody Map<String, String> credentials) {
-        String correo = credentials.get("correo");
-        String contrasena = credentials.get("contrasena");
+    public ResponseEntity loginCliente(@RequestBody Cliente cliente) {
 
-        boolean autenticado = clienteService.autenticarCliente(correo, contrasena);
+        cliente = clienteService.obtenerClientePorCorreo(cliente.getCorreo());
 
-        if (autenticado) {
-            Optional<Cliente> cliente = clienteService.obtenerClientePorCorreo(correo);
-            return Map.of(
-                "success", true,
-                "cliente", cliente.orElse(null)
-            );
+        if (cliente == null) {
+            return ResponseEntity<String>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+        }
+
+        ClienteDTO clienteDTO = ClienteMapper.INSTANCE.convert(cliente);
+        if (cliente.getContrasena().equals(cliente.getContrasena())) {
+            return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.OK);
         } else {
-            return Map.of(
-                "success", false,
-                "message", "Correo o contraseña incorrectos"
-            );
+            return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.BAD_REQUEST);
         }
     }
     

@@ -11,5 +11,5 @@ import com.example.demo.entity.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     Optional<Cliente> findByCorreoAndContrasena(String correo, String contrasena);
-    Optional<Cliente> findByCorreo(String correo);
+    Cliente findByCorreo(String correo);
 } 
