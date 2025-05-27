@@ -8,6 +8,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,24 +47,21 @@ public class OperadorController {
      @Autowired
     private CustomUserDetailService customUserDetailService;
 
+    @Autowired
+    AuthenticationManager authenticationManager;
+
 
 
     @PostMapping("/loginOperador")
     public ResponseEntity login(@RequestBody Operador operador) {
 
-        operador = operadorService.obtenerOperadorPorUsuario(operador.getUsuario());
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(operador.getUsuario(), operador.getcontrasena())
+        );
 
-        if (operador == null) {
-            return new ResponseEntity<String>("Cliente no encontrado", HttpStatus.NOT_FOUND);
-        }
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        OperadorDTO operadorDTO = OperadorMapper.INSTANCE.convert(operador);
-
-        if (operador.getcontrasena().equals(operador.getcontrasena())) {
-            return new ResponseEntity<OperadorDTO>(operadorDTO, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<OperadorDTO>(operadorDTO, HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<String>("Operador login exitoso", HttpStatus.OK);
     }
 
     @PostMapping("/crear")

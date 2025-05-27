@@ -7,6 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +21,8 @@ import com.example.demo.entity.Adicional;
 import com.example.demo.entity.Administrador;
 import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Producto;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.security.CustomUserDetailService;
 import com.example.demo.service.AdicionalService;
 import com.example.demo.service.AdministradorService;
 import com.example.demo.service.ClienteService;
@@ -44,22 +50,25 @@ public class AdminController {
     @Autowired
     private AdministradorService administradorService;
 
+     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    private CustomUserDetailService customUserDetailService;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
     @PostMapping("/loginAdmin")
-    public ResponseEntity login(@RequestBody Administrador administrador) {
+    public ResponseEntity login(@RequestBody() Administrador administrador) {
         
-        administrador = administradorService.obtenerAdminPorUsuario(administrador.getUsuario());
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(administrador.getUsuario(), administrador.getContrasena())
+        );
 
-        if (administrador == null) {
-            return new ResponseEntity<String>("No estas registrado como admin", HttpStatus.NOT_FOUND);
-        }
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        AdminDTO adminDTO = AdminMapper.INSTANCE.convert(administrador);
-
-        if (administrador.getContrasena().equals(administrador.getContrasena())) {
-            return new ResponseEntity<AdminDTO>(adminDTO, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<AdminDTO>(adminDTO, HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<String>("Admin login exitoso", HttpStatus.OK);
     }
     
     @GetMapping("/usuarios")
