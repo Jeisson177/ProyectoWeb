@@ -91,4 +91,15 @@ public class AdminController {
     public List<Adicional> getAdicionales() {
         return adicionalService.getAllAdicionales();
     }
+
+    @GetMapping("/details")
+    public ResponseEntity<Administrador> buscarAdministrador () {
+        Administrador administrador = administradorService.obtenerAdminPorUsuario(
+             SecurityContextHolder.getContext().getAuthentication().getName());
+
+        if (administrador == null) {
+            return new ResponseEntity<Administrador>(administrador, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Administrador>(administrador, HttpStatus.OK);
+    }
 }

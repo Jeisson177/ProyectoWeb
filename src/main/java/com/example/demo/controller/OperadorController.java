@@ -125,4 +125,15 @@ public class OperadorController {
         operadorService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/details")
+    public ResponseEntity<Operador> buscarOperador () {
+        Operador operador = operadorService.obtenerOperadorPorUsuario(
+             SecurityContextHolder.getContext().getAuthentication().getName());
+
+        if (operador == null) {
+            return new ResponseEntity<Operador>(operador, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Operador>(operador, HttpStatus.OK);
+    }
 }
