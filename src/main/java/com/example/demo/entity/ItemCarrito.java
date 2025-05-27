@@ -16,11 +16,15 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "items_carrito")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
+@NoArgsConstructor
 public class ItemCarrito {
     
     @Id
@@ -45,9 +49,6 @@ public class ItemCarrito {
     )
     private List<Adicional> adicionales = new ArrayList<>();
     
-    // Constructor protegido para JPA
-    protected ItemCarrito() {}
-    
     // Constructor principal
     public ItemCarrito(Carrito carrito, Producto producto, int cantidad, List<Adicional> adicionales) {
         this.carrito = carrito;
@@ -65,27 +66,8 @@ public class ItemCarrito {
         return precioBase.add(precioAdicionales).multiply(BigDecimal.valueOf(cantidad));
     }
     
-    // Getters
-    public Long getId() { return id; }
-    public Producto getProducto() { return producto; }
-    public int getCantidad() { return cantidad; }
+    
     public List<Adicional> getAdicionales() { return adicionales; }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setCarrito(Carrito carrito) {
-        this.carrito = carrito;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
 
     public void setAdicionales(List<Adicional> adicionales) {
         this.adicionales = adicionales;

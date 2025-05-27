@@ -11,10 +11,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "items_pedido")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
+@NoArgsConstructor
 public class ItemPedido {
 
     @Id
@@ -33,8 +37,6 @@ public class ItemPedido {
     private int cantidad;
     private int precioUnitario;
 
-    public ItemPedido() {}
-
     // Constructor principal
     public ItemPedido(Pedido pedido, Producto producto, int cantidad, int precioUnitario) {
         this.pedido = pedido;
@@ -42,17 +44,6 @@ public class ItemPedido {
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
     }
-
-    // Getters
-    public Long getId() { return id; }
-    public Pedido getPedido() { return pedido; }
-    public Producto getProducto() { return producto; }
-    public int getCantidad() { return cantidad; }
-    public int getPrecioUnitario() { return precioUnitario; }
-
-    // Setters
-    public void setCantidad(int cantidad) { this.cantidad = cantidad; }
-    public void setPrecioUnitario(int precioUnitario) { this.precioUnitario = precioUnitario; }
 
     // Método para calcular subtotal
     public int calcularSubtotal() {

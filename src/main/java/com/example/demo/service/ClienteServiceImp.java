@@ -22,7 +22,7 @@ public class ClienteServiceImp implements ClienteService {
     }
 
     @Override
-    public Optional<Cliente> obtenerClientePorCorreo(String correo) {
+    public Cliente obtenerClientePorCorreo(String correo) {
         return clienteRepository.findByCorreo(correo);
     }
 
@@ -37,10 +37,8 @@ public class ClienteServiceImp implements ClienteService {
     }
 
     @Override
-    public void guardarCliente(Cliente cliente) {
-        if (!clienteRepository.findByCorreo(cliente.getCorreo()).isPresent()) {
-            clienteRepository.save(cliente);
-        }
+    public Cliente guardarCliente(Cliente cliente) {
+            return clienteRepository.save(cliente);  
     }
 
     @Override

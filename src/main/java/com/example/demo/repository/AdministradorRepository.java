@@ -14,6 +14,6 @@ import com.example.demo.entity.Administrador;
 public interface AdministradorRepository extends JpaRepository<Administrador, Long> {
 
     Optional<Administrador> findByUsuarioAndContrasena(String usuario, String contrasena);
-
+    Administrador findByUsuario(String usuario);
     
 }

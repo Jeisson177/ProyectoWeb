@@ -7,6 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +21,19 @@ import com.example.demo.entity.Adicional;
 import com.example.demo.entity.Administrador;
 import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Producto;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.security.CustomUserDetailService;
+import com.example.demo.security.JWTGenerator;
 import com.example.demo.service.AdicionalService;
 import com.example.demo.service.AdministradorService;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.ProductoService;
 
 import org.springframework.web.bind.annotation.RequestBody;
+
+import com.example.demo.DTOs.AdminDTO;
+import com.example.demo.DTOs.AdminMapper;
+import com.example.demo.DTOs.ClienteDTO;
 
 
 @RestController
@@ -40,22 +51,30 @@ public class AdminController {
     @Autowired
     private AdministradorService administradorService;
 
+     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    private CustomUserDetailService customUserDetailService;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JWTGenerator jwtGenerator;
+
     @PostMapping("/loginAdmin")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
-        String usuario = credentials.get("usuario");
-        String contrasena = credentials.get("contrasena");
+    public ResponseEntity login(@RequestBody() Administrador administrador) {
+        
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(administrador.getUsuario(), administrador.getContrasena())
+        );
 
-        Optional<Administrador> admin = administradorService.obtenerPorCredenciales(usuario, contrasena);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        if (admin.isPresent()) {
-            return ResponseEntity.ok().body(Map.of(
-                "mensaje", "Login exitoso",
-                "admin", admin.get()
-            ));
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("error", "Credenciales inválidas"));
-        }
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new ResponseEntity<String>(token, HttpStatus.OK);
     }
     
     @GetMapping("/usuarios")
@@ -71,5 +90,16 @@ public class AdminController {
     @GetMapping("/adicionales")
     public List<Adicional> getAdicionales() {
         return adicionalService.getAllAdicionales();
+    }
+
+    @GetMapping("/details")
+    public ResponseEntity<Administrador> buscarAdministrador () {
+        Administrador administrador = administradorService.obtenerAdminPorUsuario(
+             SecurityContextHolder.getContext().getAuthentication().getName());
+
+        if (administrador == null) {
+            return new ResponseEntity<Administrador>(administrador, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Administrador>(administrador, HttpStatus.OK);
     }
 }

@@ -6,17 +6,25 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "operadores")
+@Data
 public class Operador {
+
+    @OneToOne( cascade = CascadeType.ALL)
+    private UserEntity user; 
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,46 +50,18 @@ public class Operador {
         this.disponible = disponible;
     }
 
-    // Getters y setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
     public String getcontrasena() {
         return contrasena;
     }
 
-    public void setcontrasena(String contrasena) {
+     public void setcontrasena(String contrasena) {
         this.contrasena = contrasena;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+     public String getUsuario() {
+        return usuario;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
-    }
 
     public List<Pedido> getPedidos() {
         return pedidos;

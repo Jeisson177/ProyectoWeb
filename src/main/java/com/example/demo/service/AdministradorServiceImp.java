@@ -18,4 +18,9 @@ public class AdministradorServiceImp implements AdministradorService {
     public Optional<Administrador> obtenerPorCredenciales(String usuario, String contrasena) {
         return administradorRepository.findByUsuarioAndContrasena(usuario, contrasena);
     }
+
+    @Override
+    public Administrador obtenerAdminPorUsuario(String usuario) {
+        return administradorRepository.findByUsuario(usuario);
+    }
 }

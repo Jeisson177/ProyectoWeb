@@ -2,9 +2,11 @@ package com.example.demo.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +32,9 @@ public class ClienteController {
 
     @GetMapping("/perfil")
     public Object obtenerPerfil(@RequestParam("correo") String correo) {
-        Optional<Cliente> cliente = clienteService.obtenerClientePorCorreo(correo);
+        Cliente cliente = clienteService.obtenerClientePorCorreo(correo);
 
-        if (cliente.isPresent()) {
+        if (cliente != null) {
             List<Map<String, String>> promociones = List.of(
                 Map.of("titulo", "¡Pasta marinada 2x1!", "descripcion", "Spaguetti en salsa marinera con camarones."),
                 Map.of("titulo", "¡Pizza 2x1 todos los días!", "descripcion", "Pizza con queso cottage, tomates y finas hierbas."),
@@ -41,7 +43,7 @@ public class ClienteController {
             );
 
             return Map.of(
-                "cliente", cliente.get(),
+                "cliente", cliente,
                 "promociones", promociones
             );
         } else {
@@ -72,6 +74,17 @@ public class ClienteController {
     @GetMapping("/historial")
     public Object obtenerHistorialPedidos(@RequestParam("correo") String correo) {
         return clienteService.obtenerClientePorCorreo(correo);
+    }
+
+    @GetMapping("/details")
+    public ResponseEntity<Cliente> buscarCliente () {
+        Cliente cliente = clienteService.obtenerClientePorCorreo(
+             SecurityContextHolder.getContext().getAuthentication().getName());
+
+        if (cliente == null) {
+            return new ResponseEntity<Cliente>(cliente, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
     }
 
 }

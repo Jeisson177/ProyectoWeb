@@ -1,12 +1,13 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Operador;
-import com.example.demo.repository.OperadorRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.example.demo.entity.Operador;
+import com.example.demo.repository.OperadorRepository;
 
 @Service
 public class OperadorServiceImp implements OperadorService {
@@ -15,8 +16,8 @@ public class OperadorServiceImp implements OperadorService {
     private OperadorRepository operadorRepository;
 
     @Override
-    public Optional<Operador> obtenerPorCredenciales(String usuario, String contrasena) {
-        return operadorRepository.findByUsuarioAndContrasena(usuario, contrasena);
+    public Operador obtenerOperadorPorUsuario(String usuario) {
+        return operadorRepository.findByUsuario(usuario);
     }
 
     

@@ -16,10 +16,14 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
+@NoArgsConstructor
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,8 +60,6 @@ public class Producto {
     @JsonIgnoreProperties("productos") // <- esto evita la recursión infinita
     private List<Adicional> adicionales = new ArrayList<>();
 
-    public Producto() {}
-
     public Producto(String nombre, int precio, String descripcion, String categoria) {
         this.nombre = nombre;
         this.precio = precio;
@@ -77,40 +79,7 @@ public class Producto {
         adicional.getProductos().remove(this);
     }
 
-    public Long getProducto_id() {
-        return producto_id;
-    }
-
-    public void setProducto_id(Long producto_id) {
-        this.producto_id = producto_id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-
-    public List<Adicional> getAdicionales() {
+     public List<Adicional> getAdicionales() {
         return adicionales;
     }
 
@@ -118,11 +87,8 @@ public class Producto {
         this.adicionales = adicionales;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public int getPrecio() {
+        return precio;
     }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+    
 }

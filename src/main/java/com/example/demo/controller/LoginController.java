@@ -4,13 +4,21 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.entity.Cliente;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.security.CustomUserDetailService;
+import com.example.demo.security.JWTGenerator;
 import com.example.demo.service.ClienteService;
 @RestController
 @RequestMapping("/login")
@@ -21,25 +29,32 @@ public class LoginController {
     @Autowired
     private ClienteService clienteService;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    private CustomUserDetailService customUserDetailService;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JWTGenerator jwtGenerator;
+
     @PostMapping
-    public Map<String, Object> loginCliente(@RequestBody Map<String, String> credentials) {
-        String correo = credentials.get("correo");
-        String contrasena = credentials.get("contrasena");
+    public ResponseEntity loginCliente(@RequestBody Cliente cliente) {
 
-        boolean autenticado = clienteService.autenticarCliente(correo, contrasena);
 
-        if (autenticado) {
-            Optional<Cliente> cliente = clienteService.obtenerClientePorCorreo(correo);
-            return Map.of(
-                "success", true,
-                "cliente", cliente.orElse(null)
-            );
-        } else {
-            return Map.of(
-                "success", false,
-                "message", "Correo o contraseña incorrectos"
-            );
-        }
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(cliente.getCorreo(), 123)
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new ResponseEntity<String>(token, HttpStatus.OK);
+       
     }
     
 
