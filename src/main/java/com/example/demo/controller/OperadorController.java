@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.DTOs.ClienteDTO;
 import com.example.demo.DTOs.OperadorDTO;
 import com.example.demo.DTOs.OperadorMapper;
+import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Operador;
+import com.example.demo.entity.UserEntity;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.security.CustomUserDetailService;
 import com.example.demo.service.OperadorServiceImp;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +36,14 @@ public class OperadorController {
     
     @Autowired
     private OperadorServiceImp operadorService;
+
+     @Autowired
+    private UserRepository userRepository;
+
+     @Autowired
+    private CustomUserDetailService customUserDetailService;
+
+
 
     @PostMapping("/loginOperador")
     public ResponseEntity login(@RequestBody Operador operador) {
@@ -52,9 +64,22 @@ public class OperadorController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<Operador> crearOperador(@RequestBody Operador operador) {
-        Operador nuevoOperador = operadorService.guardar(operador);
-        return new ResponseEntity<>(nuevoOperador, HttpStatus.CREATED);
+    public ResponseEntity crearOperador(@RequestBody Operador operador) {
+
+        if(userRepository.existsByUsername(operador.getUsuario())) {
+            return new ResponseEntity<String>("Este usuario ya existe", HttpStatus.BAD_REQUEST);
+        }
+
+        UserEntity userEntity= customUserDetailService.OperadorToUser(operador);
+        operador.setUser(userEntity);
+        Operador operadorDB = operadorService.guardar(operador);
+        OperadorDTO newOperador = OperadorMapper.INSTANCE.convert(operadorDB);
+
+         if(newOperador == null) {
+            return new ResponseEntity<OperadorDTO>(newOperador, HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<OperadorDTO>(newOperador, HttpStatus.CREATED);
     }
 
     @GetMapping("/listar")
