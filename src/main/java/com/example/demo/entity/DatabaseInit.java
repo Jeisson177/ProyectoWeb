@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import com.example.demo.repository.AdicionalRepository;
@@ -17,6 +18,8 @@ import com.example.demo.repository.ItemCarritoRepository;
 import com.example.demo.repository.OperadorRepository;
 import com.example.demo.repository.PedidoRepository;
 import com.example.demo.repository.ProductoRepository;
+import com.example.demo.repository.RoleRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.ProductoService;
 
 import jakarta.transaction.Transactional;
@@ -56,9 +59,21 @@ public class DatabaseInit implements ApplicationRunner{
     @Autowired
     ItemCarritoRepository itemCarritoRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
+        roleRepository.save(new Role("ADMIN"));
+        roleRepository.save(new Role("CLIENTE"));
+        roleRepository.save(new Role("OPERADOR"));
        
     
         //Inicio los clientes

@@ -1,8 +1,10 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +18,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Administrador {
+
+    @OneToOne( cascade = CascadeType.ALL)
+    private UserEntity user; 
+
 
     @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
     private String nombre;

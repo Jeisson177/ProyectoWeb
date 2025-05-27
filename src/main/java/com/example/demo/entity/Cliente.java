@@ -5,11 +5,13 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -22,6 +24,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Cliente {
+
+    @OneToOne( cascade = CascadeType.ALL)
+    private UserEntity user; 
 
     @NotNull
     @Size(min = 2, max = 50)
