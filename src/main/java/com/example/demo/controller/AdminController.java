@@ -42,6 +42,7 @@ import com.example.demo.DTOs.ClienteDTO;
 public class AdminController {
     @Autowired
     ClienteService clienteService;
+    
     @Autowired
     ProductoService productoService;
 
