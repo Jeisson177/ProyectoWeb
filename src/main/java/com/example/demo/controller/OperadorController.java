@@ -29,6 +29,7 @@ import com.example.demo.entity.Operador;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.CustomUserDetailService;
+import com.example.demo.security.JWTGenerator;
 import com.example.demo.service.OperadorServiceImp;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,6 +51,9 @@ public class OperadorController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+     @Autowired
+    JWTGenerator jwtGenerator;
+
 
 
     @PostMapping("/loginOperador")
@@ -61,7 +65,9 @@ public class OperadorController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<String>("Operador login exitoso", HttpStatus.OK);
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new ResponseEntity<String>(token, HttpStatus.OK);
     }
 
     @PostMapping("/crear")

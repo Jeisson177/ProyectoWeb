@@ -23,6 +23,7 @@ import com.example.demo.entity.Cliente;
 import com.example.demo.entity.Producto;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.CustomUserDetailService;
+import com.example.demo.security.JWTGenerator;
 import com.example.demo.service.AdicionalService;
 import com.example.demo.service.AdministradorService;
 import com.example.demo.service.ClienteService;
@@ -59,6 +60,9 @@ public class AdminController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    JWTGenerator jwtGenerator;
+
     @PostMapping("/loginAdmin")
     public ResponseEntity login(@RequestBody() Administrador administrador) {
         
@@ -68,7 +72,9 @@ public class AdminController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<String>("Admin login exitoso", HttpStatus.OK);
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new ResponseEntity<String>(token, HttpStatus.OK);
     }
     
     @GetMapping("/usuarios")

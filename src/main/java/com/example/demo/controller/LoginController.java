@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.Cliente;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.CustomUserDetailService;
+import com.example.demo.security.JWTGenerator;
 import com.example.demo.service.ClienteService;
 @RestController
 @RequestMapping("/login")
@@ -37,6 +38,9 @@ public class LoginController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    JWTGenerator jwtGenerator;
+
     @PostMapping
     public ResponseEntity loginCliente(@RequestBody Cliente cliente) {
 
@@ -47,8 +51,9 @@ public class LoginController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<String>("Login exitoso", HttpStatus.OK);
+        String token = jwtGenerator.generateToken(authentication);
 
+        return new ResponseEntity<String>(token, HttpStatus.OK);
        
     }
     

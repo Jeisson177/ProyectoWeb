@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration //Se vab a crear beans 
 @EnableWebSecurity
@@ -26,11 +27,17 @@ public class SecurityConfig {
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/h2-console/**").permitAll()
-                .requestMatchers("methods/GET", "/cliente/perfil").authenticated()
+                .requestMatchers("methods/POST", "/login").permitAll()
+                .requestMatchers("methods/GET", "/usuarios/**").authenticated()
+                .requestMatchers("/login").hasAuthority("CLIENTE")
+                .requestMatchers("/homeCliente").hasAuthority("CLIENTE")
+                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                .requestMatchers("/operador/**").hasAuthority("OPERADOR")
                 .anyRequest().permitAll()
             )
             .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint)
             );
+            http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -46,5 +53,10 @@ public class SecurityConfig {
     ) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     } 
+
+    @Bean
+    public JWTAuthenticationFilter jwtAuthenticationFilter() {
+        return new JWTAuthenticationFilter();
+}
 
 }

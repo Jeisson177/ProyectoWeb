@@ -13,7 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class JWTAuthenticatioFilter extends OncePerRequestFilter {
+public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     private JWTGenerator jwtGenerator;
@@ -25,7 +25,7 @@ public class JWTAuthenticatioFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, 
     HttpServletResponse response, 
     FilterChain filterChain)
-    
+
             throws ServletException, IOException, java.io.IOException {
         
         String token= getJWT((request));
