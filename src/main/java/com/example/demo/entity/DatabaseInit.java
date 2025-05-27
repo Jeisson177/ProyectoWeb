@@ -75,33 +75,134 @@ public class DatabaseInit implements ApplicationRunner{
         roleRepository.save(new Role("CLIENTE"));
         roleRepository.save(new Role("OPERADOR"));
        
-    
-        //Inicio los clientes
-        clienteRepository.save(new Cliente("Juan", "Pérez", "jperez@example.com", "1234abc12", "Calle 123", "555-1234"));
-        clienteRepository.save(new Cliente("María", "Gómez", "mgomez@example.com", "5678", "Avenida 456", "555-5678"));
-        clienteRepository.save(new Cliente("Carlos", "López", "clopez@example.com", "91011", "Boulevard 789", "555-9101"));
-        clienteRepository.save(new Cliente("Ana", "Martínez", "amartinez@example.com", "121314", "Calle 321", "555-1213"));
-        clienteRepository.save(new Cliente("Luis", "Rodríguez", "lrodriguez@example.com", "151617", "Avenida 654", "555-1516"));
-        clienteRepository.save(new Cliente("Pedro", "Sánchez", "psanchez@example.com", "181920", "Calle 987", "555-1819"));
-        clienteRepository.save(new Cliente("Laura", "Fernández", "lfernandez@example.com", "212223", "Avenida 654", "555-2122"));
-        clienteRepository.save(new Cliente("Miguel", "Díaz", "mdiaz@example.com", "242526", "Boulevard 321", "555-2425"));
-        clienteRepository.save(new Cliente("Sofía", "Ruiz", "sruiz@example.com", "272829", "Calle 159", "555-2728"));
-        clienteRepository.save(new Cliente("Javier", "Hernández", "jhernandez@example.com", "303132", "Avenida 753", "555-3031"));
-        clienteRepository.save(new Cliente("Elena", "Torres", "etorres@example.com", "333435", "Calle 852", "555-3334"));
-        clienteRepository.save(new Cliente("Diego", "Vargas", "dvargas@example.com", "363738", "Boulevard 456", "555-3637"));
-        clienteRepository.save(new Cliente("Carmen", "Jiménez", "cjimenez@example.com", "394041", "Avenida 963", "555-3940"));
-        clienteRepository.save(new Cliente("Ricardo", "Molina", "rmolina@example.com", "424344", "Calle 741", "555-4243"));
-        clienteRepository.save(new Cliente("Patricia", "Castro", "pcastro@example.com", "454647", "Boulevard 258", "555-4546"));
-        clienteRepository.save(new Cliente("Fernando", "Ortega", "fortega@example.com", "484950", "Avenida 369", "555-4849"));
-        clienteRepository.save(new Cliente("Lucía", "Navarro", "lnavarro@example.com", "515253", "Calle 753", "555-5152"));
-        clienteRepository.save(new Cliente("Oscar", "Ramírez", "oramirez@example.com", "545556", "Boulevard 951", "555-5455"));
-        clienteRepository.save(new Cliente("Isabel", "Reyes", "ireyes@example.com", "575859", "Avenida 357", "555-5758"));
-        clienteRepository.save(new Cliente("Gabriel", "Morales", "gmorales@example.com", "606162", "Calle 456", "555-6061"));
-        clienteRepository.save(new Cliente("Adriana", "Guerrero", "aguerrero@example.com", "636465", "Boulevard 789", "555-6364"));
-        clienteRepository.save(new Cliente("Raúl", "Rojas", "rrojas@example.com", "666768", "Avenida 123", "555-6667"));
-        clienteRepository.save(new Cliente("Mónica", "Silva", "msilva@example.com", "697071", "Calle 654", "555-6970"));
-        clienteRepository.save(new Cliente("Héctor", "Cruz", "hcruz@example.com", "727374", "Boulevard 321", "555-7273"));
-        clienteRepository.save(new Cliente("Natalia", "Peña", "npena@example.com", "757677", "Avenida 987", "555-7576"));
+        Cliente clienteSave;
+        UserEntity userEntity;
+
+       
+        clienteSave = new Cliente("Juan", "Pérez", "jperez@example.com", "1234abc12", "Calle 123", "555-1234");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+
+        clienteSave = new Cliente("María", "Gómez", "mgomez@example.com", "5678", "Avenida 456", "555-5678");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Carlos", "López", "clopez@example.com", "91011", "Boulevard 789", "555-9101");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Ana", "Martínez", "amartinez@example.com", "121314", "Calle 321", "555-1213");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Luis", "Rodríguez", "lrodriguez@example.com", "151617", "Avenida 654", "555-1516");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Pedro", "Sánchez", "psanchez@example.com", "181920", "Calle 987", "555-1819");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Laura", "Fernández", "lfernandez@example.com", "212223", "Avenida 654", "555-2122");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Miguel", "Díaz", "mdiaz@example.com", "242526", "Boulevard 321", "555-2425");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Sofía", "Ruiz", "sruiz@example.com", "272829", "Calle 159", "555-2728");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Javier", "Hernández", "jhernandez@example.com", "303132", "Avenida 753", "555-3031");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Elena", "Torres", "etorres@example.com", "333435", "Calle 852", "555-3334");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Diego", "Vargas", "dvargas@example.com", "363738", "Boulevard 456", "555-3637");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Carmen", "Jiménez", "cjimenez@example.com", "394041", "Avenida 963", "555-3940");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Ricardo", "Molina", "rmolina@example.com", "424344", "Calle 741", "555-4243");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Patricia", "Castro", "pcastro@example.com", "454647", "Boulevard 258", "555-4546");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Fernando", "Ortega", "fortega@example.com", "484950", "Avenida 369", "555-4849");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Lucía", "Navarro", "lnavarro@example.com", "515253", "Calle 753", "555-5152");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Oscar", "Ramírez", "oramirez@example.com", "545556", "Boulevard 951", "555-5455");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Isabel", "Reyes", "ireyes@example.com", "575859", "Avenida 357", "555-5758");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Gabriel", "Morales", "gmorales@example.com", "606162", "Calle 456", "555-6061");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Adriana", "Guerrero", "aguerrero@example.com", "636465", "Boulevard 789", "555-6364");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Raúl", "Rojas", "rrojas@example.com", "666768", "Avenida 123", "555-6667");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Mónica", "Silva", "msilva@example.com", "697071", "Calle 654", "555-6970");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Héctor", "Cruz", "hcruz@example.com", "727374", "Boulevard 321", "555-7273");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        
+        clienteSave = new Cliente("Natalia", "Peña", "npena@example.com", "757677", "Avenida 987", "555-7576");
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
 
         //Inicio los adicionales
         Adicional adicional1 = new Adicional( "Queso Parmesano Extra",1, 500);
@@ -203,23 +304,21 @@ public class DatabaseInit implements ApplicationRunner{
 
 productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10,producto11,producto12,producto13,producto14,producto15,producto16,producto17,producto18,producto19,producto20,producto21,producto22,producto23,producto24,producto25,producto26,producto27,producto28,producto29,producto30));
         //Inicio de los Administradores 
-        Administrador adminEntity = Administrador.builder().
-                nombre("Juan").
-                apellido("Pérez").
-                usuario("jperez").
-                contrasena("admin123").
-                build();
 
-        administradorRepository.save(adminEntity);
+        Administrador registrarAdmin = new Administrador("Juan", "Pérez", "jperez", "admin123");
+        UserEntity user = saveUserAdmin(registrarAdmin);
+        registrarAdmin.setUser(user);
+        administradorRepository.save(registrarAdmin);
 
-        adminEntity = Administrador.builder().
-                nombre("Maria").
-                apellido("Jaramillo").
-                usuario("Jaramillo_M").
-                contrasena("Bgta5862").
-                build();
+        registrarAdmin = new Administrador("Maria", "Jaramillo", "Jaramillo_M", "Bgta5862");
+        user = saveUserAdmin(registrarAdmin);
+        registrarAdmin.setUser(user);
+        administradorRepository.save(registrarAdmin);
 
-        administradorRepository.save(adminEntity);
+        registrarAdmin = new Administrador("Andrés", "Gómez", "agomez", "clave456");
+        user = saveUserAdmin(registrarAdmin);
+        registrarAdmin.setUser(user);
+        administradorRepository.save(registrarAdmin);
 
         //Inicio de los domiciliarios
 
@@ -235,14 +334,64 @@ productoRepository.saveAll(List.of(producto1, producto2, producto3, producto4, p
         domiciliarioRepository.save(new Domiciliario("Roberto Marini", "39915687", false));
 
         //Inicio de los operadores
-        operadorRepository.save(new Operador( "Carlos Gómez", "carlosg", "clave123",true));
-        operadorRepository.save(new Operador( "María López", "marial", "clave456",true));
-        operadorRepository.save(new Operador( "Pedro Ramírez", "pedror", "clave789",true));
-        operadorRepository.save(new Operador( "Ana Martínez", "anam", "clave101",true));
-        operadorRepository.save(new Operador( "Luisa Fernández", "luisaf", "clave112",true));
-        operadorRepository.save(new Operador( "Jorge Díaz", "jorged", "clave131",true));
+        Operador registrarOperador = new Operador("Carlos Gómez", "carlosg", "clave123", true);
+        UserEntity userOperador = saveUserOperador(registrarOperador);
+        registrarOperador.setUser(userOperador);
+        operadorRepository.save(registrarOperador);
+
+        registrarOperador = new Operador( "María López", "marial", "clave456",true);
+        userOperador = saveUserOperador(registrarOperador);
+        registrarOperador.setUser(userOperador);
+        operadorRepository.save(registrarOperador);
+
+        registrarOperador = new Operador( "Pedro Ramírez", "pedror", "clave789",true);
+        userOperador = saveUserOperador(registrarOperador);
+        registrarOperador.setUser(userOperador);
+        operadorRepository.save(registrarOperador);
+
+        registrarOperador = new Operador( "Ana Martínez", "anam", "clave101",true);
+        userOperador = saveUserOperador(registrarOperador);
+        registrarOperador.setUser(userOperador);
+        operadorRepository.save(registrarOperador);
+
+        registrarOperador = new Operador( "Luisa Fernández", "luisaf", "clave112",true);
+        userOperador = saveUserOperador(registrarOperador);
+        registrarOperador.setUser(userOperador);
+        operadorRepository.save(registrarOperador);
+
+        registrarOperador = new Operador( "Jorge Díaz", "jorged", "clave131",true);
+        userOperador = saveUserOperador(registrarOperador);
+        registrarOperador.setUser(userOperador);
+        operadorRepository.save(registrarOperador);
 
         
+    }
+
+    private UserEntity saveUserCliente(Cliente cliente) {
+        UserEntity user = new UserEntity();
+        user.setUsername(cliente.getCorreo());
+        user.setPassword(passwordEncoder.encode("123"));
+        Role roles = roleRepository.findByName("CLIENTE").get();
+        user.setRoles(List.of(roles));
+        return userRepository.save(user);
+    }
+
+    private UserEntity saveUserAdmin(Administrador administrador) {
+        UserEntity user = new UserEntity();
+        user.setUsername(administrador.getUsuario());
+        user.setPassword(passwordEncoder.encode(administrador.getContrasena()));
+        Role roles = roleRepository.findByName("ADMIN").get();
+        user.setRoles(List.of(roles));
+        return userRepository.save(user);
+    }
+
+    private UserEntity saveUserOperador(Operador operador) {
+        UserEntity user = new UserEntity();
+        user.setUsername(operador.getUsuario());
+        user.setPassword(passwordEncoder.encode(operador.getcontrasena()));
+        Role roles = roleRepository.findByName("OPERADOR").get();
+        user.setRoles(List.of(roles));
+        return userRepository.save(user);
     }
     
 }
