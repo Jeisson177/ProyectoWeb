@@ -1,14 +1,21 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Cliente {
 
@@ -39,6 +46,10 @@ public class Cliente {
     @Pattern(regexp = "\\d{10}", message = "El teléfono debe tener 10 dígitos")
     @Column(nullable = false)
     private String Telefono;
+
+    @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
+    private List<Pedido> pedidos;
 
     @Id
     @GeneratedValue

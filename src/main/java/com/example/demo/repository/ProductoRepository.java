@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -14,5 +15,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     @EntityGraph(attributePaths = {"adicionales"})
     Optional<Producto> findById(Long id);
+    List<Producto> findByTemporadaTrue();
     
 } 

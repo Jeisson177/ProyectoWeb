@@ -26,8 +26,8 @@ import jakarta.transaction.Transactional;
 
 @Controller
 @Transactional
-@Profile("default")
-public class DatabaseInit implements ApplicationRunner{
+@Profile("test")
+public class DatabaseInitTest implements ApplicationRunner{
 
     @Autowired
     ProductoRepository productoRepository;

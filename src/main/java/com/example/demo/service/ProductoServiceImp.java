@@ -27,12 +27,13 @@ public class ProductoServiceImp implements ProductoService {
 
     // Inyectar el EntityManager
     @PersistenceContext
-    private EntityManager entityManager;  // Esto resuelve el problema del "entityManager"
+    private EntityManager entityManager; 
 
     @Override
     public List<Producto> getAllProductos() {
-        return productoRepository.findAll();
+    return productoRepository.findByTemporadaTrue(); 
     }
+
 
     @Override
     public Producto getProductoById(Long id) {
@@ -56,9 +57,14 @@ public class ProductoServiceImp implements ProductoService {
     }
 
     @Override
-    public Producto guardarProducto(Producto producto) {
-        return productoRepository.save(producto);
+public Producto guardarProducto(Producto producto) {
+    // Si el producto viene con ID 0 o menor, lo tratamos como nuevo
+    if (producto.getProducto_id() != null ) {
+        producto.setProducto_id(null);
     }
+    return productoRepository.save(producto);
+}
+
 
     @Override
     @Transactional

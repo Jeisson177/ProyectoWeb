@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +41,7 @@ public class ProductoTablaController {
     // Obtener un producto por ID con sus adicionales
     @GetMapping("/{id}")
     public Producto getProductoConAdicionales(@PathVariable Long id) {
-        Producto p=productoService.getProductoWithAdicionales(id);
+        Producto p = productoService.getProductoWithAdicionales(id);
         System.out.println("Producto con adicionales: " + p.getAdicionales());
         return p;
 
@@ -51,13 +51,16 @@ public class ProductoTablaController {
     // Crear nuevo producto
     @PostMapping
     public ResponseEntity<Producto> guardarProducto(@RequestBody Producto producto) {
+        producto.setTemporada(true);
         Producto nuevoProducto = productoService.guardarProducto(producto);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoProducto);
     }
 
     // Actualizar producto
-    @PutMapping("/{id}")
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id,@RequestBody Producto productoConAdicionales) {
+    @PutMapping(value = "/{id}", consumes = MediaType.ALL_VALUE)
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id,
+            @RequestBody Producto productoConAdicionales) {
+        System.err.println(productoConAdicionales);
         List<Long> idsAdicionales = new ArrayList<>();
         if (productoConAdicionales.getAdicionales() != null) {
             for (Adicional adicional : productoConAdicionales.getAdicionales()) {
@@ -69,14 +72,26 @@ public class ProductoTablaController {
         List<Adicional> adicionales = adicionalService.getAdicionalesByIds(idsAdicionales);
 
         return productoService.actualizarProducto(productoConAdicionales, adicionales)
-        .map(productoActualizado -> ResponseEntity.ok(productoActualizado))
-        .orElseGet(() -> ResponseEntity.notFound().build());
+                .map(productoActualizado -> ResponseEntity.ok(productoActualizado))
+                .orElseGet(() -> ResponseEntity.notFound().build());
 
     }
 
     // Eliminar producto
-    @DeleteMapping("/{id}")
-    public void eliminarProducto(@PathVariable Long id) {
-        productoService.eliminarProducto(id);
+    // @DeleteMapping("/{id}")
+    // public void eliminarProducto(@PathVariable Long id) {
+    // productoService.eliminarProducto(id);
+    // }
+
+    @PutMapping("/eliminar/{id}")
+    public ResponseEntity<Producto> eliminarProducto(@PathVariable Long id) {
+        Producto producto = productoService.getProductoById(id);
+        if (producto != null) {
+            producto.setTemporada(false); // Marcamos como no disponible
+            productoService.guardarProducto(producto); // Guardamos el cambio
+            return ResponseEntity.ok(producto);
+        }
+        return ResponseEntity.notFound().build();
     }
+
 }

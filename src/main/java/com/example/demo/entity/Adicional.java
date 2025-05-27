@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -15,6 +15,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Adicional {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +33,20 @@ public class Adicional {
     private int precio;
 
     @ManyToMany(mappedBy = "adicionales", cascade = { CascadeType.MERGE})
-    @JsonBackReference 
+    @JsonIgnoreProperties("adicionales") // <- opcional
     private List<Producto> productos;
+
+    private boolean temporada = true;
+
+    
+
+    public boolean isTemporada() {
+        return temporada;
+    }
+
+    public void setTemporada(boolean temporada) {
+        this.temporada = temporada;
+    }
 
     public Adicional() {this.productos = new ArrayList<>();
 }
@@ -43,6 +56,7 @@ public class Adicional {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.temporada = true;
     }
 
     public List<Producto> getProductos() {

@@ -49,17 +49,15 @@ public class AdicionalServiceImp implements AdicionalService{
     @Override
     public void eliminarAdicional(Long id) {
         Optional<Adicional> optionalAdicional = adicionalRepository.findById(id);
-    
+        
         if (optionalAdicional.isPresent()) {
             Adicional adicional = optionalAdicional.get(); // Extrae el objeto Adicional
 
-            // Elimina la relación ManyToMany con productos
-            for (Producto producto : adicional.getProductos()) {
-                producto.getAdicionales().remove(adicional);
-            }
-            adicional.getProductos().clear(); // Asegura que no quede referencia
-            adicionalRepository.save(adicional); // Guarda el estado antes de eliminar
-            adicionalRepository.deleteById(id);
+            // Marcamos el adicional como no disponible (en lugar de eliminarlo)
+            adicional.setTemporada(false);
+            
+            // Guarda el estado del adicional marcado como no disponible
+            adicionalRepository.save(adicional);
         } else {
             throw new RuntimeException("No se encontró el adicional con ID: " + id);
         }

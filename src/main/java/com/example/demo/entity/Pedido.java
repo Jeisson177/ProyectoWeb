@@ -1,79 +1,122 @@
 package com.example.demo.entity;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "pedidos")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pedido {
-
-    @Positive(message = "El ID del operador debe ser un número positivo")
-    private int operador_ID;
-
-    @Positive(message = "El ID del domiciliario debe ser un número positivo")
-    private int domiciliario_ID;
-
     
-    private boolean estado;
-
-    @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe tener el formato YYYY-MM-DD")
-    private String fecha;
-
     @Id
-    @GeneratedValue
-    private Long pedido_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long pedidoId;
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonIgnoreProperties({"pedidos", "hibernateLazyInitializer", "handler"})
+    private Cliente cliente;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "operador_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Operador operador;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "domiciliario_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Domiciliario domiciliario;
 
-    public Pedido(Long pedido_id, int operador_ID, int domiciliario_ID, boolean estado, String fecha) {
-        this.pedido_id = pedido_id;
-        this.operador_ID = operador_ID;
-        this.domiciliario_ID = domiciliario_ID;
-        this.estado = estado;
-        this.fecha = fecha;
+    private String estado; // "RECIBIDO", "COCINANDO", "ENVIADO", "ENTREGADO"    
+    private String direccionEnvio;
+    
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime fecha;
+    
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemPedido> items = new ArrayList<>();
+    
+    // Constructor por defecto
+    public Pedido() {
+    }
+    
+    // Getters y Setters
+    public Long getPedidoId() {
+        return pedidoId;
     }
 
-    public Pedido(int operador_ID, int domiciliario_ID, boolean estado, String fecha) {
-        this.operador_ID = operador_ID;
-        this.domiciliario_ID = domiciliario_ID;
-        this.estado = estado;
-        this.fecha = fecha;
+    public void setPedidoId(Long pedidoId) {
+        this.pedidoId = pedidoId;
     }
 
-    public Pedido() {}
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
-    public Long getPedido_id() {
-        return pedido_id;
+    public Operador getOperador() {
+        return operador;
     }
-    public void setPedido_id(Long pedido_id) {
-        this.pedido_id = pedido_id;
+
+    public void setOperador(Operador operador) {
+        this.operador = operador;
     }
-    public int getOperador_ID() {
-        return operador_ID;
+
+    public Domiciliario getDomiciliario() {
+        return domiciliario;
     }
-    public void setOperador_ID(int operador_ID) {
-        this.operador_ID = operador_ID;
+
+    public void setDomiciliario(Domiciliario domiciliario) {
+        this.domiciliario = domiciliario;
     }
-    public int getDomiciliario_ID() {
-        return domiciliario_ID;
-    }
-    public void setDomiciliario_ID(int domiciliario_ID) {
-        this.domiciliario_ID = domiciliario_ID;
-    }
-    public boolean isestado() {
+
+    public String getEstado() {
         return estado;
     }
-    public void setestado(boolean estado) {
+
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public String getFecha() {
+    public String getDireccionEnvio() {
+        return direccionEnvio;
+    }
+
+    public void setDireccionEnvio(String direccionEnvio) {
+        this.direccionEnvio = direccionEnvio;
+    }
+
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
+    }
+
+    public List<ItemPedido> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemPedido> items) {
+        this.items = items;
     }
 }
